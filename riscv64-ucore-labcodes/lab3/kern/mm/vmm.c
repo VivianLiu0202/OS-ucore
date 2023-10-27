@@ -62,17 +62,23 @@ static void check_vma_struct(void);
 static void check_pgfault(void);
 
 // mm_create -  alloc a mm_struct & initialize it.
+//创建一个mm_struct病初始化(创建时调用了kmalloc，故删除前需要释放)
 struct mm_struct *
 mm_create(void)
 {
     struct mm_struct *mm = kmalloc(sizeof(struct mm_struct));
+    /**
+     * kmalloc:类似于用户空间中的malloc函数，但是它是在内核空间中进行内存分配，因此用于内核代码中
+     * 它会在内存池中查找一个足够大的空闲内存块，将其标记为已使用，并返回其首地址
+     * 如果内存池中没有足够大的空闲内存块，则会进行内存压缩或者内存回收操作，以获得足够的连续内存空间。
+    */
 
     if (mm != NULL)
     {
         list_init(&(mm->mmap_list));
-        mm->mmap_cache = NULL;
-        mm->pgdir = NULL;
-        mm->map_count = 0;
+        mm->mmap_cache = NULL;//当前没有正在使用的虚拟内存空间；
+        mm->pgdir = NULL;//表示当前没有使用的页目录表；
+        mm->map_count = 0;//表示当前没有虚拟内存空间；
 
         if (swap_init_ok)
             swap_init_mm(mm);
@@ -83,6 +89,7 @@ mm_create(void)
 }
 
 // vma_create - alloc a vma_struct & initialize it. (addr range: vm_start~vm_end)
+// vma的创建并初始化，根据参数vm_start、vm_end、vm_flags完成初始化
 struct vma_struct *
 vma_create(uintptr_t vm_start, uintptr_t vm_end, uint_t vm_flags)
 {
@@ -97,17 +104,17 @@ vma_create(uintptr_t vm_start, uintptr_t vm_end, uint_t vm_flags)
     return vma;
 }
 
-// find_vma - find a vma  (vma->vm_start <= addr <= vma_vm_end)
-// 根据一个地址，查找这个地址对应的vma_struct结构体
+//find_vma - find a vma  (vma->vm_start <= addr <= vma_vm_end)
+//根据mm以及addr找到vma ,查找这个地址对应的vma_struct结构体满足(vma->vm_start <= addr <= vma_vm_end)体
 struct vma_struct *
 find_vma(struct mm_struct *mm, uintptr_t addr)
 {
     struct vma_struct *vma = NULL;
     if (mm != NULL)
     {
-        vma = mm->mmap_cache; // 先查cache
+        vma = mm->mmap_cache; // 先查cache，当前正在使用的虚拟内存空间
         if (!(vma != NULL && vma->vm_start <= addr && vma->vm_end > addr))
-        // 传入的地址不在cache中，遍历整个vma链表，查找对应的vma
+        // 传入的地址不在cache中，遍历整个 mm->mmap_list 链表，查找对应的vma（包含传入地址的 vma_struct 结构体）；
         {
             bool found = 0;
             list_entry_t *list = &(mm->mmap_list), *le = list;
@@ -144,6 +151,7 @@ check_vma_overlap(struct vma_struct *prev, struct vma_struct *next)
 }
 
 // insert_vma_struct -insert vma in mm's list link
+//向mm的mmap_list的插入一个vma，按地址插入合适位置
 void insert_vma_struct(struct mm_struct *mm, struct vma_struct *vma)
 {
     assert(vma->vm_start < vma->vm_end);
@@ -180,6 +188,7 @@ void insert_vma_struct(struct mm_struct *mm, struct vma_struct *vma)
 }
 
 // mm_destroy - free mm and mm internal fields
+//删除一个mm struct，kfree掉占用的空间
 void mm_destroy(struct mm_struct *mm)
 {
 

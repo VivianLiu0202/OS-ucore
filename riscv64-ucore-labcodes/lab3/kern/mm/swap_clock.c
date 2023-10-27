@@ -25,7 +25,8 @@
  *              le2page (in memlayout.h), (in future labs: le2vma (in vmm.h), le2proc (in proc.h),etc.
  */
 
-list_entry_t pra_list_head, *curr_ptr;
+static list_entry_t pra_list_head;
+list_entry_t *curr_ptr;
 /*
  * (2) _fifo_init_mm: init pra_list_head and let  mm->sm_priv point to the addr of pra_list_head.
  *              Now, From the memory control struct mm_struct, we can access FIFO PRA

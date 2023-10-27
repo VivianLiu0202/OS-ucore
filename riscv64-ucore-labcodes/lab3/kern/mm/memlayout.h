@@ -68,6 +68,7 @@ struct Page
     uint_t visited;
     unsigned int property;      // the num of free block, used in first fit pm manager
     list_entry_t page_link;     // free list link
+    //增添了两个变量：pra_page_link以及pra_vaddr，用于页替换算法
     list_entry_t pra_page_link; // used for pra (page replace algorithm)
     uintptr_t pra_vaddr;        // used for pra (page replace algorithm)
 };

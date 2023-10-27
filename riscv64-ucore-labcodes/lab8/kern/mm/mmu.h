@@ -52,6 +52,7 @@
 #define PGADDR(d1, d0, t, o) ((uintptr_t)((d1) << PDX1SHIFT | (d0) << PDX0SHIFT | (t) << PTXSHIFT | (o)))
 
 // address in page table or page directory entry
+//从一个页表项中获取对应的物理地址，与～0x3FF按位与是为了清除页表项的标志位，然后左移动12-10位，即可得到物理地址
 #define PTE_ADDR(pte) (((uintptr_t)(pte) & ~0x3FF) << (PTXSHIFT - PTE_PPN_SHIFT))
 #define PDE_ADDR(pde) PTE_ADDR(pde)
 
