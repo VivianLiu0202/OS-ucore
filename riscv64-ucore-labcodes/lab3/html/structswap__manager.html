@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: swap_manager结构体 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="structswap__manager-members.html">所有成员列表</a>  </div>
+  <div class="headertitle">
+<div class="title">swap_manager结构体 参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="swap_8h_source.html">swap.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:ae383c26ea01b6cc99161d81b462263d8"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswap__manager.html#ae383c26ea01b6cc99161d81b462263d8">name</a></td></tr>
+<tr class="separator:ae383c26ea01b6cc99161d81b462263d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacb0ad5bf57857e998e78a6cb7d23a78"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswap__manager.html#aacb0ad5bf57857e998e78a6cb7d23a78">init</a> )(void)</td></tr>
+<tr class="separator:aacb0ad5bf57857e998e78a6cb7d23a78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3691ec674808ea46b6e3241e906a87c9"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswap__manager.html#a3691ec674808ea46b6e3241e906a87c9">init_mm</a> )(struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm)</td></tr>
+<tr class="separator:a3691ec674808ea46b6e3241e906a87c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b1cb654f2787a36f880027d43da755a"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswap__manager.html#a1b1cb654f2787a36f880027d43da755a">tick_event</a> )(struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm)</td></tr>
+<tr class="separator:a1b1cb654f2787a36f880027d43da755a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7a450b6263bce92736dfa083f53362c"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswap__manager.html#ad7a450b6263bce92736dfa083f53362c">map_swappable</a> )(struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr, struct <a class="el" href="struct_page.html">Page</a> *page, int <a class="el" href="swap_8h.html#af3058f8798ac6b061b6a6ca528ac9932">swap_in</a>)</td></tr>
+<tr class="separator:ad7a450b6263bce92736dfa083f53362c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af02b48ab6b908ed36f9e062f88edabb1"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswap__manager.html#af02b48ab6b908ed36f9e062f88edabb1">set_unswappable</a> )(struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr)</td></tr>
+<tr class="separator:af02b48ab6b908ed36f9e062f88edabb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0cc1fe199aed192a583ce17420ddb30"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswap__manager.html#ad0cc1fe199aed192a583ce17420ddb30">swap_out_victim</a> )(struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, struct <a class="el" href="struct_page.html">Page</a> **ptr_page, int in_tick)</td></tr>
+<tr class="separator:ad0cc1fe199aed192a583ce17420ddb30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40a16c8c21b0580f269bfada889f9503"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structswap__manager.html#a40a16c8c21b0580f269bfada889f9503">check_swap</a> )(void)</td></tr>
+<tr class="separator:a40a16c8c21b0580f269bfada889f9503"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a40a16c8c21b0580f269bfada889f9503"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40a16c8c21b0580f269bfada889f9503">&#9670;&nbsp;</a></span>check_swap</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* swap_manager::check_swap) (void)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aacb0ad5bf57857e998e78a6cb7d23a78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacb0ad5bf57857e998e78a6cb7d23a78">&#9670;&nbsp;</a></span>init</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* swap_manager::init) (void)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3691ec674808ea46b6e3241e906a87c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3691ec674808ea46b6e3241e906a87c9">&#9670;&nbsp;</a></span>init_mm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* swap_manager::init_mm) (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad7a450b6263bce92736dfa083f53362c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7a450b6263bce92736dfa083f53362c">&#9670;&nbsp;</a></span>map_swappable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* swap_manager::map_swappable) (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr, struct <a class="el" href="struct_page.html">Page</a> *page, int <a class="el" href="swap_8h.html#af3058f8798ac6b061b6a6ca528ac9932">swap_in</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae383c26ea01b6cc99161d81b462263d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae383c26ea01b6cc99161d81b462263d8">&#9670;&nbsp;</a></span>name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* swap_manager::name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af02b48ab6b908ed36f9e062f88edabb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af02b48ab6b908ed36f9e062f88edabb1">&#9670;&nbsp;</a></span>set_unswappable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* swap_manager::set_unswappable) (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad0cc1fe199aed192a583ce17420ddb30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0cc1fe199aed192a583ce17420ddb30">&#9670;&nbsp;</a></span>swap_out_victim</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* swap_manager::swap_out_victim) (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, struct <a class="el" href="struct_page.html">Page</a> **ptr_page, int in_tick)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b1cb654f2787a36f880027d43da755a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b1cb654f2787a36f880027d43da755a">&#9670;&nbsp;</a></span>tick_event</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* swap_manager::tick_event) (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li>kern/mm/<a class="el" href="swap_8h_source.html">swap.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

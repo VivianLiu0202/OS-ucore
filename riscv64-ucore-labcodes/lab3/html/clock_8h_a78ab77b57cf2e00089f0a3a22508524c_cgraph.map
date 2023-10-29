@@ -1,0 +1,17 @@
+<map id="clock_init" name="clock_init">
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,89,133"/>
+<area shape="rect" id="node2" href="$clock_8c.html#a0064fb05d818581e3d12c5c017960715" title=" " alt="" coords="137,81,300,108"/>
+<area shape="rect" id="node5" href="$stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="187,132,251,159"/>
+<area shape="rect" id="node3" href="$clock_8c.html#a71e720e6a1768a304f7244166ec8e042" title=" " alt="" coords="358,31,449,57"/>
+<area shape="rect" id="node4" href="$sbi_8h.html#a07a40f8f344547fdc7396af43ea3f851" title=" " alt="" coords="348,81,459,108"/>
+<area shape="rect" id="node6" href="$stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="367,132,439,159"/>
+<area shape="rect" id="node7" href="$stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="515,56,581,83"/>
+<area shape="rect" id="node10" href="$printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="507,157,589,184"/>
+<area shape="rect" id="node8" href="$console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="637,5,724,32"/>
+<area shape="rect" id="node9" href="$sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="772,5,927,32"/>
+<area shape="rect" id="node11" href="$printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="651,56,711,83"/>
+<area shape="rect" id="node12" href="$printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="647,107,715,133"/>
+<area shape="rect" id="node13" href="$printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="643,157,718,184"/>
+<area shape="rect" id="node14" href="$printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="640,208,721,235"/>
+<area shape="rect" id="node15" href="$string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="647,259,714,285"/>
+</map>

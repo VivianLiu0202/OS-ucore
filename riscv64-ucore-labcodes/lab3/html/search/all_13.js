@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['va_5farg_1426',['va_arg',['../stdarg_8h.html#a81ebe6ea6253b0c6618e29de70fe10eb',1,'stdarg.h']]],
+  ['va_5fend_1427',['va_end',['../stdarg_8h.html#acd9b3b9085ec072324c5fdac2b40304e',1,'stdarg.h']]],
+  ['va_5flist_1428',['va_list',['../stdarg_8h.html#af53f622e3b6c080daeb167c1955d7ec1',1,'stdarg.h']]],
+  ['va_5fpa_5foffset_1429',['va_pa_offset',['../pmm_8h.html#a34eba112423c8481417b93f8dd0f9ee6',1,'va_pa_offset():&#160;pmm.c'],['../pmm_8c.html#a34eba112423c8481417b93f8dd0f9ee6',1,'va_pa_offset():&#160;pmm.c']]],
+  ['va_5fstart_1430',['va_start',['../stdarg_8h.html#ade24ac546ea93fde2353ed2db8e89c66',1,'stdarg.h']]],
+  ['vcprintf_1431',['vcprintf',['../stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e',1,'vcprintf(const char *fmt, va_list ap):&#160;stdio.c'],['../stdio_8h.html#a6d5854f463c39b8d25aaa127b216832e',1,'vcprintf(const char *fmt, va_list ap):&#160;stdio.c']]],
+  ['vector_2ec_1432',['vector.c',['../vector_8c.html',1,'']]],
+  ['visited_1433',['visited',['../struct_page.html#a8639005d4a0c0c85c4b3bb4ccfee07bf',1,'Page']]],
+  ['vm_5fend_1434',['vm_end',['../structvma__struct.html#a7e52217cabaa0b1b30ddfce10317e79e',1,'vma_struct']]],
+  ['vm_5fexec_1435',['VM_EXEC',['../vmm_8h.html#a40fd248212915347540d8ca35d04c4be',1,'vmm.h']]],
+  ['vm_5fflags_1436',['vm_flags',['../structvma__struct.html#a5baddfc2eda81aee6f28885c42fdc725',1,'vma_struct']]],
+  ['vm_5fmm_1437',['vm_mm',['../structvma__struct.html#a1d9350b2a816ef9acc2500657613ce79',1,'vma_struct']]],
+  ['vm_5fread_1438',['VM_READ',['../vmm_8h.html#afac2cbb7064aa8a2e7697f1a72f98c7d',1,'vmm.h']]],
+  ['vm_5fstart_1439',['vm_start',['../structvma__struct.html#aeb861a8b38c759231acffd1362147e2a',1,'vma_struct']]],
+  ['vm_5fwrite_1440',['VM_WRITE',['../vmm_8h.html#adc28cf46155de9d63615b2cb5c75eb30',1,'vmm.h']]],
+  ['vma_5fcreate_1441',['vma_create',['../vmm_8c.html#a7a6d4d9a52a15d77de91f761855c1a66',1,'vma_create(uintptr_t vm_start, uintptr_t vm_end, uint_t vm_flags):&#160;vmm.c'],['../vmm_8h.html#a7a6d4d9a52a15d77de91f761855c1a66',1,'vma_create(uintptr_t vm_start, uintptr_t vm_end, uint_t vm_flags):&#160;vmm.c']]],
+  ['vma_5fstruct_1442',['vma_struct',['../structvma__struct.html',1,'']]],
+  ['vmm_2ec_1443',['vmm.c',['../vmm_8c.html',1,'']]],
+  ['vmm_2ed_1444',['vmm.d',['../vmm_8d.html',1,'']]],
+  ['vmm_2eh_1445',['vmm.h',['../vmm_8h.html',1,'']]],
+  ['vmm_5finit_1446',['vmm_init',['../vmm_8c.html#a34e0e13c32b08fd108582567c29ccebf',1,'vmm_init(void):&#160;vmm.c'],['../vmm_8h.html#a34e0e13c32b08fd108582567c29ccebf',1,'vmm_init(void):&#160;vmm.c']]],
+  ['vprintfmt_1447',['vprintfmt',['../printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198',1,'vprintfmt(void(*putch)(int, void *), void *putdat, const char *fmt, va_list ap):&#160;printfmt.c'],['../stdio_8h.html#a6434f2b779b5ede2adc31ee4f7d64198',1,'vprintfmt(void(*putch)(int, void *), void *putdat, const char *fmt, va_list ap):&#160;printfmt.c']]],
+  ['vsnprintf_1448',['vsnprintf',['../printfmt_8c.html#a154043ea6d83b8616f3148fbf4f24244',1,'vsnprintf(char *str, size_t size, const char *fmt, va_list ap):&#160;printfmt.c'],['../stdio_8h.html#a154043ea6d83b8616f3148fbf4f24244',1,'vsnprintf(char *str, size_t size, const char *fmt, va_list ap):&#160;printfmt.c']]]
+];

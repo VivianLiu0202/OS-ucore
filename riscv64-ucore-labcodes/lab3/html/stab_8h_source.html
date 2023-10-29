@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/debug/stab.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_60cf14b59ebeb9a69dd0c7e8f099369e.html">debug</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">stab.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="stab_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __KERN_DEBUG_STAB_H__</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __KERN_DEBUG_STAB_H__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="defs_8h.html">defs.h</a>&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * STABS debugging info</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * The kernel debugger can understand some debugging information in</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * the STABS format.  For more information on this format, see</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * http://sources.redhat.com/gdb/onlinedocs/stabs_toc.html</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * The constants below define some symbol types used by various debuggers</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * and compilers.  Kernel uses the N_SO, N_SOL, N_FUN, and N_SLINE types.</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="stab_8h.html#a77d92ffa4a1712038f5edb013690f2a2">   17</a></span>&#160;<span class="preprocessor">#define N_GSYM      0x20    </span><span class="comment">// global symbol</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="stab_8h.html#ae9c91172bf28d11a061a02c6afab1bb8">   18</a></span>&#160;<span class="preprocessor">#define N_FNAME     0x22    </span><span class="comment">// F77 function name</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="stab_8h.html#a8dc6b13089dafc348958601abb0fb6db">   19</a></span>&#160;<span class="preprocessor">#define N_FUN       0x24    </span><span class="comment">// procedure name</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="stab_8h.html#a45b9aa3c57ca6ed9592cbd299b9d388b">   20</a></span>&#160;<span class="preprocessor">#define N_STSYM     0x26    </span><span class="comment">// data segment variable</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="stab_8h.html#af5dd1d54505da79bb0a0e66b3111d59a">   21</a></span>&#160;<span class="preprocessor">#define N_LCSYM     0x28    </span><span class="comment">// bss segment variable</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="stab_8h.html#afd4f441099590febc304a0efa974a361">   22</a></span>&#160;<span class="preprocessor">#define N_MAIN      0x2a    </span><span class="comment">// main function name</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="stab_8h.html#a2bd46c4dad0f8026b0501b5895f4f1ad">   23</a></span>&#160;<span class="preprocessor">#define N_PC        0x30    </span><span class="comment">// global Pascal symbol</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="stab_8h.html#a9178e3a102145c84e12dfad466b91725">   24</a></span>&#160;<span class="preprocessor">#define N_RSYM      0x40    </span><span class="comment">// register variable</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="stab_8h.html#a89d0b0547a7ee9c6a3a40be3d4436119">   25</a></span>&#160;<span class="preprocessor">#define N_SLINE     0x44    </span><span class="comment">// text segment line number</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="stab_8h.html#adfa9603bfe1eff937b0e9a01fac65a44">   26</a></span>&#160;<span class="preprocessor">#define N_DSLINE    0x46    </span><span class="comment">// data segment line number</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="stab_8h.html#a4f5e1b0fc5a7ef29c518260f057ce03b">   27</a></span>&#160;<span class="preprocessor">#define N_BSLINE    0x48    </span><span class="comment">// bss segment line number</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="stab_8h.html#aee24ca41c6d435ab0295dfe3f8bd7de0">   28</a></span>&#160;<span class="preprocessor">#define N_SSYM      0x60    </span><span class="comment">// structure/union element</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="stab_8h.html#a704cd5d9371b9f7eb64b578c9b1d6935">   29</a></span>&#160;<span class="preprocessor">#define N_SO        0x64    </span><span class="comment">// main source file name</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="stab_8h.html#a9f6d14bffe759f5acd74e7b2bb645e8e">   30</a></span>&#160;<span class="preprocessor">#define N_LSYM      0x80    </span><span class="comment">// stack variable</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="stab_8h.html#a60991a822f7340393df9dafaed6ca6e8">   31</a></span>&#160;<span class="preprocessor">#define N_BINCL     0x82    </span><span class="comment">// include file beginning</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="stab_8h.html#a607148b9433be6fc4673a0a4c5536dff">   32</a></span>&#160;<span class="preprocessor">#define N_SOL       0x84    </span><span class="comment">// included source file name</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="stab_8h.html#a36678fab1450898c1e060099670e553a">   33</a></span>&#160;<span class="preprocessor">#define N_PSYM      0xa0    </span><span class="comment">// parameter variable</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="stab_8h.html#a8e78f6898976136085ae15cfb820b976">   34</a></span>&#160;<span class="preprocessor">#define N_EINCL     0xa2    </span><span class="comment">// include file end</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="stab_8h.html#a219d27e320d0879d26fb4a06369baf16">   35</a></span>&#160;<span class="preprocessor">#define N_ENTRY     0xa4    </span><span class="comment">// alternate entry point</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="stab_8h.html#a7bb2a67ea863ef7d7dc177b7b12671a9">   36</a></span>&#160;<span class="preprocessor">#define N_LBRAC     0xc0    </span><span class="comment">// left bracket</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="stab_8h.html#ac69fa58f89e6db47de160b76ffdeaeda">   37</a></span>&#160;<span class="preprocessor">#define N_EXCL      0xc2    </span><span class="comment">// deleted include file</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="stab_8h.html#a80667c2cb3f149ca62ee88b7f017eba3">   38</a></span>&#160;<span class="preprocessor">#define N_RBRAC     0xe0    </span><span class="comment">// right bracket</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="stab_8h.html#aed2c6824f6cc5bfb9196f821355681f1">   39</a></span>&#160;<span class="preprocessor">#define N_BCOMM     0xe2    </span><span class="comment">// begin common</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="stab_8h.html#a18dbaa743258bec3036f66530d6f0863">   40</a></span>&#160;<span class="preprocessor">#define N_ECOMM     0xe4    </span><span class="comment">// end common</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="stab_8h.html#a315655d9afa85795f13882ee52b9a1d0">   41</a></span>&#160;<span class="preprocessor">#define N_ECOML     0xe8    </span><span class="comment">// end common (local name)</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="stab_8h.html#af2aeacdf79da2971d0db361d8a539d86">   42</a></span>&#160;<span class="preprocessor">#define N_LENG      0xfe    </span><span class="comment">// length of preceding entry</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">/* Entries in the STABS table are formatted as follows. */</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structstab.html">   45</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structstab.html">stab</a> {</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structstab.html#ad431690970de78083cef0c6652e4f116">   46</a></span>&#160;    <a class="code" href="defs_8h.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> <a class="code" href="structstab.html#ad431690970de78083cef0c6652e4f116">n_strx</a>;        <span class="comment">// index into string table of name</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="structstab.html#a2f5523afcb4ef34e6b6f4c38fe520bd1">   47</a></span>&#160;    <a class="code" href="defs_8h.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> <a class="code" href="structstab.html#a2f5523afcb4ef34e6b6f4c38fe520bd1">n_type</a>;         <span class="comment">// type of symbol</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="structstab.html#aed35505f7d556beeab5f3b19cfec9863">   48</a></span>&#160;    <a class="code" href="defs_8h.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> <a class="code" href="structstab.html#aed35505f7d556beeab5f3b19cfec9863">n_other</a>;        <span class="comment">// misc info (usually empty)</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="structstab.html#a7f6baa90ad0fb174ae138c2b31dd9e6e">   49</a></span>&#160;    <a class="code" href="defs_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> <a class="code" href="structstab.html#a7f6baa90ad0fb174ae138c2b31dd9e6e">n_desc</a>;        <span class="comment">// description field</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="structstab.html#a8f5f7706c4f104007fec26e5e9b00755">   50</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structstab.html#a8f5f7706c4f104007fec26e5e9b00755">n_value</a>;      <span class="comment">// value of symbol</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !__KERN_DEBUG_STAB_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="ttc" id="adefs_8h_html"><div class="ttname"><a href="defs_8h.html">defs.h</a></div></div>
+<div class="ttc" id="adefs_8h_html_a04cf3633489292bdd23ff5b429bc476b"><div class="ttname"><a href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a></div><div class="ttdeci">uint_t uintptr_t</div><div class="ttdef"><b>Definition:</b> defs.h:41</div></div>
+<div class="ttc" id="adefs_8h_html_a273cf69d639a59973b6019625df33e30"><div class="ttname"><a href="defs_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a></div><div class="ttdeci">unsigned short uint16_t</div><div class="ttdef"><b>Definition:</b> defs.h:22</div></div>
+<div class="ttc" id="adefs_8h_html_a435d1572bf3f880d55459d9805097f62"><div class="ttname"><a href="defs_8h.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a></div><div class="ttdeci">unsigned int uint32_t</div><div class="ttdef"><b>Definition:</b> defs.h:24</div></div>
+<div class="ttc" id="adefs_8h_html_aba7bc1797add20fe3efdf37ced1182c5"><div class="ttname"><a href="defs_8h.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a></div><div class="ttdeci">unsigned char uint8_t</div><div class="ttdef"><b>Definition:</b> defs.h:20</div></div>
+<div class="ttc" id="astructstab_html"><div class="ttname"><a href="structstab.html">stab</a></div><div class="ttdef"><b>Definition:</b> stab.h:45</div></div>
+<div class="ttc" id="astructstab_html_a2f5523afcb4ef34e6b6f4c38fe520bd1"><div class="ttname"><a href="structstab.html#a2f5523afcb4ef34e6b6f4c38fe520bd1">stab::n_type</a></div><div class="ttdeci">uint8_t n_type</div><div class="ttdef"><b>Definition:</b> stab.h:47</div></div>
+<div class="ttc" id="astructstab_html_a7f6baa90ad0fb174ae138c2b31dd9e6e"><div class="ttname"><a href="structstab.html#a7f6baa90ad0fb174ae138c2b31dd9e6e">stab::n_desc</a></div><div class="ttdeci">uint16_t n_desc</div><div class="ttdef"><b>Definition:</b> stab.h:49</div></div>
+<div class="ttc" id="astructstab_html_a8f5f7706c4f104007fec26e5e9b00755"><div class="ttname"><a href="structstab.html#a8f5f7706c4f104007fec26e5e9b00755">stab::n_value</a></div><div class="ttdeci">uintptr_t n_value</div><div class="ttdef"><b>Definition:</b> stab.h:50</div></div>
+<div class="ttc" id="astructstab_html_ad431690970de78083cef0c6652e4f116"><div class="ttname"><a href="structstab.html#ad431690970de78083cef0c6652e4f116">stab::n_strx</a></div><div class="ttdeci">uint32_t n_strx</div><div class="ttdef"><b>Definition:</b> stab.h:46</div></div>
+<div class="ttc" id="astructstab_html_aed35505f7d556beeab5f3b19cfec9863"><div class="ttname"><a href="structstab.html#aed35505f7d556beeab5f3b19cfec9863">stab::n_other</a></div><div class="ttdeci">uint8_t n_other</div><div class="ttdef"><b>Definition:</b> stab.h:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

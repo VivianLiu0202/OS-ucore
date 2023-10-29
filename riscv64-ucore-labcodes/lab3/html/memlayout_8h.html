@@ -1,0 +1,512 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/mm/memlayout.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_946bd77349b7674f752759d0c55831d4.html">mm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#typedef-members">类型定义</a>  </div>
+  <div class="headertitle">
+<div class="title">memlayout.h 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;<a class="el" href="defs_8h_source.html">defs.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="atomic_8h_source.html">atomic.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="list_8h_source.html">list.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+memlayout.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="memlayout_8h__incl.gif" border="0" usemap="#akern_2mm_2memlayout_8h" alt=""/></div>
+<map name="akern_2mm_2memlayout_8h" id="akern_2mm_2memlayout_8h">
+<area shape="rect" title=" " alt="" coords="5,5,176,32"/>
+<area shape="rect" href="defs_8h.html" title=" " alt="" coords="66,155,129,181"/>
+<area shape="rect" href="atomic_8h.html" title=" " alt="" coords="51,80,130,107"/>
+<area shape="rect" href="list_8h.html" title=" " alt="" coords="154,80,209,107"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="memlayout_8h__dep__incl.gif" border="0" usemap="#akern_2mm_2memlayout_8hdep" alt=""/></div>
+<map name="akern_2mm_2memlayout_8hdep" id="akern_2mm_2memlayout_8hdep">
+<area shape="rect" title=" " alt="" coords="712,5,882,32"/>
+<area shape="rect" href="swapfs_8h.html" title=" " alt="" coords="834,229,962,256"/>
+<area shape="rect" href="swap_8c.html" title=" " alt="" coords="1087,304,1216,331"/>
+<area shape="rect" href="pmm_8c.html" title=" " alt="" coords="291,229,420,256"/>
+<area shape="rect" href="pmm_8h.html" title=" " alt="" coords="325,80,456,107"/>
+<area shape="rect" href="swap_8h.html" title=" " alt="" coords="732,155,862,181"/>
+<area shape="rect" href="trap_8c.html" title=" " alt="" coords="1467,229,1588,256"/>
+<area shape="rect" href="vmm_8h.html" title=" " alt="" coords="629,80,760,107"/>
+<area shape="rect" href="swapfs_8c.html" title=" " alt="" coords="683,304,810,331"/>
+<area shape="rect" href="init_8c.html" title=" " alt="" coords="598,229,708,256"/>
+<area shape="rect" href="default__pmm_8c.html" title=" " alt="" coords="84,229,267,256"/>
+<area shape="rect" href="default__pmm_8h.html" title=" " alt="" coords="170,155,352,181"/>
+<area shape="rect" href="vmm_8c.html" title=" " alt="" coords="444,229,574,256"/>
+<area shape="rect" href="swap__clock_8c.html" title=" " alt="" coords="1253,304,1424,331"/>
+<area shape="rect" href="swap__clock_8h.html" title=" " alt="" coords="1221,229,1392,256"/>
+<area shape="rect" href="swap__fifo_8c.html" title=" " alt="" coords="880,304,1037,331"/>
+<area shape="rect" href="swap__fifo_8h.html" title=" " alt="" coords="987,229,1146,256"/>
+</map>
+</div>
+</div>
+<p><a href="memlayout_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_page.html">Page</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfree__area__t.html">free_area_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a20cbfc19992a40ab9ccf4aa8ab8283d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a20cbfc19992a40ab9ccf4aa8ab8283d0">KERNBASE</a>&#160;&#160;&#160;0xFFFFFFFFC0200000</td></tr>
+<tr class="separator:a20cbfc19992a40ab9ccf4aa8ab8283d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91ccf1c62ef1e7172acbeaaeaae028d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a91ccf1c62ef1e7172acbeaaeaae028d5">KMEMSIZE</a>&#160;&#160;&#160;0x7E00000</td></tr>
+<tr class="separator:a91ccf1c62ef1e7172acbeaaeaae028d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0990117bdd85e1508f063c7069826da0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a0990117bdd85e1508f063c7069826da0">KERNTOP</a>&#160;&#160;&#160;(<a class="el" href="memlayout_8h.html#a20cbfc19992a40ab9ccf4aa8ab8283d0">KERNBASE</a> + <a class="el" href="memlayout_8h.html#a91ccf1c62ef1e7172acbeaaeaae028d5">KMEMSIZE</a>)</td></tr>
+<tr class="separator:a0990117bdd85e1508f063c7069826da0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91647cdb3721107386e258980baeb464"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a91647cdb3721107386e258980baeb464">PHYSICAL_MEMORY_END</a>&#160;&#160;&#160;0x88000000</td></tr>
+<tr class="separator:a91647cdb3721107386e258980baeb464"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace7f944790c59dde1229b68cdc426398"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#ace7f944790c59dde1229b68cdc426398">PHYSICAL_MEMORY_OFFSET</a>&#160;&#160;&#160;0xFFFFFFFF40000000</td></tr>
+<tr class="separator:ace7f944790c59dde1229b68cdc426398"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8395022fc9e282a35f93b1c7a6074e2c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a8395022fc9e282a35f93b1c7a6074e2c">KERNEL_BEGIN_PADDR</a>&#160;&#160;&#160;0x80200000</td></tr>
+<tr class="separator:a8395022fc9e282a35f93b1c7a6074e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad64a98a3f9fb605906d9e1b529876f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#aad64a98a3f9fb605906d9e1b529876f8">KERNEL_BEGIN_VADDR</a>&#160;&#160;&#160;0xFFFFFFFFC0200000</td></tr>
+<tr class="separator:aad64a98a3f9fb605906d9e1b529876f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8090761de6e48bca10e8c4fdd419b691"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a8090761de6e48bca10e8c4fdd419b691">KSTACKPAGE</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a8090761de6e48bca10e8c4fdd419b691"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7735dc19a8cdc3fcafd4241184be4b41"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a7735dc19a8cdc3fcafd4241184be4b41">KSTACKSIZE</a>&#160;&#160;&#160;(<a class="el" href="memlayout_8h.html#a8090761de6e48bca10e8c4fdd419b691">KSTACKPAGE</a> * <a class="el" href="mmu_8h.html#a5f96cb6ae6670e023c407cc2f77e1704">PGSIZE</a>)</td></tr>
+<tr class="separator:a7735dc19a8cdc3fcafd4241184be4b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a792c95e76dfca5f7e949a0ccf6c5521e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a792c95e76dfca5f7e949a0ccf6c5521e">PG_reserved</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a792c95e76dfca5f7e949a0ccf6c5521e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a668692ae87fa8fb55ffe83a6415ef435"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a668692ae87fa8fb55ffe83a6415ef435">PG_property</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a668692ae87fa8fb55ffe83a6415ef435"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4deecd65c0699bc8e4f793510b43892"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#ab4deecd65c0699bc8e4f793510b43892">SetPageReserved</a>(page)&#160;&#160;&#160;<a class="el" href="atomic_8h.html#a5d15f6a3002f1add23fb15694d775a9d">set_bit</a>(<a class="el" href="memlayout_8h.html#a792c95e76dfca5f7e949a0ccf6c5521e">PG_reserved</a>, &amp;((page)-&gt;flags))</td></tr>
+<tr class="separator:ab4deecd65c0699bc8e4f793510b43892"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a967f2529ade84ee59fdffec7c5fc4a58"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a967f2529ade84ee59fdffec7c5fc4a58">ClearPageReserved</a>(page)&#160;&#160;&#160;<a class="el" href="atomic_8h.html#a9556608513fd1919d15807516d5a600d">clear_bit</a>(<a class="el" href="memlayout_8h.html#a792c95e76dfca5f7e949a0ccf6c5521e">PG_reserved</a>, &amp;((page)-&gt;flags))</td></tr>
+<tr class="separator:a967f2529ade84ee59fdffec7c5fc4a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5eade45611ea39f1859f1c5bb4f991c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#ab5eade45611ea39f1859f1c5bb4f991c">PageReserved</a>(page)&#160;&#160;&#160;<a class="el" href="atomic_8h.html#a616f144debcc6c70f383f8709c989595">test_bit</a>(<a class="el" href="memlayout_8h.html#a792c95e76dfca5f7e949a0ccf6c5521e">PG_reserved</a>, &amp;((page)-&gt;flags))</td></tr>
+<tr class="separator:ab5eade45611ea39f1859f1c5bb4f991c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50f3e3802fa454e51843a592b14c9a7a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a50f3e3802fa454e51843a592b14c9a7a">SetPageProperty</a>(page)&#160;&#160;&#160;<a class="el" href="atomic_8h.html#a5d15f6a3002f1add23fb15694d775a9d">set_bit</a>(<a class="el" href="memlayout_8h.html#a668692ae87fa8fb55ffe83a6415ef435">PG_property</a>, &amp;((page)-&gt;flags))</td></tr>
+<tr class="separator:a50f3e3802fa454e51843a592b14c9a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc92d421461120830884fae4b692fdb8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#adc92d421461120830884fae4b692fdb8">ClearPageProperty</a>(page)&#160;&#160;&#160;<a class="el" href="atomic_8h.html#a9556608513fd1919d15807516d5a600d">clear_bit</a>(<a class="el" href="memlayout_8h.html#a668692ae87fa8fb55ffe83a6415ef435">PG_property</a>, &amp;((page)-&gt;flags))</td></tr>
+<tr class="separator:adc92d421461120830884fae4b692fdb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a116bf3bfa648a86d8da1fcb2a7f01ab0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a116bf3bfa648a86d8da1fcb2a7f01ab0">PageProperty</a>(page)&#160;&#160;&#160;<a class="el" href="atomic_8h.html#a616f144debcc6c70f383f8709c989595">test_bit</a>(<a class="el" href="memlayout_8h.html#a668692ae87fa8fb55ffe83a6415ef435">PG_property</a>, &amp;((page)-&gt;flags))</td></tr>
+<tr class="separator:a116bf3bfa648a86d8da1fcb2a7f01ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a103c099d1dc3f3b78385712f2d8e5f1c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a103c099d1dc3f3b78385712f2d8e5f1c">le2page</a>(le,  member)&#160;&#160;&#160;    <a class="el" href="defs_8h.html#a9319e8a2aa1ca109db93ec14f04524e1">to_struct</a>((le), struct <a class="el" href="struct_page.html">Page</a>, member)</td></tr>
+<tr class="separator:a103c099d1dc3f3b78385712f2d8e5f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:ae97b82aa50ed8ad4c79b1d8b8fb53836"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a></td></tr>
+<tr class="separator:ae97b82aa50ed8ad4c79b1d8b8fb53836"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a4c35b1ede4a4107783c0a8f931fc06"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a></td></tr>
+<tr class="separator:a9a4c35b1ede4a4107783c0a8f931fc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab79d50f850e06eed7a3ac0453019278b"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memlayout_8h.html#ab79d50f850e06eed7a3ac0453019278b">swap_entry_t</a></td></tr>
+<tr class="separator:ab79d50f850e06eed7a3ac0453019278b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="adc92d421461120830884fae4b692fdb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc92d421461120830884fae4b692fdb8">&#9670;&nbsp;</a></span>ClearPageProperty</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ClearPageProperty</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">page</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="atomic_8h.html#a9556608513fd1919d15807516d5a600d">clear_bit</a>(<a class="el" href="memlayout_8h.html#a668692ae87fa8fb55ffe83a6415ef435">PG_property</a>, &amp;((page)-&gt;flags))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a967f2529ade84ee59fdffec7c5fc4a58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a967f2529ade84ee59fdffec7c5fc4a58">&#9670;&nbsp;</a></span>ClearPageReserved</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ClearPageReserved</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">page</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="atomic_8h.html#a9556608513fd1919d15807516d5a600d">clear_bit</a>(<a class="el" href="memlayout_8h.html#a792c95e76dfca5f7e949a0ccf6c5521e">PG_reserved</a>, &amp;((page)-&gt;flags))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20cbfc19992a40ab9ccf4aa8ab8283d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20cbfc19992a40ab9ccf4aa8ab8283d0">&#9670;&nbsp;</a></span>KERNBASE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KERNBASE&#160;&#160;&#160;0xFFFFFFFFC0200000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8395022fc9e282a35f93b1c7a6074e2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8395022fc9e282a35f93b1c7a6074e2c">&#9670;&nbsp;</a></span>KERNEL_BEGIN_PADDR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KERNEL_BEGIN_PADDR&#160;&#160;&#160;0x80200000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aad64a98a3f9fb605906d9e1b529876f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad64a98a3f9fb605906d9e1b529876f8">&#9670;&nbsp;</a></span>KERNEL_BEGIN_VADDR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KERNEL_BEGIN_VADDR&#160;&#160;&#160;0xFFFFFFFFC0200000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0990117bdd85e1508f063c7069826da0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0990117bdd85e1508f063c7069826da0">&#9670;&nbsp;</a></span>KERNTOP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KERNTOP&#160;&#160;&#160;(<a class="el" href="memlayout_8h.html#a20cbfc19992a40ab9ccf4aa8ab8283d0">KERNBASE</a> + <a class="el" href="memlayout_8h.html#a91ccf1c62ef1e7172acbeaaeaae028d5">KMEMSIZE</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a91ccf1c62ef1e7172acbeaaeaae028d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91ccf1c62ef1e7172acbeaaeaae028d5">&#9670;&nbsp;</a></span>KMEMSIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KMEMSIZE&#160;&#160;&#160;0x7E00000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8090761de6e48bca10e8c4fdd419b691"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8090761de6e48bca10e8c4fdd419b691">&#9670;&nbsp;</a></span>KSTACKPAGE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KSTACKPAGE&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7735dc19a8cdc3fcafd4241184be4b41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7735dc19a8cdc3fcafd4241184be4b41">&#9670;&nbsp;</a></span>KSTACKSIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KSTACKSIZE&#160;&#160;&#160;(<a class="el" href="memlayout_8h.html#a8090761de6e48bca10e8c4fdd419b691">KSTACKPAGE</a> * <a class="el" href="mmu_8h.html#a5f96cb6ae6670e023c407cc2f77e1704">PGSIZE</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a103c099d1dc3f3b78385712f2d8e5f1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a103c099d1dc3f3b78385712f2d8e5f1c">&#9670;&nbsp;</a></span>le2page</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define le2page</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">le, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">member&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;    <a class="el" href="defs_8h.html#a9319e8a2aa1ca109db93ec14f04524e1">to_struct</a>((le), struct <a class="el" href="struct_page.html">Page</a>, member)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a116bf3bfa648a86d8da1fcb2a7f01ab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a116bf3bfa648a86d8da1fcb2a7f01ab0">&#9670;&nbsp;</a></span>PageProperty</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PageProperty</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">page</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="atomic_8h.html#a616f144debcc6c70f383f8709c989595">test_bit</a>(<a class="el" href="memlayout_8h.html#a668692ae87fa8fb55ffe83a6415ef435">PG_property</a>, &amp;((page)-&gt;flags))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab5eade45611ea39f1859f1c5bb4f991c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5eade45611ea39f1859f1c5bb4f991c">&#9670;&nbsp;</a></span>PageReserved</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PageReserved</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">page</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="atomic_8h.html#a616f144debcc6c70f383f8709c989595">test_bit</a>(<a class="el" href="memlayout_8h.html#a792c95e76dfca5f7e949a0ccf6c5521e">PG_reserved</a>, &amp;((page)-&gt;flags))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a668692ae87fa8fb55ffe83a6415ef435"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a668692ae87fa8fb55ffe83a6415ef435">&#9670;&nbsp;</a></span>PG_property</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PG_property&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a792c95e76dfca5f7e949a0ccf6c5521e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a792c95e76dfca5f7e949a0ccf6c5521e">&#9670;&nbsp;</a></span>PG_reserved</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PG_reserved&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a91647cdb3721107386e258980baeb464"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91647cdb3721107386e258980baeb464">&#9670;&nbsp;</a></span>PHYSICAL_MEMORY_END</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PHYSICAL_MEMORY_END&#160;&#160;&#160;0x88000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace7f944790c59dde1229b68cdc426398"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace7f944790c59dde1229b68cdc426398">&#9670;&nbsp;</a></span>PHYSICAL_MEMORY_OFFSET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PHYSICAL_MEMORY_OFFSET&#160;&#160;&#160;0xFFFFFFFF40000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a50f3e3802fa454e51843a592b14c9a7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50f3e3802fa454e51843a592b14c9a7a">&#9670;&nbsp;</a></span>SetPageProperty</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SetPageProperty</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">page</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="atomic_8h.html#a5d15f6a3002f1add23fb15694d775a9d">set_bit</a>(<a class="el" href="memlayout_8h.html#a668692ae87fa8fb55ffe83a6415ef435">PG_property</a>, &amp;((page)-&gt;flags))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4deecd65c0699bc8e4f793510b43892"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4deecd65c0699bc8e4f793510b43892">&#9670;&nbsp;</a></span>SetPageReserved</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SetPageReserved</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">page</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="atomic_8h.html#a5d15f6a3002f1add23fb15694d775a9d">set_bit</a>(<a class="el" href="memlayout_8h.html#a792c95e76dfca5f7e949a0ccf6c5521e">PG_reserved</a>, &amp;((page)-&gt;flags))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">类型定义说明</h2>
+<a id="a9a4c35b1ede4a4107783c0a8f931fc06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a4c35b1ede4a4107783c0a8f931fc06">&#9670;&nbsp;</a></span>pde_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="el" href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae97b82aa50ed8ad4c79b1d8b8fb53836"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae97b82aa50ed8ad4c79b1d8b8fb53836">&#9670;&nbsp;</a></span>pte_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="el" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab79d50f850e06eed7a3ac0453019278b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab79d50f850e06eed7a3ac0453019278b">&#9670;&nbsp;</a></span>swap_entry_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a> <a class="el" href="memlayout_8h.html#ab79d50f850e06eed7a3ac0453019278b">swap_entry_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

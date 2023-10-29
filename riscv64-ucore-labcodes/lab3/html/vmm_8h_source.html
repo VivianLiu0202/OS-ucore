@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/mm/vmm.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_946bd77349b7674f752759d0c55831d4.html">mm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">vmm.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="vmm_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __KERN_MM_VMM_H__</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __KERN_MM_VMM_H__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="defs_8h.html">defs.h</a>&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="list_8h.html">list.h</a>&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="memlayout_8h.html">memlayout.h</a>&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="sync_8h.html">sync.h</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// pre define</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">struct </span><a class="code" href="structmm__struct.html">mm_struct</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// the virtual continuous memory area(vma), [vm_start, vm_end),</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// addr belong to a vma means  vma.vm_start&lt;= addr &lt;vma.vm_end</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// vma——virtual memory area，是一段连续的虚拟内存区域，[vm_start, vm_end)</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structvma__struct.html">   15</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structvma__struct.html">vma_struct</a></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structvma__struct.html#a1d9350b2a816ef9acc2500657613ce79">   17</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structmm__struct.html">mm_struct</a> *<a class="code" href="structvma__struct.html#a1d9350b2a816ef9acc2500657613ce79">vm_mm</a>; <span class="comment">// the set of vma using the same PDT</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structvma__struct.html#aeb861a8b38c759231acffd1362147e2a">   18</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structvma__struct.html#aeb861a8b38c759231acffd1362147e2a">vm_start</a>;      <span class="comment">// start addr of vma</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structvma__struct.html#a7e52217cabaa0b1b30ddfce10317e79e">   19</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structvma__struct.html#a7e52217cabaa0b1b30ddfce10317e79e">vm_end</a>;        <span class="comment">// end addr of vma, not include the vm_end itself</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structvma__struct.html#a5baddfc2eda81aee6f28885c42fdc725">   20</a></span>&#160;    uint_t <a class="code" href="structvma__struct.html#a5baddfc2eda81aee6f28885c42fdc725">vm_flags</a>;         <span class="comment">// flags of vma</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structvma__struct.html#a995b6f75e8567f93e3cae952bc80a2f7">   21</a></span>&#160;    <a class="code" href="structlist__entry.html">list_entry_t</a> <a class="code" href="structvma__struct.html#a995b6f75e8567f93e3cae952bc80a2f7">list_link</a>;  <span class="comment">// linear list link which sorted by start addr of vma</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;};</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">// 根据vma结构体中的list_link的地址得到整个结构体vma的头地址</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="vmm_8h.html#a81d6b6f61a855449e2a3f4b70b952c23">   25</a></span>&#160;<span class="preprocessor">#define le2vma(le, member) \</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">    to_struct((le), struct vma_struct, member)</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="vmm_8h.html#afac2cbb7064aa8a2e7697f1a72f98c7d">   28</a></span>&#160;<span class="preprocessor">#define VM_READ 0x00000001</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="vmm_8h.html#adc28cf46155de9d63615b2cb5c75eb30">   29</a></span>&#160;<span class="preprocessor">#define VM_WRITE 0x00000002</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="vmm_8h.html#a40fd248212915347540d8ca35d04c4be">   30</a></span>&#160;<span class="preprocessor">#define VM_EXEC 0x00000004</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">// the control struct for a set of vma using the same PDT</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">// mm_struct——memory management struct，是一组使用相同页目录表(PDT)的虚拟内存区域</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">// 里面有很多连续的内存区域小块，每个小块都是一个vma_struct，这些小块都含有list_entry_t结构</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">// 可以通过le2vm的宏由list_entry_t结构找到整个结构体vma_struct</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structmm__struct.html">   36</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structmm__struct.html">mm_struct</a></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structmm__struct.html#a7802179489a936e6c37111bb26d1c757">   38</a></span>&#160;    <a class="code" href="structlist__entry.html">list_entry_t</a> <a class="code" href="structmm__struct.html#a7802179489a936e6c37111bb26d1c757">mmap_list</a>;        <span class="comment">// linear list link which sorted by start addr of vma</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structmm__struct.html#af8fa6bc4b44d0ce5b72e04b8f8518e9a">   39</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structvma__struct.html">vma_struct</a> *<a class="code" href="structmm__struct.html#af8fa6bc4b44d0ce5b72e04b8f8518e9a">mmap_cache</a>; <span class="comment">// current accessed vma, used for speed purpose</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structmm__struct.html#ac12260e62bf3ee5da317987e85939842">   40</a></span>&#160;    <a class="code" href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a> *<a class="code" href="structmm__struct.html#ac12260e62bf3ee5da317987e85939842">pgdir</a>;                  <span class="comment">// the PDT of these vma</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="structmm__struct.html#aaf199e9029475b0f5ba43c4c4adf47aa">   41</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structmm__struct.html#aaf199e9029475b0f5ba43c4c4adf47aa">map_count</a>;                 <span class="comment">// the count of these vma</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structmm__struct.html#a4aaa9eabca77459cb505d399179081e7">   42</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="structmm__struct.html#a4aaa9eabca77459cb505d399179081e7">sm_priv</a>;                 <span class="comment">// the private data for swap manager</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">// mmap_list链表连接了使用相同页目录项的vma（对应的是vma中的list_link变量），使用le2vm宏由链表找到完整结构体</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">// ***这是一个设计的trick，page和vma_struct都有一个list_entry_t的变量，这样就可以通过le2page和le2vm宏找到完整的结构体</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">// mmap_cache是一个指针，指向当前正在访问的vma，这样可以加快访问速度</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">// pgdir是页目录表的地址</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">// map_count是vma的数量</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">// sm_priv是swap manager的私有数据,void *类型，意味着它是一个指向任意数据的通用指针</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">struct </span><a class="code" href="structvma__struct.html">vma_struct</a> *<a class="code" href="vmm_8h.html#a453bc43e9e111b76d167f3e8fa3010ef">find_vma</a>(<span class="keyword">struct</span> <a class="code" href="structmm__struct.html">mm_struct</a> *mm, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">struct </span><a class="code" href="structvma__struct.html">vma_struct</a> *<a class="code" href="vmm_8h.html#a7a6d4d9a52a15d77de91f761855c1a66">vma_create</a>(<a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structvma__struct.html#aeb861a8b38c759231acffd1362147e2a">vm_start</a>, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structvma__struct.html#a7e52217cabaa0b1b30ddfce10317e79e">vm_end</a>, uint_t <a class="code" href="structvma__struct.html#a5baddfc2eda81aee6f28885c42fdc725">vm_flags</a>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">void</span> <a class="code" href="vmm_8h.html#a7424f7ef30a8d8bd6fe3371134f48759">insert_vma_struct</a>(<span class="keyword">struct</span> <a class="code" href="structmm__struct.html">mm_struct</a> *mm, <span class="keyword">struct</span> <a class="code" href="structvma__struct.html">vma_struct</a> *vma);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">struct </span><a class="code" href="structmm__struct.html">mm_struct</a> *<a class="code" href="vmm_8h.html#a24d42b4ed2477d387310ddb18e277071">mm_create</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="vmm_8h.html#ad7541e89504d7d084a3d31b67166185e">mm_destroy</a>(<span class="keyword">struct</span> <a class="code" href="structmm__struct.html">mm_struct</a> *mm);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">void</span> <a class="code" href="vmm_8h.html#a34e0e13c32b08fd108582567c29ccebf">vmm_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">int</span> <a class="code" href="vmm_8h.html#a76083b4b497bc14110c89b222892e5a9">do_pgfault</a>(<span class="keyword">struct</span> <a class="code" href="structmm__struct.html">mm_struct</a> *mm, uint_t error_code, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">extern</span> <span class="keyword">volatile</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="vmm_8h.html#a199410cf1c59bd644a97bcda98f9bbb6">pgfault_num</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">extern</span> <span class="keyword">struct </span><a class="code" href="structmm__struct.html">mm_struct</a> *<a class="code" href="vmm_8h.html#a87e75b265002e137d80386653305d70a">check_mm_struct</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !__KERN_MM_VMM_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adefs_8h_html"><div class="ttname"><a href="defs_8h.html">defs.h</a></div></div>
+<div class="ttc" id="adefs_8h_html_a04cf3633489292bdd23ff5b429bc476b"><div class="ttname"><a href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a></div><div class="ttdeci">uint_t uintptr_t</div><div class="ttdef"><b>Definition:</b> defs.h:41</div></div>
+<div class="ttc" id="alist_8h_html"><div class="ttname"><a href="list_8h.html">list.h</a></div></div>
+<div class="ttc" id="amemlayout_8h_html"><div class="ttname"><a href="memlayout_8h.html">memlayout.h</a></div></div>
+<div class="ttc" id="amemlayout_8h_html_a9a4c35b1ede4a4107783c0a8f931fc06"><div class="ttname"><a href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a></div><div class="ttdeci">uintptr_t pde_t</div><div class="ttdef"><b>Definition:</b> memlayout.h:56</div></div>
+<div class="ttc" id="astructlist__entry_html"><div class="ttname"><a href="structlist__entry.html">list_entry</a></div><div class="ttdef"><b>Definition:</b> list.h:17</div></div>
+<div class="ttc" id="astructmm__struct_html"><div class="ttname"><a href="structmm__struct.html">mm_struct</a></div><div class="ttdef"><b>Definition:</b> vmm.h:37</div></div>
+<div class="ttc" id="astructmm__struct_html_a4aaa9eabca77459cb505d399179081e7"><div class="ttname"><a href="structmm__struct.html#a4aaa9eabca77459cb505d399179081e7">mm_struct::sm_priv</a></div><div class="ttdeci">void * sm_priv</div><div class="ttdef"><b>Definition:</b> vmm.h:42</div></div>
+<div class="ttc" id="astructmm__struct_html_a7802179489a936e6c37111bb26d1c757"><div class="ttname"><a href="structmm__struct.html#a7802179489a936e6c37111bb26d1c757">mm_struct::mmap_list</a></div><div class="ttdeci">list_entry_t mmap_list</div><div class="ttdef"><b>Definition:</b> vmm.h:38</div></div>
+<div class="ttc" id="astructmm__struct_html_aaf199e9029475b0f5ba43c4c4adf47aa"><div class="ttname"><a href="structmm__struct.html#aaf199e9029475b0f5ba43c4c4adf47aa">mm_struct::map_count</a></div><div class="ttdeci">int map_count</div><div class="ttdef"><b>Definition:</b> vmm.h:41</div></div>
+<div class="ttc" id="astructmm__struct_html_ac12260e62bf3ee5da317987e85939842"><div class="ttname"><a href="structmm__struct.html#ac12260e62bf3ee5da317987e85939842">mm_struct::pgdir</a></div><div class="ttdeci">pde_t * pgdir</div><div class="ttdef"><b>Definition:</b> vmm.h:40</div></div>
+<div class="ttc" id="astructmm__struct_html_af8fa6bc4b44d0ce5b72e04b8f8518e9a"><div class="ttname"><a href="structmm__struct.html#af8fa6bc4b44d0ce5b72e04b8f8518e9a">mm_struct::mmap_cache</a></div><div class="ttdeci">struct vma_struct * mmap_cache</div><div class="ttdef"><b>Definition:</b> vmm.h:39</div></div>
+<div class="ttc" id="astructvma__struct_html"><div class="ttname"><a href="structvma__struct.html">vma_struct</a></div><div class="ttdef"><b>Definition:</b> vmm.h:16</div></div>
+<div class="ttc" id="astructvma__struct_html_a1d9350b2a816ef9acc2500657613ce79"><div class="ttname"><a href="structvma__struct.html#a1d9350b2a816ef9acc2500657613ce79">vma_struct::vm_mm</a></div><div class="ttdeci">struct mm_struct * vm_mm</div><div class="ttdef"><b>Definition:</b> vmm.h:17</div></div>
+<div class="ttc" id="astructvma__struct_html_a5baddfc2eda81aee6f28885c42fdc725"><div class="ttname"><a href="structvma__struct.html#a5baddfc2eda81aee6f28885c42fdc725">vma_struct::vm_flags</a></div><div class="ttdeci">uint_t vm_flags</div><div class="ttdef"><b>Definition:</b> vmm.h:20</div></div>
+<div class="ttc" id="astructvma__struct_html_a7e52217cabaa0b1b30ddfce10317e79e"><div class="ttname"><a href="structvma__struct.html#a7e52217cabaa0b1b30ddfce10317e79e">vma_struct::vm_end</a></div><div class="ttdeci">uintptr_t vm_end</div><div class="ttdef"><b>Definition:</b> vmm.h:19</div></div>
+<div class="ttc" id="astructvma__struct_html_a995b6f75e8567f93e3cae952bc80a2f7"><div class="ttname"><a href="structvma__struct.html#a995b6f75e8567f93e3cae952bc80a2f7">vma_struct::list_link</a></div><div class="ttdeci">list_entry_t list_link</div><div class="ttdef"><b>Definition:</b> vmm.h:21</div></div>
+<div class="ttc" id="astructvma__struct_html_aeb861a8b38c759231acffd1362147e2a"><div class="ttname"><a href="structvma__struct.html#aeb861a8b38c759231acffd1362147e2a">vma_struct::vm_start</a></div><div class="ttdeci">uintptr_t vm_start</div><div class="ttdef"><b>Definition:</b> vmm.h:18</div></div>
+<div class="ttc" id="async_8h_html"><div class="ttname"><a href="sync_8h.html">sync.h</a></div></div>
+<div class="ttc" id="avmm_8h_html_a199410cf1c59bd644a97bcda98f9bbb6"><div class="ttname"><a href="vmm_8h.html#a199410cf1c59bd644a97bcda98f9bbb6">pgfault_num</a></div><div class="ttdeci">volatile unsigned int pgfault_num</div><div class="ttdef"><b>Definition:</b> vmm.c:354</div></div>
+<div class="ttc" id="avmm_8h_html_a24d42b4ed2477d387310ddb18e277071"><div class="ttname"><a href="vmm_8h.html#a24d42b4ed2477d387310ddb18e277071">mm_create</a></div><div class="ttdeci">struct mm_struct * mm_create(void)</div><div class="ttdef"><b>Definition:</b> vmm.c:67</div></div>
+<div class="ttc" id="avmm_8h_html_a34e0e13c32b08fd108582567c29ccebf"><div class="ttname"><a href="vmm_8h.html#a34e0e13c32b08fd108582567c29ccebf">vmm_init</a></div><div class="ttdeci">void vmm_init(void)</div><div class="ttdef"><b>Definition:</b> vmm.c:207</div></div>
+<div class="ttc" id="avmm_8h_html_a453bc43e9e111b76d167f3e8fa3010ef"><div class="ttname"><a href="vmm_8h.html#a453bc43e9e111b76d167f3e8fa3010ef">find_vma</a></div><div class="ttdeci">struct vma_struct * find_vma(struct mm_struct *mm, uintptr_t addr)</div><div class="ttdef"><b>Definition:</b> vmm.c:110</div></div>
+<div class="ttc" id="avmm_8h_html_a7424f7ef30a8d8bd6fe3371134f48759"><div class="ttname"><a href="vmm_8h.html#a7424f7ef30a8d8bd6fe3371134f48759">insert_vma_struct</a></div><div class="ttdeci">void insert_vma_struct(struct mm_struct *mm, struct vma_struct *vma)</div><div class="ttdef"><b>Definition:</b> vmm.c:155</div></div>
+<div class="ttc" id="avmm_8h_html_a76083b4b497bc14110c89b222892e5a9"><div class="ttname"><a href="vmm_8h.html#a76083b4b497bc14110c89b222892e5a9">do_pgfault</a></div><div class="ttdeci">int do_pgfault(struct mm_struct *mm, uint_t error_code, uintptr_t addr)</div><div class="ttdef"><b>Definition:</b> vmm.c:377</div></div>
+<div class="ttc" id="avmm_8h_html_a7a6d4d9a52a15d77de91f761855c1a66"><div class="ttname"><a href="vmm_8h.html#a7a6d4d9a52a15d77de91f761855c1a66">vma_create</a></div><div class="ttdeci">struct vma_struct * vma_create(uintptr_t vm_start, uintptr_t vm_end, uint_t vm_flags)</div><div class="ttdef"><b>Definition:</b> vmm.c:94</div></div>
+<div class="ttc" id="avmm_8h_html_a87e75b265002e137d80386653305d70a"><div class="ttname"><a href="vmm_8h.html#a87e75b265002e137d80386653305d70a">check_mm_struct</a></div><div class="ttdeci">struct mm_struct * check_mm_struct</div><div class="ttdef"><b>Definition:</b> vmm.c:295</div></div>
+<div class="ttc" id="avmm_8h_html_ad7541e89504d7d084a3d31b67166185e"><div class="ttname"><a href="vmm_8h.html#ad7541e89504d7d084a3d31b67166185e">mm_destroy</a></div><div class="ttdeci">void mm_destroy(struct mm_struct *mm)</div><div class="ttdef"><b>Definition:</b> vmm.c:192</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

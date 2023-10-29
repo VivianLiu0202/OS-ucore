@@ -49,6 +49,7 @@ _fifo_map_swappable(struct mm_struct *mm, uintptr_t addr, struct Page *page, int
     // uintptr_t addr：表示当前页面在进程地址空间中的虚拟地址。
     // struct Page *page：指向 struct Page 结构体的指针，表示当前页面的信息。
     // int swap_in：表示当前页面是否需要从交换空间中调入内存，如果需要则为 1，否则为 0。
+
     list_entry_t *head = (list_entry_t *)mm->sm_priv; // 获取了指向FIFO队列头部的指针
     list_entry_t *entry = &(page->pra_page_link);     // 获取了指向当前页面的指针
 

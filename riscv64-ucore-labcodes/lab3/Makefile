@@ -237,3 +237,16 @@ tags:
 	$(V)find . -type f -name "*.[chS]" >cscope.files
 	$(V)cscope -bq 
 	$(V)ctags -L cscope.files
+
+
+# 新加
+# 存储生成图形的路径
+GRAPHPATH := graph
+
+codeviz: $(GRAPHPATH)
+	@if [ -z "$(func)" ]; then \
+		echo "使用方法: make codeviz func=<函数名>"; \
+	else \
+		echo "为函数 $(func) 生成代码可视化..."; \
+		cflow --main=$(func) $(shell find . -name "*.c") | dot -Tpng -o $(GRAPHPATH)/$(func).png; \
+	fi

@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['s0_1804',['s0',['../structpushregs.html#a47ad5b763effd026681bc41daff24960',1,'pushregs']]],
+  ['s1_1805',['s1',['../structpushregs.html#afb70161ee147a5b69c9b3d3e743c1fbc',1,'pushregs']]],
+  ['s10_1806',['s10',['../structpushregs.html#ab5e33938ccf5659f27205d0cd79b94ba',1,'pushregs']]],
+  ['s11_1807',['s11',['../structpushregs.html#ad6d22802ca342ce1c90a21bd3a808030',1,'pushregs']]],
+  ['s2_1808',['s2',['../structpushregs.html#ab86200734688d0b888df6ecde6a4a943',1,'pushregs']]],
+  ['s3_1809',['s3',['../structpushregs.html#ad0fae5fc65816ea52eb97b3f0325f302',1,'pushregs']]],
+  ['s4_1810',['s4',['../structpushregs.html#add848ff6b2690962fecaf474b830204f',1,'pushregs']]],
+  ['s5_1811',['s5',['../structpushregs.html#a65c6b3501ded4470a7e2f1aa944e394c',1,'pushregs']]],
+  ['s6_1812',['s6',['../structpushregs.html#ac531db7c37206dd002f6b078ed4dad8e',1,'pushregs']]],
+  ['s7_1813',['s7',['../structpushregs.html#a82163d93078766a4405d9cb7af4b6598',1,'pushregs']]],
+  ['s8_1814',['s8',['../structpushregs.html#a916729159c416c6f05fa58b3b08c7077',1,'pushregs']]],
+  ['s9_1815',['s9',['../structpushregs.html#a42329c7b53c31bff63dcb8d2c2d08a04',1,'pushregs']]],
+  ['set_5funswappable_1816',['set_unswappable',['../structswap__manager.html#af02b48ab6b908ed36f9e062f88edabb1',1,'swap_manager']]],
+  ['sm_1817',['sm',['../swap_8c.html#afc2d95e8e7c79c9e8081d691ad9afb64',1,'swap.c']]],
+  ['sm_5fpriv_1818',['sm_priv',['../structmm__struct.html#a4aaa9eabca77459cb505d399179081e7',1,'mm_struct']]],
+  ['sp_1819',['sp',['../structpushregs.html#acaa5e697d7bab6449a8807b84cd76b1f',1,'pushregs']]],
+  ['status_1820',['status',['../structtrapframe.html#ad2d2a738120188a32ef88c2fad6cc1c6',1,'trapframe']]],
+  ['swap_5fin_5fseq_5fno_1821',['swap_in_seq_no',['../swap_8c.html#a2c992515653d90415a6e904c9b40ca65',1,'swap.c']]],
+  ['swap_5finit_5fok_1822',['swap_init_ok',['../swap_8c.html#a1f320bc1324b07761e7b690bc5c2aa38',1,'swap_init_ok():&#160;swap.c'],['../swap_8h.html#a1f320bc1324b07761e7b690bc5c2aa38',1,'swap_init_ok():&#160;swap.c']]],
+  ['swap_5fmanager_5fclock_1823',['swap_manager_clock',['../swap__clock_8c.html#a6508bb7a963d5e247a8b957d730bc71f',1,'swap_manager_clock():&#160;swap_clock.c'],['../swap__clock_8h.html#a6508bb7a963d5e247a8b957d730bc71f',1,'swap_manager_clock():&#160;swap_clock.c']]],
+  ['swap_5fmanager_5ffifo_1824',['swap_manager_fifo',['../swap__fifo_8c.html#a0a3f52dd0607cee4f39b4a79b208e8a6',1,'swap_manager_fifo():&#160;swap_fifo.c'],['../swap__fifo_8h.html#a0a3f52dd0607cee4f39b4a79b208e8a6',1,'swap_manager_fifo():&#160;swap_fifo.c']]],
+  ['swap_5fout_5fnum_1825',['swap_out_num',['../swap_8c.html#ac64367fa797c52d8f90d05044b668c2a',1,'swap.c']]],
+  ['swap_5fout_5fseq_5fno_1826',['swap_out_seq_no',['../swap_8c.html#a976ae1baa1806c75cffc6250ef865b25',1,'swap.c']]],
+  ['swap_5fout_5fvictim_1827',['swap_out_victim',['../structswap__manager.html#ad0cc1fe199aed192a583ce17420ddb30',1,'swap_manager']]],
+  ['swap_5fpage_1828',['swap_page',['../swap_8c.html#a364b464b97f7595e6a6b044f38d260ea',1,'swap.c']]]
+];

@@ -1,0 +1,11 @@
+<map id="kern/mm/vmm.h" name="kern/mm/vmm.h">
+<area shape="rect" id="node1" title=" " alt="" coords="22,5,153,32"/>
+<area shape="rect" id="node2" href="$defs_8h.html" title=" " alt="" coords="49,229,112,256"/>
+<area shape="rect" id="node3" href="$list_8h.html" title=" " alt="" coords="21,155,76,181"/>
+<area shape="rect" id="node4" href="$memlayout_8h.html" title=" " alt="" coords="79,80,189,107"/>
+<area shape="rect" id="node6" href="$sync_8h.html" title=" " alt="" coords="293,80,357,107"/>
+<area shape="rect" id="node5" href="$atomic_8h.html" title=" " alt="" coords="152,155,231,181"/>
+<area shape="rect" id="node7" href="$intr_8h.html" title=" " alt="" coords="255,155,309,181"/>
+<area shape="rect" id="node8" href="$mmu_8h.html" title=" " alt="" coords="333,155,401,181"/>
+<area shape="rect" id="node9" href="$riscv_8h.html" title=" " alt="" coords="426,155,490,181"/>
+</map>

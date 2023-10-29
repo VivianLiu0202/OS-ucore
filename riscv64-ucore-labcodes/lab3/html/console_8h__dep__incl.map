@@ -1,0 +1,7 @@
+<map id="kern/driver/console.h" name="kern/driver/console.h">
+<area shape="rect" id="node1" title=" " alt="" coords="234,5,393,32"/>
+<area shape="rect" id="node2" href="$console_8c.html" title=" " alt="" coords="5,80,163,107"/>
+<area shape="rect" id="node3" href="$init_8c.html" title=" " alt="" coords="187,80,298,107"/>
+<area shape="rect" id="node4" href="$stdio_8c.html" title=" " alt="" coords="322,80,446,107"/>
+<area shape="rect" id="node5" href="$trap_8c.html" title=" " alt="" coords="470,80,591,107"/>
+</map>

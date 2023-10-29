@@ -1,0 +1,9 @@
+<map id="kern/debug/panic.c" name="kern/debug/panic.c">
+<area shape="rect" id="node1" title=" " alt="" coords="31,5,175,32"/>
+<area shape="rect" id="node2" href="$defs_8h.html" title=" " alt="" coords="19,229,81,256"/>
+<area shape="rect" id="node3" href="$stdio_8h.html" title=" " alt="" coords="27,80,94,107"/>
+<area shape="rect" id="node5" href="$intr_8h.html" title=" " alt="" coords="119,80,173,107"/>
+<area shape="rect" id="node6" href="$kmonitor_8h.html" title=" " alt="" coords="197,80,289,107"/>
+<area shape="rect" id="node4" href="$stdarg_8h.html" title=" " alt="" coords="87,155,162,181"/>
+<area shape="rect" id="node7" href="$trap_8h.html" title=" " alt="" coords="200,155,260,181"/>
+</map>

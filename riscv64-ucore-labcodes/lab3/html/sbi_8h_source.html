@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: libs/sbi.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">sbi.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="sbi_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2015 Regents of the University of California</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *   This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *   modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *   as published by the Free Software Foundation, version 2.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *   This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *   but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *   GNU General Public License for more details.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#ifndef __SBI_H__</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define __SBI_H__</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="defs_8h.html">defs.h</a>&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="sbi_8h.html#a97ac9f9392d7e219e752d41da350aee7">   19</a></span>&#160;<span class="preprocessor">#define SBI_SET_TIMER 0</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="sbi_8h.html#a8eb3d3cd5274e20ff49458e3a971653f">   20</a></span>&#160;<span class="preprocessor">#define SBI_CONSOLE_PUTCHAR 1</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="sbi_8h.html#afd7abf556fca357e4b2d43a2efc37620">   21</a></span>&#160;<span class="preprocessor">#define SBI_CONSOLE_GETCHAR 2</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="sbi_8h.html#a92b3e8f6dd5b067991a42eaee5972fea">   22</a></span>&#160;<span class="preprocessor">#define SBI_CLEAR_IPI 3</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="sbi_8h.html#a5c5bcf58aa65295bea53e082cca9789a">   23</a></span>&#160;<span class="preprocessor">#define SBI_SEND_IPI 4</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="sbi_8h.html#af636f58789546ffc9b4dd71a6d4bd9fe">   24</a></span>&#160;<span class="preprocessor">#define SBI_REMOTE_FENCE_I 5</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="sbi_8h.html#afbf063bfb5ed32f4b642899c38c9faab">   25</a></span>&#160;<span class="preprocessor">#define SBI_REMOTE_SFENCE_VMA 6</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="sbi_8h.html#aa03f10f70d3715a5ae0633dbadfc1a1f">   26</a></span>&#160;<span class="preprocessor">#define SBI_REMOTE_SFENCE_VMA_ASID 7</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="sbi_8h.html#aef4b12693baa5b50c6fc96bb9a310cb5">   27</a></span>&#160;<span class="preprocessor">#define SBI_SHUTDOWN 8</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="sbi_8h.html#ae917ff9ed8cf5bc9eee73c667bb859aa">   29</a></span>&#160;<span class="preprocessor">#define SBI_CALL(which, arg0, arg1, arg2) ({            \</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">    register uintptr_t a0 asm (&quot;a0&quot;</span>) = (uintptr_t)(arg0);   \</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    register uintptr_t a1 asm (&quot;a1&quot;) = (uintptr_t)(arg1);   \</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    register uintptr_t a2 asm (&quot;a2&quot;) = (uintptr_t)(arg2);   \</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    register uintptr_t a7 asm (&quot;a7&quot;) = (uintptr_t)(which);  \</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    asm volatile (&quot;ecall&quot;                   \</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;              : &quot;+r&quot; (a0)               \</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;              : &quot;r&quot; (a1), &quot;r&quot; (a2), &quot;r&quot; (a7)        \</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;              : &quot;memory&quot;);              \</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    a0;                         \</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;})</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">/* Lazy implementations until SBI is finalized */</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="sbi_8h.html#acb27c9e91eee5ab1127a939cd4e080ce">   42</a></span>&#160;<span class="preprocessor">#define SBI_CALL_0(which) SBI_CALL(which, 0, 0, 0)</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="sbi_8h.html#a6009ef829285eebb18ad0ad67e5e14f9">   43</a></span>&#160;<span class="preprocessor">#define SBI_CALL_1(which, arg0) SBI_CALL(which, arg0, 0, 0)</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="sbi_8h.html#ab8dd17e757bfca5b1013f55de21a131b">   44</a></span>&#160;<span class="preprocessor">#define SBI_CALL_2(which, arg0, arg1) SBI_CALL(which, arg0, arg1, 0)</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b">   46</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b">sbi_console_putchar</a>(<span class="keywordtype">int</span> ch)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="sbi_8h.html#a6009ef829285eebb18ad0ad67e5e14f9">SBI_CALL_1</a>(<a class="code" href="sbi_8h.html#a8eb3d3cd5274e20ff49458e3a971653f">SBI_CONSOLE_PUTCHAR</a>, ch);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="sbi_8h.html#a2c1d94c38003281d350a520eced61310">   51</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="sbi_8h.html#a2c1d94c38003281d350a520eced61310">sbi_console_getchar</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="sbi_8h.html#acb27c9e91eee5ab1127a939cd4e080ce">SBI_CALL_0</a>(<a class="code" href="sbi_8h.html#afd7abf556fca357e4b2d43a2efc37620">SBI_CONSOLE_GETCHAR</a>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="sbi_8h.html#a07a40f8f344547fdc7396af43ea3f851">   56</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="sbi_8h.html#a07a40f8f344547fdc7396af43ea3f851">sbi_set_timer</a>(<a class="code" href="defs_8h.html#aaa5d1cd013383c889537491c3cfd9aad">uint64_t</a> stime_value)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#if __riscv_xlen == 32</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="sbi_8h.html#ab8dd17e757bfca5b1013f55de21a131b">SBI_CALL_2</a>(<a class="code" href="sbi_8h.html#a97ac9f9392d7e219e752d41da350aee7">SBI_SET_TIMER</a>, stime_value, stime_value &gt;&gt; 32);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="sbi_8h.html#a6009ef829285eebb18ad0ad67e5e14f9">SBI_CALL_1</a>(<a class="code" href="sbi_8h.html#a97ac9f9392d7e219e752d41da350aee7">SBI_SET_TIMER</a>, stime_value);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="sbi_8h.html#acbd5e0e986d32c6eabf1909475a3ce6f">   65</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="sbi_8h.html#acbd5e0e986d32c6eabf1909475a3ce6f">sbi_shutdown</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="sbi_8h.html#acb27c9e91eee5ab1127a939cd4e080ce">SBI_CALL_0</a>(<a class="code" href="sbi_8h.html#aef4b12693baa5b50c6fc96bb9a310cb5">SBI_SHUTDOWN</a>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="sbi_8h.html#a895a7c049dfa186addd8eb7599f09b5d">   70</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="sbi_8h.html#a895a7c049dfa186addd8eb7599f09b5d">sbi_clear_ipi</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;{</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="sbi_8h.html#acb27c9e91eee5ab1127a939cd4e080ce">SBI_CALL_0</a>(<a class="code" href="sbi_8h.html#a92b3e8f6dd5b067991a42eaee5972fea">SBI_CLEAR_IPI</a>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="sbi_8h.html#ac35eacf8e55e673f4315ea138e4f2ea3">   75</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="sbi_8h.html#ac35eacf8e55e673f4315ea138e4f2ea3">sbi_send_ipi</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> *hart_mask)</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="sbi_8h.html#a6009ef829285eebb18ad0ad67e5e14f9">SBI_CALL_1</a>(<a class="code" href="sbi_8h.html#a5c5bcf58aa65295bea53e082cca9789a">SBI_SEND_IPI</a>, hart_mask);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="sbi_8h.html#a81792ded22648e61e3d04cabe0ef5900">   80</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="sbi_8h.html#a81792ded22648e61e3d04cabe0ef5900">sbi_remote_fence_i</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> *hart_mask)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;{</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="sbi_8h.html#a6009ef829285eebb18ad0ad67e5e14f9">SBI_CALL_1</a>(<a class="code" href="sbi_8h.html#af636f58789546ffc9b4dd71a6d4bd9fe">SBI_REMOTE_FENCE_I</a>, hart_mask);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="sbi_8h.html#afc089d889ea2cc83c154cf1413df7927">   85</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="sbi_8h.html#afc089d889ea2cc83c154cf1413df7927">sbi_remote_sfence_vma</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> *hart_mask,</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                     <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> start,</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                     <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> size)</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;{</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="sbi_8h.html#a6009ef829285eebb18ad0ad67e5e14f9">SBI_CALL_1</a>(<a class="code" href="sbi_8h.html#afbf063bfb5ed32f4b642899c38c9faab">SBI_REMOTE_SFENCE_VMA</a>, hart_mask);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="sbi_8h.html#ae6b858188990848d9e7650e0c4a4666a">   92</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="sbi_8h.html#ae6b858188990848d9e7650e0c4a4666a">sbi_remote_sfence_vma_asid</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> *hart_mask,</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                          <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> start,</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                          <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> size,</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                          <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> asid)</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="sbi_8h.html#a6009ef829285eebb18ad0ad67e5e14f9">SBI_CALL_1</a>(<a class="code" href="sbi_8h.html#aa03f10f70d3715a5ae0633dbadfc1a1f">SBI_REMOTE_SFENCE_VMA_ASID</a>, hart_mask);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !__SBI_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adefs_8h_html"><div class="ttname"><a href="defs_8h.html">defs.h</a></div></div>
+<div class="ttc" id="adefs_8h_html_aaa5d1cd013383c889537491c3cfd9aad"><div class="ttname"><a href="defs_8h.html#aaa5d1cd013383c889537491c3cfd9aad">uint64_t</a></div><div class="ttdeci">unsigned long long uint64_t</div><div class="ttdef"><b>Definition:</b> defs.h:26</div></div>
+<div class="ttc" id="asbi_8h_html_a07a40f8f344547fdc7396af43ea3f851"><div class="ttname"><a href="sbi_8h.html#a07a40f8f344547fdc7396af43ea3f851">sbi_set_timer</a></div><div class="ttdeci">static void sbi_set_timer(uint64_t stime_value)</div><div class="ttdef"><b>Definition:</b> sbi.h:56</div></div>
+<div class="ttc" id="asbi_8h_html_a2c1d94c38003281d350a520eced61310"><div class="ttname"><a href="sbi_8h.html#a2c1d94c38003281d350a520eced61310">sbi_console_getchar</a></div><div class="ttdeci">static int sbi_console_getchar(void)</div><div class="ttdef"><b>Definition:</b> sbi.h:51</div></div>
+<div class="ttc" id="asbi_8h_html_a5c5bcf58aa65295bea53e082cca9789a"><div class="ttname"><a href="sbi_8h.html#a5c5bcf58aa65295bea53e082cca9789a">SBI_SEND_IPI</a></div><div class="ttdeci">#define SBI_SEND_IPI</div><div class="ttdef"><b>Definition:</b> sbi.h:23</div></div>
+<div class="ttc" id="asbi_8h_html_a6009ef829285eebb18ad0ad67e5e14f9"><div class="ttname"><a href="sbi_8h.html#a6009ef829285eebb18ad0ad67e5e14f9">SBI_CALL_1</a></div><div class="ttdeci">#define SBI_CALL_1(which, arg0)</div><div class="ttdef"><b>Definition:</b> sbi.h:43</div></div>
+<div class="ttc" id="asbi_8h_html_a81792ded22648e61e3d04cabe0ef5900"><div class="ttname"><a href="sbi_8h.html#a81792ded22648e61e3d04cabe0ef5900">sbi_remote_fence_i</a></div><div class="ttdeci">static void sbi_remote_fence_i(const unsigned long *hart_mask)</div><div class="ttdef"><b>Definition:</b> sbi.h:80</div></div>
+<div class="ttc" id="asbi_8h_html_a895a7c049dfa186addd8eb7599f09b5d"><div class="ttname"><a href="sbi_8h.html#a895a7c049dfa186addd8eb7599f09b5d">sbi_clear_ipi</a></div><div class="ttdeci">static void sbi_clear_ipi(void)</div><div class="ttdef"><b>Definition:</b> sbi.h:70</div></div>
+<div class="ttc" id="asbi_8h_html_a8eb3d3cd5274e20ff49458e3a971653f"><div class="ttname"><a href="sbi_8h.html#a8eb3d3cd5274e20ff49458e3a971653f">SBI_CONSOLE_PUTCHAR</a></div><div class="ttdeci">#define SBI_CONSOLE_PUTCHAR</div><div class="ttdef"><b>Definition:</b> sbi.h:20</div></div>
+<div class="ttc" id="asbi_8h_html_a92b3e8f6dd5b067991a42eaee5972fea"><div class="ttname"><a href="sbi_8h.html#a92b3e8f6dd5b067991a42eaee5972fea">SBI_CLEAR_IPI</a></div><div class="ttdeci">#define SBI_CLEAR_IPI</div><div class="ttdef"><b>Definition:</b> sbi.h:22</div></div>
+<div class="ttc" id="asbi_8h_html_a97ac9f9392d7e219e752d41da350aee7"><div class="ttname"><a href="sbi_8h.html#a97ac9f9392d7e219e752d41da350aee7">SBI_SET_TIMER</a></div><div class="ttdeci">#define SBI_SET_TIMER</div><div class="ttdef"><b>Definition:</b> sbi.h:19</div></div>
+<div class="ttc" id="asbi_8h_html_a99638b95984187102dd50b1d0b430d3b"><div class="ttname"><a href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b">sbi_console_putchar</a></div><div class="ttdeci">static void sbi_console_putchar(int ch)</div><div class="ttdef"><b>Definition:</b> sbi.h:46</div></div>
+<div class="ttc" id="asbi_8h_html_aa03f10f70d3715a5ae0633dbadfc1a1f"><div class="ttname"><a href="sbi_8h.html#aa03f10f70d3715a5ae0633dbadfc1a1f">SBI_REMOTE_SFENCE_VMA_ASID</a></div><div class="ttdeci">#define SBI_REMOTE_SFENCE_VMA_ASID</div><div class="ttdef"><b>Definition:</b> sbi.h:26</div></div>
+<div class="ttc" id="asbi_8h_html_ab8dd17e757bfca5b1013f55de21a131b"><div class="ttname"><a href="sbi_8h.html#ab8dd17e757bfca5b1013f55de21a131b">SBI_CALL_2</a></div><div class="ttdeci">#define SBI_CALL_2(which, arg0, arg1)</div><div class="ttdef"><b>Definition:</b> sbi.h:44</div></div>
+<div class="ttc" id="asbi_8h_html_ac35eacf8e55e673f4315ea138e4f2ea3"><div class="ttname"><a href="sbi_8h.html#ac35eacf8e55e673f4315ea138e4f2ea3">sbi_send_ipi</a></div><div class="ttdeci">static void sbi_send_ipi(const unsigned long *hart_mask)</div><div class="ttdef"><b>Definition:</b> sbi.h:75</div></div>
+<div class="ttc" id="asbi_8h_html_acb27c9e91eee5ab1127a939cd4e080ce"><div class="ttname"><a href="sbi_8h.html#acb27c9e91eee5ab1127a939cd4e080ce">SBI_CALL_0</a></div><div class="ttdeci">#define SBI_CALL_0(which)</div><div class="ttdef"><b>Definition:</b> sbi.h:42</div></div>
+<div class="ttc" id="asbi_8h_html_acbd5e0e986d32c6eabf1909475a3ce6f"><div class="ttname"><a href="sbi_8h.html#acbd5e0e986d32c6eabf1909475a3ce6f">sbi_shutdown</a></div><div class="ttdeci">static void sbi_shutdown(void)</div><div class="ttdef"><b>Definition:</b> sbi.h:65</div></div>
+<div class="ttc" id="asbi_8h_html_ae6b858188990848d9e7650e0c4a4666a"><div class="ttname"><a href="sbi_8h.html#ae6b858188990848d9e7650e0c4a4666a">sbi_remote_sfence_vma_asid</a></div><div class="ttdeci">static void sbi_remote_sfence_vma_asid(const unsigned long *hart_mask, unsigned long start, unsigned long size, unsigned long asid)</div><div class="ttdef"><b>Definition:</b> sbi.h:92</div></div>
+<div class="ttc" id="asbi_8h_html_aef4b12693baa5b50c6fc96bb9a310cb5"><div class="ttname"><a href="sbi_8h.html#aef4b12693baa5b50c6fc96bb9a310cb5">SBI_SHUTDOWN</a></div><div class="ttdeci">#define SBI_SHUTDOWN</div><div class="ttdef"><b>Definition:</b> sbi.h:27</div></div>
+<div class="ttc" id="asbi_8h_html_af636f58789546ffc9b4dd71a6d4bd9fe"><div class="ttname"><a href="sbi_8h.html#af636f58789546ffc9b4dd71a6d4bd9fe">SBI_REMOTE_FENCE_I</a></div><div class="ttdeci">#define SBI_REMOTE_FENCE_I</div><div class="ttdef"><b>Definition:</b> sbi.h:24</div></div>
+<div class="ttc" id="asbi_8h_html_afbf063bfb5ed32f4b642899c38c9faab"><div class="ttname"><a href="sbi_8h.html#afbf063bfb5ed32f4b642899c38c9faab">SBI_REMOTE_SFENCE_VMA</a></div><div class="ttdeci">#define SBI_REMOTE_SFENCE_VMA</div><div class="ttdef"><b>Definition:</b> sbi.h:25</div></div>
+<div class="ttc" id="asbi_8h_html_afc089d889ea2cc83c154cf1413df7927"><div class="ttname"><a href="sbi_8h.html#afc089d889ea2cc83c154cf1413df7927">sbi_remote_sfence_vma</a></div><div class="ttdeci">static void sbi_remote_sfence_vma(const unsigned long *hart_mask, unsigned long start, unsigned long size)</div><div class="ttdef"><b>Definition:</b> sbi.h:85</div></div>
+<div class="ttc" id="asbi_8h_html_afd7abf556fca357e4b2d43a2efc37620"><div class="ttname"><a href="sbi_8h.html#afd7abf556fca357e4b2d43a2efc37620">SBI_CONSOLE_GETCHAR</a></div><div class="ttdeci">#define SBI_CONSOLE_GETCHAR</div><div class="ttdef"><b>Definition:</b> sbi.h:21</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

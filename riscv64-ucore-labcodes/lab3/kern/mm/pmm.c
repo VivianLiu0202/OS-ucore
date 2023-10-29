@@ -21,7 +21,7 @@ uint_t va_pa_offset;
 // memory starts at 0x80000000 in RISC-V
 const size_t nbase = DRAM_BASE / PGSIZE;
 
-// virtual address of boot-time page directory
+// virtual address of boot-time page directory 启动时页目录表的虚拟地址
 pde_t *boot_pgdir = NULL;
 // physical address of boot-time page directory
 uintptr_t boot_cr3;
@@ -62,6 +62,8 @@ struct Page *alloc_pages(size_t n)
         }
         local_intr_restore(intr_flag);
 
+        // pmm_init的时候swap_init_ok为0，所以不会执行下面的代码
+        // 进行到swap_init的时候，swap_init_ok为1，所以会执行下面的代码
         if (page != NULL || n > 1 || swap_init_ok == 0)
             break;
 
@@ -206,8 +208,8 @@ void pmm_init(void)
     // pmm
     check_alloc_page();
     // create boot_pgdir, an initial page directory(Page Directory Table, PDT)
-    extern char boot_page_table_sv39[];
-    boot_pgdir = (pte_t *)boot_page_table_sv39;
+    extern char boot_page_table_sv39[];         // entry.S中定义的页表
+    boot_pgdir = (pte_t *)boot_page_table_sv39; // 页目录表的虚拟地址
     boot_cr3 = PADDR(boot_pgdir);
     check_pgdir();
     static_assert(KERNBASE % PTSIZE == 0 && KERNTOP % PTSIZE == 0);

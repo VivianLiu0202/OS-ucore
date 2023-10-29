@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: libs/list.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">list.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="list_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="list_8h.html#ad7d2cda4211f093325ef4878590027e4">    1</a></span>&#160;<span class="preprocessor">#ifndef __LIBS_LIST_H__</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __LIBS_LIST_H__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#ifndef __ASSEMBLER__</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="defs_8h.html">defs.h</a>&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * Simple doubly linked list implementation.</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * Some of the internal functions (&quot;__xxx&quot;) are useful when manipulating</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * whole lists rather than single entries, as sometimes we already know</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * the next/prev entries and we can generate better code by using them</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * directly rather than using the generic single-entry routines.</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structlist__entry.html">   17</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structlist__entry.html">list_entry</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structlist__entry.html#a2d0d0be6a8e333b8285b3d696c12a8f2">   18</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structlist__entry.html">list_entry</a> *<a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a>, *<a class="code" href="structlist__entry.html#a2d0d0be6a8e333b8285b3d696c12a8f2">next</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structlist__entry.html">list_entry</a> <a class="code" href="structlist__entry.html">list_entry_t</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="list_8h.html#aab675dfe52cdf4f4b72c6a22c3275e82">list_init</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *elm) <a class="code" href="init_8c.html#a189705fbc4254ff3cc332e052cd13215">__attribute__</a>((always_inline));</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="list_8h.html#a4aa33662635de342c27f7233454574f4">list_add</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm, <a class="code" href="structlist__entry.html">list_entry_t</a> *elm) <a class="code" href="init_8c.html#a189705fbc4254ff3cc332e052cd13215">__attribute__</a>((always_inline));</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="list_8h.html#abb2baaa276b1d2f547c6c4549d2e0127">list_add_before</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm, <a class="code" href="structlist__entry.html">list_entry_t</a> *elm) <a class="code" href="init_8c.html#a189705fbc4254ff3cc332e052cd13215">__attribute__</a>((always_inline));</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="list_8h.html#a239b408a024aa5bc29ed2a2cd93251eb">list_add_after</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm, <a class="code" href="structlist__entry.html">list_entry_t</a> *elm) <a class="code" href="init_8c.html#a189705fbc4254ff3cc332e052cd13215">__attribute__</a>((always_inline));</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="list_8h.html#a86c117ac4118e4f49128679de329b351">list_del</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm) <a class="code" href="init_8c.html#a189705fbc4254ff3cc332e052cd13215">__attribute__</a>((always_inline));</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="list_8h.html#a00fe2fe7db812f4ebb8c988a32852264">list_del_init</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm) <a class="code" href="init_8c.html#a189705fbc4254ff3cc332e052cd13215">__attribute__</a>((always_inline));</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="list_8h.html#a59b6c26aecb6f1de6802098cacd2c96d">list_empty</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *list) <a class="code" href="init_8c.html#a189705fbc4254ff3cc332e052cd13215">__attribute__</a>((always_inline));</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="structlist__entry.html">list_entry_t</a> *<a class="code" href="list_8h.html#a2a5579d68c706f9ed5103fef6efe8e0a">list_next</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm) <a class="code" href="init_8c.html#a189705fbc4254ff3cc332e052cd13215">__attribute__</a>((always_inline));</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="structlist__entry.html">list_entry_t</a> *<a class="code" href="list_8h.html#a9923c8364fd232c9b8e742f841c2b278">list_prev</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm) <a class="code" href="init_8c.html#a189705fbc4254ff3cc332e052cd13215">__attribute__</a>((always_inline));</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="list_8h.html#a6d14129e8bd464c76ac9c4541f91acab">__list_add</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *elm, <a class="code" href="structlist__entry.html">list_entry_t</a> *<a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a>, <a class="code" href="structlist__entry.html">list_entry_t</a> *<a class="code" href="rand_8c.html#af4ad7375f1897c2436213d4c706a1a71">next</a>) <a class="code" href="init_8c.html#a189705fbc4254ff3cc332e052cd13215">__attribute__</a>((always_inline));</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="list_8h.html#a835e92bfc11e7415502f0309eb5b1cfe">__list_del</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *<a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a>, <a class="code" href="structlist__entry.html">list_entry_t</a> *<a class="code" href="rand_8c.html#af4ad7375f1897c2436213d4c706a1a71">next</a>) <a class="code" href="init_8c.html#a189705fbc4254ff3cc332e052cd13215">__attribute__</a>((always_inline));</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * list_init - initialize a new entry</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> * @elm:        new entry to be initialized</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="list_8h.html#aab675dfe52cdf4f4b72c6a22c3275e82">   41</a></span>&#160;<a class="code" href="list_8h.html#aab675dfe52cdf4f4b72c6a22c3275e82">list_init</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *elm) {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    elm-&gt;<a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a> = elm-&gt;<a class="code" href="structlist__entry.html#a2d0d0be6a8e333b8285b3d696c12a8f2">next</a> = elm;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"> * list_add - add a new entry</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"> * @listelm:    list head to add after</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"> * @elm:        new entry to be added</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment"> * Insert the new element @elm *after* the element @listelm which</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment"> * is already in the list.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="list_8h.html#a4aa33662635de342c27f7233454574f4">   54</a></span>&#160;<a class="code" href="list_8h.html#a4aa33662635de342c27f7233454574f4">list_add</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm, <a class="code" href="structlist__entry.html">list_entry_t</a> *elm) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="list_8h.html#a239b408a024aa5bc29ed2a2cd93251eb">list_add_after</a>(listelm, elm);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"> * list_add_before - add a new entry</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> * @listelm:    list head to add before</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> * @elm:        new entry to be added</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * Insert the new element @elm *before* the element @listelm which</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> * is already in the list.</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="list_8h.html#abb2baaa276b1d2f547c6c4549d2e0127">   67</a></span>&#160;<a class="code" href="list_8h.html#abb2baaa276b1d2f547c6c4549d2e0127">list_add_before</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm, <a class="code" href="structlist__entry.html">list_entry_t</a> *elm) {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="list_8h.html#a6d14129e8bd464c76ac9c4541f91acab">__list_add</a>(elm, listelm-&gt;<a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a>, listelm);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"> * list_add_after - add a new entry</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"> * @listelm:    list head to add after</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"> * @elm:        new entry to be added</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"> * Insert the new element @elm *after* the element @listelm which</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"> * is already in the list.</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="list_8h.html#a239b408a024aa5bc29ed2a2cd93251eb">   80</a></span>&#160;<a class="code" href="list_8h.html#a239b408a024aa5bc29ed2a2cd93251eb">list_add_after</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm, <a class="code" href="structlist__entry.html">list_entry_t</a> *elm) {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="list_8h.html#a6d14129e8bd464c76ac9c4541f91acab">__list_add</a>(elm, listelm, listelm-&gt;<a class="code" href="structlist__entry.html#a2d0d0be6a8e333b8285b3d696c12a8f2">next</a>);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"> * list_del - deletes entry from list</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> * @listelm:    the element to delete from the list</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"> * Note: list_empty() on @listelm does not return true after this, the entry is</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"> * in an undefined state.</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="list_8h.html#a86c117ac4118e4f49128679de329b351">   92</a></span>&#160;<a class="code" href="list_8h.html#a86c117ac4118e4f49128679de329b351">list_del</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm) {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="list_8h.html#a835e92bfc11e7415502f0309eb5b1cfe">__list_del</a>(listelm-&gt;<a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a>, listelm-&gt;<a class="code" href="structlist__entry.html#a2d0d0be6a8e333b8285b3d696c12a8f2">next</a>);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"> * list_del_init - deletes entry from list and reinitialize it.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment"> * @listelm:    the element to delete from the list.</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"> * Note: list_empty() on @listelm returns true after this.</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="list_8h.html#a00fe2fe7db812f4ebb8c988a32852264">  103</a></span>&#160;<a class="code" href="list_8h.html#a00fe2fe7db812f4ebb8c988a32852264">list_del_init</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm) {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="list_8h.html#a86c117ac4118e4f49128679de329b351">list_del</a>(listelm);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="list_8h.html#aab675dfe52cdf4f4b72c6a22c3275e82">list_init</a>(listelm);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"> * list_empty - tests whether a list is empty</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment"> * @list:       the list to test.</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="list_8h.html#a59b6c26aecb6f1de6802098cacd2c96d">  113</a></span>&#160;<a class="code" href="list_8h.html#a59b6c26aecb6f1de6802098cacd2c96d">list_empty</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *list) {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">return</span> list-&gt;<a class="code" href="structlist__entry.html#a2d0d0be6a8e333b8285b3d696c12a8f2">next</a> == list;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"> * list_next - get the next entry</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"> * @listelm:    the list head</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment"> **/</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="structlist__entry.html">list_entry_t</a> *</div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="list_8h.html#a2a5579d68c706f9ed5103fef6efe8e0a">  122</a></span>&#160;<a class="code" href="list_8h.html#a2a5579d68c706f9ed5103fef6efe8e0a">list_next</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm) {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordflow">return</span> listelm-&gt;<a class="code" href="structlist__entry.html#a2d0d0be6a8e333b8285b3d696c12a8f2">next</a>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment"> * list_prev - get the previous entry</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment"> * @listelm:    the list head</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment"> **/</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="structlist__entry.html">list_entry_t</a> *</div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="list_8h.html#a9923c8364fd232c9b8e742f841c2b278">  131</a></span>&#160;<a class="code" href="list_8h.html#a9923c8364fd232c9b8e742f841c2b278">list_prev</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *listelm) {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">return</span> listelm-&gt;<a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a>;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment"> * Insert a new entry between two known consecutive entries.</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment"> * This is only for internal list manipulation where we know</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment"> * the prev/next entries already!</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="list_8h.html#a6d14129e8bd464c76ac9c4541f91acab">  142</a></span>&#160;<a class="code" href="list_8h.html#a6d14129e8bd464c76ac9c4541f91acab">__list_add</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *elm, <a class="code" href="structlist__entry.html">list_entry_t</a> *<a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a>, <a class="code" href="structlist__entry.html">list_entry_t</a> *<a class="code" href="rand_8c.html#af4ad7375f1897c2436213d4c706a1a71">next</a>) {</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a>-&gt;<a class="code" href="structlist__entry.html#a2d0d0be6a8e333b8285b3d696c12a8f2">next</a> = <a class="code" href="rand_8c.html#af4ad7375f1897c2436213d4c706a1a71">next</a>-&gt;prev = elm;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    elm-&gt;<a class="code" href="structlist__entry.html#a2d0d0be6a8e333b8285b3d696c12a8f2">next</a> = <a class="code" href="rand_8c.html#af4ad7375f1897c2436213d4c706a1a71">next</a>;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    elm-&gt;<a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a> = <a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a>;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;}</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment"> * Delete a list entry by making the prev/next entries point to each other.</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment"> * This is only for internal list manipulation where we know</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment"> * the prev/next entries already!</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="list_8h.html#a835e92bfc11e7415502f0309eb5b1cfe">  155</a></span>&#160;<a class="code" href="list_8h.html#a835e92bfc11e7415502f0309eb5b1cfe">__list_del</a>(<a class="code" href="structlist__entry.html">list_entry_t</a> *<a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a>, <a class="code" href="structlist__entry.html">list_entry_t</a> *<a class="code" href="rand_8c.html#af4ad7375f1897c2436213d4c706a1a71">next</a>) {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a>-&gt;<a class="code" href="structlist__entry.html#a2d0d0be6a8e333b8285b3d696c12a8f2">next</a> = <a class="code" href="rand_8c.html#af4ad7375f1897c2436213d4c706a1a71">next</a>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <a class="code" href="rand_8c.html#af4ad7375f1897c2436213d4c706a1a71">next</a>-&gt;prev = <a class="code" href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">prev</a>;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;}</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !__ASSEMBLER__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !__LIBS_LIST_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
+<div class="ttc" id="adefs_8h_html"><div class="ttname"><a href="defs_8h.html">defs.h</a></div></div>
+<div class="ttc" id="ainit_8c_html_a189705fbc4254ff3cc332e052cd13215"><div class="ttname"><a href="init_8c.html#a189705fbc4254ff3cc332e052cd13215">__attribute__</a></div><div class="ttdeci">void __attribute__((noinline))</div><div class="ttdef"><b>Definition:</b> init.c:49</div></div>
+<div class="ttc" id="alist_8h_html_a00fe2fe7db812f4ebb8c988a32852264"><div class="ttname"><a href="list_8h.html#a00fe2fe7db812f4ebb8c988a32852264">list_del_init</a></div><div class="ttdeci">static void list_del_init(list_entry_t *listelm) __attribute__((always_inline))</div><div class="ttdef"><b>Definition:</b> list.h:103</div></div>
+<div class="ttc" id="alist_8h_html_a239b408a024aa5bc29ed2a2cd93251eb"><div class="ttname"><a href="list_8h.html#a239b408a024aa5bc29ed2a2cd93251eb">list_add_after</a></div><div class="ttdeci">static void list_add_after(list_entry_t *listelm, list_entry_t *elm) __attribute__((always_inline))</div><div class="ttdef"><b>Definition:</b> list.h:80</div></div>
+<div class="ttc" id="alist_8h_html_a2a5579d68c706f9ed5103fef6efe8e0a"><div class="ttname"><a href="list_8h.html#a2a5579d68c706f9ed5103fef6efe8e0a">list_next</a></div><div class="ttdeci">static list_entry_t * list_next(list_entry_t *listelm) __attribute__((always_inline))</div><div class="ttdef"><b>Definition:</b> list.h:122</div></div>
+<div class="ttc" id="alist_8h_html_a4aa33662635de342c27f7233454574f4"><div class="ttname"><a href="list_8h.html#a4aa33662635de342c27f7233454574f4">list_add</a></div><div class="ttdeci">static void list_add(list_entry_t *listelm, list_entry_t *elm) __attribute__((always_inline))</div><div class="ttdef"><b>Definition:</b> list.h:54</div></div>
+<div class="ttc" id="alist_8h_html_a59b6c26aecb6f1de6802098cacd2c96d"><div class="ttname"><a href="list_8h.html#a59b6c26aecb6f1de6802098cacd2c96d">list_empty</a></div><div class="ttdeci">static bool list_empty(list_entry_t *list) __attribute__((always_inline))</div><div class="ttdef"><b>Definition:</b> list.h:113</div></div>
+<div class="ttc" id="alist_8h_html_a6d14129e8bd464c76ac9c4541f91acab"><div class="ttname"><a href="list_8h.html#a6d14129e8bd464c76ac9c4541f91acab">__list_add</a></div><div class="ttdeci">static void __list_add(list_entry_t *elm, list_entry_t *prev, list_entry_t *next) __attribute__((always_inline))</div><div class="ttdef"><b>Definition:</b> list.h:142</div></div>
+<div class="ttc" id="alist_8h_html_a835e92bfc11e7415502f0309eb5b1cfe"><div class="ttname"><a href="list_8h.html#a835e92bfc11e7415502f0309eb5b1cfe">__list_del</a></div><div class="ttdeci">static void __list_del(list_entry_t *prev, list_entry_t *next) __attribute__((always_inline))</div><div class="ttdef"><b>Definition:</b> list.h:155</div></div>
+<div class="ttc" id="alist_8h_html_a86c117ac4118e4f49128679de329b351"><div class="ttname"><a href="list_8h.html#a86c117ac4118e4f49128679de329b351">list_del</a></div><div class="ttdeci">static void list_del(list_entry_t *listelm) __attribute__((always_inline))</div><div class="ttdef"><b>Definition:</b> list.h:92</div></div>
+<div class="ttc" id="alist_8h_html_a9923c8364fd232c9b8e742f841c2b278"><div class="ttname"><a href="list_8h.html#a9923c8364fd232c9b8e742f841c2b278">list_prev</a></div><div class="ttdeci">static list_entry_t * list_prev(list_entry_t *listelm) __attribute__((always_inline))</div><div class="ttdef"><b>Definition:</b> list.h:131</div></div>
+<div class="ttc" id="alist_8h_html_aab675dfe52cdf4f4b72c6a22c3275e82"><div class="ttname"><a href="list_8h.html#aab675dfe52cdf4f4b72c6a22c3275e82">list_init</a></div><div class="ttdeci">static void list_init(list_entry_t *elm) __attribute__((always_inline))</div><div class="ttdef"><b>Definition:</b> list.h:41</div></div>
+<div class="ttc" id="alist_8h_html_abb2baaa276b1d2f547c6c4549d2e0127"><div class="ttname"><a href="list_8h.html#abb2baaa276b1d2f547c6c4549d2e0127">list_add_before</a></div><div class="ttdeci">static void list_add_before(list_entry_t *listelm, list_entry_t *elm) __attribute__((always_inline))</div><div class="ttdef"><b>Definition:</b> list.h:67</div></div>
+<div class="ttc" id="arand_8c_html_af4ad7375f1897c2436213d4c706a1a71"><div class="ttname"><a href="rand_8c.html#af4ad7375f1897c2436213d4c706a1a71">next</a></div><div class="ttdeci">static unsigned long long next</div><div class="ttdef"><b>Definition:</b> rand.c:4</div></div>
+<div class="ttc" id="astructlist__entry_html"><div class="ttname"><a href="structlist__entry.html">list_entry</a></div><div class="ttdef"><b>Definition:</b> list.h:17</div></div>
+<div class="ttc" id="astructlist__entry_html_a2d0d0be6a8e333b8285b3d696c12a8f2"><div class="ttname"><a href="structlist__entry.html#a2d0d0be6a8e333b8285b3d696c12a8f2">list_entry::next</a></div><div class="ttdeci">struct list_entry * next</div><div class="ttdef"><b>Definition:</b> list.h:18</div></div>
+<div class="ttc" id="astructlist__entry_html_aa400c402bee52d2ccf9cbf834276ce85"><div class="ttname"><a href="structlist__entry.html#aa400c402bee52d2ccf9cbf834276ce85">list_entry::prev</a></div><div class="ttdeci">struct list_entry * prev</div><div class="ttdef"><b>Definition:</b> list.h:18</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

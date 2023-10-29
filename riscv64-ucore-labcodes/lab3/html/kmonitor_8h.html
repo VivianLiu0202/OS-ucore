@@ -1,0 +1,550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/debug/kmonitor.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_60cf14b59ebeb9a69dd0c7e8f099369e.html">debug</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">kmonitor.h 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;<a class="el" href="trap_8h_source.html">trap.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+kmonitor.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kmonitor_8h__incl.gif" border="0" usemap="#akern_2debug_2kmonitor_8h" alt=""/></div>
+<map name="akern_2debug_2kmonitor_8h" id="akern_2debug_2kmonitor_8h">
+<area shape="rect" title=" " alt="" coords="5,5,173,32"/>
+<area shape="rect" href="trap_8h.html" title=" " alt="" coords="59,80,119,107"/>
+<area shape="rect" href="defs_8h.html" title=" " alt="" coords="58,155,121,181"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="kmonitor_8h__dep__incl.gif" border="0" usemap="#akern_2debug_2kmonitor_8hdep" alt=""/></div>
+<map name="akern_2debug_2kmonitor_8hdep" id="akern_2debug_2kmonitor_8hdep">
+<area shape="rect" title=" " alt="" coords="185,5,353,32"/>
+<area shape="rect" href="kmonitor_8c.html" title=" " alt="" coords="5,80,172,107"/>
+<area shape="rect" href="panic_8c.html" title=" " alt="" coords="197,80,341,107"/>
+<area shape="rect" href="init_8c.html" title=" " alt="" coords="365,80,476,107"/>
+</map>
+</div>
+</div>
+<p><a href="kmonitor_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a6177d3644de8ea1c9d62c73d3c047ff6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmonitor_8h.html#a6177d3644de8ea1c9d62c73d3c047ff6">kmonitor</a> (struct <a class="el" href="structtrapframe.html">trapframe</a> *tf)</td></tr>
+<tr class="separator:a6177d3644de8ea1c9d62c73d3c047ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e80fa8a65f430ba1e953c383e7c4dde"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmonitor_8h.html#a6e80fa8a65f430ba1e953c383e7c4dde">mon_help</a> (int argc, char **argv, struct <a class="el" href="structtrapframe.html">trapframe</a> *tf)</td></tr>
+<tr class="separator:a6e80fa8a65f430ba1e953c383e7c4dde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64f12046e6ac5642f70a5c07d8ce2c4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmonitor_8h.html#a64f12046e6ac5642f70a5c07d8ce2c4f">mon_kerninfo</a> (int argc, char **argv, struct <a class="el" href="structtrapframe.html">trapframe</a> *tf)</td></tr>
+<tr class="separator:a64f12046e6ac5642f70a5c07d8ce2c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62f7f01c94b4817c421e5f7a9caaaa79"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmonitor_8h.html#a62f7f01c94b4817c421e5f7a9caaaa79">mon_backtrace</a> (int argc, char **argv, struct <a class="el" href="structtrapframe.html">trapframe</a> *tf)</td></tr>
+<tr class="separator:a62f7f01c94b4817c421e5f7a9caaaa79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaee6df86635d178e067b0010b3eb852c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmonitor_8h.html#aaee6df86635d178e067b0010b3eb852c">mon_continue</a> (int argc, char **argv, struct <a class="el" href="structtrapframe.html">trapframe</a> *tf)</td></tr>
+<tr class="separator:aaee6df86635d178e067b0010b3eb852c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea945404e621f767fd13aef7e8dc77cb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmonitor_8h.html#aea945404e621f767fd13aef7e8dc77cb">mon_step</a> (int argc, char **argv, struct <a class="el" href="structtrapframe.html">trapframe</a> *tf)</td></tr>
+<tr class="separator:aea945404e621f767fd13aef7e8dc77cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfec57a939cfa1ec080507429fd238fd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmonitor_8h.html#adfec57a939cfa1ec080507429fd238fd">mon_breakpoint</a> (int argc, char **argv, struct <a class="el" href="structtrapframe.html">trapframe</a> *tf)</td></tr>
+<tr class="separator:adfec57a939cfa1ec080507429fd238fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a543d68823d8d682981f4c75c37d21fde"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmonitor_8h.html#a543d68823d8d682981f4c75c37d21fde">mon_watchpoint</a> (int argc, char **argv, struct <a class="el" href="structtrapframe.html">trapframe</a> *tf)</td></tr>
+<tr class="separator:a543d68823d8d682981f4c75c37d21fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa05e4cc2317416cc05c4155e6f1b77cf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmonitor_8h.html#aa05e4cc2317416cc05c4155e6f1b77cf">mon_delete_dr</a> (int argc, char **argv, struct <a class="el" href="structtrapframe.html">trapframe</a> *tf)</td></tr>
+<tr class="separator:aa05e4cc2317416cc05c4155e6f1b77cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa46fc9c5529fe0dfdf6a64ba249ad8b5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kmonitor_8h.html#aa46fc9c5529fe0dfdf6a64ba249ad8b5">mon_list_dr</a> (int argc, char **argv, struct <a class="el" href="structtrapframe.html">trapframe</a> *tf)</td></tr>
+<tr class="separator:aa46fc9c5529fe0dfdf6a64ba249ad8b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a6177d3644de8ea1c9d62c73d3c047ff6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6177d3644de8ea1c9d62c73d3c047ff6">&#9670;&nbsp;</a></span>kmonitor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kmonitor </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structtrapframe.html">trapframe</a> *&#160;</td>
+          <td class="paramname"><em>tf</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kmonitor_8h_a6177d3644de8ea1c9d62c73d3c047ff6_cgraph.gif" border="0" usemap="#akmonitor_8h_a6177d3644de8ea1c9d62c73d3c047ff6_cgraph" alt=""/></div>
+<map name="akmonitor_8h_a6177d3644de8ea1c9d62c73d3c047ff6_cgraph" id="akmonitor_8h_a6177d3644de8ea1c9d62c73d3c047ff6_cgraph">
+<area shape="rect" title=" " alt="" coords="5,107,87,133"/>
+<area shape="rect" href="stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="445,145,509,172"/>
+<area shape="rect" href="trap_8c.html#a51e89e35288406d1ebf6a5d55a308d1e" title=" " alt="" coords="135,132,259,159"/>
+<area shape="rect" href="readline_8c.html#adc634fefff1a9f71c87a04e1eddb8649" title=" " alt="" coords="313,31,387,57"/>
+<area shape="rect" href="kmonitor_8c.html#a28c010218ed67fdd79be5f9188610cd4" title=" " alt="" coords="161,259,232,285"/>
+<area shape="rect" href="stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="567,145,639,172"/>
+<area shape="rect" href="stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="739,107,805,133"/>
+<area shape="rect" href="printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="731,157,813,184"/>
+<area shape="rect" href="console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="897,5,984,32"/>
+<area shape="rect" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="1032,5,1187,32"/>
+<area shape="rect" href="printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="911,56,971,83"/>
+<area shape="rect" href="printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="907,107,975,133"/>
+<area shape="rect" href="printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="903,157,978,184"/>
+<area shape="rect" href="printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="900,208,981,235"/>
+<area shape="rect" href="string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="907,259,974,285"/>
+<area shape="rect" href="trap_8c.html#aed5fcbe1cf5c802e902b9e7a6ca527ab" title=" " alt="" coords="307,132,393,159"/>
+<area shape="rect" href="stdio_8c.html#a957c6cffc0963f9e00e839f6f8af6fb9" title=" " alt="" coords="564,5,643,32"/>
+<area shape="rect" href="stdio_8c.html#a3e29caa20f7cffe18f410f01278905a8" title=" " alt="" coords="441,56,512,83"/>
+<area shape="rect" href="console_8c.html#a53b135d585a564aa1ad542d3c977adec" title=" " alt="" coords="560,56,647,83"/>
+<area shape="rect" href="sbi_8h.html#a2c1d94c38003281d350a520eced61310" title=" " alt="" coords="695,56,849,83"/>
+<area shape="rect" href="kmonitor_8c.html#a8ff1843b4df644b5476f716579c8f7e7" title=" " alt="" coords="321,335,379,361"/>
+<area shape="rect" href="string_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title=" " alt="" coords="317,284,383,311"/>
+<area shape="rect" href="string_8c.html#aa409596a785c33c8fabee6d6464df3ff" title=" " alt="" coords="447,335,506,361"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kmonitor_8h_a6177d3644de8ea1c9d62c73d3c047ff6_icgraph.gif" border="0" usemap="#akmonitor_8h_a6177d3644de8ea1c9d62c73d3c047ff6_icgraph" alt=""/></div>
+<map name="akmonitor_8h_a6177d3644de8ea1c9d62c73d3c047ff6_icgraph" id="akmonitor_8h_a6177d3644de8ea1c9d62c73d3c047ff6_icgraph">
+<area shape="rect" title=" " alt="" coords="124,5,205,32"/>
+<area shape="rect" href="assert_8h.html#aa31d39d7e957e5d6f5a7c1e193e1c992" title=" " alt="" coords="5,5,76,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a62f7f01c94b4817c421e5f7a9caaaa79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62f7f01c94b4817c421e5f7a9caaaa79">&#9670;&nbsp;</a></span>mon_backtrace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mon_backtrace </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrapframe.html">trapframe</a> *&#160;</td>
+          <td class="paramname"><em>tf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kmonitor_8h_a62f7f01c94b4817c421e5f7a9caaaa79_cgraph.gif" border="0" usemap="#akmonitor_8h_a62f7f01c94b4817c421e5f7a9caaaa79_cgraph" alt=""/></div>
+<map name="akmonitor_8h_a62f7f01c94b4817c421e5f7a9caaaa79_cgraph" id="akmonitor_8h_a62f7f01c94b4817c421e5f7a9caaaa79_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,128,32"/>
+<area shape="rect" href="kdebug_8c.html#a5d47909aa35539f2e02d29b99f260670" title=" " alt="" coords="176,5,309,32"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kmonitor_8h_a62f7f01c94b4817c421e5f7a9caaaa79_icgraph.gif" border="0" usemap="#akmonitor_8h_a62f7f01c94b4817c421e5f7a9caaaa79_icgraph" alt=""/></div>
+<map name="akmonitor_8h_a62f7f01c94b4817c421e5f7a9caaaa79_icgraph" id="akmonitor_8h_a62f7f01c94b4817c421e5f7a9caaaa79_icgraph">
+<area shape="rect" title=" " alt="" coords="160,5,283,32"/>
+<area shape="rect" href="init_8c.html#a189705fbc4254ff3cc332e052cd13215" title=" " alt="" coords="5,5,112,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adfec57a939cfa1ec080507429fd238fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfec57a939cfa1ec080507429fd238fd">&#9670;&nbsp;</a></span>mon_breakpoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mon_breakpoint </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrapframe.html">trapframe</a> *&#160;</td>
+          <td class="paramname"><em>tf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaee6df86635d178e067b0010b3eb852c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaee6df86635d178e067b0010b3eb852c">&#9670;&nbsp;</a></span>mon_continue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mon_continue </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrapframe.html">trapframe</a> *&#160;</td>
+          <td class="paramname"><em>tf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa05e4cc2317416cc05c4155e6f1b77cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa05e4cc2317416cc05c4155e6f1b77cf">&#9670;&nbsp;</a></span>mon_delete_dr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mon_delete_dr </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrapframe.html">trapframe</a> *&#160;</td>
+          <td class="paramname"><em>tf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6e80fa8a65f430ba1e953c383e7c4dde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e80fa8a65f430ba1e953c383e7c4dde">&#9670;&nbsp;</a></span>mon_help()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mon_help </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrapframe.html">trapframe</a> *&#160;</td>
+          <td class="paramname"><em>tf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kmonitor_8h_a6e80fa8a65f430ba1e953c383e7c4dde_cgraph.gif" border="0" usemap="#akmonitor_8h_a6e80fa8a65f430ba1e953c383e7c4dde_cgraph" alt=""/></div>
+<map name="akmonitor_8h_a6e80fa8a65f430ba1e953c383e7c4dde_cgraph" id="akmonitor_8h_a6e80fa8a65f430ba1e953c383e7c4dde_cgraph">
+<area shape="rect" title=" " alt="" coords="5,132,92,159"/>
+<area shape="rect" href="stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="140,132,204,159"/>
+<area shape="rect" href="stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="252,132,324,159"/>
+<area shape="rect" href="stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="381,56,446,83"/>
+<area shape="rect" href="printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="372,157,455,184"/>
+<area shape="rect" href="console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="503,5,589,32"/>
+<area shape="rect" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="637,5,792,32"/>
+<area shape="rect" href="printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="516,56,576,83"/>
+<area shape="rect" href="printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="512,107,580,133"/>
+<area shape="rect" href="printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="509,157,583,184"/>
+<area shape="rect" href="printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="505,208,587,235"/>
+<area shape="rect" href="string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="513,259,579,285"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a64f12046e6ac5642f70a5c07d8ce2c4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64f12046e6ac5642f70a5c07d8ce2c4f">&#9670;&nbsp;</a></span>mon_kerninfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mon_kerninfo </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrapframe.html">trapframe</a> *&#160;</td>
+          <td class="paramname"><em>tf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kmonitor_8h_a64f12046e6ac5642f70a5c07d8ce2c4f_cgraph.gif" border="0" usemap="#akmonitor_8h_a64f12046e6ac5642f70a5c07d8ce2c4f_cgraph" alt=""/></div>
+<map name="akmonitor_8h_a64f12046e6ac5642f70a5c07d8ce2c4f_cgraph" id="akmonitor_8h_a64f12046e6ac5642f70a5c07d8ce2c4f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,157,116,184"/>
+<area shape="rect" href="kdebug_8c.html#a78dfe88eff02c0d8dac22a09416c13b0" title=" " alt="" coords="164,157,276,184"/>
+<area shape="rect" href="stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="331,132,395,159"/>
+<area shape="rect" href="init_8c.html#a858e38db22f04a10f6afb0f5c0b0a926" title=" " alt="" coords="324,183,403,209"/>
+<area shape="rect" href="stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="451,132,523,159"/>
+<area shape="rect" href="stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="579,56,645,83"/>
+<area shape="rect" href="printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="571,157,653,184"/>
+<area shape="rect" href="console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="701,5,788,32"/>
+<area shape="rect" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="836,5,991,32"/>
+<area shape="rect" href="printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="715,56,775,83"/>
+<area shape="rect" href="printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="711,107,779,133"/>
+<area shape="rect" href="printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="707,157,782,184"/>
+<area shape="rect" href="printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="704,208,785,235"/>
+<area shape="rect" href="string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="711,259,778,285"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa46fc9c5529fe0dfdf6a64ba249ad8b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa46fc9c5529fe0dfdf6a64ba249ad8b5">&#9670;&nbsp;</a></span>mon_list_dr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mon_list_dr </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrapframe.html">trapframe</a> *&#160;</td>
+          <td class="paramname"><em>tf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aea945404e621f767fd13aef7e8dc77cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea945404e621f767fd13aef7e8dc77cb">&#9670;&nbsp;</a></span>mon_step()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mon_step </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrapframe.html">trapframe</a> *&#160;</td>
+          <td class="paramname"><em>tf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a543d68823d8d682981f4c75c37d21fde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a543d68823d8d682981f4c75c37d21fde">&#9670;&nbsp;</a></span>mon_watchpoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int mon_watchpoint </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtrapframe.html">trapframe</a> *&#160;</td>
+          <td class="paramname"><em>tf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

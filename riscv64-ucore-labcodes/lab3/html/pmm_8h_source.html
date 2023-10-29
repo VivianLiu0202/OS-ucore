@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/mm/pmm.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_946bd77349b7674f752759d0c55831d4.html">mm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">pmm.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="pmm_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __KERN_MM_PMM_H__</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __KERN_MM_PMM_H__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="assert_8h.html">assert.h</a>&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="atomic_8h.html">atomic.h</a>&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="defs_8h.html">defs.h</a>&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="memlayout_8h.html">memlayout.h</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="mmu_8h.html">mmu.h</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// pmm_manager is a physical memory management class. A special pmm manager -</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// XXX_pmm_manager</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// only needs to implement the methods in pmm_manager class, then</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// XXX_pmm_manager can be used</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// by ucore to manage the total physical memory space.</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structpmm__manager.html">   15</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structpmm__manager.html">pmm_manager</a> {</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structpmm__manager.html#a29926d27388c30ec3033c46342f61a01">   16</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="structpmm__manager.html#a29926d27388c30ec3033c46342f61a01">name</a>;  <span class="comment">// XXX_pmm_manager&#39;s name</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structpmm__manager.html#ae222d3ec6f473fd20022bc8566b6bcf8">   17</a></span>&#160;    void (*<a class="code" href="structpmm__manager.html#ae222d3ec6f473fd20022bc8566b6bcf8">init</a>)(</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        void);  <span class="comment">// initialize internal description&amp;management data structure</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <span class="comment">// (free block list, number of free block) of XXX_pmm_manager</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structpmm__manager.html#a17bbfc6dc3b3dbe5db35fb25cb45839e">   20</a></span>&#160;    void (*<a class="code" href="structpmm__manager.html#aae89ae6d3bb2ceab603c365a79d2f6f5">init_memmap</a>)(</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a> *base,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">size_t</span> n);  <span class="comment">// setup description&amp;management data structcure according to</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                    <span class="comment">// the initial free physical memory space</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a> *(*alloc_pages)(</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordtype">size_t</span> n);  <span class="comment">// allocate &gt;=n pages, depend on the allocation algorithm</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structpmm__manager.html#a2ba6d171db7a2f1415f463ad3cc52d27">   26</a></span>&#160;    void (*<a class="code" href="structpmm__manager.html#a2ba6d171db7a2f1415f463ad3cc52d27">free_pages</a>)(<span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a> *base, <span class="keywordtype">size_t</span> n);  <span class="comment">// free &gt;=n pages with</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                                                      <span class="comment">// &quot;base&quot; addr of Page</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                                      <span class="comment">// descriptor</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                                      <span class="comment">// structures(memlayout.h)</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structpmm__manager.html#a04c76e8daa15a629d23f8f3ec95ff0ce">   30</a></span>&#160;    <a class="code" href="defs_8h.html#afeaa5ef46acd844422607ca6602691ef">size_t</a> (*<a class="code" href="structpmm__manager.html#a04c76e8daa15a629d23f8f3ec95ff0ce">nr_free_pages</a>)(void);  <span class="comment">// return the number of free pages</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structpmm__manager.html#a80d180d00b60fe5fe6e32c6ee02d5150">   31</a></span>&#160;    void (*<a class="code" href="structpmm__manager.html#a80d180d00b60fe5fe6e32c6ee02d5150">check</a>)(void);            <span class="comment">// check the correctness of XXX_pmm_manager</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code" href="structpmm__manager.html">pmm_manager</a> *<a class="code" href="pmm_8h.html#a0cd8b7454d0faea627c35ad822ef9a4a">pmm_manager</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> <a class="code" href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a> *<a class="code" href="pmm_8h.html#a0e27015f20756014fc8a45df69e7ddb6">boot_pgdir</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">size_t</span> <a class="code" href="pmm_8h.html#ae7ebf0f48e3e27066f5ce9c2f31707a1">nbase</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">extern</span> <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="pmm_8h.html#a98084074f2524047e21ca23ca88c837b">boot_cr3</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span> <a class="code" href="pmm_8h.html#af4a8f7b822fc87d04d74adeb3b2ce6da">pmm_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a> *<a class="code" href="pmm_8h.html#ae2055a0254d79140f1adf784b9b07fea">alloc_pages</a>(<span class="keywordtype">size_t</span> n);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="pmm_8h.html#af5bf600e8b5ab88df053b90d965c9482">free_pages</a>(<span class="keyword">struct</span> <a class="code" href="struct_page.html">Page</a> *base, <span class="keywordtype">size_t</span> n);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="pmm_8h.html#acc1a40cd35d7497eef920fbc9219ff0e">nr_free_pages</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="pmm_8h.html#a2da01fb5c4d60882c0ac7fdc987ee835">   45</a></span>&#160;<span class="preprocessor">#define alloc_page() alloc_pages(1)</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="pmm_8h.html#a8c069ac61effc7178adc221f844ec660">   46</a></span>&#160;<span class="preprocessor">#define free_page(page) free_pages(page, 1)</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<a class="code" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a> *<a class="code" href="pmm_8h.html#a02acb8e4d598f04b9655befb6029d19c">get_pte</a>(<a class="code" href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a> *pgdir, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> la, <span class="keywordtype">bool</span> create);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a> *<a class="code" href="pmm_8h.html#ad8d2b93cd8003ac07e8863af1ee60cde">get_page</a>(<a class="code" href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a> *pgdir, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> la, <a class="code" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a> **ptep_store);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="pmm_8h.html#adae5703d585cd0ce51183278b594bad3">page_remove</a>(<a class="code" href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a> *pgdir, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> la);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">int</span> <a class="code" href="pmm_8h.html#a6fa283dec28e3409f8f4b6d35860cb4b">page_insert</a>(<a class="code" href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a> *pgdir, <span class="keyword">struct</span> <a class="code" href="struct_page.html">Page</a> *page, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> la, <a class="code" href="defs_8h.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> perm);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">void</span> <a class="code" href="pmm_8h.html#a3a6a3f83d69815b453aea9121f46a6ed">tlb_invalidate</a>(<a class="code" href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a> *pgdir, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> la);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a> *<a class="code" href="pmm_8h.html#a682ec852da4ba9f942d14dd940c9dc50">pgdir_alloc_page</a>(<a class="code" href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a> *pgdir, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> la, <a class="code" href="defs_8h.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a> perm);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"> * PADDR - takes a kernel virtual address (an address that points above</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"> * KERNBASE),</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> * where the machine&#39;s maximum 256MB of physical memory is mapped and returns</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> * the</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> * corresponding physical address.  It panics if you pass it a non-kernel</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * virtual address.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="pmm_8h.html#ad2634aa5c851663d00365f74ddd5a8f4">   65</a></span>&#160;<span class="preprocessor">#define PADDR(kva)                                                 \</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">    ({                                                             \</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">        uintptr_t __m_kva = (uintptr_t)(kva);                      \</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">        if (__m_kva &lt; KERNBASE) {                                  \</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">            panic(&quot;PADDR called with invalid kva %08lx&quot;</span>, __m_kva); \</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }                                                          \</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        __m_kva - va_pa_offset;                                    \</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    })</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"> * KADDR - takes a physical address and returns the corresponding kernel virtual</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"> * address. It panics if you pass an invalid physical address.</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="pmm_8h.html#ac40892d58f04557f383d2dd69ae89980">   78</a></span>&#160;<span class="preprocessor">#define KADDR(pa)                                                \</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">    ({                                                           \</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">        uintptr_t __m_pa = (pa);                                 \</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">        size_t __m_ppn = PPN(__m_pa);                            \</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">        if (__m_ppn &gt;= npage) {                                  \</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">            panic(&quot;KADDR called with invalid pa %08lx&quot;</span>, __m_pa); \</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }                                                        \</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        (void *)(__m_pa + va_pa_offset);                         \</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    })</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">extern</span> <span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a> *<a class="code" href="pmm_8h.html#a5c8561a52c4cda29a9be7dc7be92c771">pages</a>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">size_t</span> <a class="code" href="pmm_8h.html#a7d8e8c6eeec8c5e988ecea5d898e7737">npage</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="pmm_8h.html#ae7ebf0f48e3e27066f5ce9c2f31707a1">   90</a></span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">size_t</span> <a class="code" href="pmm_8h.html#ae7ebf0f48e3e27066f5ce9c2f31707a1">nbase</a>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">extern</span> uint_t <a class="code" href="pmm_8h.html#a34eba112423c8481417b93f8dd0f9ee6">va_pa_offset</a>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="pmm_8h.html#aaf54bae0ec07dff85b828139f157626d">   93</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="defs_8h.html#abafb6daca94570612947ad9188e76704">ppn_t</a> <a class="code" href="pmm_8h.html#aaf54bae0ec07dff85b828139f157626d">page2ppn</a>(<span class="keyword">struct</span> <a class="code" href="struct_page.html">Page</a> *page) { <span class="keywordflow">return</span> page - <a class="code" href="pmm_8h.html#a5c8561a52c4cda29a9be7dc7be92c771">pages</a> + <a class="code" href="pmm_8h.html#ae7ebf0f48e3e27066f5ce9c2f31707a1">nbase</a>; }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="pmm_8h.html#ab517d995357f15a4c66fb27a510eb374">   95</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="pmm_8h.html#ab517d995357f15a4c66fb27a510eb374">page2pa</a>(<span class="keyword">struct</span> <a class="code" href="struct_page.html">Page</a> *page) {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="pmm_8h.html#aaf54bae0ec07dff85b828139f157626d">page2ppn</a>(page) &lt;&lt; <a class="code" href="mmu_8h.html#a20d0b7c5f64f21a3fdc19cf44afe8ff2">PGSHIFT</a>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="pmm_8h.html#a9eb3d05d35adc23aa957c07d5ef5ed4e">   99</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a> *<a class="code" href="pmm_8h.html#a9eb3d05d35adc23aa957c07d5ef5ed4e">pa2page</a>(<a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> pa) {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="mmu_8h.html#a78cbe8d89b0e2c790d8f2935b3e66a91">PPN</a>(pa) &gt;= <a class="code" href="pmm_8h.html#a7d8e8c6eeec8c5e988ecea5d898e7737">npage</a>) {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <a class="code" href="assert_8h.html#a1445e207e36c97ff84c54b47288cea19">panic</a>(<span class="stringliteral">&quot;pa2page called with invalid pa&quot;</span>);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">return</span> &amp;<a class="code" href="pmm_8h.html#a5c8561a52c4cda29a9be7dc7be92c771">pages</a>[<a class="code" href="mmu_8h.html#a78cbe8d89b0e2c790d8f2935b3e66a91">PPN</a>(pa) - <a class="code" href="pmm_8h.html#ae7ebf0f48e3e27066f5ce9c2f31707a1">nbase</a>];</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="pmm_8h.html#a3aa177386346f37eaadf16359ef44da7">  106</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> *<a class="code" href="pmm_8h.html#a3aa177386346f37eaadf16359ef44da7">page2kva</a>(<span class="keyword">struct</span> <a class="code" href="struct_page.html">Page</a> *page) { <span class="keywordflow">return</span> <a class="code" href="pmm_8h.html#ac40892d58f04557f383d2dd69ae89980">KADDR</a>(<a class="code" href="pmm_8h.html#ab517d995357f15a4c66fb27a510eb374">page2pa</a>(page)); }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="pmm_8h.html#a9cd9040356b15a1592f57740735b2285">  108</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a> *<a class="code" href="pmm_8h.html#a9cd9040356b15a1592f57740735b2285">kva2page</a>(<span class="keywordtype">void</span> *kva) { <span class="keywordflow">return</span> <a class="code" href="pmm_8h.html#a9eb3d05d35adc23aa957c07d5ef5ed4e">pa2page</a>(<a class="code" href="pmm_8h.html#ad2634aa5c851663d00365f74ddd5a8f4">PADDR</a>(kva)); }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="pmm_8h.html#abd8a44beb459c14597658dbdc0e18881">  110</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a> *<a class="code" href="pmm_8h.html#abd8a44beb459c14597658dbdc0e18881">pte2page</a>(<a class="code" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a> pte) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">if</span> (!(pte &amp; <a class="code" href="mmu_8h.html#a9a3c738182007bee471e44aae04c386f">PTE_V</a>)) {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <a class="code" href="assert_8h.html#a1445e207e36c97ff84c54b47288cea19">panic</a>(<span class="stringliteral">&quot;pte2page called with invalid pte&quot;</span>);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="pmm_8h.html#a9eb3d05d35adc23aa957c07d5ef5ed4e">pa2page</a>(<a class="code" href="mmu_8h.html#a74b24f9b091875a5313370892e3f37a5">PTE_ADDR</a>(pte));</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="pmm_8h.html#ab84f065d9581eef81630b9d4cbb55ce3">  117</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a> *<a class="code" href="pmm_8h.html#ab84f065d9581eef81630b9d4cbb55ce3">pde2page</a>(<a class="code" href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a> pde) {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="pmm_8h.html#a9eb3d05d35adc23aa957c07d5ef5ed4e">pa2page</a>(<a class="code" href="mmu_8h.html#a175ad382f2878dc92ea67645da66e414">PDE_ADDR</a>(pde));</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="pmm_8h.html#ad8e136c060561748245105389a3a40c5">  121</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="pmm_8h.html#ad8e136c060561748245105389a3a40c5">page_ref</a>(<span class="keyword">struct</span> <a class="code" href="struct_page.html">Page</a> *page) { <span class="keywordflow">return</span> page-&gt;<a class="code" href="struct_page.html#abade073973c0503c4bc6e52de00ad027">ref</a>; }</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="pmm_8h.html#a1e526abf140359344dbd9ea214f53694">  123</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="pmm_8h.html#a1e526abf140359344dbd9ea214f53694">set_page_ref</a>(<span class="keyword">struct</span> <a class="code" href="struct_page.html">Page</a> *page, <span class="keywordtype">int</span> val) { page-&gt;<a class="code" href="struct_page.html#abade073973c0503c4bc6e52de00ad027">ref</a> = val; }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="pmm_8h.html#a9ebfb8f851299c3580b73617eb99237b">  125</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="pmm_8h.html#a9ebfb8f851299c3580b73617eb99237b">page_ref_inc</a>(<span class="keyword">struct</span> <a class="code" href="struct_page.html">Page</a> *page) {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    page-&gt;<a class="code" href="struct_page.html#abade073973c0503c4bc6e52de00ad027">ref</a> += 1;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordflow">return</span> page-&gt;<a class="code" href="struct_page.html#abade073973c0503c4bc6e52de00ad027">ref</a>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="pmm_8h.html#aae21a67a56c29b89be9fd3e8eef6a034">  130</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="pmm_8h.html#aae21a67a56c29b89be9fd3e8eef6a034">page_ref_dec</a>(<span class="keyword">struct</span> <a class="code" href="struct_page.html">Page</a> *page) {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    page-&gt;<a class="code" href="struct_page.html#abade073973c0503c4bc6e52de00ad027">ref</a> -= 1;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">return</span> page-&gt;<a class="code" href="struct_page.html#abade073973c0503c4bc6e52de00ad027">ref</a>;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="pmm_8h.html#af481d80989da3c646996210195814878">  135</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="pmm_8h.html#af481d80989da3c646996210195814878">flush_tlb</a>() { <span class="keyword">asm</span> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;sfence.vma&quot;</span>); }</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">// construct PTE from a page and permission bits</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="pmm_8h.html#a90435beaeea486ae0208f68941db36a2">  138</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a> <a class="code" href="pmm_8h.html#a90435beaeea486ae0208f68941db36a2">pte_create</a>(<a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> ppn, <span class="keywordtype">int</span> type) {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordflow">return</span> (ppn &lt;&lt; <a class="code" href="mmu_8h.html#a5b5b713a1ec901153c786686d5962574">PTE_PPN_SHIFT</a>) | <a class="code" href="mmu_8h.html#a9a3c738182007bee471e44aae04c386f">PTE_V</a> | type;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="pmm_8h.html#adc43806627d8729a4a9ac50a8aa6d31c">  142</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a> <a class="code" href="pmm_8h.html#adc43806627d8729a4a9ac50a8aa6d31c">ptd_create</a>(<a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> ppn) { <span class="keywordflow">return</span> <a class="code" href="pmm_8h.html#a90435beaeea486ae0208f68941db36a2">pte_create</a>(ppn, <a class="code" href="mmu_8h.html#a9a3c738182007bee471e44aae04c386f">PTE_V</a>); }</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="pmm_8h.html#af1d119103a4e9fab1f23eb42cafe7d5a">  144</a></span>&#160;<span class="keyword">extern</span> <span class="keywordtype">char</span> <a class="code" href="pmm_8h.html#aab2c31437b57d7eb7f8c6b6a421604e5">bootstack</a>[], <a class="code" href="pmm_8h.html#af1d119103a4e9fab1f23eb42cafe7d5a">bootstacktop</a>[];</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> *<a class="code" href="pmm_8h.html#a8e2dc4d71325ce9ddba783b4289e8e75">kmalloc</a>(<span class="keywordtype">size_t</span> n);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="pmm_8h.html#ab66b2fd61c3ed722ba79fdaab776029f">kfree</a>(<span class="keywordtype">void</span> *ptr, <span class="keywordtype">size_t</span> n);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !__KERN_MM_PMM_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aassert_8h_html"><div class="ttname"><a href="assert_8h.html">assert.h</a></div></div>
+<div class="ttc" id="aassert_8h_html_a1445e207e36c97ff84c54b47288cea19"><div class="ttname"><a href="assert_8h.html#a1445e207e36c97ff84c54b47288cea19">panic</a></div><div class="ttdeci">#define panic(...)</div><div class="ttdef"><b>Definition:</b> assert.h:12</div></div>
+<div class="ttc" id="aatomic_8h_html"><div class="ttname"><a href="atomic_8h.html">atomic.h</a></div></div>
+<div class="ttc" id="adefs_8h_html"><div class="ttname"><a href="defs_8h.html">defs.h</a></div></div>
+<div class="ttc" id="adefs_8h_html_a04cf3633489292bdd23ff5b429bc476b"><div class="ttname"><a href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a></div><div class="ttdeci">uint_t uintptr_t</div><div class="ttdef"><b>Definition:</b> defs.h:41</div></div>
+<div class="ttc" id="adefs_8h_html_a435d1572bf3f880d55459d9805097f62"><div class="ttname"><a href="defs_8h.html#a435d1572bf3f880d55459d9805097f62">uint32_t</a></div><div class="ttdeci">unsigned int uint32_t</div><div class="ttdef"><b>Definition:</b> defs.h:24</div></div>
+<div class="ttc" id="adefs_8h_html_abafb6daca94570612947ad9188e76704"><div class="ttname"><a href="defs_8h.html#abafb6daca94570612947ad9188e76704">ppn_t</a></div><div class="ttdeci">size_t ppn_t</div><div class="ttdef"><b>Definition:</b> defs.h:47</div></div>
+<div class="ttc" id="adefs_8h_html_afeaa5ef46acd844422607ca6602691ef"><div class="ttname"><a href="defs_8h.html#afeaa5ef46acd844422607ca6602691ef">size_t</a></div><div class="ttdeci">uintptr_t size_t</div><div class="ttdef"><b>Definition:</b> defs.h:44</div></div>
+<div class="ttc" id="amemlayout_8h_html"><div class="ttname"><a href="memlayout_8h.html">memlayout.h</a></div></div>
+<div class="ttc" id="amemlayout_8h_html_a9a4c35b1ede4a4107783c0a8f931fc06"><div class="ttname"><a href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a></div><div class="ttdeci">uintptr_t pde_t</div><div class="ttdef"><b>Definition:</b> memlayout.h:56</div></div>
+<div class="ttc" id="amemlayout_8h_html_ae97b82aa50ed8ad4c79b1d8b8fb53836"><div class="ttname"><a href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a></div><div class="ttdeci">uintptr_t pte_t</div><div class="ttdef"><b>Definition:</b> memlayout.h:55</div></div>
+<div class="ttc" id="ammu_8h_html"><div class="ttname"><a href="mmu_8h.html">mmu.h</a></div></div>
+<div class="ttc" id="ammu_8h_html_a175ad382f2878dc92ea67645da66e414"><div class="ttname"><a href="mmu_8h.html#a175ad382f2878dc92ea67645da66e414">PDE_ADDR</a></div><div class="ttdeci">#define PDE_ADDR(pde)</div><div class="ttdef"><b>Definition:</b> mmu.h:55</div></div>
+<div class="ttc" id="ammu_8h_html_a20d0b7c5f64f21a3fdc19cf44afe8ff2"><div class="ttname"><a href="mmu_8h.html#a20d0b7c5f64f21a3fdc19cf44afe8ff2">PGSHIFT</a></div><div class="ttdeci">#define PGSHIFT</div><div class="ttdef"><b>Definition:</b> mmu.h:62</div></div>
+<div class="ttc" id="ammu_8h_html_a5b5b713a1ec901153c786686d5962574"><div class="ttname"><a href="mmu_8h.html#a5b5b713a1ec901153c786686d5962574">PTE_PPN_SHIFT</a></div><div class="ttdeci">#define PTE_PPN_SHIFT</div><div class="ttdef"><b>Definition:</b> mmu.h:69</div></div>
+<div class="ttc" id="ammu_8h_html_a74b24f9b091875a5313370892e3f37a5"><div class="ttname"><a href="mmu_8h.html#a74b24f9b091875a5313370892e3f37a5">PTE_ADDR</a></div><div class="ttdeci">#define PTE_ADDR(pte)</div><div class="ttdef"><b>Definition:</b> mmu.h:54</div></div>
+<div class="ttc" id="ammu_8h_html_a78cbe8d89b0e2c790d8f2935b3e66a91"><div class="ttname"><a href="mmu_8h.html#a78cbe8d89b0e2c790d8f2935b3e66a91">PPN</a></div><div class="ttdeci">#define PPN(la)</div><div class="ttdef"><b>Definition:</b> mmu.h:45</div></div>
+<div class="ttc" id="ammu_8h_html_a9a3c738182007bee471e44aae04c386f"><div class="ttname"><a href="mmu_8h.html#a9a3c738182007bee471e44aae04c386f">PTE_V</a></div><div class="ttdeci">#define PTE_V</div><div class="ttdef"><b>Definition:</b> mmu.h:72</div></div>
+<div class="ttc" id="apmm_8h_html_a02acb8e4d598f04b9655befb6029d19c"><div class="ttname"><a href="pmm_8h.html#a02acb8e4d598f04b9655befb6029d19c">get_pte</a></div><div class="ttdeci">pte_t * get_pte(pde_t *pgdir, uintptr_t la, bool create)</div><div class="ttdef"><b>Definition:</b> pmm.c:240</div></div>
+<div class="ttc" id="apmm_8h_html_a0cd8b7454d0faea627c35ad822ef9a4a"><div class="ttname"><a href="pmm_8h.html#a0cd8b7454d0faea627c35ad822ef9a4a">pmm_manager</a></div><div class="ttdeci">const struct pmm_manager * pmm_manager</div><div class="ttdef"><b>Definition:</b> pmm.c:30</div></div>
+<div class="ttc" id="apmm_8h_html_a0e27015f20756014fc8a45df69e7ddb6"><div class="ttname"><a href="pmm_8h.html#a0e27015f20756014fc8a45df69e7ddb6">boot_pgdir</a></div><div class="ttdeci">pde_t * boot_pgdir</div><div class="ttdef"><b>Definition:</b> pmm.c:25</div></div>
+<div class="ttc" id="apmm_8h_html_a1e526abf140359344dbd9ea214f53694"><div class="ttname"><a href="pmm_8h.html#a1e526abf140359344dbd9ea214f53694">set_page_ref</a></div><div class="ttdeci">static void set_page_ref(struct Page *page, int val)</div><div class="ttdef"><b>Definition:</b> pmm.h:123</div></div>
+<div class="ttc" id="apmm_8h_html_a34eba112423c8481417b93f8dd0f9ee6"><div class="ttname"><a href="pmm_8h.html#a34eba112423c8481417b93f8dd0f9ee6">va_pa_offset</a></div><div class="ttdeci">uint_t va_pa_offset</div><div class="ttdef"><b>Definition:</b> pmm.c:20</div></div>
+<div class="ttc" id="apmm_8h_html_a3a6a3f83d69815b453aea9121f46a6ed"><div class="ttname"><a href="pmm_8h.html#a3a6a3f83d69815b453aea9121f46a6ed">tlb_invalidate</a></div><div class="ttdeci">void tlb_invalidate(pde_t *pgdir, uintptr_t la)</div><div class="ttdef"><b>Definition:</b> pmm.c:408</div></div>
+<div class="ttc" id="apmm_8h_html_a3aa177386346f37eaadf16359ef44da7"><div class="ttname"><a href="pmm_8h.html#a3aa177386346f37eaadf16359ef44da7">page2kva</a></div><div class="ttdeci">static void * page2kva(struct Page *page)</div><div class="ttdef"><b>Definition:</b> pmm.h:106</div></div>
+<div class="ttc" id="apmm_8h_html_a5c8561a52c4cda29a9be7dc7be92c771"><div class="ttname"><a href="pmm_8h.html#a5c8561a52c4cda29a9be7dc7be92c771">pages</a></div><div class="ttdeci">struct Page * pages</div><div class="ttdef"><b>Definition:</b> pmm.c:16</div></div>
+<div class="ttc" id="apmm_8h_html_a682ec852da4ba9f942d14dd940c9dc50"><div class="ttname"><a href="pmm_8h.html#a682ec852da4ba9f942d14dd940c9dc50">pgdir_alloc_page</a></div><div class="ttdeci">struct Page * pgdir_alloc_page(pde_t *pgdir, uintptr_t la, uint32_t perm)</div><div class="ttdef"><b>Definition:</b> pmm.c:413</div></div>
+<div class="ttc" id="apmm_8h_html_a6fa283dec28e3409f8f4b6d35860cb4b"><div class="ttname"><a href="pmm_8h.html#a6fa283dec28e3409f8f4b6d35860cb4b">page_insert</a></div><div class="ttdeci">int page_insert(pde_t *pgdir, struct Page *page, uintptr_t la, uint32_t perm)</div><div class="ttdef"><b>Definition:</b> pmm.c:381</div></div>
+<div class="ttc" id="apmm_8h_html_a7d8e8c6eeec8c5e988ecea5d898e7737"><div class="ttname"><a href="pmm_8h.html#a7d8e8c6eeec8c5e988ecea5d898e7737">npage</a></div><div class="ttdeci">size_t npage</div><div class="ttdef"><b>Definition:</b> pmm.c:18</div></div>
+<div class="ttc" id="apmm_8h_html_a8e2dc4d71325ce9ddba783b4289e8e75"><div class="ttname"><a href="pmm_8h.html#a8e2dc4d71325ce9ddba783b4289e8e75">kmalloc</a></div><div class="ttdeci">void * kmalloc(size_t n)</div><div class="ttdef"><b>Definition:</b> pmm.c:545</div></div>
+<div class="ttc" id="apmm_8h_html_a90435beaeea486ae0208f68941db36a2"><div class="ttname"><a href="pmm_8h.html#a90435beaeea486ae0208f68941db36a2">pte_create</a></div><div class="ttdeci">static pte_t pte_create(uintptr_t ppn, int type)</div><div class="ttdef"><b>Definition:</b> pmm.h:138</div></div>
+<div class="ttc" id="apmm_8h_html_a98084074f2524047e21ca23ca88c837b"><div class="ttname"><a href="pmm_8h.html#a98084074f2524047e21ca23ca88c837b">boot_cr3</a></div><div class="ttdeci">uintptr_t boot_cr3</div><div class="ttdef"><b>Definition:</b> pmm.c:27</div></div>
+<div class="ttc" id="apmm_8h_html_a9cd9040356b15a1592f57740735b2285"><div class="ttname"><a href="pmm_8h.html#a9cd9040356b15a1592f57740735b2285">kva2page</a></div><div class="ttdeci">static struct Page * kva2page(void *kva)</div><div class="ttdef"><b>Definition:</b> pmm.h:108</div></div>
+<div class="ttc" id="apmm_8h_html_a9eb3d05d35adc23aa957c07d5ef5ed4e"><div class="ttname"><a href="pmm_8h.html#a9eb3d05d35adc23aa957c07d5ef5ed4e">pa2page</a></div><div class="ttdeci">static struct Page * pa2page(uintptr_t pa)</div><div class="ttdef"><b>Definition:</b> pmm.h:99</div></div>
+<div class="ttc" id="apmm_8h_html_a9ebfb8f851299c3580b73617eb99237b"><div class="ttname"><a href="pmm_8h.html#a9ebfb8f851299c3580b73617eb99237b">page_ref_inc</a></div><div class="ttdeci">static int page_ref_inc(struct Page *page)</div><div class="ttdef"><b>Definition:</b> pmm.h:125</div></div>
+<div class="ttc" id="apmm_8h_html_aab2c31437b57d7eb7f8c6b6a421604e5"><div class="ttname"><a href="pmm_8h.html#aab2c31437b57d7eb7f8c6b6a421604e5">bootstack</a></div><div class="ttdeci">char bootstack[]</div></div>
+<div class="ttc" id="apmm_8h_html_aae21a67a56c29b89be9fd3e8eef6a034"><div class="ttname"><a href="pmm_8h.html#aae21a67a56c29b89be9fd3e8eef6a034">page_ref_dec</a></div><div class="ttdeci">static int page_ref_dec(struct Page *page)</div><div class="ttdef"><b>Definition:</b> pmm.h:130</div></div>
+<div class="ttc" id="apmm_8h_html_aaf54bae0ec07dff85b828139f157626d"><div class="ttname"><a href="pmm_8h.html#aaf54bae0ec07dff85b828139f157626d">page2ppn</a></div><div class="ttdeci">static ppn_t page2ppn(struct Page *page)</div><div class="ttdef"><b>Definition:</b> pmm.h:93</div></div>
+<div class="ttc" id="apmm_8h_html_ab517d995357f15a4c66fb27a510eb374"><div class="ttname"><a href="pmm_8h.html#ab517d995357f15a4c66fb27a510eb374">page2pa</a></div><div class="ttdeci">static uintptr_t page2pa(struct Page *page)</div><div class="ttdef"><b>Definition:</b> pmm.h:95</div></div>
+<div class="ttc" id="apmm_8h_html_ab66b2fd61c3ed722ba79fdaab776029f"><div class="ttname"><a href="pmm_8h.html#ab66b2fd61c3ed722ba79fdaab776029f">kfree</a></div><div class="ttdeci">void kfree(void *ptr, size_t n)</div><div class="ttdef"><b>Definition:</b> pmm.c:557</div></div>
+<div class="ttc" id="apmm_8h_html_ab84f065d9581eef81630b9d4cbb55ce3"><div class="ttname"><a href="pmm_8h.html#ab84f065d9581eef81630b9d4cbb55ce3">pde2page</a></div><div class="ttdeci">static struct Page * pde2page(pde_t pde)</div><div class="ttdef"><b>Definition:</b> pmm.h:117</div></div>
+<div class="ttc" id="apmm_8h_html_abd8a44beb459c14597658dbdc0e18881"><div class="ttname"><a href="pmm_8h.html#abd8a44beb459c14597658dbdc0e18881">pte2page</a></div><div class="ttdeci">static struct Page * pte2page(pte_t pte)</div><div class="ttdef"><b>Definition:</b> pmm.h:110</div></div>
+<div class="ttc" id="apmm_8h_html_ac40892d58f04557f383d2dd69ae89980"><div class="ttname"><a href="pmm_8h.html#ac40892d58f04557f383d2dd69ae89980">KADDR</a></div><div class="ttdeci">#define KADDR(pa)</div><div class="ttdef"><b>Definition:</b> pmm.h:78</div></div>
+<div class="ttc" id="apmm_8h_html_acc1a40cd35d7497eef920fbc9219ff0e"><div class="ttname"><a href="pmm_8h.html#acc1a40cd35d7497eef920fbc9219ff0e">nr_free_pages</a></div><div class="ttdeci">size_t nr_free_pages(void)</div><div class="ttdef"><b>Definition:</b> pmm.c:90</div></div>
+<div class="ttc" id="apmm_8h_html_ad2634aa5c851663d00365f74ddd5a8f4"><div class="ttname"><a href="pmm_8h.html#ad2634aa5c851663d00365f74ddd5a8f4">PADDR</a></div><div class="ttdeci">#define PADDR(kva)</div><div class="ttdef"><b>Definition:</b> pmm.h:65</div></div>
+<div class="ttc" id="apmm_8h_html_ad8d2b93cd8003ac07e8863af1ee60cde"><div class="ttname"><a href="pmm_8h.html#ad8d2b93cd8003ac07e8863af1ee60cde">get_page</a></div><div class="ttdeci">struct Page * get_page(pde_t *pgdir, uintptr_t la, pte_t **ptep_store)</div><div class="ttdef"><b>Definition:</b> pmm.c:306</div></div>
+<div class="ttc" id="apmm_8h_html_ad8e136c060561748245105389a3a40c5"><div class="ttname"><a href="pmm_8h.html#ad8e136c060561748245105389a3a40c5">page_ref</a></div><div class="ttdeci">static int page_ref(struct Page *page)</div><div class="ttdef"><b>Definition:</b> pmm.h:121</div></div>
+<div class="ttc" id="apmm_8h_html_adae5703d585cd0ce51183278b594bad3"><div class="ttname"><a href="pmm_8h.html#adae5703d585cd0ce51183278b594bad3">page_remove</a></div><div class="ttdeci">void page_remove(pde_t *pgdir, uintptr_t la)</div><div class="ttdef"><b>Definition:</b> pmm.c:364</div></div>
+<div class="ttc" id="apmm_8h_html_adc43806627d8729a4a9ac50a8aa6d31c"><div class="ttname"><a href="pmm_8h.html#adc43806627d8729a4a9ac50a8aa6d31c">ptd_create</a></div><div class="ttdeci">static pte_t ptd_create(uintptr_t ppn)</div><div class="ttdef"><b>Definition:</b> pmm.h:142</div></div>
+<div class="ttc" id="apmm_8h_html_ae2055a0254d79140f1adf784b9b07fea"><div class="ttname"><a href="pmm_8h.html#ae2055a0254d79140f1adf784b9b07fea">alloc_pages</a></div><div class="ttdeci">struct Page * alloc_pages(size_t n)</div><div class="ttdef"><b>Definition:</b> pmm.c:52</div></div>
+<div class="ttc" id="apmm_8h_html_ae7ebf0f48e3e27066f5ce9c2f31707a1"><div class="ttname"><a href="pmm_8h.html#ae7ebf0f48e3e27066f5ce9c2f31707a1">nbase</a></div><div class="ttdeci">const size_t nbase</div><div class="ttdef"><b>Definition:</b> pmm.h:90</div></div>
+<div class="ttc" id="apmm_8h_html_af1d119103a4e9fab1f23eb42cafe7d5a"><div class="ttname"><a href="pmm_8h.html#af1d119103a4e9fab1f23eb42cafe7d5a">bootstacktop</a></div><div class="ttdeci">char bootstacktop[]</div><div class="ttdef"><b>Definition:</b> pmm.h:144</div></div>
+<div class="ttc" id="apmm_8h_html_af481d80989da3c646996210195814878"><div class="ttname"><a href="pmm_8h.html#af481d80989da3c646996210195814878">flush_tlb</a></div><div class="ttdeci">static void flush_tlb()</div><div class="ttdef"><b>Definition:</b> pmm.h:135</div></div>
+<div class="ttc" id="apmm_8h_html_af4a8f7b822fc87d04d74adeb3b2ce6da"><div class="ttname"><a href="pmm_8h.html#af4a8f7b822fc87d04d74adeb3b2ce6da">pmm_init</a></div><div class="ttdeci">void pmm_init(void)</div><div class="ttdef"><b>Definition:</b> pmm.c:189</div></div>
+<div class="ttc" id="apmm_8h_html_af5bf600e8b5ab88df053b90d965c9482"><div class="ttname"><a href="pmm_8h.html#af5bf600e8b5ab88df053b90d965c9482">free_pages</a></div><div class="ttdeci">void free_pages(struct Page *base, size_t n)</div><div class="ttdef"><b>Definition:</b> pmm.c:77</div></div>
+<div class="ttc" id="astruct_page_html"><div class="ttname"><a href="struct_page.html">Page</a></div><div class="ttdef"><b>Definition:</b> memlayout.h:65</div></div>
+<div class="ttc" id="astruct_page_html_abade073973c0503c4bc6e52de00ad027"><div class="ttname"><a href="struct_page.html#abade073973c0503c4bc6e52de00ad027">Page::ref</a></div><div class="ttdeci">int ref</div><div class="ttdef"><b>Definition:</b> memlayout.h:66</div></div>
+<div class="ttc" id="astructpmm__manager_html"><div class="ttname"><a href="structpmm__manager.html">pmm_manager</a></div><div class="ttdef"><b>Definition:</b> pmm.h:15</div></div>
+<div class="ttc" id="astructpmm__manager_html_a04c76e8daa15a629d23f8f3ec95ff0ce"><div class="ttname"><a href="structpmm__manager.html#a04c76e8daa15a629d23f8f3ec95ff0ce">pmm_manager::nr_free_pages</a></div><div class="ttdeci">size_t(* nr_free_pages)(void)</div><div class="ttdef"><b>Definition:</b> pmm.h:30</div></div>
+<div class="ttc" id="astructpmm__manager_html_a29926d27388c30ec3033c46342f61a01"><div class="ttname"><a href="structpmm__manager.html#a29926d27388c30ec3033c46342f61a01">pmm_manager::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition:</b> pmm.h:16</div></div>
+<div class="ttc" id="astructpmm__manager_html_a2ba6d171db7a2f1415f463ad3cc52d27"><div class="ttname"><a href="structpmm__manager.html#a2ba6d171db7a2f1415f463ad3cc52d27">pmm_manager::free_pages</a></div><div class="ttdeci">void(* free_pages)(struct Page *base, size_t n)</div><div class="ttdef"><b>Definition:</b> pmm.h:26</div></div>
+<div class="ttc" id="astructpmm__manager_html_a80d180d00b60fe5fe6e32c6ee02d5150"><div class="ttname"><a href="structpmm__manager.html#a80d180d00b60fe5fe6e32c6ee02d5150">pmm_manager::check</a></div><div class="ttdeci">void(* check)(void)</div><div class="ttdef"><b>Definition:</b> pmm.h:31</div></div>
+<div class="ttc" id="astructpmm__manager_html_aae89ae6d3bb2ceab603c365a79d2f6f5"><div class="ttname"><a href="structpmm__manager.html#aae89ae6d3bb2ceab603c365a79d2f6f5">pmm_manager::init_memmap</a></div><div class="ttdeci">void(* init_memmap)(struct Page *base, size_t n)</div><div class="ttdef"><b>Definition:</b> pmm.h:20</div></div>
+<div class="ttc" id="astructpmm__manager_html_ae222d3ec6f473fd20022bc8566b6bcf8"><div class="ttname"><a href="structpmm__manager.html#ae222d3ec6f473fd20022bc8566b6bcf8">pmm_manager::init</a></div><div class="ttdeci">void(* init)(void)</div><div class="ttdef"><b>Definition:</b> pmm.h:17</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

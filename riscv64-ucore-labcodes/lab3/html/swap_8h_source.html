@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/mm/swap.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_946bd77349b7674f752759d0c55831d4.html">mm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">swap.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="swap_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __KERN_MM_SWAP_H__</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __KERN_MM_SWAP_H__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="defs_8h.html">defs.h</a>&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="memlayout_8h.html">memlayout.h</a>&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="pmm_8h.html">pmm.h</a>&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="vmm_8h.html">vmm.h</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * swap_entry_t</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * --------------------------------------------</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * |         offset        |   reserved   | 0 |</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * --------------------------------------------</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *           24 bits            7 bits    1 bit</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="swap_8h.html#a80a78a068c00e7afedf6f81689d92abf">   17</a></span>&#160;<span class="preprocessor">#define MAX_SWAP_OFFSET_LIMIT                   (1 &lt;&lt; 24)</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">size_t</span> <a class="code" href="swap_8h.html#a4e94b9265362af29fb8248ba454bf388">max_swap_offset</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * swap_offset - takes a swap_entry (saved in pte), and returns</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> * the corresponding offset in swap mem_map.</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="swap_8h.html#a0d26982063ec5e5cd90cf6e19b1761c6">   25</a></span>&#160;<span class="preprocessor">#define swap_offset(entry) ({                                       \</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">               size_t __offset = (entry &gt;&gt; 8);                        \</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">               if (!(__offset &gt; 0 &amp;&amp; __offset &lt; max_swap_offset)) {    \</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">                    panic(&quot;invalid swap_entry_t = %08x.\n&quot;</span>, entry);    \</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;               }                                                    \</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;               __offset;                                            \</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;          })</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structswap__manager.html">   33</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structswap__manager.html">swap_manager</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structswap__manager.html#ae383c26ea01b6cc99161d81b462263d8">   35</a></span>&#160;     <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="structswap__manager.html#ae383c26ea01b6cc99161d81b462263d8">name</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;     <span class="comment">/* Global initialization for the swap manager */</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structswap__manager.html#aacb0ad5bf57857e998e78a6cb7d23a78">   37</a></span>&#160;     int (*<a class="code" href="structswap__manager.html#aacb0ad5bf57857e998e78a6cb7d23a78">init</a>)            (void);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;     <span class="comment">/* Initialize the priv data inside mm_struct */</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structswap__manager.html#a3691ec674808ea46b6e3241e906a87c9">   39</a></span>&#160;     int (*<a class="code" href="structswap__manager.html#a3691ec674808ea46b6e3241e906a87c9">init_mm</a>)         (<span class="keyword">struct </span><a class="code" href="structmm__struct.html">mm_struct</a> *mm);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;     <span class="comment">/* Called when tick interrupt occured */</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="structswap__manager.html#a1b1cb654f2787a36f880027d43da755a">   41</a></span>&#160;     int (*<a class="code" href="structswap__manager.html#a1b1cb654f2787a36f880027d43da755a">tick_event</a>)      (<span class="keyword">struct </span><a class="code" href="structmm__struct.html">mm_struct</a> *mm);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;     <span class="comment">/* Called when map a swappable page into the mm_struct */</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="structswap__manager.html#ad7a450b6263bce92736dfa083f53362c">   43</a></span>&#160;     int (*<a class="code" href="structswap__manager.html#ad7a450b6263bce92736dfa083f53362c">map_swappable</a>)   (<span class="keyword">struct </span><a class="code" href="structmm__struct.html">mm_struct</a> *mm, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr, <span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a> *page, <span class="keywordtype">int</span> <a class="code" href="swap_8h.html#af3058f8798ac6b061b6a6ca528ac9932">swap_in</a>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;     <span class="comment">/* When a page is marked as shared, this routine is called to</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">      * delete the addr entry from the swap manager */</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structswap__manager.html#af02b48ab6b908ed36f9e062f88edabb1">   46</a></span>&#160;     int (*<a class="code" href="structswap__manager.html#af02b48ab6b908ed36f9e062f88edabb1">set_unswappable</a>) (<span class="keyword">struct </span><a class="code" href="structmm__struct.html">mm_struct</a> *mm, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;     <span class="comment">/* Try to swap out a page, return then victim */</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="structswap__manager.html#ad0cc1fe199aed192a583ce17420ddb30">   48</a></span>&#160;     int (*<a class="code" href="structswap__manager.html#ad0cc1fe199aed192a583ce17420ddb30">swap_out_victim</a>) (<span class="keyword">struct </span><a class="code" href="structmm__struct.html">mm_struct</a> *mm, <span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a> **ptr_page, <span class="keywordtype">int</span> in_tick);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;     <span class="comment">/* check the page relpacement algorithm */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="structswap__manager.html#a40a16c8c21b0580f269bfada889f9503">   50</a></span>&#160;     int (*<a class="code" href="structswap__manager.html#a40a16c8c21b0580f269bfada889f9503">check_swap</a>)(void);     </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">extern</span> <span class="keyword">volatile</span> <span class="keywordtype">int</span> <a class="code" href="swap_8h.html#a1f320bc1324b07761e7b690bc5c2aa38">swap_init_ok</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">int</span> <a class="code" href="swap_8h.html#aecac407d799dab293cab398185a74f35">swap_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">int</span> <a class="code" href="swap_8h.html#a79ff32a0865190184c59f90fd42868cd">swap_init_mm</a>(<span class="keyword">struct</span> <a class="code" href="structmm__struct.html">mm_struct</a> *mm);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">int</span> <a class="code" href="swap_8h.html#a86aa889f94c98d3d77111304e8c20de4">swap_tick_event</a>(<span class="keyword">struct</span> <a class="code" href="structmm__struct.html">mm_struct</a> *mm);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">int</span> <a class="code" href="swap_8h.html#ab3052457b47fe22e700ce9d6620b4485">swap_map_swappable</a>(<span class="keyword">struct</span> <a class="code" href="structmm__struct.html">mm_struct</a> *mm, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr, <span class="keyword">struct</span> <a class="code" href="struct_page.html">Page</a> *page, <span class="keywordtype">int</span> <a class="code" href="swap_8h.html#af3058f8798ac6b061b6a6ca528ac9932">swap_in</a>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">int</span> <a class="code" href="swap_8h.html#a691606e1d6b947b32c044f447df48e2f">swap_set_unswappable</a>(<span class="keyword">struct</span> <a class="code" href="structmm__struct.html">mm_struct</a> *mm, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">int</span> <a class="code" href="swap_8h.html#a8b0c44bb44fc801d843522eefc8b43ac">swap_out</a>(<span class="keyword">struct</span> <a class="code" href="structmm__struct.html">mm_struct</a> *mm, <span class="keywordtype">int</span> n, <span class="keywordtype">int</span> in_tick);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">int</span> <a class="code" href="swap_8h.html#af3058f8798ac6b061b6a6ca528ac9932">swap_in</a>(<span class="keyword">struct</span> <a class="code" href="structmm__struct.html">mm_struct</a> *mm, <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr, <span class="keyword">struct</span> <a class="code" href="struct_page.html">Page</a> **ptr_result);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">//#define MEMBER_OFFSET(m,t) ((int)(&amp;((t *)0)-&gt;m))</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">//#define FROM_MEMBER(m,t,a) ((t *)((char *)(a) - MEMBER_OFFSET(m,t)))</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="adefs_8h_html"><div class="ttname"><a href="defs_8h.html">defs.h</a></div></div>
+<div class="ttc" id="adefs_8h_html_a04cf3633489292bdd23ff5b429bc476b"><div class="ttname"><a href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a></div><div class="ttdeci">uint_t uintptr_t</div><div class="ttdef"><b>Definition:</b> defs.h:41</div></div>
+<div class="ttc" id="amemlayout_8h_html"><div class="ttname"><a href="memlayout_8h.html">memlayout.h</a></div></div>
+<div class="ttc" id="apmm_8h_html"><div class="ttname"><a href="pmm_8h.html">pmm.h</a></div></div>
+<div class="ttc" id="astruct_page_html"><div class="ttname"><a href="struct_page.html">Page</a></div><div class="ttdef"><b>Definition:</b> memlayout.h:65</div></div>
+<div class="ttc" id="astructmm__struct_html"><div class="ttname"><a href="structmm__struct.html">mm_struct</a></div><div class="ttdef"><b>Definition:</b> vmm.h:37</div></div>
+<div class="ttc" id="astructswap__manager_html"><div class="ttname"><a href="structswap__manager.html">swap_manager</a></div><div class="ttdef"><b>Definition:</b> swap.h:34</div></div>
+<div class="ttc" id="astructswap__manager_html_a1b1cb654f2787a36f880027d43da755a"><div class="ttname"><a href="structswap__manager.html#a1b1cb654f2787a36f880027d43da755a">swap_manager::tick_event</a></div><div class="ttdeci">int(* tick_event)(struct mm_struct *mm)</div><div class="ttdef"><b>Definition:</b> swap.h:41</div></div>
+<div class="ttc" id="astructswap__manager_html_a3691ec674808ea46b6e3241e906a87c9"><div class="ttname"><a href="structswap__manager.html#a3691ec674808ea46b6e3241e906a87c9">swap_manager::init_mm</a></div><div class="ttdeci">int(* init_mm)(struct mm_struct *mm)</div><div class="ttdef"><b>Definition:</b> swap.h:39</div></div>
+<div class="ttc" id="astructswap__manager_html_a40a16c8c21b0580f269bfada889f9503"><div class="ttname"><a href="structswap__manager.html#a40a16c8c21b0580f269bfada889f9503">swap_manager::check_swap</a></div><div class="ttdeci">int(* check_swap)(void)</div><div class="ttdef"><b>Definition:</b> swap.h:50</div></div>
+<div class="ttc" id="astructswap__manager_html_aacb0ad5bf57857e998e78a6cb7d23a78"><div class="ttname"><a href="structswap__manager.html#aacb0ad5bf57857e998e78a6cb7d23a78">swap_manager::init</a></div><div class="ttdeci">int(* init)(void)</div><div class="ttdef"><b>Definition:</b> swap.h:37</div></div>
+<div class="ttc" id="astructswap__manager_html_ad0cc1fe199aed192a583ce17420ddb30"><div class="ttname"><a href="structswap__manager.html#ad0cc1fe199aed192a583ce17420ddb30">swap_manager::swap_out_victim</a></div><div class="ttdeci">int(* swap_out_victim)(struct mm_struct *mm, struct Page **ptr_page, int in_tick)</div><div class="ttdef"><b>Definition:</b> swap.h:48</div></div>
+<div class="ttc" id="astructswap__manager_html_ad7a450b6263bce92736dfa083f53362c"><div class="ttname"><a href="structswap__manager.html#ad7a450b6263bce92736dfa083f53362c">swap_manager::map_swappable</a></div><div class="ttdeci">int(* map_swappable)(struct mm_struct *mm, uintptr_t addr, struct Page *page, int swap_in)</div><div class="ttdef"><b>Definition:</b> swap.h:43</div></div>
+<div class="ttc" id="astructswap__manager_html_ae383c26ea01b6cc99161d81b462263d8"><div class="ttname"><a href="structswap__manager.html#ae383c26ea01b6cc99161d81b462263d8">swap_manager::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition:</b> swap.h:35</div></div>
+<div class="ttc" id="astructswap__manager_html_af02b48ab6b908ed36f9e062f88edabb1"><div class="ttname"><a href="structswap__manager.html#af02b48ab6b908ed36f9e062f88edabb1">swap_manager::set_unswappable</a></div><div class="ttdeci">int(* set_unswappable)(struct mm_struct *mm, uintptr_t addr)</div><div class="ttdef"><b>Definition:</b> swap.h:46</div></div>
+<div class="ttc" id="aswap_8h_html_a1f320bc1324b07761e7b690bc5c2aa38"><div class="ttname"><a href="swap_8h.html#a1f320bc1324b07761e7b690bc5c2aa38">swap_init_ok</a></div><div class="ttdeci">volatile int swap_init_ok</div><div class="ttdef"><b>Definition:</b> swap.c:23</div></div>
+<div class="ttc" id="aswap_8h_html_a4e94b9265362af29fb8248ba454bf388"><div class="ttname"><a href="swap_8h.html#a4e94b9265362af29fb8248ba454bf388">max_swap_offset</a></div><div class="ttdeci">size_t max_swap_offset</div><div class="ttdef"><b>Definition:</b> swap.c:21</div></div>
+<div class="ttc" id="aswap_8h_html_a691606e1d6b947b32c044f447df48e2f"><div class="ttname"><a href="swap_8h.html#a691606e1d6b947b32c044f447df48e2f">swap_set_unswappable</a></div><div class="ttdeci">int swap_set_unswappable(struct mm_struct *mm, uintptr_t addr)</div><div class="ttdef"><b>Definition:</b> swap.c:71</div></div>
+<div class="ttc" id="aswap_8h_html_a79ff32a0865190184c59f90fd42868cd"><div class="ttname"><a href="swap_8h.html#a79ff32a0865190184c59f90fd42868cd">swap_init_mm</a></div><div class="ttdeci">int swap_init_mm(struct mm_struct *mm)</div><div class="ttdef"><b>Definition:</b> swap.c:56</div></div>
+<div class="ttc" id="aswap_8h_html_a86aa889f94c98d3d77111304e8c20de4"><div class="ttname"><a href="swap_8h.html#a86aa889f94c98d3d77111304e8c20de4">swap_tick_event</a></div><div class="ttdeci">int swap_tick_event(struct mm_struct *mm)</div><div class="ttdef"><b>Definition:</b> swap.c:61</div></div>
+<div class="ttc" id="aswap_8h_html_a8b0c44bb44fc801d843522eefc8b43ac"><div class="ttname"><a href="swap_8h.html#a8b0c44bb44fc801d843522eefc8b43ac">swap_out</a></div><div class="ttdeci">int swap_out(struct mm_struct *mm, int n, int in_tick)</div><div class="ttdef"><b>Definition:</b> swap.c:78</div></div>
+<div class="ttc" id="aswap_8h_html_ab3052457b47fe22e700ce9d6620b4485"><div class="ttname"><a href="swap_8h.html#ab3052457b47fe22e700ce9d6620b4485">swap_map_swappable</a></div><div class="ttdeci">int swap_map_swappable(struct mm_struct *mm, uintptr_t addr, struct Page *page, int swap_in)</div><div class="ttdef"><b>Definition:</b> swap.c:66</div></div>
+<div class="ttc" id="aswap_8h_html_aecac407d799dab293cab398185a74f35"><div class="ttname"><a href="swap_8h.html#aecac407d799dab293cab398185a74f35">swap_init</a></div><div class="ttdeci">int swap_init(void)</div><div class="ttdef"><b>Definition:</b> swap.c:31</div></div>
+<div class="ttc" id="aswap_8h_html_af3058f8798ac6b061b6a6ca528ac9932"><div class="ttname"><a href="swap_8h.html#af3058f8798ac6b061b6a6ca528ac9932">swap_in</a></div><div class="ttdeci">int swap_in(struct mm_struct *mm, uintptr_t addr, struct Page **ptr_result)</div><div class="ttdef"><b>Definition:</b> swap.c:121</div></div>
+<div class="ttc" id="avmm_8h_html"><div class="ttname"><a href="vmm_8h.html">vmm.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

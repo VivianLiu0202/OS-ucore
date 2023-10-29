@@ -17,7 +17,7 @@ struct vma_struct
     struct mm_struct *vm_mm; // the set of vma using the same PDT
     uintptr_t vm_start;      // start addr of vma
     uintptr_t vm_end;        // end addr of vma, not include the vm_end itself
-    uint_t vm_flags;         // flags of vma
+    uint_t vm_flags;         // flags of vma，标识一段虚拟地址对应的权限（可读，可写，可执行等）
     list_entry_t list_link;  // linear list link which sorted by start addr of vma
 };
 
@@ -46,13 +46,14 @@ struct mm_struct
 // mmap_cache是一个指针，指向当前正在访问的vma，这样可以加快访问速度
 // pgdir是页目录表的地址
 // map_count是vma的数量
-// sm_priv是swap manager的私有数据,void *类型，意味着它是一个指向任意数据的通用指针
+// sm_priv是swap manager的私有数据,void *类型，意味着它是一个指向任意数据的通用指针,经常存可换出页面的头指针
 
-struct vma_struct *find_vma(struct mm_struct *mm, uintptr_t addr);
-struct vma_struct *vma_create(uintptr_t vm_start, uintptr_t vm_end, uint_t vm_flags);
-void insert_vma_struct(struct mm_struct *mm, struct vma_struct *vma);
+struct vma_struct *find_vma(struct mm_struct *mm, uintptr_t addr);                    // 找到一个进程内存管理器中某个地址对应的vma块
+struct vma_struct *vma_create(uintptr_t vm_start, uintptr_t vm_end, uint_t vm_flags); // vma创建和初始化
+void insert_vma_struct(struct mm_struct *mm, struct vma_struct *vma);                 // 向mm的mmap_list的插入一个vma，按地址插入合适位置
 
-struct mm_struct *mm_create(void);
+struct mm_struct *mm_create(void); // mm_struct创建和初始化
+
 void mm_destroy(struct mm_struct *mm);
 
 void vmm_init(void);

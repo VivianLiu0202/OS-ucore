@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/debug/kmonitor.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_60cf14b59ebeb9a69dd0c7e8f099369e.html">debug</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">kmonitor.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="kmonitor_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __KERN_DEBUG_MONITOR_H__</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __KERN_DEBUG_MONITOR_H__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="trap_8h.html">trap.h</a>&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">void</span> <a class="code" href="kmonitor_8h.html#a6177d3644de8ea1c9d62c73d3c047ff6">kmonitor</a>(<span class="keyword">struct</span> <a class="code" href="structtrapframe.html">trapframe</a> *tf);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">int</span> <a class="code" href="kmonitor_8h.html#a6e80fa8a65f430ba1e953c383e7c4dde">mon_help</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keyword">struct</span> <a class="code" href="structtrapframe.html">trapframe</a> *tf);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">int</span> <a class="code" href="kmonitor_8h.html#a64f12046e6ac5642f70a5c07d8ce2c4f">mon_kerninfo</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keyword">struct</span> <a class="code" href="structtrapframe.html">trapframe</a> *tf);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keywordtype">int</span> <a class="code" href="kmonitor_8h.html#a62f7f01c94b4817c421e5f7a9caaaa79">mon_backtrace</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keyword">struct</span> <a class="code" href="structtrapframe.html">trapframe</a> *tf);</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="kmonitor_8h.html#aaee6df86635d178e067b0010b3eb852c">   11</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="kmonitor_8h.html#aaee6df86635d178e067b0010b3eb852c">mon_continue</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keyword">struct</span> <a class="code" href="structtrapframe.html">trapframe</a> *tf);</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="kmonitor_8h.html#aea945404e621f767fd13aef7e8dc77cb">   12</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="kmonitor_8h.html#aea945404e621f767fd13aef7e8dc77cb">mon_step</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keyword">struct</span> <a class="code" href="structtrapframe.html">trapframe</a> *tf);</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="kmonitor_8h.html#adfec57a939cfa1ec080507429fd238fd">   13</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="kmonitor_8h.html#adfec57a939cfa1ec080507429fd238fd">mon_breakpoint</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keyword">struct</span> <a class="code" href="structtrapframe.html">trapframe</a> *tf);</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="kmonitor_8h.html#a543d68823d8d682981f4c75c37d21fde">   14</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="kmonitor_8h.html#a543d68823d8d682981f4c75c37d21fde">mon_watchpoint</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keyword">struct</span> <a class="code" href="structtrapframe.html">trapframe</a> *tf);</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="kmonitor_8h.html#aa05e4cc2317416cc05c4155e6f1b77cf">   15</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="kmonitor_8h.html#aa05e4cc2317416cc05c4155e6f1b77cf">mon_delete_dr</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keyword">struct</span> <a class="code" href="structtrapframe.html">trapframe</a> *tf);</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="kmonitor_8h.html#aa46fc9c5529fe0dfdf6a64ba249ad8b5">   16</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="kmonitor_8h.html#aa46fc9c5529fe0dfdf6a64ba249ad8b5">mon_list_dr</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keyword">struct</span> <a class="code" href="structtrapframe.html">trapframe</a> *tf);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !__KERN_DEBUG_MONITOR_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="ttc" id="akmonitor_8h_html_a543d68823d8d682981f4c75c37d21fde"><div class="ttname"><a href="kmonitor_8h.html#a543d68823d8d682981f4c75c37d21fde">mon_watchpoint</a></div><div class="ttdeci">int mon_watchpoint(int argc, char **argv, struct trapframe *tf)</div></div>
+<div class="ttc" id="akmonitor_8h_html_a6177d3644de8ea1c9d62c73d3c047ff6"><div class="ttname"><a href="kmonitor_8h.html#a6177d3644de8ea1c9d62c73d3c047ff6">kmonitor</a></div><div class="ttdeci">void kmonitor(struct trapframe *tf)</div><div class="ttdef"><b>Definition:</b> kmonitor.c:85</div></div>
+<div class="ttc" id="akmonitor_8h_html_a62f7f01c94b4817c421e5f7a9caaaa79"><div class="ttname"><a href="kmonitor_8h.html#a62f7f01c94b4817c421e5f7a9caaaa79">mon_backtrace</a></div><div class="ttdeci">int mon_backtrace(int argc, char **argv, struct trapframe *tf)</div><div class="ttdef"><b>Definition:</b> kmonitor.c:128</div></div>
+<div class="ttc" id="akmonitor_8h_html_a64f12046e6ac5642f70a5c07d8ce2c4f"><div class="ttname"><a href="kmonitor_8h.html#a64f12046e6ac5642f70a5c07d8ce2c4f">mon_kerninfo</a></div><div class="ttdeci">int mon_kerninfo(int argc, char **argv, struct trapframe *tf)</div><div class="ttdef"><b>Definition:</b> kmonitor.c:118</div></div>
+<div class="ttc" id="akmonitor_8h_html_a6e80fa8a65f430ba1e953c383e7c4dde"><div class="ttname"><a href="kmonitor_8h.html#a6e80fa8a65f430ba1e953c383e7c4dde">mon_help</a></div><div class="ttdeci">int mon_help(int argc, char **argv, struct trapframe *tf)</div><div class="ttdef"><b>Definition:</b> kmonitor.c:105</div></div>
+<div class="ttc" id="akmonitor_8h_html_aa05e4cc2317416cc05c4155e6f1b77cf"><div class="ttname"><a href="kmonitor_8h.html#aa05e4cc2317416cc05c4155e6f1b77cf">mon_delete_dr</a></div><div class="ttdeci">int mon_delete_dr(int argc, char **argv, struct trapframe *tf)</div></div>
+<div class="ttc" id="akmonitor_8h_html_aa46fc9c5529fe0dfdf6a64ba249ad8b5"><div class="ttname"><a href="kmonitor_8h.html#aa46fc9c5529fe0dfdf6a64ba249ad8b5">mon_list_dr</a></div><div class="ttdeci">int mon_list_dr(int argc, char **argv, struct trapframe *tf)</div></div>
+<div class="ttc" id="akmonitor_8h_html_aaee6df86635d178e067b0010b3eb852c"><div class="ttname"><a href="kmonitor_8h.html#aaee6df86635d178e067b0010b3eb852c">mon_continue</a></div><div class="ttdeci">int mon_continue(int argc, char **argv, struct trapframe *tf)</div></div>
+<div class="ttc" id="akmonitor_8h_html_adfec57a939cfa1ec080507429fd238fd"><div class="ttname"><a href="kmonitor_8h.html#adfec57a939cfa1ec080507429fd238fd">mon_breakpoint</a></div><div class="ttdeci">int mon_breakpoint(int argc, char **argv, struct trapframe *tf)</div></div>
+<div class="ttc" id="akmonitor_8h_html_aea945404e621f767fd13aef7e8dc77cb"><div class="ttname"><a href="kmonitor_8h.html#aea945404e621f767fd13aef7e8dc77cb">mon_step</a></div><div class="ttdeci">int mon_step(int argc, char **argv, struct trapframe *tf)</div></div>
+<div class="ttc" id="astructtrapframe_html"><div class="ttname"><a href="structtrapframe.html">trapframe</a></div><div class="ttdef"><b>Definition:</b> trap.h:41</div></div>
+<div class="ttc" id="atrap_8h_html"><div class="ttname"><a href="trap_8h.html">trap.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

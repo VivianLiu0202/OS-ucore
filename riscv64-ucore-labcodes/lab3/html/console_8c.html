@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/driver/console.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_8a87c43ee200610f41c5389cbc1d45b8.html">driver</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">console.c 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;<a class="el" href="sbi_8h_source.html">sbi.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="sync_8h_source.html">sync.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="defs_8h_source.html">defs.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="console_8h_source.html">console.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+console.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="console_8c__incl.gif" border="0" usemap="#akern_2driver_2console_8c" alt=""/></div>
+<map name="akern_2driver_2console_8c" id="akern_2driver_2console_8c">
+<area shape="rect" title=" " alt="" coords="52,5,209,32"/>
+<area shape="rect" href="sbi_8h.html" title=" " alt="" coords="5,80,59,107"/>
+<area shape="rect" href="defs_8h.html" title=" " alt="" coords="65,229,127,256"/>
+<area shape="rect" href="sync_8h.html" title=" " alt="" coords="133,80,197,107"/>
+<area shape="rect" href="console_8h.html" title=" " alt="" coords="222,80,306,107"/>
+<area shape="rect" href="intr_8h.html" title=" " alt="" coords="134,155,189,181"/>
+<area shape="rect" href="mmu_8h.html" title=" " alt="" coords="213,155,281,181"/>
+<area shape="rect" href="riscv_8h.html" title=" " alt="" coords="305,155,369,181"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ab3994863b8bac3aefd9fec7058aa605c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console_8c.html#ab3994863b8bac3aefd9fec7058aa605c">kbd_intr</a> (void)</td></tr>
+<tr class="separator:ab3994863b8bac3aefd9fec7058aa605c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2d26ae67f164dd60043931b32893460"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console_8c.html#ae2d26ae67f164dd60043931b32893460">serial_intr</a> (void)</td></tr>
+<tr class="separator:ae2d26ae67f164dd60043931b32893460"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7c49df0105fc2bfdc018bb3c05ce38a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console_8c.html#aa7c49df0105fc2bfdc018bb3c05ce38a">cons_init</a> (void)</td></tr>
+<tr class="separator:aa7c49df0105fc2bfdc018bb3c05ce38a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a405546ecd1991ece1431da216e64f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console_8c.html#a9a405546ecd1991ece1431da216e64f2">cons_putc</a> (int c)</td></tr>
+<tr class="separator:a9a405546ecd1991ece1431da216e64f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53b135d585a564aa1ad542d3c977adec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console_8c.html#a53b135d585a564aa1ad542d3c977adec">cons_getc</a> (void)</td></tr>
+<tr class="separator:a53b135d585a564aa1ad542d3c977adec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a53b135d585a564aa1ad542d3c977adec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53b135d585a564aa1ad542d3c977adec">&#9670;&nbsp;</a></span>cons_getc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cons_getc </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="console_8c_a53b135d585a564aa1ad542d3c977adec_cgraph.gif" border="0" usemap="#aconsole_8c_a53b135d585a564aa1ad542d3c977adec_cgraph" alt=""/></div>
+<map name="aconsole_8c_a53b135d585a564aa1ad542d3c977adec_cgraph" id="aconsole_8c_a53b135d585a564aa1ad542d3c977adec_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,92,32"/>
+<area shape="rect" href="sbi_8h.html#a2c1d94c38003281d350a520eced61310" title=" " alt="" coords="140,5,295,32"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="console_8c_a53b135d585a564aa1ad542d3c977adec_icgraph.gif" border="0" usemap="#aconsole_8c_a53b135d585a564aa1ad542d3c977adec_icgraph" alt=""/></div>
+<map name="aconsole_8c_a53b135d585a564aa1ad542d3c977adec_icgraph" id="aconsole_8c_a53b135d585a564aa1ad542d3c977adec_icgraph">
+<area shape="rect" title=" " alt="" coords="495,5,581,32"/>
+<area shape="rect" href="stdio_8c.html#a3e29caa20f7cffe18f410f01278905a8" title=" " alt="" coords="376,5,447,32"/>
+<area shape="rect" href="readline_8c.html#adc634fefff1a9f71c87a04e1eddb8649" title=" " alt="" coords="253,5,328,32"/>
+<area shape="rect" href="kmonitor_8c.html#a6177d3644de8ea1c9d62c73d3c047ff6" title=" " alt="" coords="124,5,205,32"/>
+<area shape="rect" href="assert_8h.html#aa31d39d7e957e5d6f5a7c1e193e1c992" title=" " alt="" coords="5,5,76,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa7c49df0105fc2bfdc018bb3c05ce38a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7c49df0105fc2bfdc018bb3c05ce38a">&#9670;&nbsp;</a></span>cons_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cons_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9a405546ecd1991ece1431da216e64f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a405546ecd1991ece1431da216e64f2">&#9670;&nbsp;</a></span>cons_putc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cons_putc </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="console_8c_a9a405546ecd1991ece1431da216e64f2_cgraph.gif" border="0" usemap="#aconsole_8c_a9a405546ecd1991ece1431da216e64f2_cgraph" alt=""/></div>
+<map name="aconsole_8c_a9a405546ecd1991ece1431da216e64f2_cgraph" id="aconsole_8c_a9a405546ecd1991ece1431da216e64f2_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,92,32"/>
+<area shape="rect" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="140,5,295,32"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="console_8c_a9a405546ecd1991ece1431da216e64f2_icgraph.gif" border="0" usemap="#aconsole_8c_a9a405546ecd1991ece1431da216e64f2_icgraph" alt=""/></div>
+<map name="aconsole_8c_a9a405546ecd1991ece1431da216e64f2_icgraph" id="aconsole_8c_a9a405546ecd1991ece1431da216e64f2_icgraph">
+<area shape="rect" title=" " alt="" coords="1637,1627,1724,1654"/>
+<area shape="rect" href="stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="1524,1652,1589,1679"/>
+<area shape="rect" href="stdio_8c.html#a957c6cffc0963f9e00e839f6f8af6fb9" title=" " alt="" coords="1277,1615,1356,1642"/>
+<area shape="rect" href="stdio_8c.html#a4e829a998e98420a970f267f63e91551" title=" " alt="" coords="1411,1652,1469,1679"/>
+<area shape="rect" href="stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="1404,1703,1476,1730"/>
+<area shape="rect" href="assert_8h.html#aa31d39d7e957e5d6f5a7c1e193e1c992" title=" " alt="" coords="504,1614,575,1640"/>
+<area shape="rect" href="assert_8h.html#ae9712851edefd0581a31baaf59bfd760" title=" " alt="" coords="1105,1678,1173,1704"/>
+<area shape="rect" href="stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="1285,867,1349,894"/>
+<area shape="rect" href="swap__clock_8c.html#ac7d99968cbb0613bb70d046c4b0b566a" title=" " alt="" coords="1065,208,1214,235"/>
+<area shape="rect" href="swap__clock_8c.html#a5286cc43a463d08df52ea2d118546fea" title=" " alt="" coords="1049,259,1229,286"/>
+<area shape="rect" href="swap__fifo_8c.html#a6ae38800acc90093b2389c12ddaf6d02" title=" " alt="" coords="1071,310,1207,336"/>
+<area shape="rect" href="pmm_8c.html#ae2055a0254d79140f1adf784b9b07fea" title=" " alt="" coords="867,360,966,387"/>
+<area shape="rect" href="vmm_8c.html#a24c860fd06177e90cba06af92ebf1916" title=" " alt="" coords="301,158,415,184"/>
+<area shape="rect" href="vmm_8c.html#ab7ebbcc33c2dd26999c3bc6dd5df1f6f" title=" " alt="" coords="137,208,239,235"/>
+<area shape="rect" href="swap_8c.html#a3d7e1e8f3b1851c9438d2003941e2d0c" title=" " alt="" coords="307,82,409,108"/>
+<area shape="rect" href="swap_8c.html#aecac407d799dab293cab398185a74f35" title=" " alt="" coords="146,31,230,58"/>
+<area shape="rect" href="vmm_8c.html#a01b4552d4673ffbb6a05eb0f12aef62e" title=" " alt="" coords="288,208,428,235"/>
+<area shape="rect" href="pmm_8c.html#a9aaa81257f14b4dd426109afeafbdd37" title=" " alt="" coords="1071,867,1208,894"/>
+<area shape="rect" href="pmm_8c.html#a64a19ba41a865e4d76a7edef472a25f0" title=" " alt="" coords="1071,918,1207,944"/>
+<area shape="rect" href="pmm_8c.html#abf14b3e5a214e25093c526c6c4b7fe51" title=" " alt="" coords="1089,968,1189,995"/>
+<area shape="rect" href="clock_8c.html#a78ab77b57cf2e00089f0a3a22508524c" title=" " alt="" coords="1097,816,1181,843"/>
+<area shape="rect" href="vmm_8c.html#a76083b4b497bc14110c89b222892e5a9" title=" " alt="" coords="671,1120,762,1147"/>
+<area shape="rect" href="trap_8c.html#a9b7dec2ed35d681fdbe2fe46afb695a5" title=" " alt="" coords="287,664,429,691"/>
+<area shape="rect" href="pmm_8c.html#aefb49cb1500105bdf41013fd5aa58ac7" title=" " alt="" coords="1065,1019,1214,1046"/>
+<area shape="rect" href="trap_8c.html#ae7fe8b44139e05bbd2fdcdef5d616f3e" title=" " alt="" coords="649,588,784,615"/>
+<area shape="rect" href="kmonitor_8c.html#a6177d3644de8ea1c9d62c73d3c047ff6" title=" " alt="" coords="676,1512,757,1539"/>
+<area shape="rect" href="kmonitor_8c.html#a6e80fa8a65f430ba1e953c383e7c4dde" title=" " alt="" coords="1096,1120,1183,1147"/>
+<area shape="rect" href="pmm_8c.html#acacf21996cd41f3fab68113860df0a22" title=" " alt="" coords="1098,766,1181,792"/>
+<area shape="rect" href="kmonitor_8c.html#a8ff1843b4df644b5476f716579c8f7e7" title=" " alt="" coords="1110,1323,1169,1350"/>
+<area shape="rect" href="kmonitor_8c.html#a28c010218ed67fdd79be5f9188610cd4" title=" " alt="" coords="881,1323,952,1350"/>
+<area shape="rect" href="kdebug_8c.html#a78dfe88eff02c0d8dac22a09416c13b0" title=" " alt="" coords="1083,1374,1195,1400"/>
+<area shape="rect" href="vmm_8c.html#af4891c04da50e612a07f65bb9b031522" title=" " alt="" coords="874,1436,959,1463"/>
+<area shape="rect" href="trap_8c.html#aa56d83a49e9166acf9e6a07358588321" title=" " alt="" coords="664,1196,769,1223"/>
+<area shape="rect" href="trap_8c.html#aed5fcbe1cf5c802e902b9e7a6ca527ab" title=" " alt="" coords="1096,614,1183,640"/>
+<area shape="rect" href="trap_8c.html#a51e89e35288406d1ebf6a5d55a308d1e" title=" " alt="" coords="855,664,979,691"/>
+<area shape="rect" href="trap_8c.html#a054a781fe22a8dd2742fd3e4198b0151" title=" " alt="" coords="871,512,962,539"/>
+<area shape="rect" href="vmm_8c.html#ae3ae3ded6d2fc29c5a8e7eef2fe5956a" title=" " alt="" coords="1095,1424,1183,1451"/>
+<area shape="rect" href="readline_8c.html#adc634fefff1a9f71c87a04e1eddb8649" title=" " alt="" coords="1102,1627,1177,1654"/>
+<area shape="rect" href="swap_8c.html#af3058f8798ac6b061b6a6ca528ac9932" title=" " alt="" coords="1102,1171,1177,1198"/>
+<area shape="rect" href="swap_8c.html#a8b0c44bb44fc801d843522eefc8b43ac" title=" " alt="" coords="1097,360,1181,387"/>
+<area shape="rect" href="default__pmm_8c.html#a7ed27f53388f855a738e2457f5de682e" title=" " alt="" coords="660,360,773,387"/>
+<area shape="rect" href="pmm_8c.html#a8e2dc4d71325ce9ddba783b4289e8e75" title=" " alt="" coords="679,208,754,235"/>
+<area shape="rect" href="vmm_8c.html#a24d42b4ed2477d387310ddb18e277071" title=" " alt="" coords="491,208,587,235"/>
+<area shape="rect" href="vmm_8c.html#a7a6d4d9a52a15d77de91f761855c1a66" title=" " alt="" coords="490,158,589,184"/>
+<area shape="rect" href="vmm_8c.html#a34e0e13c32b08fd108582567c29ccebf" title=" " alt="" coords="5,208,89,235"/>
+<area shape="rect" href="pmm_8c.html#af4a8f7b822fc87d04d74adeb3b2ce6da" title=" " alt="" coords="875,918,959,944"/>
+<area shape="rect" href="trap_8c.html#a52ce92f648fa34b3877351b9f8240f98" title=" " alt="" coords="477,1120,601,1147"/>
+<area shape="rect" href="trap_8c.html#a372d166e36c086c91e5f5d81e5fead3a" title=" " alt="" coords="164,627,212,654"/>
+<area shape="rect" href="kmonitor_8c.html#a64f12046e6ac5642f70a5c07d8ce2c4f" title=" " alt="" coords="861,1374,972,1400"/>
+<area shape="rect" href="swap_8c.html#ab3052457b47fe22e700ce9d6620b4485" title=" " alt="" coords="832,1171,1001,1198"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab3994863b8bac3aefd9fec7058aa605c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3994863b8bac3aefd9fec7058aa605c">&#9670;&nbsp;</a></span>kbd_intr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kbd_intr </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae2d26ae67f164dd60043931b32893460"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2d26ae67f164dd60043931b32893460">&#9670;&nbsp;</a></span>serial_intr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void serial_intr </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

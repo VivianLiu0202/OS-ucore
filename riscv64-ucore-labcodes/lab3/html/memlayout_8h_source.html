@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/mm/memlayout.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_946bd77349b7674f752759d0c55831d4.html">mm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">memlayout.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="memlayout_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __KERN_MM_MEMLAYOUT_H__</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __KERN_MM_MEMLAYOUT_H__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/* This file contains the definitions for memory management in our OS. */</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Virtual memory map:                                          Permissions</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *                                                              kernel/user</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *     4G ------------------&gt; +---------------------------------+</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *                            |                                 |</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *                            |         Empty Memory (*)        |</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *                            |                                 |</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *                            +---------------------------------+ 0xFB000000</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *                            |   Cur. Page Table (Kern, RW)    | RW/-- PTSIZE</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *     VPT -----------------&gt; +---------------------------------+ 0xFAC00000</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> *                            |        Invalid Memory (*)       | --/--</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> *     KERNTOP -------------&gt; +---------------------------------+ 0xF8000000</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> *                            |                                 |</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> *                            |    Remapped Physical Memory     | RW/-- KMEMSIZE</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> *                            |                                 |</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> *     KERNBASE ------------&gt; +---------------------------------+ 0xC0000000</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> *                            |                                 |</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> *                            |                                 |</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"> *                            |                                 |</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> *                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * (*) Note: The kernel ensures that &quot;Invalid Memory&quot; is *never* mapped.</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> *     &quot;Empty Memory&quot; is normally unmapped, but user programs may map pages</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> *     there if desired.</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">/* All physical memory mapped at this address */</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a20cbfc19992a40ab9ccf4aa8ab8283d0">   34</a></span>&#160;<span class="preprocessor">#define KERNBASE 0xFFFFFFFFC0200000 </span><span class="comment">// = 0x80200000(物理内存里内核的起始位置, KERN_BEGIN_PADDR) + 0xFFFFFFFF40000000(偏移量, PHYSICAL_MEMORY_OFFSET)</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">// 把原有内存映射到虚拟内存空间的最后一页</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a91ccf1c62ef1e7172acbeaaeaae028d5">   36</a></span>&#160;<span class="preprocessor">#define KMEMSIZE 0x7E00000 </span><span class="comment">// the maximum amount of physical memory</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">// 0x7E00000 = 0x8000000 - 0x200000</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">// QEMU 缺省的RAM为 0x80000000到0x88000000, 128MiB, 0x80000000到0x80200000被OpenSBI占用</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a0990117bdd85e1508f063c7069826da0">   39</a></span>&#160;<span class="preprocessor">#define KERNTOP (KERNBASE + KMEMSIZE) </span><span class="comment">// 0x88000000对应的虚拟地址</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a91647cdb3721107386e258980baeb464">   41</a></span>&#160;<span class="preprocessor">#define PHYSICAL_MEMORY_END 0x88000000</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="memlayout_8h.html#ace7f944790c59dde1229b68cdc426398">   42</a></span>&#160;<span class="preprocessor">#define PHYSICAL_MEMORY_OFFSET 0xFFFFFFFF40000000</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a8395022fc9e282a35f93b1c7a6074e2c">   43</a></span>&#160;<span class="preprocessor">#define KERNEL_BEGIN_PADDR 0x80200000</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="memlayout_8h.html#aad64a98a3f9fb605906d9e1b529876f8">   44</a></span>&#160;<span class="preprocessor">#define KERNEL_BEGIN_VADDR 0xFFFFFFFFC0200000</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a8090761de6e48bca10e8c4fdd419b691">   46</a></span>&#160;<span class="preprocessor">#define KSTACKPAGE 2                     </span><span class="comment">// # of pages in kernel stack</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a7735dc19a8cdc3fcafd4241184be4b41">   47</a></span>&#160;<span class="preprocessor">#define KSTACKSIZE (KSTACKPAGE * PGSIZE) </span><span class="comment">// sizeof kernel stack</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#ifndef __ASSEMBLER__</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="defs_8h.html">defs.h</a>&gt;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="atomic_8h.html">atomic.h</a>&gt;</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="list_8h.html">list.h</a>&gt;</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">   55</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">   56</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="memlayout_8h.html#ab79d50f850e06eed7a3ac0453019278b">   57</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a> <a class="code" href="memlayout_8h.html#ab79d50f850e06eed7a3ac0453019278b">swap_entry_t</a>; <span class="comment">// the pte can also be a swap entry</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">/* *</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> * struct Page - Page descriptor structures. Each Page describes one</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> * physical page. In kern/mm/pmm.h, you can find lots of useful functions</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> * that convert Page to other data types, such as physical address.</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * */</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="struct_page.html">   64</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_page.html">Page</a></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="struct_page.html#abade073973c0503c4bc6e52de00ad027">   66</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_page.html#abade073973c0503c4bc6e52de00ad027">ref</a>;      <span class="comment">// page frame&#39;s reference counter</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="struct_page.html#ad09f3be6cfbf7175a531bed293e9b24e">   67</a></span>&#160;    uint_t <a class="code" href="struct_page.html#ad09f3be6cfbf7175a531bed293e9b24e">flags</a>; <span class="comment">// array of flags that describe the status of the page frame</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="struct_page.html#a8639005d4a0c0c85c4b3bb4ccfee07bf">   68</a></span>&#160;    uint_t <a class="code" href="struct_page.html#a8639005d4a0c0c85c4b3bb4ccfee07bf">visited</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="struct_page.html#a0dbfb274a4ae7d53cb022556ec6d0511">   69</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="struct_page.html#a0dbfb274a4ae7d53cb022556ec6d0511">property</a>;      <span class="comment">// the num of free block, used in first fit pm manager</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="struct_page.html#a2d7e4e5de745c1ae75c504bdd2e8e463">   70</a></span>&#160;    <a class="code" href="structlist__entry.html">list_entry_t</a> <a class="code" href="struct_page.html#a2d7e4e5de745c1ae75c504bdd2e8e463">page_link</a>;     <span class="comment">// free list link</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">//增添了两个变量：pra_page_link以及pra_vaddr，用于页替换算法</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="struct_page.html#a0eddc47e81564ea6d48cb28f3feded32">   72</a></span>&#160;    <a class="code" href="structlist__entry.html">list_entry_t</a> <a class="code" href="struct_page.html#a0eddc47e81564ea6d48cb28f3feded32">pra_page_link</a>; <span class="comment">// used for pra (page replace algorithm)</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="struct_page.html#a0236c0a2ccc88264fdc881da6597abea">   73</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="struct_page.html#a0236c0a2ccc88264fdc881da6597abea">pra_vaddr</a>;        <span class="comment">// used for pra (page replace algorithm)</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">/* Flags describing the status of a page frame */</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a792c95e76dfca5f7e949a0ccf6c5521e">   77</a></span>&#160;<span class="preprocessor">#define PG_reserved 0 </span><span class="comment">// if this bit=1: the Page is reserved for kernel, cannot be used in alloc/free_pages; otherwise, this bit=0</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a668692ae87fa8fb55ffe83a6415ef435">   78</a></span>&#160;<span class="preprocessor">#define PG_property 1 </span><span class="comment">// if this bit=1: the Page is the head page of a free memory block(contains some continuous_addrress pages), and can be used in alloc_pages; if this bit=0: if the Page is the the head page of a free memory block, then this Page and the memory block is alloced. Or this Page isn&#39;t the head page.</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="memlayout_8h.html#ab4deecd65c0699bc8e4f793510b43892">   80</a></span>&#160;<span class="preprocessor">#define SetPageReserved(page) set_bit(PG_reserved, &amp;((page)-&gt;flags))</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a967f2529ade84ee59fdffec7c5fc4a58">   81</a></span>&#160;<span class="preprocessor">#define ClearPageReserved(page) clear_bit(PG_reserved, &amp;((page)-&gt;flags))</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="memlayout_8h.html#ab5eade45611ea39f1859f1c5bb4f991c">   82</a></span>&#160;<span class="preprocessor">#define PageReserved(page) test_bit(PG_reserved, &amp;((page)-&gt;flags))</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a50f3e3802fa454e51843a592b14c9a7a">   83</a></span>&#160;<span class="preprocessor">#define SetPageProperty(page) set_bit(PG_property, &amp;((page)-&gt;flags))</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="memlayout_8h.html#adc92d421461120830884fae4b692fdb8">   84</a></span>&#160;<span class="preprocessor">#define ClearPageProperty(page) clear_bit(PG_property, &amp;((page)-&gt;flags))</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a116bf3bfa648a86d8da1fcb2a7f01ab0">   85</a></span>&#160;<span class="preprocessor">#define PageProperty(page) test_bit(PG_property, &amp;((page)-&gt;flags))</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">// convert list entry to page</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="memlayout_8h.html#a103c099d1dc3f3b78385712f2d8e5f1c">   88</a></span>&#160;<span class="preprocessor">#define le2page(le, member) \</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">    to_struct((le), struct Page, member)</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">/* free_area_t - maintains a doubly linked list to record free (unused) pages */</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="structfree__area__t.html">   92</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="structfree__area__t.html#a9764224e666085cda78a353099c6699c">   94</a></span>&#160;    <a class="code" href="structlist__entry.html">list_entry_t</a> <a class="code" href="structfree__area__t.html#a9764224e666085cda78a353099c6699c">free_list</a>; <span class="comment">// the list header</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="structfree__area__t.html#aaf93c8cd12ff6f517008e4e9cf942943">   95</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="structfree__area__t.html#aaf93c8cd12ff6f517008e4e9cf942943">nr_free</a>;   <span class="comment">// # of free pages in this free list</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;} <a class="code" href="structfree__area__t.html">free_area_t</a>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !__ASSEMBLER__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !__KERN_MM_MEMLAYOUT_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aatomic_8h_html"><div class="ttname"><a href="atomic_8h.html">atomic.h</a></div></div>
+<div class="ttc" id="adefs_8h_html"><div class="ttname"><a href="defs_8h.html">defs.h</a></div></div>
+<div class="ttc" id="adefs_8h_html_a04cf3633489292bdd23ff5b429bc476b"><div class="ttname"><a href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a></div><div class="ttdeci">uint_t uintptr_t</div><div class="ttdef"><b>Definition:</b> defs.h:41</div></div>
+<div class="ttc" id="alist_8h_html"><div class="ttname"><a href="list_8h.html">list.h</a></div></div>
+<div class="ttc" id="amemlayout_8h_html_a9a4c35b1ede4a4107783c0a8f931fc06"><div class="ttname"><a href="memlayout_8h.html#a9a4c35b1ede4a4107783c0a8f931fc06">pde_t</a></div><div class="ttdeci">uintptr_t pde_t</div><div class="ttdef"><b>Definition:</b> memlayout.h:56</div></div>
+<div class="ttc" id="amemlayout_8h_html_ab79d50f850e06eed7a3ac0453019278b"><div class="ttname"><a href="memlayout_8h.html#ab79d50f850e06eed7a3ac0453019278b">swap_entry_t</a></div><div class="ttdeci">pte_t swap_entry_t</div><div class="ttdef"><b>Definition:</b> memlayout.h:57</div></div>
+<div class="ttc" id="amemlayout_8h_html_ae97b82aa50ed8ad4c79b1d8b8fb53836"><div class="ttname"><a href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a></div><div class="ttdeci">uintptr_t pte_t</div><div class="ttdef"><b>Definition:</b> memlayout.h:55</div></div>
+<div class="ttc" id="astruct_page_html"><div class="ttname"><a href="struct_page.html">Page</a></div><div class="ttdef"><b>Definition:</b> memlayout.h:65</div></div>
+<div class="ttc" id="astruct_page_html_a0236c0a2ccc88264fdc881da6597abea"><div class="ttname"><a href="struct_page.html#a0236c0a2ccc88264fdc881da6597abea">Page::pra_vaddr</a></div><div class="ttdeci">uintptr_t pra_vaddr</div><div class="ttdef"><b>Definition:</b> memlayout.h:73</div></div>
+<div class="ttc" id="astruct_page_html_a0dbfb274a4ae7d53cb022556ec6d0511"><div class="ttname"><a href="struct_page.html#a0dbfb274a4ae7d53cb022556ec6d0511">Page::property</a></div><div class="ttdeci">unsigned int property</div><div class="ttdef"><b>Definition:</b> memlayout.h:69</div></div>
+<div class="ttc" id="astruct_page_html_a0eddc47e81564ea6d48cb28f3feded32"><div class="ttname"><a href="struct_page.html#a0eddc47e81564ea6d48cb28f3feded32">Page::pra_page_link</a></div><div class="ttdeci">list_entry_t pra_page_link</div><div class="ttdef"><b>Definition:</b> memlayout.h:72</div></div>
+<div class="ttc" id="astruct_page_html_a2d7e4e5de745c1ae75c504bdd2e8e463"><div class="ttname"><a href="struct_page.html#a2d7e4e5de745c1ae75c504bdd2e8e463">Page::page_link</a></div><div class="ttdeci">list_entry_t page_link</div><div class="ttdef"><b>Definition:</b> memlayout.h:70</div></div>
+<div class="ttc" id="astruct_page_html_a8639005d4a0c0c85c4b3bb4ccfee07bf"><div class="ttname"><a href="struct_page.html#a8639005d4a0c0c85c4b3bb4ccfee07bf">Page::visited</a></div><div class="ttdeci">uint_t visited</div><div class="ttdef"><b>Definition:</b> memlayout.h:68</div></div>
+<div class="ttc" id="astruct_page_html_abade073973c0503c4bc6e52de00ad027"><div class="ttname"><a href="struct_page.html#abade073973c0503c4bc6e52de00ad027">Page::ref</a></div><div class="ttdeci">int ref</div><div class="ttdef"><b>Definition:</b> memlayout.h:66</div></div>
+<div class="ttc" id="astruct_page_html_ad09f3be6cfbf7175a531bed293e9b24e"><div class="ttname"><a href="struct_page.html#ad09f3be6cfbf7175a531bed293e9b24e">Page::flags</a></div><div class="ttdeci">uint_t flags</div><div class="ttdef"><b>Definition:</b> memlayout.h:67</div></div>
+<div class="ttc" id="astructfree__area__t_html"><div class="ttname"><a href="structfree__area__t.html">free_area_t</a></div><div class="ttdef"><b>Definition:</b> memlayout.h:93</div></div>
+<div class="ttc" id="astructfree__area__t_html_a9764224e666085cda78a353099c6699c"><div class="ttname"><a href="structfree__area__t.html#a9764224e666085cda78a353099c6699c">free_area_t::free_list</a></div><div class="ttdeci">list_entry_t free_list</div><div class="ttdef"><b>Definition:</b> memlayout.h:94</div></div>
+<div class="ttc" id="astructfree__area__t_html_aaf93c8cd12ff6f517008e4e9cf942943"><div class="ttname"><a href="structfree__area__t.html#aaf93c8cd12ff6f517008e4e9cf942943">free_area_t::nr_free</a></div><div class="ttdeci">unsigned int nr_free</div><div class="ttdef"><b>Definition:</b> memlayout.h:95</div></div>
+<div class="ttc" id="astructlist__entry_html"><div class="ttname"><a href="structlist__entry.html">list_entry</a></div><div class="ttdef"><b>Definition:</b> list.h:17</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

@@ -62,7 +62,7 @@ static void check_vma_struct(void);
 static void check_pgfault(void);
 
 // mm_create -  alloc a mm_struct & initialize it.
-//创建一个mm_struct病初始化(创建时调用了kmalloc，故删除前需要释放)
+// 创建一个mm_struct并初始化(创建时调用了kmalloc，一次create会创建一个新的，故删除前需要释放)
 struct mm_struct *
 mm_create(void)
 {
@@ -71,14 +71,14 @@ mm_create(void)
      * kmalloc:类似于用户空间中的malloc函数，但是它是在内核空间中进行内存分配，因此用于内核代码中
      * 它会在内存池中查找一个足够大的空闲内存块，将其标记为已使用，并返回其首地址
      * 如果内存池中没有足够大的空闲内存块，则会进行内存压缩或者内存回收操作，以获得足够的连续内存空间。
-    */
+     */
 
     if (mm != NULL)
     {
         list_init(&(mm->mmap_list));
-        mm->mmap_cache = NULL;//当前没有正在使用的虚拟内存空间；
-        mm->pgdir = NULL;//表示当前没有使用的页目录表；
-        mm->map_count = 0;//表示当前没有虚拟内存空间；
+        mm->mmap_cache = NULL; // 当前没有正在使用的虚拟内存空间；
+        mm->pgdir = NULL;      // 表示当前没有使用的页目录表；
+        mm->map_count = 0;     // 表示当前没有虚拟内存空间；
 
         if (swap_init_ok)
             swap_init_mm(mm);
@@ -104,8 +104,8 @@ vma_create(uintptr_t vm_start, uintptr_t vm_end, uint_t vm_flags)
     return vma;
 }
 
-//find_vma - find a vma  (vma->vm_start <= addr <= vma_vm_end)
-//根据mm以及addr找到vma ,查找这个地址对应的vma_struct结构体满足(vma->vm_start <= addr <= vma_vm_end)体
+// find_vma - find a vma  (vma->vm_start <= addr <= vma_vm_end)
+// 根据mm以及addr找到vma ,查找这个地址对应的vma_struct结构体满足(vma->vm_start <= addr <= vma_vm_end)体
 struct vma_struct *
 find_vma(struct mm_struct *mm, uintptr_t addr)
 {
@@ -141,8 +141,8 @@ find_vma(struct mm_struct *mm, uintptr_t addr)
     return vma;
 }
 
-// check_vma_overlap - check if vma1 overlaps vma2 ?
-static inline void
+// check_vma_overlap - check if vma1 overlaps vma2 ?本质是检查vma1和vma2 start<end而且vma1.end<=vma2.start
+static inline void // 检测两个vma是否重叠
 check_vma_overlap(struct vma_struct *prev, struct vma_struct *next)
 {
     assert(prev->vm_start < prev->vm_end);
@@ -151,18 +151,18 @@ check_vma_overlap(struct vma_struct *prev, struct vma_struct *next)
 }
 
 // insert_vma_struct -insert vma in mm's list link
-//向mm的mmap_list的插入一个vma，按地址插入合适位置
+// 向mm的mmap_list的插入一个vma，按地址插入合适位置
 void insert_vma_struct(struct mm_struct *mm, struct vma_struct *vma)
 {
     assert(vma->vm_start < vma->vm_end);
-    list_entry_t *list = &(mm->mmap_list);
+    list_entry_t *list = &(mm->mmap_list); // list标识vma链表头
     list_entry_t *le_prev = list, *le_next;
 
-    list_entry_t *le = list;
+    list_entry_t *le = list; // le用来遍历整个链表
     while ((le = list_next(le)) != list)
     {
         struct vma_struct *mmap_prev = le2vma(le, list_link);
-        if (mmap_prev->vm_start > vma->vm_start)
+        if (mmap_prev->vm_start > vma->vm_start) // 找到第一个比vma的vm_start大的vma
         {
             break;
         }
@@ -174,7 +174,7 @@ void insert_vma_struct(struct mm_struct *mm, struct vma_struct *vma)
     /* check overlap */
     if (le_prev != list)
     {
-        check_vma_overlap(le2vma(le_prev, list_link), vma);
+        check_vma_overlap(le2vma(le_prev, list_link), vma); // 检查vma与前一个vma是否重叠
     }
     if (le_next != list)
     {
@@ -188,7 +188,7 @@ void insert_vma_struct(struct mm_struct *mm, struct vma_struct *vma)
 }
 
 // mm_destroy - free mm and mm internal fields
-//删除一个mm struct，kfree掉占用的空间
+// 删除一个mm struct，kfree掉占用的空间
 void mm_destroy(struct mm_struct *mm)
 {
 
@@ -214,8 +214,8 @@ static void
 check_vmm(void)
 {
     size_t nr_free_pages_store = nr_free_pages();
-    check_vma_struct();
-    check_pgfault();
+    check_vma_struct(); // 检查vma_struct结构体,检查vma_create、insert_vma_struct、find_vma函数
+    check_pgfault();    // 检查页错误处理函数，
 
     nr_free_pages_store--; // szx : Sv39三级页表多占一个内存页，所以执行此操作
     assert(nr_free_pages_store == nr_free_pages());
@@ -292,7 +292,7 @@ check_vma_struct(void)
     cprintf("check_vma_struct() succeeded!\n");
 }
 
-struct mm_struct *check_mm_struct;
+struct mm_struct *check_mm_struct; // 用于check_pgfault函数
 
 // check_pgfault - check correctness of pgfault handler
 static void
@@ -305,10 +305,11 @@ check_pgfault(void)
 
     assert(check_mm_struct != NULL);
     struct mm_struct *mm = check_mm_struct;
-    pde_t *pgdir = mm->pgdir = boot_pgdir; // pgdir被设置为boot_pgdir，这是系统启动时的页目录
+    pde_t *pgdir = mm->pgdir = boot_pgdir; // pgdir被设置为boot_pgdir，boot_pgdir在pmm.c中设置成boot_page_table_sv39
     assert(pgdir[0] == 0);
 
     struct vma_struct *vma = vma_create(0, PTSIZE, VM_WRITE); // 创建一个新的虚拟内存区域（VMA）
+    // 该VMA的起始地址为0，结束地址为PTSIZE（页目录项辐射的内存地址4096*512），权限为可写。
 
     assert(vma != NULL);
 

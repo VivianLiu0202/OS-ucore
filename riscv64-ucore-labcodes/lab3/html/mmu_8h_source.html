@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/mm/mmu.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_946bd77349b7674f752759d0c55831d4.html">mm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">mmu.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="mmu_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __KERN_MM_MMU_H__</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __KERN_MM_MMU_H__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#ifndef __ASSEMBLER__</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="defs_8h.html">defs.h</a>&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !__ASSEMBLER__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// A linear address &#39;la&#39; has a four-part structure as follows:</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// +--------9-------+-------9--------+-------9--------+---------12----------+</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// | Page Directory | Page Directory |   Page Table   | Offset within Page  |</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// |     Index 1    |    Index 2     |                |                     |</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// +----------------+----------------+----------------+---------------------+</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">//  \-- PDX1(la) --/ \-- PDX0(la) --/ \--- PTX(la) --/ \---- PGOFF(la) ----/</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//  \-------------------PPN(la)----------------------/</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// The PDX1, PDX0, PTX, PGOFF, and PPN macros decompose linear addresses as shown.</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">// To construct a linear address la from PDX(la), PTX(la), and PGOFF(la),</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">// use PGADDR(PDX(la), PTX(la), PGOFF(la)).</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">// RISC-V uses 39-bit virtual address to access 56-bit physical address!</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">// Sv39 virtual address:</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">// +----9----+----9---+----9---+---12--+</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">// |  VPN[2] | VPN[1] | VPN[0] | PGOFF |</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">// +---------+----+---+--------+-------+</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">// Sv39 physical address:</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">// +----26---+----9---+----9---+---12--+</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// |  PPN[2] | PPN[1] | PPN[0] | PGOFF |</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">// +---------+----+---+--------+-------+</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">// Sv39 page table entry:</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">// +----26---+----9---+----9---+---2----+-------8-------+</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">// |  PPN[2] | PPN[1] | PPN[0] |Reserved|D|A|G|U|X|W|R|V|</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">// +---------+----+---+--------+--------+---------------+</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">// page directory index</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="mmu_8h.html#a15aea4e579119f001714aa7e7bd916f5">   38</a></span>&#160;<span class="preprocessor">#define PDX1(la) ((((uintptr_t)(la)) &gt;&gt; PDX1SHIFT) &amp; 0x1FF)</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="mmu_8h.html#a71d2a95d8f522326a19ef8b8334a0ed2">   39</a></span>&#160;<span class="preprocessor">#define PDX0(la) ((((uintptr_t)(la)) &gt;&gt; PDX0SHIFT) &amp; 0x1FF)</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">// page table index</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="mmu_8h.html#ac744451cc21b0b24f37dd8f0d51b43fc">   42</a></span>&#160;<span class="preprocessor">#define PTX(la) ((((uintptr_t)(la)) &gt;&gt; PTXSHIFT) &amp; 0x1FF)</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">// page number field of address</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="mmu_8h.html#a78cbe8d89b0e2c790d8f2935b3e66a91">   45</a></span>&#160;<span class="preprocessor">#define PPN(la) (((uintptr_t)(la)) &gt;&gt; PTXSHIFT)</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">// offset in page</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="mmu_8h.html#a9fa37a88da19d40e30cff5e1ed933c21">   48</a></span>&#160;<span class="preprocessor">#define PGOFF(la) (((uintptr_t)(la)) &amp; 0xFFF)</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">// construct linear address from indexes and offset</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="mmu_8h.html#aaaedde1da6b250628a1ba00dc8ee84e5">   51</a></span>&#160;<span class="preprocessor">#define PGADDR(d1, d0, t, o) ((uintptr_t)((d1) &lt;&lt; PDX1SHIFT | (d0) &lt;&lt; PDX0SHIFT | (t) &lt;&lt; PTXSHIFT | (o)))</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">// address in page table or page directory entry</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="mmu_8h.html#a74b24f9b091875a5313370892e3f37a5">   54</a></span>&#160;<span class="preprocessor">#define PTE_ADDR(pte)   (((uintptr_t)(pte) &amp; ~0x3FF) &lt;&lt; (PTXSHIFT - PTE_PPN_SHIFT))</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="mmu_8h.html#a175ad382f2878dc92ea67645da66e414">   55</a></span>&#160;<span class="preprocessor">#define PDE_ADDR(pde)   PTE_ADDR(pde)</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">/* page directory and page table constants */</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="mmu_8h.html#a890f406d1b6178964811c5f46faa9ce8">   58</a></span>&#160;<span class="preprocessor">#define NPDEENTRY       512                    </span><span class="comment">// page directory entries per page directory</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="mmu_8h.html#aa910a9eeb26c0f40528a7d77b3fb9a97">   59</a></span>&#160;<span class="preprocessor">#define NPTEENTRY       512                    </span><span class="comment">// page table entries per page table</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="mmu_8h.html#a5f96cb6ae6670e023c407cc2f77e1704">   61</a></span>&#160;<span class="preprocessor">#define PGSIZE          4096                    </span><span class="comment">// bytes mapped by a page</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="mmu_8h.html#a20d0b7c5f64f21a3fdc19cf44afe8ff2">   62</a></span>&#160;<span class="preprocessor">#define PGSHIFT         12                      </span><span class="comment">// log2(PGSIZE)</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="mmu_8h.html#a28c1229acf69809be474fd0cda5c2bfa">   63</a></span>&#160;<span class="preprocessor">#define PTSIZE          (PGSIZE * NPTEENTRY)    </span><span class="comment">// bytes mapped by a page directory entry</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="mmu_8h.html#a2c15062f44b5767fd4be9a8d399ee3d9">   64</a></span>&#160;<span class="preprocessor">#define PTSHIFT         21                      </span><span class="comment">// log2(PTSIZE)</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="mmu_8h.html#a4424facfb4be6b056c05ec638d6347de">   66</a></span>&#160;<span class="preprocessor">#define PTXSHIFT        12                      </span><span class="comment">// offset of PTX in a linear address</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="mmu_8h.html#aab975096b5cc140a3bda546f3ea66667">   67</a></span>&#160;<span class="preprocessor">#define PDX0SHIFT       21                      </span><span class="comment">// offset of PDX0 in a linear address</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="mmu_8h.html#a85b6873d262c061f68e0daee2730954b">   68</a></span>&#160;<span class="preprocessor">#define PDX1SHIFT       30                      </span><span class="comment">// offset of PDX0 in a linear address</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="mmu_8h.html#a5b5b713a1ec901153c786686d5962574">   69</a></span>&#160;<span class="preprocessor">#define PTE_PPN_SHIFT   10                      </span><span class="comment">// offset of PPN in a physical address</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">// page table entry (PTE) fields</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="mmu_8h.html#a9a3c738182007bee471e44aae04c386f">   72</a></span>&#160;<span class="preprocessor">#define PTE_V     0x001 </span><span class="comment">// Valid</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="mmu_8h.html#a3a188134a2cbd69e161521fb169ecd08">   73</a></span>&#160;<span class="preprocessor">#define PTE_R     0x002 </span><span class="comment">// Read</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="mmu_8h.html#a058fcbcc3e1eab2c09c68b3e5221c545">   74</a></span>&#160;<span class="preprocessor">#define PTE_W     0x004 </span><span class="comment">// Write</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="mmu_8h.html#ae20c834a93867eedc88007621c74ad55">   75</a></span>&#160;<span class="preprocessor">#define PTE_X     0x008 </span><span class="comment">// Execute</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="mmu_8h.html#adced9836a1dc98d72849361e6ab03cda">   76</a></span>&#160;<span class="preprocessor">#define PTE_U     0x010 </span><span class="comment">// User</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="mmu_8h.html#a50cfccabb1927e67c7a0e3b90e8b0635">   77</a></span>&#160;<span class="preprocessor">#define PTE_G     0x020 </span><span class="comment">// Global</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="mmu_8h.html#af2d908a8af1d94a6aaf803ab40fe0951">   78</a></span>&#160;<span class="preprocessor">#define PTE_A     0x040 </span><span class="comment">// Accessed</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="mmu_8h.html#ae80b38f12787d02087c4575c48c36d88">   79</a></span>&#160;<span class="preprocessor">#define PTE_D     0x080 </span><span class="comment">// Dirty</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="mmu_8h.html#a8e71d0b15291edc78a3240cc667f9ad8">   80</a></span>&#160;<span class="preprocessor">#define PTE_SOFT  0x300 </span><span class="comment">// Reserved for Software</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="mmu_8h.html#a74ecdd75a2b9128477fdef1863709841">   82</a></span>&#160;<span class="preprocessor">#define PAGE_TABLE_DIR (PTE_V)</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="mmu_8h.html#af035426824dc95b1a1ceb1b591e82a57">   83</a></span>&#160;<span class="preprocessor">#define READ_ONLY (PTE_R | PTE_V)</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="mmu_8h.html#af8c4f48aea422f196a7757a38a81e7e2">   84</a></span>&#160;<span class="preprocessor">#define READ_WRITE (PTE_R | PTE_W | PTE_V)</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="mmu_8h.html#a0b1e0b8c851ae9d2a4ad7c371c651e6a">   85</a></span>&#160;<span class="preprocessor">#define EXEC_ONLY (PTE_X | PTE_V)</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="mmu_8h.html#a65fbd376206347b362db5e7a9939f3d1">   86</a></span>&#160;<span class="preprocessor">#define READ_EXEC (PTE_R | PTE_X | PTE_V)</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="mmu_8h.html#a2cf40fe0c7f3cecbb435a7334e419d2d">   87</a></span>&#160;<span class="preprocessor">#define READ_WRITE_EXEC (PTE_R | PTE_W | PTE_X | PTE_V)</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="mmu_8h.html#a35cf32d035efb2f4b272b6e2959302b9">   89</a></span>&#160;<span class="preprocessor">#define PTE_USER (PTE_R | PTE_W | PTE_X | PTE_U | PTE_V)</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !__KERN_MM_MMU_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="ttc" id="adefs_8h_html"><div class="ttname"><a href="defs_8h.html">defs.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

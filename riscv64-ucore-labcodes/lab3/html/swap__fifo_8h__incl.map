@@ -1,0 +1,15 @@
+<map id="kern/mm/swap_fifo.h" name="kern/mm/swap_fifo.h">
+<area shape="rect" id="node1" title=" " alt="" coords="251,5,410,32"/>
+<area shape="rect" id="node2" href="$swap_8h.html" title=" " alt="" coords="297,80,365,107"/>
+<area shape="rect" id="node3" href="$defs_8h.html" title=" " alt="" coords="230,379,293,405"/>
+<area shape="rect" id="node4" href="$memlayout_8h.html" title=" " alt="" coords="171,229,280,256"/>
+<area shape="rect" id="node7" href="$pmm_8h.html" title=" " alt="" coords="145,155,213,181"/>
+<area shape="rect" id="node10" href="$vmm_8h.html" title=" " alt="" coords="334,155,402,181"/>
+<area shape="rect" id="node5" href="$atomic_8h.html" title=" " alt="" coords="79,304,158,331"/>
+<area shape="rect" id="node6" href="$list_8h.html" title=" " alt="" coords="234,304,289,331"/>
+<area shape="rect" id="node8" href="$assert_8h.html" title=" " alt="" coords="21,229,96,256"/>
+<area shape="rect" id="node9" href="$mmu_8h.html" title=" " alt="" coords="313,304,381,331"/>
+<area shape="rect" id="node11" href="$sync_8h.html" title=" " alt="" coords="456,229,520,256"/>
+<area shape="rect" id="node12" href="$intr_8h.html" title=" " alt="" coords="457,304,511,331"/>
+<area shape="rect" id="node13" href="$riscv_8h.html" title=" " alt="" coords="536,304,600,331"/>
+</map>

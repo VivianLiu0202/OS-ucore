@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/init/init.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_c4723cd043c7c78da32b7a160744f62e.html">init</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">init.c 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;<a class="el" href="defs_8h_source.html">defs.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="stdio_8h_source.html">stdio.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="string_8h_source.html">string.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="console_8h_source.html">console.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="kdebug_8h_source.html">kdebug.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="trap_8h_source.html">trap.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="clock_8h_source.html">clock.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="intr_8h_source.html">intr.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="pmm_8h_source.html">pmm.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="vmm_8h_source.html">vmm.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="ide_8h_source.html">ide.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="swap_8h_source.html">swap.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="kmonitor_8h_source.html">kmonitor.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+init.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="init_8c__incl.gif" border="0" usemap="#akern_2init_2init_8c" alt=""/></div>
+<map name="akern_2init_2init_8c" id="akern_2init_2init_8c">
+<area shape="rect" title=" " alt="" coords="854,5,965,32"/>
+<area shape="rect" href="defs_8h.html" title=" " alt="" coords="614,379,677,405"/>
+<area shape="rect" href="stdio_8h.html" title=" " alt="" coords="804,80,871,107"/>
+<area shape="rect" href="string_8h.html" title=" " alt="" coords="930,229,1001,256"/>
+<area shape="rect" href="console_8h.html" title=" " alt="" coords="1323,80,1407,107"/>
+<area shape="rect" href="kdebug_8h.html" title=" " alt="" coords="997,80,1080,107"/>
+<area shape="rect" href="trap_8h.html" title=" " alt="" coords="1106,155,1166,181"/>
+<area shape="rect" href="clock_8h.html" title=" " alt="" coords="1223,155,1291,181"/>
+<area shape="rect" href="intr_8h.html" title=" " alt="" coords="673,304,727,331"/>
+<area shape="rect" href="pmm_8h.html" title=" " alt="" coords="214,155,282,181"/>
+<area shape="rect" href="vmm_8h.html" title=" " alt="" coords="463,155,531,181"/>
+<area shape="rect" href="ide_8h.html" title=" " alt="" coords="705,229,759,256"/>
+<area shape="rect" href="swap_8h.html" title=" " alt="" coords="337,80,405,107"/>
+<area shape="rect" href="kmonitor_8h.html" title=" " alt="" coords="1105,80,1197,107"/>
+<area shape="rect" href="stdarg_8h.html" title=" " alt="" coords="800,155,875,181"/>
+<area shape="rect" href="assert_8h.html" title=" " alt="" coords="5,229,80,256"/>
+<area shape="rect" href="atomic_8h.html" title=" " alt="" coords="155,304,234,331"/>
+<area shape="rect" href="memlayout_8h.html" title=" " alt="" coords="224,229,333,256"/>
+<area shape="rect" href="mmu_8h.html" title=" " alt="" coords="491,304,559,331"/>
+<area shape="rect" href="list_8h.html" title=" " alt="" coords="310,304,365,331"/>
+<area shape="rect" href="sync_8h.html" title=" " alt="" coords="560,229,624,256"/>
+<area shape="rect" href="riscv_8h.html" title=" " alt="" coords="584,304,648,331"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a858e38db22f04a10f6afb0f5c0b0a926"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="init_8c.html#a858e38db22f04a10f6afb0f5c0b0a926">kern_init</a> (void)</td></tr>
+<tr class="separator:a858e38db22f04a10f6afb0f5c0b0a926"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a189705fbc4254ff3cc332e052cd13215"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="init_8c.html#a189705fbc4254ff3cc332e052cd13215">__attribute__</a> ((noinline))</td></tr>
+<tr class="separator:a189705fbc4254ff3cc332e052cd13215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbf1fa00b937f04c79d3d513daad5cce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="init_8c.html#abbf1fa00b937f04c79d3d513daad5cce">grade_backtrace</a> (void)</td></tr>
+<tr class="separator:abbf1fa00b937f04c79d3d513daad5cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad35af4fa5182306d42259fe0d3e41b9b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="init_8c.html#ad35af4fa5182306d42259fe0d3e41b9b">lab1_print_cur_status</a> (void)</td></tr>
+<tr class="separator:ad35af4fa5182306d42259fe0d3e41b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a189705fbc4254ff3cc332e052cd13215"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a189705fbc4254ff3cc332e052cd13215">&#9670;&nbsp;</a></span>__attribute__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void __attribute__ </td>
+          <td>(</td>
+          <td class="paramtype">(noinline)&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="init_8c_a189705fbc4254ff3cc332e052cd13215_cgraph.gif" border="0" usemap="#ainit_8c_a189705fbc4254ff3cc332e052cd13215_cgraph" alt=""/></div>
+<map name="ainit_8c_a189705fbc4254ff3cc332e052cd13215_cgraph" id="ainit_8c_a189705fbc4254ff3cc332e052cd13215_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,112,32"/>
+<area shape="rect" href="kmonitor_8c.html#a62f7f01c94b4817c421e5f7a9caaaa79" title=" " alt="" coords="160,5,283,32"/>
+<area shape="rect" href="kdebug_8c.html#a5d47909aa35539f2e02d29b99f260670" title=" " alt="" coords="331,5,464,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abbf1fa00b937f04c79d3d513daad5cce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbf1fa00b937f04c79d3d513daad5cce">&#9670;&nbsp;</a></span>grade_backtrace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void grade_backtrace </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="init_8c_abbf1fa00b937f04c79d3d513daad5cce_cgraph.gif" border="0" usemap="#ainit_8c_abbf1fa00b937f04c79d3d513daad5cce_cgraph" alt=""/></div>
+<map name="ainit_8c_abbf1fa00b937f04c79d3d513daad5cce_cgraph" id="ainit_8c_abbf1fa00b937f04c79d3d513daad5cce_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,136,32"/>
+<area shape="rect" href="init_8c.html#a858e38db22f04a10f6afb0f5c0b0a926" title=" " alt="" coords="184,5,263,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a858e38db22f04a10f6afb0f5c0b0a926"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a858e38db22f04a10f6afb0f5c0b0a926">&#9670;&nbsp;</a></span>kern_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kern_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="init_8c_a858e38db22f04a10f6afb0f5c0b0a926_icgraph.gif" border="0" usemap="#ainit_8c_a858e38db22f04a10f6afb0f5c0b0a926_icgraph" alt=""/></div>
+<map name="ainit_8c_a858e38db22f04a10f6afb0f5c0b0a926_icgraph" id="ainit_8c_a858e38db22f04a10f6afb0f5c0b0a926_icgraph">
+<area shape="rect" title=" " alt="" coords="343,31,421,57"/>
+<area shape="rect" href="init_8c.html#abbf1fa00b937f04c79d3d513daad5cce" title=" " alt="" coords="164,5,295,32"/>
+<area shape="rect" href="kdebug_8c.html#a78dfe88eff02c0d8dac22a09416c13b0" title=" " alt="" coords="173,56,285,83"/>
+<area shape="rect" href="kmonitor_8c.html#a64f12046e6ac5642f70a5c07d8ce2c4f" title=" " alt="" coords="5,56,116,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad35af4fa5182306d42259fe0d3e41b9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad35af4fa5182306d42259fe0d3e41b9b">&#9670;&nbsp;</a></span>lab1_print_cur_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void lab1_print_cur_status </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

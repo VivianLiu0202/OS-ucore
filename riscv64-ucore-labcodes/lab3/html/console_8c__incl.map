@@ -1,0 +1,10 @@
+<map id="kern/driver/console.c" name="kern/driver/console.c">
+<area shape="rect" id="node1" title=" " alt="" coords="52,5,209,32"/>
+<area shape="rect" id="node2" href="$sbi_8h.html" title=" " alt="" coords="5,80,59,107"/>
+<area shape="rect" id="node3" href="$defs_8h.html" title=" " alt="" coords="65,229,127,256"/>
+<area shape="rect" id="node4" href="$sync_8h.html" title=" " alt="" coords="133,80,197,107"/>
+<area shape="rect" id="node8" href="$console_8h.html" title=" " alt="" coords="222,80,306,107"/>
+<area shape="rect" id="node5" href="$intr_8h.html" title=" " alt="" coords="134,155,189,181"/>
+<area shape="rect" id="node6" href="$mmu_8h.html" title=" " alt="" coords="213,155,281,181"/>
+<area shape="rect" id="node7" href="$riscv_8h.html" title=" " alt="" coords="305,155,369,181"/>
+</map>

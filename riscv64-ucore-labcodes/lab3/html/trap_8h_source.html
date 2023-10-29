@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/trap/trap.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_b8f2dae4ea594b8b07165fff81a63733.html">trap</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">trap.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="trap_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __KERN_TRAP_TRAP_H__</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __KERN_TRAP_TRAP_H__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="defs_8h.html">defs.h</a>&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="structpushregs.html">    6</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structpushregs.html">pushregs</a> {</div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="structpushregs.html#a3dacc0e0d115227a5a9f3117d4d758f0">    7</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a3dacc0e0d115227a5a9f3117d4d758f0">zero</a>;  <span class="comment">// Hard-wired zero</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="structpushregs.html#a249ceb5361381931186fe3e18d2d0422">    8</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a249ceb5361381931186fe3e18d2d0422">ra</a>;    <span class="comment">// Return address</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structpushregs.html#acaa5e697d7bab6449a8807b84cd76b1f">    9</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#acaa5e697d7bab6449a8807b84cd76b1f">sp</a>;    <span class="comment">// Stack pointer</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="structpushregs.html#aba972f2ea152b72ac4e0209e49b76888">   10</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#aba972f2ea152b72ac4e0209e49b76888">gp</a>;    <span class="comment">// Global pointer</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="structpushregs.html#a06687ba4cd012333bdaa9caf0523303f">   11</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a06687ba4cd012333bdaa9caf0523303f">tp</a>;    <span class="comment">// Thread pointer</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structpushregs.html#a6b4565582fead79da07ac430c885c548">   12</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a6b4565582fead79da07ac430c885c548">t0</a>;    <span class="comment">// Temporary</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structpushregs.html#ab32168f735e7b0e5b67bd8f136938682">   13</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#ab32168f735e7b0e5b67bd8f136938682">t1</a>;    <span class="comment">// Temporary</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structpushregs.html#a70bc1cd6c80f143275e9a553c2a005a5">   14</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a70bc1cd6c80f143275e9a553c2a005a5">t2</a>;    <span class="comment">// Temporary</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structpushregs.html#a47ad5b763effd026681bc41daff24960">   15</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a47ad5b763effd026681bc41daff24960">s0</a>;    <span class="comment">// Saved register/frame pointer</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structpushregs.html#afb70161ee147a5b69c9b3d3e743c1fbc">   16</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#afb70161ee147a5b69c9b3d3e743c1fbc">s1</a>;    <span class="comment">// Saved register</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structpushregs.html#a5894591c736f877d812dba96abbe4961">   17</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a5894591c736f877d812dba96abbe4961">a0</a>;    <span class="comment">// Function argument/return value</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structpushregs.html#aa988721cebad9eca022d6d27fdc1995f">   18</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#aa988721cebad9eca022d6d27fdc1995f">a1</a>;    <span class="comment">// Function argument/return value</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structpushregs.html#a2b0bf4ecc97130010ba92b5dc4e54883">   19</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a2b0bf4ecc97130010ba92b5dc4e54883">a2</a>;    <span class="comment">// Function argument</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structpushregs.html#a20b50c31e216f3d8c0e8ae0e0666e8c7">   20</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a20b50c31e216f3d8c0e8ae0e0666e8c7">a3</a>;    <span class="comment">// Function argument</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structpushregs.html#a6872abdf97b42424d5b5d2b4cb441f3a">   21</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a6872abdf97b42424d5b5d2b4cb441f3a">a4</a>;    <span class="comment">// Function argument</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structpushregs.html#a40915da6b8443349f125e13eb10ef970">   22</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a40915da6b8443349f125e13eb10ef970">a5</a>;    <span class="comment">// Function argument</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structpushregs.html#a14c7fa63bbff15d781e71533c4968b05">   23</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a14c7fa63bbff15d781e71533c4968b05">a6</a>;    <span class="comment">// Function argument</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structpushregs.html#a36c9371750a9bfe37ea927253f5dba9a">   24</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a36c9371750a9bfe37ea927253f5dba9a">a7</a>;    <span class="comment">// Function argument</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structpushregs.html#ab86200734688d0b888df6ecde6a4a943">   25</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#ab86200734688d0b888df6ecde6a4a943">s2</a>;    <span class="comment">// Saved register</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structpushregs.html#ad0fae5fc65816ea52eb97b3f0325f302">   26</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#ad0fae5fc65816ea52eb97b3f0325f302">s3</a>;    <span class="comment">// Saved register</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structpushregs.html#add848ff6b2690962fecaf474b830204f">   27</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#add848ff6b2690962fecaf474b830204f">s4</a>;    <span class="comment">// Saved register</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structpushregs.html#a65c6b3501ded4470a7e2f1aa944e394c">   28</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a65c6b3501ded4470a7e2f1aa944e394c">s5</a>;    <span class="comment">// Saved register</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="structpushregs.html#ac531db7c37206dd002f6b078ed4dad8e">   29</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#ac531db7c37206dd002f6b078ed4dad8e">s6</a>;    <span class="comment">// Saved register</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structpushregs.html#a82163d93078766a4405d9cb7af4b6598">   30</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a82163d93078766a4405d9cb7af4b6598">s7</a>;    <span class="comment">// Saved register</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structpushregs.html#a916729159c416c6f05fa58b3b08c7077">   31</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a916729159c416c6f05fa58b3b08c7077">s8</a>;    <span class="comment">// Saved register</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structpushregs.html#a42329c7b53c31bff63dcb8d2c2d08a04">   32</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a42329c7b53c31bff63dcb8d2c2d08a04">s9</a>;    <span class="comment">// Saved register</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structpushregs.html#ab5e33938ccf5659f27205d0cd79b94ba">   33</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#ab5e33938ccf5659f27205d0cd79b94ba">s10</a>;   <span class="comment">// Saved register</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structpushregs.html#ad6d22802ca342ce1c90a21bd3a808030">   34</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#ad6d22802ca342ce1c90a21bd3a808030">s11</a>;   <span class="comment">// Saved register</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structpushregs.html#ae69f8382043861f823ffc6f203a0b958">   35</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#ae69f8382043861f823ffc6f203a0b958">t3</a>;    <span class="comment">// Temporary</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structpushregs.html#a26fbf539c728e26accfef2909c0072d3">   36</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a26fbf539c728e26accfef2909c0072d3">t4</a>;    <span class="comment">// Temporary</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structpushregs.html#a86d0d4ffa18ee885d947d9239664c312">   37</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a86d0d4ffa18ee885d947d9239664c312">t5</a>;    <span class="comment">// Temporary</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structtrapframe.html#ad29835269edb529921634f576ea8e0e3">   38</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structpushregs.html#a3c1d070ce0f5f74362776e53ed5a840a">t6</a>;    <span class="comment">// Temporary</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;};</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="structtrapframe.html">   41</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structtrapframe.html">trapframe</a> {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">struct </span><a class="code" href="structpushregs.html">pushregs</a> <a class="code" href="structtrapframe.html#ad29835269edb529921634f576ea8e0e3">gpr</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="structtrapframe.html#ad2d2a738120188a32ef88c2fad6cc1c6">   43</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structtrapframe.html#ad2d2a738120188a32ef88c2fad6cc1c6">status</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structtrapframe.html#af6be68c03dbb1502b84b93c49d34d46e">   44</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structtrapframe.html#af6be68c03dbb1502b84b93c49d34d46e">epc</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structtrapframe.html#a7060c71cf7543268ba8431ebb48e5ced">   45</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structtrapframe.html#a7060c71cf7543268ba8431ebb48e5ced">badvaddr</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structtrapframe.html#ac6fcb5368b1305d581d41da919ea4c42">   46</a></span>&#160;    <a class="code" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> <a class="code" href="structtrapframe.html#ac6fcb5368b1305d581d41da919ea4c42">cause</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> <a class="code" href="trap_8h.html#a372d166e36c086c91e5f5d81e5fead3a">trap</a>(<span class="keyword">struct</span> <a class="code" href="structtrapframe.html">trapframe</a> *tf);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="trap_8h.html#a164d38a0163ec2c36993b803b8c7fdcb">idt_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">void</span> <a class="code" href="trap_8h.html#a51e89e35288406d1ebf6a5d55a308d1e">print_trapframe</a>(<span class="keyword">struct</span> <a class="code" href="structtrapframe.html">trapframe</a> *tf);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">void</span> <a class="code" href="trap_8h.html#aed5fcbe1cf5c802e902b9e7a6ca527ab">print_regs</a>(<span class="keyword">struct</span> <a class="code" href="structpushregs.html">pushregs</a>* gpr);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="trap_8h.html#ac7c9900010d48015646e0b362ae4957c">trap_in_kernel</a>(<span class="keyword">struct</span> <a class="code" href="structtrapframe.html">trapframe</a> *tf);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !__KERN_TRAP_TRAP_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adefs_8h_html"><div class="ttname"><a href="defs_8h.html">defs.h</a></div></div>
+<div class="ttc" id="adefs_8h_html_a04cf3633489292bdd23ff5b429bc476b"><div class="ttname"><a href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a></div><div class="ttdeci">uint_t uintptr_t</div><div class="ttdef"><b>Definition:</b> defs.h:41</div></div>
+<div class="ttc" id="astructpushregs_html"><div class="ttname"><a href="structpushregs.html">pushregs</a></div><div class="ttdef"><b>Definition:</b> trap.h:6</div></div>
+<div class="ttc" id="astructpushregs_html_a06687ba4cd012333bdaa9caf0523303f"><div class="ttname"><a href="structpushregs.html#a06687ba4cd012333bdaa9caf0523303f">pushregs::tp</a></div><div class="ttdeci">uintptr_t tp</div><div class="ttdef"><b>Definition:</b> trap.h:11</div></div>
+<div class="ttc" id="astructpushregs_html_a14c7fa63bbff15d781e71533c4968b05"><div class="ttname"><a href="structpushregs.html#a14c7fa63bbff15d781e71533c4968b05">pushregs::a6</a></div><div class="ttdeci">uintptr_t a6</div><div class="ttdef"><b>Definition:</b> trap.h:23</div></div>
+<div class="ttc" id="astructpushregs_html_a20b50c31e216f3d8c0e8ae0e0666e8c7"><div class="ttname"><a href="structpushregs.html#a20b50c31e216f3d8c0e8ae0e0666e8c7">pushregs::a3</a></div><div class="ttdeci">uintptr_t a3</div><div class="ttdef"><b>Definition:</b> trap.h:20</div></div>
+<div class="ttc" id="astructpushregs_html_a249ceb5361381931186fe3e18d2d0422"><div class="ttname"><a href="structpushregs.html#a249ceb5361381931186fe3e18d2d0422">pushregs::ra</a></div><div class="ttdeci">uintptr_t ra</div><div class="ttdef"><b>Definition:</b> trap.h:8</div></div>
+<div class="ttc" id="astructpushregs_html_a26fbf539c728e26accfef2909c0072d3"><div class="ttname"><a href="structpushregs.html#a26fbf539c728e26accfef2909c0072d3">pushregs::t4</a></div><div class="ttdeci">uintptr_t t4</div><div class="ttdef"><b>Definition:</b> trap.h:36</div></div>
+<div class="ttc" id="astructpushregs_html_a2b0bf4ecc97130010ba92b5dc4e54883"><div class="ttname"><a href="structpushregs.html#a2b0bf4ecc97130010ba92b5dc4e54883">pushregs::a2</a></div><div class="ttdeci">uintptr_t a2</div><div class="ttdef"><b>Definition:</b> trap.h:19</div></div>
+<div class="ttc" id="astructpushregs_html_a36c9371750a9bfe37ea927253f5dba9a"><div class="ttname"><a href="structpushregs.html#a36c9371750a9bfe37ea927253f5dba9a">pushregs::a7</a></div><div class="ttdeci">uintptr_t a7</div><div class="ttdef"><b>Definition:</b> trap.h:24</div></div>
+<div class="ttc" id="astructpushregs_html_a3c1d070ce0f5f74362776e53ed5a840a"><div class="ttname"><a href="structpushregs.html#a3c1d070ce0f5f74362776e53ed5a840a">pushregs::t6</a></div><div class="ttdeci">uintptr_t t6</div><div class="ttdef"><b>Definition:</b> trap.h:38</div></div>
+<div class="ttc" id="astructpushregs_html_a3dacc0e0d115227a5a9f3117d4d758f0"><div class="ttname"><a href="structpushregs.html#a3dacc0e0d115227a5a9f3117d4d758f0">pushregs::zero</a></div><div class="ttdeci">uintptr_t zero</div><div class="ttdef"><b>Definition:</b> trap.h:7</div></div>
+<div class="ttc" id="astructpushregs_html_a40915da6b8443349f125e13eb10ef970"><div class="ttname"><a href="structpushregs.html#a40915da6b8443349f125e13eb10ef970">pushregs::a5</a></div><div class="ttdeci">uintptr_t a5</div><div class="ttdef"><b>Definition:</b> trap.h:22</div></div>
+<div class="ttc" id="astructpushregs_html_a42329c7b53c31bff63dcb8d2c2d08a04"><div class="ttname"><a href="structpushregs.html#a42329c7b53c31bff63dcb8d2c2d08a04">pushregs::s9</a></div><div class="ttdeci">uintptr_t s9</div><div class="ttdef"><b>Definition:</b> trap.h:32</div></div>
+<div class="ttc" id="astructpushregs_html_a47ad5b763effd026681bc41daff24960"><div class="ttname"><a href="structpushregs.html#a47ad5b763effd026681bc41daff24960">pushregs::s0</a></div><div class="ttdeci">uintptr_t s0</div><div class="ttdef"><b>Definition:</b> trap.h:15</div></div>
+<div class="ttc" id="astructpushregs_html_a5894591c736f877d812dba96abbe4961"><div class="ttname"><a href="structpushregs.html#a5894591c736f877d812dba96abbe4961">pushregs::a0</a></div><div class="ttdeci">uintptr_t a0</div><div class="ttdef"><b>Definition:</b> trap.h:17</div></div>
+<div class="ttc" id="astructpushregs_html_a65c6b3501ded4470a7e2f1aa944e394c"><div class="ttname"><a href="structpushregs.html#a65c6b3501ded4470a7e2f1aa944e394c">pushregs::s5</a></div><div class="ttdeci">uintptr_t s5</div><div class="ttdef"><b>Definition:</b> trap.h:28</div></div>
+<div class="ttc" id="astructpushregs_html_a6872abdf97b42424d5b5d2b4cb441f3a"><div class="ttname"><a href="structpushregs.html#a6872abdf97b42424d5b5d2b4cb441f3a">pushregs::a4</a></div><div class="ttdeci">uintptr_t a4</div><div class="ttdef"><b>Definition:</b> trap.h:21</div></div>
+<div class="ttc" id="astructpushregs_html_a6b4565582fead79da07ac430c885c548"><div class="ttname"><a href="structpushregs.html#a6b4565582fead79da07ac430c885c548">pushregs::t0</a></div><div class="ttdeci">uintptr_t t0</div><div class="ttdef"><b>Definition:</b> trap.h:12</div></div>
+<div class="ttc" id="astructpushregs_html_a70bc1cd6c80f143275e9a553c2a005a5"><div class="ttname"><a href="structpushregs.html#a70bc1cd6c80f143275e9a553c2a005a5">pushregs::t2</a></div><div class="ttdeci">uintptr_t t2</div><div class="ttdef"><b>Definition:</b> trap.h:14</div></div>
+<div class="ttc" id="astructpushregs_html_a82163d93078766a4405d9cb7af4b6598"><div class="ttname"><a href="structpushregs.html#a82163d93078766a4405d9cb7af4b6598">pushregs::s7</a></div><div class="ttdeci">uintptr_t s7</div><div class="ttdef"><b>Definition:</b> trap.h:30</div></div>
+<div class="ttc" id="astructpushregs_html_a86d0d4ffa18ee885d947d9239664c312"><div class="ttname"><a href="structpushregs.html#a86d0d4ffa18ee885d947d9239664c312">pushregs::t5</a></div><div class="ttdeci">uintptr_t t5</div><div class="ttdef"><b>Definition:</b> trap.h:37</div></div>
+<div class="ttc" id="astructpushregs_html_a916729159c416c6f05fa58b3b08c7077"><div class="ttname"><a href="structpushregs.html#a916729159c416c6f05fa58b3b08c7077">pushregs::s8</a></div><div class="ttdeci">uintptr_t s8</div><div class="ttdef"><b>Definition:</b> trap.h:31</div></div>
+<div class="ttc" id="astructpushregs_html_aa988721cebad9eca022d6d27fdc1995f"><div class="ttname"><a href="structpushregs.html#aa988721cebad9eca022d6d27fdc1995f">pushregs::a1</a></div><div class="ttdeci">uintptr_t a1</div><div class="ttdef"><b>Definition:</b> trap.h:18</div></div>
+<div class="ttc" id="astructpushregs_html_ab32168f735e7b0e5b67bd8f136938682"><div class="ttname"><a href="structpushregs.html#ab32168f735e7b0e5b67bd8f136938682">pushregs::t1</a></div><div class="ttdeci">uintptr_t t1</div><div class="ttdef"><b>Definition:</b> trap.h:13</div></div>
+<div class="ttc" id="astructpushregs_html_ab5e33938ccf5659f27205d0cd79b94ba"><div class="ttname"><a href="structpushregs.html#ab5e33938ccf5659f27205d0cd79b94ba">pushregs::s10</a></div><div class="ttdeci">uintptr_t s10</div><div class="ttdef"><b>Definition:</b> trap.h:33</div></div>
+<div class="ttc" id="astructpushregs_html_ab86200734688d0b888df6ecde6a4a943"><div class="ttname"><a href="structpushregs.html#ab86200734688d0b888df6ecde6a4a943">pushregs::s2</a></div><div class="ttdeci">uintptr_t s2</div><div class="ttdef"><b>Definition:</b> trap.h:25</div></div>
+<div class="ttc" id="astructpushregs_html_aba972f2ea152b72ac4e0209e49b76888"><div class="ttname"><a href="structpushregs.html#aba972f2ea152b72ac4e0209e49b76888">pushregs::gp</a></div><div class="ttdeci">uintptr_t gp</div><div class="ttdef"><b>Definition:</b> trap.h:10</div></div>
+<div class="ttc" id="astructpushregs_html_ac531db7c37206dd002f6b078ed4dad8e"><div class="ttname"><a href="structpushregs.html#ac531db7c37206dd002f6b078ed4dad8e">pushregs::s6</a></div><div class="ttdeci">uintptr_t s6</div><div class="ttdef"><b>Definition:</b> trap.h:29</div></div>
+<div class="ttc" id="astructpushregs_html_acaa5e697d7bab6449a8807b84cd76b1f"><div class="ttname"><a href="structpushregs.html#acaa5e697d7bab6449a8807b84cd76b1f">pushregs::sp</a></div><div class="ttdeci">uintptr_t sp</div><div class="ttdef"><b>Definition:</b> trap.h:9</div></div>
+<div class="ttc" id="astructpushregs_html_ad0fae5fc65816ea52eb97b3f0325f302"><div class="ttname"><a href="structpushregs.html#ad0fae5fc65816ea52eb97b3f0325f302">pushregs::s3</a></div><div class="ttdeci">uintptr_t s3</div><div class="ttdef"><b>Definition:</b> trap.h:26</div></div>
+<div class="ttc" id="astructpushregs_html_ad6d22802ca342ce1c90a21bd3a808030"><div class="ttname"><a href="structpushregs.html#ad6d22802ca342ce1c90a21bd3a808030">pushregs::s11</a></div><div class="ttdeci">uintptr_t s11</div><div class="ttdef"><b>Definition:</b> trap.h:34</div></div>
+<div class="ttc" id="astructpushregs_html_add848ff6b2690962fecaf474b830204f"><div class="ttname"><a href="structpushregs.html#add848ff6b2690962fecaf474b830204f">pushregs::s4</a></div><div class="ttdeci">uintptr_t s4</div><div class="ttdef"><b>Definition:</b> trap.h:27</div></div>
+<div class="ttc" id="astructpushregs_html_ae69f8382043861f823ffc6f203a0b958"><div class="ttname"><a href="structpushregs.html#ae69f8382043861f823ffc6f203a0b958">pushregs::t3</a></div><div class="ttdeci">uintptr_t t3</div><div class="ttdef"><b>Definition:</b> trap.h:35</div></div>
+<div class="ttc" id="astructpushregs_html_afb70161ee147a5b69c9b3d3e743c1fbc"><div class="ttname"><a href="structpushregs.html#afb70161ee147a5b69c9b3d3e743c1fbc">pushregs::s1</a></div><div class="ttdeci">uintptr_t s1</div><div class="ttdef"><b>Definition:</b> trap.h:16</div></div>
+<div class="ttc" id="astructtrapframe_html"><div class="ttname"><a href="structtrapframe.html">trapframe</a></div><div class="ttdef"><b>Definition:</b> trap.h:41</div></div>
+<div class="ttc" id="astructtrapframe_html_a7060c71cf7543268ba8431ebb48e5ced"><div class="ttname"><a href="structtrapframe.html#a7060c71cf7543268ba8431ebb48e5ced">trapframe::badvaddr</a></div><div class="ttdeci">uintptr_t badvaddr</div><div class="ttdef"><b>Definition:</b> trap.h:45</div></div>
+<div class="ttc" id="astructtrapframe_html_ac6fcb5368b1305d581d41da919ea4c42"><div class="ttname"><a href="structtrapframe.html#ac6fcb5368b1305d581d41da919ea4c42">trapframe::cause</a></div><div class="ttdeci">uintptr_t cause</div><div class="ttdef"><b>Definition:</b> trap.h:46</div></div>
+<div class="ttc" id="astructtrapframe_html_ad29835269edb529921634f576ea8e0e3"><div class="ttname"><a href="structtrapframe.html#ad29835269edb529921634f576ea8e0e3">trapframe::gpr</a></div><div class="ttdeci">struct pushregs gpr</div><div class="ttdef"><b>Definition:</b> trap.h:42</div></div>
+<div class="ttc" id="astructtrapframe_html_ad2d2a738120188a32ef88c2fad6cc1c6"><div class="ttname"><a href="structtrapframe.html#ad2d2a738120188a32ef88c2fad6cc1c6">trapframe::status</a></div><div class="ttdeci">uintptr_t status</div><div class="ttdef"><b>Definition:</b> trap.h:43</div></div>
+<div class="ttc" id="astructtrapframe_html_af6be68c03dbb1502b84b93c49d34d46e"><div class="ttname"><a href="structtrapframe.html#af6be68c03dbb1502b84b93c49d34d46e">trapframe::epc</a></div><div class="ttdeci">uintptr_t epc</div><div class="ttdef"><b>Definition:</b> trap.h:44</div></div>
+<div class="ttc" id="atrap_8h_html_a164d38a0163ec2c36993b803b8c7fdcb"><div class="ttname"><a href="trap_8h.html#a164d38a0163ec2c36993b803b8c7fdcb">idt_init</a></div><div class="ttdeci">void idt_init(void)</div><div class="ttdef"><b>Definition:</b> trap.c:29</div></div>
+<div class="ttc" id="atrap_8h_html_a372d166e36c086c91e5f5d81e5fead3a"><div class="ttname"><a href="trap_8h.html#a372d166e36c086c91e5f5d81e5fead3a">trap</a></div><div class="ttdeci">void trap(struct trapframe *tf)</div><div class="ttdef"><b>Definition:</b> trap.c:286</div></div>
+<div class="ttc" id="atrap_8h_html_a51e89e35288406d1ebf6a5d55a308d1e"><div class="ttname"><a href="trap_8h.html#a51e89e35288406d1ebf6a5d55a308d1e">print_trapframe</a></div><div class="ttdeci">void print_trapframe(struct trapframe *tf)</div><div class="ttdef"><b>Definition:</b> trap.c:68</div></div>
+<div class="ttc" id="atrap_8h_html_ac7c9900010d48015646e0b362ae4957c"><div class="ttname"><a href="trap_8h.html#ac7c9900010d48015646e0b362ae4957c">trap_in_kernel</a></div><div class="ttdeci">bool trap_in_kernel(struct trapframe *tf)</div><div class="ttdef"><b>Definition:</b> trap.c:63</div></div>
+<div class="ttc" id="atrap_8h_html_aed5fcbe1cf5c802e902b9e7a6ca527ab"><div class="ttname"><a href="trap_8h.html#aed5fcbe1cf5c802e902b9e7a6ca527ab">print_regs</a></div><div class="ttdeci">void print_regs(struct pushregs *gpr)</div><div class="ttdef"><b>Definition:</b> trap.c:78</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<map id="check_boot_pgdir" name="check_boot_pgdir">
+<area shape="rect" id="node1" title=" " alt="" coords="5,791,141,817"/>
+<area shape="rect" id="node2" href="$stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="215,228,279,255"/>
+<area shape="rect" id="node13" href="$pmm_8c.html#a02acb8e4d598f04b9655befb6029d19c" title=" " alt="" coords="386,309,457,336"/>
+<area shape="rect" id="node19" href="$pmm_8c.html#acc1a40cd35d7497eef920fbc9219ff0e" title=" " alt="" coords="189,867,304,893"/>
+<area shape="rect" id="node20" href="$pmm_8h.html#a3aa177386346f37eaadf16359ef44da7" title=" " alt="" coords="378,360,465,387"/>
+<area shape="rect" id="node21" href="$pmm_8c.html#a6fa283dec28e3409f8f4b6d35860cb4b" title=" " alt="" coords="197,563,296,589"/>
+<area shape="rect" id="node25" href="$pmm_8h.html#ad8e136c060561748245105389a3a40c5" title=" " alt="" coords="555,765,633,792"/>
+<area shape="rect" id="node30" href="$pmm_8h.html#ab84f065d9581eef81630b9d4cbb55ce3" title=" " alt="" coords="378,816,465,843"/>
+<area shape="rect" id="node31" href="$string_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title=" " alt="" coords="213,917,280,944"/>
+<area shape="rect" id="node32" href="$string_8c.html#a1a8e0d046aa6ccaf2c9947e3142e4786" title=" " alt="" coords="215,968,278,995"/>
+<area shape="rect" id="node33" href="$string_8c.html#aa383452fe445bfae989358c9d7d96f4f" title=" " alt="" coords="217,1019,276,1045"/>
+<area shape="rect" id="node3" href="$stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="385,157,457,184"/>
+<area shape="rect" id="node4" href="$stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="561,56,627,83"/>
+<area shape="rect" id="node7" href="$printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="553,157,635,184"/>
+<area shape="rect" id="node5" href="$console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="697,5,784,32"/>
+<area shape="rect" id="node6" href="$sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="832,5,987,32"/>
+<area shape="rect" id="node8" href="$printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="711,157,771,184"/>
+<area shape="rect" id="node9" href="$printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="707,208,775,235"/>
+<area shape="rect" id="node10" href="$printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="703,259,778,285"/>
+<area shape="rect" id="node11" href="$printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="700,56,781,83"/>
+<area shape="rect" id="node12" href="$string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="707,107,774,133"/>
+<area shape="rect" id="node14" href="$string_8c.html#a2be8ba378058c555790b0328c2500a63" title=" " alt="" coords="556,259,632,285"/>
+<area shape="rect" id="node15" href="$pmm_8h.html#ab517d995357f15a4c66fb27a510eb374" title=" " alt="" coords="555,360,633,387"/>
+<area shape="rect" id="node16" href="$pmm_8h.html#aaf54bae0ec07dff85b828139f157626d" title=" " alt="" coords="697,360,784,387"/>
+<area shape="rect" id="node17" href="$pmm_8h.html#a90435beaeea486ae0208f68941db36a2" title=" " alt="" coords="549,411,639,437"/>
+<area shape="rect" id="node18" href="$pmm_8h.html#a1e526abf140359344dbd9ea214f53694" title=" " alt="" coords="541,208,647,235"/>
+<area shape="rect" id="node22" href="$pmm_8h.html#aae21a67a56c29b89be9fd3e8eef6a034" title=" " alt="" coords="539,563,649,589"/>
+<area shape="rect" id="node23" href="$pmm_8h.html#a9ebfb8f851299c3580b73617eb99237b" title=" " alt="" coords="369,512,474,539"/>
+<area shape="rect" id="node24" href="$pmm_8c.html#a047ec20d182919d237ee4bf278b4695b" title=" " alt="" coords="352,664,491,691"/>
+<area shape="rect" id="node26" href="$pmm_8h.html#abd8a44beb459c14597658dbdc0e18881" title=" " alt="" coords="553,715,635,741"/>
+<area shape="rect" id="node28" href="$pmm_8c.html#a3a6a3f83d69815b453aea9121f46a6ed" title=" " alt="" coords="539,639,649,665"/>
+<area shape="rect" id="node27" href="$pmm_8h.html#a9eb3d05d35adc23aa957c07d5ef5ed4e" title=" " alt="" coords="701,765,780,792"/>
+<area shape="rect" id="node29" href="$pmm_8h.html#af481d80989da3c646996210195814878" title=" " alt="" coords="702,639,779,665"/>
+</map>

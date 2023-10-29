@@ -30,13 +30,15 @@ static void check_swap(void);
 
 int swap_init(void)
 {
-     swapfs_init();
+     swapfs_init(); // 初始化磁盘交换分区
 
      // Since the IDE is faked, it can only store 7 pages at most to pass the test
+     // 检查最大交换偏移量是否在某个范围内
      if (!(7 <= max_swap_offset &&
            max_swap_offset < MAX_SWAP_OFFSET_LIMIT))
      {
           panic("bad max_swap_offset %08x.\n", max_swap_offset);
+          // 程序运行时发生严重错误时引发紧急情况。它会导致程序立即停止执行，并输出一条错误消息
      }
 
      sm = &swap_manager_clock; // use clock Page Replacement Algorithm
@@ -136,24 +138,25 @@ int swap_in(struct mm_struct *mm, uintptr_t addr, struct Page **ptr_result)
      return 0;
 }
 
+// 初步检查页面交换函数
 static inline void
 check_content_set(void)
 {
-     *(unsigned char *)0x1000 = 0x0a;
+     *(unsigned char *)0x1000 = 0x0a; // 冷启动，miss
      assert(pgfault_num == 1);
-     *(unsigned char *)0x1010 = 0x0a;
+     *(unsigned char *)0x1010 = 0x0a; // hit
      assert(pgfault_num == 1);
-     *(unsigned char *)0x2000 = 0x0b;
+     *(unsigned char *)0x2000 = 0x0b; // 冷启动，miss
      assert(pgfault_num == 2);
-     *(unsigned char *)0x2010 = 0x0b;
+     *(unsigned char *)0x2010 = 0x0b; // 对齐，hit
      assert(pgfault_num == 2);
-     *(unsigned char *)0x3000 = 0x0c;
+     *(unsigned char *)0x3000 = 0x0c; // 冷启动，miss
      assert(pgfault_num == 3);
-     *(unsigned char *)0x3010 = 0x0c;
+     *(unsigned char *)0x3010 = 0x0c; // 对齐，hit
      assert(pgfault_num == 3);
-     *(unsigned char *)0x4000 = 0x0d;
+     *(unsigned char *)0x4000 = 0x0d; // 冷启动，miss
      assert(pgfault_num == 4);
-     *(unsigned char *)0x4010 = 0x0d;
+     *(unsigned char *)0x4010 = 0x0d; // 对齐，hit
      assert(pgfault_num == 4);
 }
 
@@ -164,9 +167,9 @@ check_content_access(void)
      return ret;
 }
 
-struct Page *check_rp[CHECK_VALID_PHY_PAGE_NUM];
-pte_t *check_ptep[CHECK_VALID_PHY_PAGE_NUM];
-unsigned int check_swap_addr[CHECK_VALID_VIR_PAGE_NUM];
+struct Page *check_rp[CHECK_VALID_PHY_PAGE_NUM];        // 用于存放物理页面的指针
+pte_t *check_ptep[CHECK_VALID_PHY_PAGE_NUM];            // 用于存放页表项指针
+unsigned int check_swap_addr[CHECK_VALID_VIR_PAGE_NUM]; // 用于存放虚拟地址
 
 extern free_area_t free_area;
 
@@ -174,7 +177,7 @@ extern free_area_t free_area;
 #define nr_free (free_area.nr_free)
 
 static void
-check_swap(void)
+check_swap(void) // 检查页面交换函数
 {
      // backup mem env
      int ret, count = 0, total = 0, i;
@@ -195,15 +198,16 @@ check_swap(void)
      extern struct mm_struct *check_mm_struct;
      assert(check_mm_struct == NULL);
 
-     check_mm_struct = mm;
+     check_mm_struct = mm; // 附上新的mm
 
      pde_t *pgdir = mm->pgdir = boot_pgdir;
      assert(pgdir[0] == 0);
 
+     // 创建一个虚拟内存区域，其起始地址为0x1000，大小为0x6000，属性为可读可写
      struct vma_struct *vma = vma_create(BEING_CHECK_VALID_VADDR, CHECK_VALID_VADDR, VM_WRITE | VM_READ);
      assert(vma != NULL);
 
-     insert_vma_struct(mm, vma);
+     insert_vma_struct(mm, vma); // 将虚拟内存区域插入到mm_struct结构体中
 
      // setup the temp Page Table vaddr 0~4MB
      cprintf("setup Page Table for vaddr 0X1000, so alloc a page\n");
@@ -212,13 +216,15 @@ check_swap(void)
      assert(temp_ptep != NULL);
      cprintf("setup Page Table vaddr 0~4MB OVER!\n");
 
+     // 分配4个物理页面
      for (i = 0; i < CHECK_VALID_PHY_PAGE_NUM; i++)
      {
           check_rp[i] = alloc_page();
           assert(check_rp[i] != NULL);
           assert(!PageProperty(check_rp[i]));
      }
-     list_entry_t free_list_store = free_list;
+     list_entry_t free_list_store = free_list; // 备份
+     // 重新初始化空闲页面链表
      list_init(&free_list);
      assert(list_empty(&free_list));
 
@@ -237,7 +243,7 @@ check_swap(void)
 
      pgfault_num = 0;
 
-     check_content_set();
+     check_content_set(); // 初步检查页面交换函数
      assert(nr_free == 0);
      for (i = 0; i < MAX_SEQ_NO; i++)
           swap_out_seq_no[i] = swap_in_seq_no[i] = -1;
@@ -255,7 +261,7 @@ check_swap(void)
      cprintf("当前缺页次数%d\n", pgfault_num);
 
      // now access the virt pages to test  page relpacement algorithm
-     ret = check_content_access();
+     ret = check_content_access(); // 调用不同页面置换算法的check函数检查算法
      assert(ret == 0);
 
      // restore kernel mem env

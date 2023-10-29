@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/mm/swap_clock.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_946bd77349b7674f752759d0c55831d4.html">mm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle">
+<div class="title">swap_clock.c 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;<a class="el" href="defs_8h_source.html">defs.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="riscv_8h_source.html">riscv.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="stdio_8h_source.html">stdio.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="string_8h_source.html">string.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="swap_8h_source.html">swap.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="swap__clock_8h_source.html">swap_clock.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="list_8h_source.html">list.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+swap_clock.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap__clock_8c__incl.gif" border="0" usemap="#akern_2mm_2swap__clock_8c" alt=""/></div>
+<map name="akern_2mm_2swap__clock_8c" id="akern_2mm_2swap__clock_8c">
+<area shape="rect" title=" " alt="" coords="535,5,705,32"/>
+<area shape="rect" href="defs_8h.html" title=" " alt="" coords="593,453,655,480"/>
+<area shape="rect" href="riscv_8h.html" title=" " alt="" coords="5,379,69,405"/>
+<area shape="rect" href="stdio_8h.html" title=" " alt="" coords="657,80,724,107"/>
+<area shape="rect" href="string_8h.html" title=" " alt="" coords="875,155,946,181"/>
+<area shape="rect" href="swap_8h.html" title=" " alt="" coords="495,155,563,181"/>
+<area shape="rect" href="list_8h.html" title=" " alt="" coords="339,379,394,405"/>
+<area shape="rect" href="swap__clock_8h.html" title=" " alt="" coords="473,80,583,107"/>
+<area shape="rect" href="stdarg_8h.html" title=" " alt="" coords="725,155,800,181"/>
+<area shape="rect" href="memlayout_8h.html" title=" " alt="" coords="384,304,493,331"/>
+<area shape="rect" href="pmm_8h.html" title=" " alt="" coords="497,229,565,256"/>
+<area shape="rect" href="vmm_8h.html" title=" " alt="" coords="283,229,351,256"/>
+<area shape="rect" href="atomic_8h.html" title=" " alt="" coords="470,379,549,405"/>
+<area shape="rect" href="assert_8h.html" title=" " alt="" coords="619,304,693,331"/>
+<area shape="rect" href="mmu_8h.html" title=" " alt="" coords="247,379,315,405"/>
+<area shape="rect" href="sync_8h.html" title=" " alt="" coords="144,304,208,331"/>
+<area shape="rect" href="intr_8h.html" title=" " alt="" coords="149,379,203,405"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a0878d93870ed10c77c023b7411398557"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__clock_8c.html#a0878d93870ed10c77c023b7411398557">_clock_init_mm</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm)</td></tr>
+<tr class="separator:a0878d93870ed10c77c023b7411398557"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26f34f71271c4ee759de4acaeade1ccb"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__clock_8c.html#a26f34f71271c4ee759de4acaeade1ccb">_clock_map_swappable</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr, struct <a class="el" href="struct_page.html">Page</a> *page, int <a class="el" href="swap_8h.html#af3058f8798ac6b061b6a6ca528ac9932">swap_in</a>)</td></tr>
+<tr class="separator:a26f34f71271c4ee759de4acaeade1ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5286cc43a463d08df52ea2d118546fea"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__clock_8c.html#a5286cc43a463d08df52ea2d118546fea">_clock_swap_out_victim</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, struct <a class="el" href="struct_page.html">Page</a> **ptr_page, int in_tick)</td></tr>
+<tr class="separator:a5286cc43a463d08df52ea2d118546fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7d99968cbb0613bb70d046c4b0b566a"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__clock_8c.html#ac7d99968cbb0613bb70d046c4b0b566a">_clock_check_swap</a> (void)</td></tr>
+<tr class="separator:ac7d99968cbb0613bb70d046c4b0b566a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15100080046604162bb714927701a420"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__clock_8c.html#a15100080046604162bb714927701a420">_clock_init</a> (void)</td></tr>
+<tr class="separator:a15100080046604162bb714927701a420"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adae1cd63933c1f9be78f33de463b3438"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__clock_8c.html#adae1cd63933c1f9be78f33de463b3438">_clock_set_unswappable</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr)</td></tr>
+<tr class="separator:adae1cd63933c1f9be78f33de463b3438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb6ea5af4435f8415827300314b4952d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__clock_8c.html#afb6ea5af4435f8415827300314b4952d">_clock_tick_event</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm)</td></tr>
+<tr class="separator:afb6ea5af4435f8415827300314b4952d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:abceae70020beb059972c6d77935f2865"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="list_8h.html#ad7d2cda4211f093325ef4878590027e4">list_entry_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__clock_8c.html#abceae70020beb059972c6d77935f2865">pra_list_head</a></td></tr>
+<tr class="separator:abceae70020beb059972c6d77935f2865"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09546876564c6abc445986c3b53787d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#ad7d2cda4211f093325ef4878590027e4">list_entry_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__clock_8c.html#a09546876564c6abc445986c3b53787d9">curr_ptr</a></td></tr>
+<tr class="separator:a09546876564c6abc445986c3b53787d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6508bb7a963d5e247a8b957d730bc71f"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structswap__manager.html">swap_manager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__clock_8c.html#a6508bb7a963d5e247a8b957d730bc71f">swap_manager_clock</a></td></tr>
+<tr class="separator:a6508bb7a963d5e247a8b957d730bc71f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="ac7d99968cbb0613bb70d046c4b0b566a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7d99968cbb0613bb70d046c4b0b566a">&#9670;&nbsp;</a></span>_clock_check_swap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _clock_check_swap </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap__clock_8c_ac7d99968cbb0613bb70d046c4b0b566a_cgraph.gif" border="0" usemap="#aswap__clock_8c_ac7d99968cbb0613bb70d046c4b0b566a_cgraph" alt=""/></div>
+<map name="aswap__clock_8c_ac7d99968cbb0613bb70d046c4b0b566a_cgraph" id="aswap__clock_8c_ac7d99968cbb0613bb70d046c4b0b566a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,132,155,159"/>
+<area shape="rect" href="stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="203,132,267,159"/>
+<area shape="rect" href="stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="315,132,387,159"/>
+<area shape="rect" href="stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="443,56,509,83"/>
+<area shape="rect" href="printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="435,157,517,184"/>
+<area shape="rect" href="console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="565,5,652,32"/>
+<area shape="rect" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="700,5,855,32"/>
+<area shape="rect" href="printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="579,56,639,83"/>
+<area shape="rect" href="printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="575,107,643,133"/>
+<area shape="rect" href="printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="571,157,646,184"/>
+<area shape="rect" href="printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="568,208,649,235"/>
+<area shape="rect" href="string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="575,259,642,285"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a15100080046604162bb714927701a420"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15100080046604162bb714927701a420">&#9670;&nbsp;</a></span>_clock_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _clock_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0878d93870ed10c77c023b7411398557"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0878d93870ed10c77c023b7411398557">&#9670;&nbsp;</a></span>_clock_init_mm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _clock_init_mm </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap__clock_8c_a0878d93870ed10c77c023b7411398557_cgraph.gif" border="0" usemap="#aswap__clock_8c_a0878d93870ed10c77c023b7411398557_cgraph" alt=""/></div>
+<map name="aswap__clock_8c_a0878d93870ed10c77c023b7411398557_cgraph" id="aswap__clock_8c_a0878d93870ed10c77c023b7411398557_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,129,32"/>
+<area shape="rect" href="list_8h.html#aab675dfe52cdf4f4b72c6a22c3275e82" title=" " alt="" coords="177,5,248,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a26f34f71271c4ee759de4acaeade1ccb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26f34f71271c4ee759de4acaeade1ccb">&#9670;&nbsp;</a></span>_clock_map_swappable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _clock_map_swappable </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a>&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_page.html">Page</a> *&#160;</td>
+          <td class="paramname"><em>page</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>swap_in</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap__clock_8c_a26f34f71271c4ee759de4acaeade1ccb_cgraph.gif" border="0" usemap="#aswap__clock_8c_a26f34f71271c4ee759de4acaeade1ccb_cgraph" alt=""/></div>
+<map name="aswap__clock_8c_a26f34f71271c4ee759de4acaeade1ccb_cgraph" id="aswap__clock_8c_a26f34f71271c4ee759de4acaeade1ccb_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,181,32"/>
+<area shape="rect" href="list_8h.html#abb2baaa276b1d2f547c6c4549d2e0127" title=" " alt="" coords="229,5,352,32"/>
+<area shape="rect" href="list_8h.html#a6d14129e8bd464c76ac9c4541f91acab" title=" " alt="" coords="400,5,487,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adae1cd63933c1f9be78f33de463b3438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adae1cd63933c1f9be78f33de463b3438">&#9670;&nbsp;</a></span>_clock_set_unswappable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _clock_set_unswappable </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a>&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5286cc43a463d08df52ea2d118546fea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5286cc43a463d08df52ea2d118546fea">&#9670;&nbsp;</a></span>_clock_swap_out_victim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _clock_swap_out_victim </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_page.html">Page</a> **&#160;</td>
+          <td class="paramname"><em>ptr_page</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>in_tick</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap__clock_8c_a5286cc43a463d08df52ea2d118546fea_cgraph.gif" border="0" usemap="#aswap__clock_8c_a5286cc43a463d08df52ea2d118546fea_cgraph" alt=""/></div>
+<map name="aswap__clock_8c_a5286cc43a463d08df52ea2d118546fea_cgraph" id="aswap__clock_8c_a5286cc43a463d08df52ea2d118546fea_cgraph">
+<area shape="rect" title=" " alt="" coords="5,132,185,159"/>
+<area shape="rect" href="stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="241,81,305,108"/>
+<area shape="rect" href="list_8h.html#a86c117ac4118e4f49128679de329b351" title=" " alt="" coords="238,132,307,159"/>
+<area shape="rect" href="list_8h.html#a2a5579d68c706f9ed5103fef6efe8e0a" title=" " alt="" coords="233,183,312,209"/>
+<area shape="rect" href="stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="365,81,437,108"/>
+<area shape="rect" href="stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="499,56,565,83"/>
+<area shape="rect" href="printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="491,157,573,184"/>
+<area shape="rect" href="console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="621,5,708,32"/>
+<area shape="rect" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="756,5,911,32"/>
+<area shape="rect" href="printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="635,56,695,83"/>
+<area shape="rect" href="printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="631,107,699,133"/>
+<area shape="rect" href="printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="627,157,702,184"/>
+<area shape="rect" href="printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="624,208,705,235"/>
+<area shape="rect" href="string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="631,259,698,285"/>
+<area shape="rect" href="list_8h.html#a835e92bfc11e7415502f0309eb5b1cfe" title=" " alt="" coords="360,132,443,159"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="afb6ea5af4435f8415827300314b4952d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb6ea5af4435f8415827300314b4952d">&#9670;&nbsp;</a></span>_clock_tick_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _clock_tick_event </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a09546876564c6abc445986c3b53787d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09546876564c6abc445986c3b53787d9">&#9670;&nbsp;</a></span>curr_ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="list_8h.html#ad7d2cda4211f093325ef4878590027e4">list_entry_t</a>* curr_ptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abceae70020beb059972c6d77935f2865"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abceae70020beb059972c6d77935f2865">&#9670;&nbsp;</a></span>pra_list_head</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="list_8h.html#ad7d2cda4211f093325ef4878590027e4">list_entry_t</a> pra_list_head</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6508bb7a963d5e247a8b957d730bc71f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6508bb7a963d5e247a8b957d730bc71f">&#9670;&nbsp;</a></span>swap_manager_clock</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structswap__manager.html">swap_manager</a> swap_manager_clock</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">=</div>
+<div class="line">    {</div>
+<div class="line">        .name = <span class="stringliteral">&quot;clock swap manager&quot;</span>,</div>
+<div class="line">        .init = &amp;<a class="code" href="swap__clock_8c.html#a15100080046604162bb714927701a420">_clock_init</a>,</div>
+<div class="line">        .init_mm = &amp;<a class="code" href="swap__clock_8c.html#a0878d93870ed10c77c023b7411398557">_clock_init_mm</a>,</div>
+<div class="line">        .tick_event = &amp;<a class="code" href="swap__clock_8c.html#afb6ea5af4435f8415827300314b4952d">_clock_tick_event</a>,</div>
+<div class="line">        .map_swappable = &amp;<a class="code" href="swap__clock_8c.html#a26f34f71271c4ee759de4acaeade1ccb">_clock_map_swappable</a>,</div>
+<div class="line">        .set_unswappable = &amp;<a class="code" href="swap__clock_8c.html#adae1cd63933c1f9be78f33de463b3438">_clock_set_unswappable</a>,</div>
+<div class="line">        .swap_out_victim = &amp;<a class="code" href="swap__clock_8c.html#a5286cc43a463d08df52ea2d118546fea">_clock_swap_out_victim</a>,</div>
+<div class="line">        .check_swap = &amp;<a class="code" href="swap__clock_8c.html#ac7d99968cbb0613bb70d046c4b0b566a">_clock_check_swap</a>,</div>
+<div class="line">}</div>
+<div class="ttc" id="aswap__clock_8c_html_a0878d93870ed10c77c023b7411398557"><div class="ttname"><a href="swap__clock_8c.html#a0878d93870ed10c77c023b7411398557">_clock_init_mm</a></div><div class="ttdeci">static int _clock_init_mm(struct mm_struct *mm)</div><div class="ttdef"><b>Definition:</b> swap_clock.c:35</div></div>
+<div class="ttc" id="aswap__clock_8c_html_a15100080046604162bb714927701a420"><div class="ttname"><a href="swap__clock_8c.html#a15100080046604162bb714927701a420">_clock_init</a></div><div class="ttdeci">static int _clock_init(void)</div><div class="ttdef"><b>Definition:</b> swap_clock.c:193</div></div>
+<div class="ttc" id="aswap__clock_8c_html_a26f34f71271c4ee759de4acaeade1ccb"><div class="ttname"><a href="swap__clock_8c.html#a26f34f71271c4ee759de4acaeade1ccb">_clock_map_swappable</a></div><div class="ttdeci">static int _clock_map_swappable(struct mm_struct *mm, uintptr_t addr, struct Page *page, int swap_in)</div><div class="ttdef"><b>Definition:</b> swap_clock.c:53</div></div>
+<div class="ttc" id="aswap__clock_8c_html_a5286cc43a463d08df52ea2d118546fea"><div class="ttname"><a href="swap__clock_8c.html#a5286cc43a463d08df52ea2d118546fea">_clock_swap_out_victim</a></div><div class="ttdeci">static int _clock_swap_out_victim(struct mm_struct *mm, struct Page **ptr_page, int in_tick)</div><div class="ttdef"><b>Definition:</b> swap_clock.c:76</div></div>
+<div class="ttc" id="aswap__clock_8c_html_ac7d99968cbb0613bb70d046c4b0b566a"><div class="ttname"><a href="swap__clock_8c.html#ac7d99968cbb0613bb70d046c4b0b566a">_clock_check_swap</a></div><div class="ttdeci">static int _clock_check_swap(void)</div><div class="ttdef"><b>Definition:</b> swap_clock.c:122</div></div>
+<div class="ttc" id="aswap__clock_8c_html_adae1cd63933c1f9be78f33de463b3438"><div class="ttname"><a href="swap__clock_8c.html#adae1cd63933c1f9be78f33de463b3438">_clock_set_unswappable</a></div><div class="ttdeci">static int _clock_set_unswappable(struct mm_struct *mm, uintptr_t addr)</div><div class="ttdef"><b>Definition:</b> swap_clock.c:199</div></div>
+<div class="ttc" id="aswap__clock_8c_html_afb6ea5af4435f8415827300314b4952d"><div class="ttname"><a href="swap__clock_8c.html#afb6ea5af4435f8415827300314b4952d">_clock_tick_event</a></div><div class="ttdeci">static int _clock_tick_event(struct mm_struct *mm)</div><div class="ttdef"><b>Definition:</b> swap_clock.c:205</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

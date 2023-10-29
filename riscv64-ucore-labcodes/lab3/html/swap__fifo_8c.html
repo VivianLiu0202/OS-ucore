@@ -1,0 +1,473 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/mm/swap_fifo.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_946bd77349b7674f752759d0c55831d4.html">mm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle">
+<div class="title">swap_fifo.c 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;<a class="el" href="defs_8h_source.html">defs.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="riscv_8h_source.html">riscv.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="stdio_8h_source.html">stdio.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="string_8h_source.html">string.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="swap_8h_source.html">swap.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="swap__fifo_8h_source.html">swap_fifo.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="list_8h_source.html">list.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+swap_fifo.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap__fifo_8c__incl.gif" border="0" usemap="#akern_2mm_2swap__fifo_8c" alt=""/></div>
+<map name="akern_2mm_2swap__fifo_8c" id="akern_2mm_2swap__fifo_8c">
+<area shape="rect" title=" " alt="" coords="536,5,693,32"/>
+<area shape="rect" href="defs_8h.html" title=" " alt="" coords="593,453,655,480"/>
+<area shape="rect" href="riscv_8h.html" title=" " alt="" coords="5,379,69,405"/>
+<area shape="rect" href="stdio_8h.html" title=" " alt="" coords="652,80,719,107"/>
+<area shape="rect" href="string_8h.html" title=" " alt="" coords="871,155,942,181"/>
+<area shape="rect" href="swap_8h.html" title=" " alt="" coords="497,155,565,181"/>
+<area shape="rect" href="list_8h.html" title=" " alt="" coords="339,379,394,405"/>
+<area shape="rect" href="swap__fifo_8h.html" title=" " alt="" coords="481,80,577,107"/>
+<area shape="rect" href="stdarg_8h.html" title=" " alt="" coords="721,155,796,181"/>
+<area shape="rect" href="memlayout_8h.html" title=" " alt="" coords="384,304,493,331"/>
+<area shape="rect" href="pmm_8h.html" title=" " alt="" coords="497,229,565,256"/>
+<area shape="rect" href="vmm_8h.html" title=" " alt="" coords="283,229,351,256"/>
+<area shape="rect" href="atomic_8h.html" title=" " alt="" coords="470,379,549,405"/>
+<area shape="rect" href="assert_8h.html" title=" " alt="" coords="619,304,693,331"/>
+<area shape="rect" href="mmu_8h.html" title=" " alt="" coords="247,379,315,405"/>
+<area shape="rect" href="sync_8h.html" title=" " alt="" coords="144,304,208,331"/>
+<area shape="rect" href="intr_8h.html" title=" " alt="" coords="149,379,203,405"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a7079acd19d3cf0c161f3632cefe5ea62"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__fifo_8c.html#a7079acd19d3cf0c161f3632cefe5ea62">_fifo_init_mm</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm)</td></tr>
+<tr class="separator:a7079acd19d3cf0c161f3632cefe5ea62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e1d3c58f37d42f5272c2f1bc05843db"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__fifo_8c.html#a9e1d3c58f37d42f5272c2f1bc05843db">_fifo_map_swappable</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr, struct <a class="el" href="struct_page.html">Page</a> *page, int <a class="el" href="swap_8h.html#af3058f8798ac6b061b6a6ca528ac9932">swap_in</a>)</td></tr>
+<tr class="separator:a9e1d3c58f37d42f5272c2f1bc05843db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f129a7bc893ccf2529f3411d55b62f8"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__fifo_8c.html#a6f129a7bc893ccf2529f3411d55b62f8">_fifo_swap_out_victim</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, struct <a class="el" href="struct_page.html">Page</a> **ptr_page, int in_tick)</td></tr>
+<tr class="separator:a6f129a7bc893ccf2529f3411d55b62f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ae38800acc90093b2389c12ddaf6d02"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__fifo_8c.html#a6ae38800acc90093b2389c12ddaf6d02">_fifo_check_swap</a> (void)</td></tr>
+<tr class="separator:a6ae38800acc90093b2389c12ddaf6d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d26631f061c9447d69074d504facdd3"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__fifo_8c.html#a3d26631f061c9447d69074d504facdd3">_fifo_init</a> (void)</td></tr>
+<tr class="separator:a3d26631f061c9447d69074d504facdd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac473e0ae6801b807bf300623e5886f76"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__fifo_8c.html#ac473e0ae6801b807bf300623e5886f76">_fifo_set_unswappable</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr)</td></tr>
+<tr class="separator:ac473e0ae6801b807bf300623e5886f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1236aef5c953e6311139a0e9f6779f35"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__fifo_8c.html#a1236aef5c953e6311139a0e9f6779f35">_fifo_tick_event</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm)</td></tr>
+<tr class="separator:a1236aef5c953e6311139a0e9f6779f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:abceae70020beb059972c6d77935f2865"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#ad7d2cda4211f093325ef4878590027e4">list_entry_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__fifo_8c.html#abceae70020beb059972c6d77935f2865">pra_list_head</a></td></tr>
+<tr class="separator:abceae70020beb059972c6d77935f2865"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a3f52dd0607cee4f39b4a79b208e8a6"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structswap__manager.html">swap_manager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap__fifo_8c.html#a0a3f52dd0607cee4f39b4a79b208e8a6">swap_manager_fifo</a></td></tr>
+<tr class="separator:a0a3f52dd0607cee4f39b4a79b208e8a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a6ae38800acc90093b2389c12ddaf6d02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ae38800acc90093b2389c12ddaf6d02">&#9670;&nbsp;</a></span>_fifo_check_swap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _fifo_check_swap </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap__fifo_8c_a6ae38800acc90093b2389c12ddaf6d02_cgraph.gif" border="0" usemap="#aswap__fifo_8c_a6ae38800acc90093b2389c12ddaf6d02_cgraph" alt=""/></div>
+<map name="aswap__fifo_8c_a6ae38800acc90093b2389c12ddaf6d02_cgraph" id="aswap__fifo_8c_a6ae38800acc90093b2389c12ddaf6d02_cgraph">
+<area shape="rect" title=" " alt="" coords="5,132,141,159"/>
+<area shape="rect" href="stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="189,132,253,159"/>
+<area shape="rect" href="stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="301,132,373,159"/>
+<area shape="rect" href="stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="430,56,495,83"/>
+<area shape="rect" href="printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="421,157,504,184"/>
+<area shape="rect" href="console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="552,5,639,32"/>
+<area shape="rect" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="687,5,841,32"/>
+<area shape="rect" href="printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="565,56,625,83"/>
+<area shape="rect" href="printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="561,107,629,133"/>
+<area shape="rect" href="printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="558,157,633,184"/>
+<area shape="rect" href="printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="555,208,636,235"/>
+<area shape="rect" href="string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="562,259,629,285"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3d26631f061c9447d69074d504facdd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d26631f061c9447d69074d504facdd3">&#9670;&nbsp;</a></span>_fifo_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _fifo_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7079acd19d3cf0c161f3632cefe5ea62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7079acd19d3cf0c161f3632cefe5ea62">&#9670;&nbsp;</a></span>_fifo_init_mm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _fifo_init_mm </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap__fifo_8c_a7079acd19d3cf0c161f3632cefe5ea62_cgraph.gif" border="0" usemap="#aswap__fifo_8c_a7079acd19d3cf0c161f3632cefe5ea62_cgraph" alt=""/></div>
+<map name="aswap__fifo_8c_a7079acd19d3cf0c161f3632cefe5ea62_cgraph" id="aswap__fifo_8c_a7079acd19d3cf0c161f3632cefe5ea62_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,116,32"/>
+<area shape="rect" href="list_8h.html#aab675dfe52cdf4f4b72c6a22c3275e82" title=" " alt="" coords="164,5,235,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9e1d3c58f37d42f5272c2f1bc05843db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e1d3c58f37d42f5272c2f1bc05843db">&#9670;&nbsp;</a></span>_fifo_map_swappable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _fifo_map_swappable </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a>&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_page.html">Page</a> *&#160;</td>
+          <td class="paramname"><em>page</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>swap_in</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap__fifo_8c_a9e1d3c58f37d42f5272c2f1bc05843db_cgraph.gif" border="0" usemap="#aswap__fifo_8c_a9e1d3c58f37d42f5272c2f1bc05843db_cgraph" alt=""/></div>
+<map name="aswap__fifo_8c_a9e1d3c58f37d42f5272c2f1bc05843db_cgraph" id="aswap__fifo_8c_a9e1d3c58f37d42f5272c2f1bc05843db_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,168,32"/>
+<area shape="rect" href="list_8h.html#a4aa33662635de342c27f7233454574f4" title=" " alt="" coords="216,5,289,32"/>
+<area shape="rect" href="list_8h.html#a239b408a024aa5bc29ed2a2cd93251eb" title=" " alt="" coords="337,5,448,32"/>
+<area shape="rect" href="list_8h.html#a6d14129e8bd464c76ac9c4541f91acab" title=" " alt="" coords="496,5,583,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac473e0ae6801b807bf300623e5886f76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac473e0ae6801b807bf300623e5886f76">&#9670;&nbsp;</a></span>_fifo_set_unswappable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _fifo_set_unswappable </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a>&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6f129a7bc893ccf2529f3411d55b62f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f129a7bc893ccf2529f3411d55b62f8">&#9670;&nbsp;</a></span>_fifo_swap_out_victim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _fifo_swap_out_victim </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_page.html">Page</a> **&#160;</td>
+          <td class="paramname"><em>ptr_page</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>in_tick</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap__fifo_8c_a6f129a7bc893ccf2529f3411d55b62f8_cgraph.gif" border="0" usemap="#aswap__fifo_8c_a6f129a7bc893ccf2529f3411d55b62f8_cgraph" alt=""/></div>
+<map name="aswap__fifo_8c_a6f129a7bc893ccf2529f3411d55b62f8_cgraph" id="aswap__fifo_8c_a6f129a7bc893ccf2529f3411d55b62f8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,172,57"/>
+<area shape="rect" href="list_8h.html#a86c117ac4118e4f49128679de329b351" title=" " alt="" coords="225,5,294,32"/>
+<area shape="rect" href="list_8h.html#a9923c8364fd232c9b8e742f841c2b278" title=" " alt="" coords="220,56,299,83"/>
+<area shape="rect" href="list_8h.html#a835e92bfc11e7415502f0309eb5b1cfe" title=" " alt="" coords="347,5,429,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1236aef5c953e6311139a0e9f6779f35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1236aef5c953e6311139a0e9f6779f35">&#9670;&nbsp;</a></span>_fifo_tick_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int _fifo_tick_event </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="abceae70020beb059972c6d77935f2865"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abceae70020beb059972c6d77935f2865">&#9670;&nbsp;</a></span>pra_list_head</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="list_8h.html#ad7d2cda4211f093325ef4878590027e4">list_entry_t</a> pra_list_head</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a3f52dd0607cee4f39b4a79b208e8a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a3f52dd0607cee4f39b4a79b208e8a6">&#9670;&nbsp;</a></span>swap_manager_fifo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structswap__manager.html">swap_manager</a> swap_manager_fifo</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">=</div>
+<div class="line">    {</div>
+<div class="line">        .name = <span class="stringliteral">&quot;fifo swap manager&quot;</span>,</div>
+<div class="line">        .init = &amp;<a class="code" href="swap__fifo_8c.html#a3d26631f061c9447d69074d504facdd3">_fifo_init</a>,</div>
+<div class="line">        .init_mm = &amp;<a class="code" href="swap__fifo_8c.html#a7079acd19d3cf0c161f3632cefe5ea62">_fifo_init_mm</a>,</div>
+<div class="line">        .tick_event = &amp;<a class="code" href="swap__fifo_8c.html#a1236aef5c953e6311139a0e9f6779f35">_fifo_tick_event</a>,</div>
+<div class="line">        .map_swappable = &amp;<a class="code" href="swap__fifo_8c.html#a9e1d3c58f37d42f5272c2f1bc05843db">_fifo_map_swappable</a>,</div>
+<div class="line">        .set_unswappable = &amp;<a class="code" href="swap__fifo_8c.html#ac473e0ae6801b807bf300623e5886f76">_fifo_set_unswappable</a>,</div>
+<div class="line">        .swap_out_victim = &amp;<a class="code" href="swap__fifo_8c.html#a6f129a7bc893ccf2529f3411d55b62f8">_fifo_swap_out_victim</a>,</div>
+<div class="line">        .check_swap = &amp;<a class="code" href="swap__fifo_8c.html#a6ae38800acc90093b2389c12ddaf6d02">_fifo_check_swap</a>,</div>
+<div class="line">}</div>
+<div class="ttc" id="aswap__fifo_8c_html_a1236aef5c953e6311139a0e9f6779f35"><div class="ttname"><a href="swap__fifo_8c.html#a1236aef5c953e6311139a0e9f6779f35">_fifo_tick_event</a></div><div class="ttdeci">static int _fifo_tick_event(struct mm_struct *mm)</div><div class="ttdef"><b>Definition:</b> swap_fifo.c:145</div></div>
+<div class="ttc" id="aswap__fifo_8c_html_a3d26631f061c9447d69074d504facdd3"><div class="ttname"><a href="swap__fifo_8c.html#a3d26631f061c9447d69074d504facdd3">_fifo_init</a></div><div class="ttdeci">static int _fifo_init(void)</div><div class="ttdef"><b>Definition:</b> swap_fifo.c:133</div></div>
+<div class="ttc" id="aswap__fifo_8c_html_a6ae38800acc90093b2389c12ddaf6d02"><div class="ttname"><a href="swap__fifo_8c.html#a6ae38800acc90093b2389c12ddaf6d02">_fifo_check_swap</a></div><div class="ttdeci">static int _fifo_check_swap(void)</div><div class="ttdef"><b>Definition:</b> swap_fifo.c:90</div></div>
+<div class="ttc" id="aswap__fifo_8c_html_a6f129a7bc893ccf2529f3411d55b62f8"><div class="ttname"><a href="swap__fifo_8c.html#a6f129a7bc893ccf2529f3411d55b62f8">_fifo_swap_out_victim</a></div><div class="ttdeci">static int _fifo_swap_out_victim(struct mm_struct *mm, struct Page **ptr_page, int in_tick)</div><div class="ttdef"><b>Definition:</b> swap_fifo.c:67</div></div>
+<div class="ttc" id="aswap__fifo_8c_html_a7079acd19d3cf0c161f3632cefe5ea62"><div class="ttname"><a href="swap__fifo_8c.html#a7079acd19d3cf0c161f3632cefe5ea62">_fifo_init_mm</a></div><div class="ttdeci">static int _fifo_init_mm(struct mm_struct *mm)</div><div class="ttdef"><b>Definition:</b> swap_fifo.c:34</div></div>
+<div class="ttc" id="aswap__fifo_8c_html_a9e1d3c58f37d42f5272c2f1bc05843db"><div class="ttname"><a href="swap__fifo_8c.html#a9e1d3c58f37d42f5272c2f1bc05843db">_fifo_map_swappable</a></div><div class="ttdeci">static int _fifo_map_swappable(struct mm_struct *mm, uintptr_t addr, struct Page *page, int swap_in)</div><div class="ttdef"><b>Definition:</b> swap_fifo.c:46</div></div>
+<div class="ttc" id="aswap__fifo_8c_html_ac473e0ae6801b807bf300623e5886f76"><div class="ttname"><a href="swap__fifo_8c.html#ac473e0ae6801b807bf300623e5886f76">_fifo_set_unswappable</a></div><div class="ttdeci">static int _fifo_set_unswappable(struct mm_struct *mm, uintptr_t addr)</div><div class="ttdef"><b>Definition:</b> swap_fifo.c:139</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

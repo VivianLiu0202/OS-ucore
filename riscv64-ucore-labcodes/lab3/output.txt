@@ -1,0 +1,144 @@
+do_pgfault() <int do_pgfault (struct mm_struct *mm, uint_t error_code, uintptr_t addr) at ./kern/mm/vmm.c:377>:
+    find_vma() <struct vma_struct *find_vma (struct mm_struct *mm, uintptr_t addr) at ./kern/mm/vmm.c:110>:
+        list_next()
+        le2vma()
+    cprintf() <int cprintf (const char *fmt, ...) at ./kern/libs/stdio.c:40>:
+        va_start()
+        vcprintf() <int vcprintf (const char *fmt, va_list ap) at ./kern/libs/stdio.c:27>:
+            vprintfmt() <void vprintfmt (void (*putch) (int, void *), void *putdat, const char *fmt, va_list ap) at ./libs/printfmt.c:117> (R):
+                va_arg()
+                printfmt() <void printfmt (void (*putch) (int, void *), void *putdat, const char *fmt, ...) at ./libs/printfmt.c:97> (R):
+                    va_start()
+                    vprintfmt() <void vprintfmt (void (*putch) (int, void *), void *putdat, const char *fmt, va_list ap) at ./libs/printfmt.c:117> (recursive: see 8)
+                    va_end()
+                strnlen() <size_t strnlen (const char *s, size_t len) at ./libs/string.c:34>:
+                getint() <long long getint (va_list *ap, int lflag) at ./libs/printfmt.c:78>:
+                    va_arg()
+                getuint() <unsigned long long getuint (va_list *ap, int lflag) at ./libs/printfmt.c:60>:
+                    va_arg()
+                printnum() <void printnum (void (*putch) (int, void *), void *putdat, unsigned long long num, unsigned base, int width, int padc) at ./libs/printfmt.c:37> (R):
+                    do_div()
+                    printnum() <void printnum (void (*putch) (int, void *), void *putdat, unsigned long long num, unsigned base, int width, int padc) at ./libs/printfmt.c:37> (recursive: see 19)
+            cputch() <void cputch (int c, int *cnt) at ./kern/libs/stdio.c:12>:
+                cons_putc() <void cons_putc (int c) at ./kern/driver/console.c:16>:
+                    local_intr_save()
+                    sbi_console_putchar()
+                    local_intr_restore()
+        va_end()
+    ROUNDDOWN()
+    get_pte() <pte_t *get_pte (pde_t *pgdir, uintptr_t la, bool create) at ./kern/mm/pmm.c:240>:
+        PDX1()
+        alloc_page()
+        set_page_ref()
+        page2pa()
+        memset() <void *memset (void *s, char c, size_t n) at ./libs/string.c:271>:
+        KADDR()
+        pte_create()
+        page2ppn()
+        PDE_ADDR()
+        PDX0()
+        PTX()
+    pgdir_alloc_page() <struct Page *pgdir_alloc_page (pde_t *pgdir, uintptr_t la, uint32_t perm) at ./kern/mm/pmm.c:413>:
+        alloc_page()
+        page_insert() <int page_insert (pde_t *pgdir, struct Page *page, uintptr_t la, uint32_t perm) at ./kern/mm/pmm.c:381>:
+            get_pte() <pte_t *get_pte (pde_t *pgdir, uintptr_t la, bool create) at ./kern/mm/pmm.c:240>:
+                PDX1()
+                alloc_page()
+                set_page_ref()
+                page2pa()
+                memset() <void *memset (void *s, char c, size_t n) at ./libs/string.c:271>:
+                KADDR()
+                pte_create()
+                page2ppn()
+                PDE_ADDR()
+                PDX0()
+                PTX()
+            page_ref_inc()
+            pte2page()
+            page_ref_dec()
+            page_remove_pte() <inline void page_remove_pte (pde_t *pgdir, uintptr_t la, pte_t *ptep) at ./kern/mm/pmm.c:323>:
+                pte2page()
+                page_ref_dec()
+                page_ref()
+                free_page()
+                tlb_invalidate() <void tlb_invalidate (pde_t *pgdir, uintptr_t la) at ./kern/mm/pmm.c:408>:
+                    flush_tlb()
+            pte_create()
+            page2ppn()
+            tlb_invalidate() <void tlb_invalidate (pde_t *pgdir, uintptr_t la) at ./kern/mm/pmm.c:408>:
+                flush_tlb()
+        free_page()
+        swap_map_swappable() <int swap_map_swappable (struct mm_struct *mm, uintptr_t addr, struct Page *page, int swap_in) at ./kern/mm/swap.c:66>:
+        assert()
+        page_ref()
+    swap_in() <int swap_in (struct mm_struct *mm, uintptr_t addr, struct Page **ptr_result) at ./kern/mm/swap.c:121>:
+        alloc_page()
+        assert()
+        get_pte() <pte_t *get_pte (pde_t *pgdir, uintptr_t la, bool create) at ./kern/mm/pmm.c:240>:
+            PDX1()
+            alloc_page()
+            set_page_ref()
+            page2pa()
+            memset() <void *memset (void *s, char c, size_t n) at ./libs/string.c:271>:
+            KADDR()
+            pte_create()
+            page2ppn()
+            PDE_ADDR()
+            PDX0()
+            PTX()
+        swapfs_read() <int swapfs_read (swap_entry_t entry, struct Page *page) at ./kern/fs/swapfs.c:19>:
+            ide_read_secs() <int ide_read_secs (unsigned short ideno, uint32_t secno, void *dst, size_t nsecs) at ./kern/driver/ide.c:28>:
+                memcpy() <void *memcpy (void *dst, const void *src, size_t n) at ./libs/string.c:328>:
+            swap_offset()
+            page2kva()
+        cprintf() <int cprintf (const char *fmt, ...) at ./kern/libs/stdio.c:40>:
+            va_start()
+            vcprintf() <int vcprintf (const char *fmt, va_list ap) at ./kern/libs/stdio.c:27>:
+                vprintfmt() <void vprintfmt (void (*putch) (int, void *), void *putdat, const char *fmt, va_list ap) at ./libs/printfmt.c:117> (R):
+                    va_arg()
+                    printfmt() <void printfmt (void (*putch) (int, void *), void *putdat, const char *fmt, ...) at ./libs/printfmt.c:97> (R):
+                        va_start()
+                        vprintfmt() <void vprintfmt (void (*putch) (int, void *), void *putdat, const char *fmt, va_list ap) at ./libs/printfmt.c:117> (recursive: see 97)
+                        va_end()
+                    strnlen() <size_t strnlen (const char *s, size_t len) at ./libs/string.c:34>:
+                    getint() <long long getint (va_list *ap, int lflag) at ./libs/printfmt.c:78>:
+                        va_arg()
+                    getuint() <unsigned long long getuint (va_list *ap, int lflag) at ./libs/printfmt.c:60>:
+                        va_arg()
+                    printnum() <void printnum (void (*putch) (int, void *), void *putdat, unsigned long long num, unsigned base, int width, int padc) at ./libs/printfmt.c:37> (R):
+                        do_div()
+                        printnum() <void printnum (void (*putch) (int, void *), void *putdat, unsigned long long num, unsigned base, int width, int padc) at ./libs/printfmt.c:37> (recursive: see 108)
+                cputch() <void cputch (int c, int *cnt) at ./kern/libs/stdio.c:12>:
+                    cons_putc() <void cons_putc (int c) at ./kern/driver/console.c:16>:
+                        local_intr_save()
+                        sbi_console_putchar()
+                        local_intr_restore()
+            va_end()
+    page_insert() <int page_insert (pde_t *pgdir, struct Page *page, uintptr_t la, uint32_t perm) at ./kern/mm/pmm.c:381>:
+        get_pte() <pte_t *get_pte (pde_t *pgdir, uintptr_t la, bool create) at ./kern/mm/pmm.c:240>:
+            PDX1()
+            alloc_page()
+            set_page_ref()
+            page2pa()
+            memset() <void *memset (void *s, char c, size_t n) at ./libs/string.c:271>:
+            KADDR()
+            pte_create()
+            page2ppn()
+            PDE_ADDR()
+            PDX0()
+            PTX()
+        page_ref_inc()
+        pte2page()
+        page_ref_dec()
+        page_remove_pte() <inline void page_remove_pte (pde_t *pgdir, uintptr_t la, pte_t *ptep) at ./kern/mm/pmm.c:323>:
+            pte2page()
+            page_ref_dec()
+            page_ref()
+            free_page()
+            tlb_invalidate() <void tlb_invalidate (pde_t *pgdir, uintptr_t la) at ./kern/mm/pmm.c:408>:
+                flush_tlb()
+        pte_create()
+        page2ppn()
+        tlb_invalidate() <void tlb_invalidate (pde_t *pgdir, uintptr_t la) at ./kern/mm/pmm.c:408>:
+            flush_tlb()
+    swap_map_swappable() <int swap_map_swappable (struct mm_struct *mm, uintptr_t addr, struct Page *page, int swap_in) at ./kern/mm/swap.c:66>:

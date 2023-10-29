@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/driver/intr.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_8a87c43ee200610f41c5389cbc1d45b8.html">driver</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">intr.c 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;<a class="el" href="intr_8h_source.html">intr.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="riscv_8h_source.html">riscv.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+intr.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="intr_8c__incl.gif" border="0" usemap="#akern_2driver_2intr_8c" alt=""/></div>
+<map name="akern_2driver_2intr_8c" id="akern_2driver_2intr_8c">
+<area shape="rect" title=" " alt="" coords="10,5,138,32"/>
+<area shape="rect" href="intr_8h.html" title=" " alt="" coords="5,80,60,107"/>
+<area shape="rect" href="riscv_8h.html" title=" " alt="" coords="85,80,149,107"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:af81ea364a876a1339329bc24fa5eaafb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="intr_8c.html#af81ea364a876a1339329bc24fa5eaafb">intr_enable</a> (void)</td></tr>
+<tr class="separator:af81ea364a876a1339329bc24fa5eaafb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51ef818cc1ceed4340d088bb16277653"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="intr_8c.html#a51ef818cc1ceed4340d088bb16277653">intr_disable</a> (void)</td></tr>
+<tr class="separator:a51ef818cc1ceed4340d088bb16277653"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a51ef818cc1ceed4340d088bb16277653"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51ef818cc1ceed4340d088bb16277653">&#9670;&nbsp;</a></span>intr_disable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void intr_disable </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="intr_8c_a51ef818cc1ceed4340d088bb16277653_icgraph.gif" border="0" usemap="#aintr_8c_a51ef818cc1ceed4340d088bb16277653_icgraph" alt=""/></div>
+<map name="aintr_8c_a51ef818cc1ceed4340d088bb16277653_icgraph" id="aintr_8c_a51ef818cc1ceed4340d088bb16277653_icgraph">
+<area shape="rect" title=" " alt="" coords="149,31,248,57"/>
+<area shape="rect" href="sync_8h.html#aedabe054445606bdb2892a827d55bdc1" title=" " alt="" coords="5,5,101,32"/>
+<area shape="rect" href="assert_8h.html#aa31d39d7e957e5d6f5a7c1e193e1c992" title=" " alt="" coords="18,56,89,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af81ea364a876a1339329bc24fa5eaafb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af81ea364a876a1339329bc24fa5eaafb">&#9670;&nbsp;</a></span>intr_enable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void intr_enable </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="intr_8c_af81ea364a876a1339329bc24fa5eaafb_icgraph.gif" border="0" usemap="#aintr_8c_af81ea364a876a1339329bc24fa5eaafb_icgraph" alt=""/></div>
+<map name="aintr_8c_af81ea364a876a1339329bc24fa5eaafb_icgraph" id="aintr_8c_af81ea364a876a1339329bc24fa5eaafb_icgraph">
+<area shape="rect" title=" " alt="" coords="164,5,259,32"/>
+<area shape="rect" href="sync_8h.html#a032faaaf34bfa59be75332ff7334801a" title=" " alt="" coords="5,5,116,32"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

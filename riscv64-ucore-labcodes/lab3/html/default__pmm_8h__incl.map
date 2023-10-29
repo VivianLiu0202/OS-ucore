@@ -1,0 +1,10 @@
+<map id="kern/mm/default_pmm.h" name="kern/mm/default_pmm.h">
+<area shape="rect" id="node1" title=" " alt="" coords="89,5,271,32"/>
+<area shape="rect" id="node2" href="$pmm_8h.html" title=" " alt="" coords="146,80,214,107"/>
+<area shape="rect" id="node3" href="$assert_8h.html" title=" " alt="" coords="5,229,80,256"/>
+<area shape="rect" id="node4" href="$defs_8h.html" title=" " alt="" coords="241,304,303,331"/>
+<area shape="rect" id="node5" href="$atomic_8h.html" title=" " alt="" coords="155,229,234,256"/>
+<area shape="rect" id="node6" href="$memlayout_8h.html" title=" " alt="" coords="217,155,327,181"/>
+<area shape="rect" id="node8" href="$mmu_8h.html" title=" " alt="" coords="359,155,427,181"/>
+<area shape="rect" id="node7" href="$list_8h.html" title=" " alt="" coords="310,229,365,256"/>
+</map>

@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['t0_1396',['t0',['../structpushregs.html#a6b4565582fead79da07ac430c885c548',1,'pushregs']]],
+  ['t1_1397',['t1',['../structpushregs.html#ab32168f735e7b0e5b67bd8f136938682',1,'pushregs']]],
+  ['t2_1398',['t2',['../structpushregs.html#a70bc1cd6c80f143275e9a553c2a005a5',1,'pushregs']]],
+  ['t3_1399',['t3',['../structpushregs.html#ae69f8382043861f823ffc6f203a0b958',1,'pushregs']]],
+  ['t4_1400',['t4',['../structpushregs.html#a26fbf539c728e26accfef2909c0072d3',1,'pushregs']]],
+  ['t5_1401',['t5',['../structpushregs.html#a86d0d4ffa18ee885d947d9239664c312',1,'pushregs']]],
+  ['t6_1402',['t6',['../structpushregs.html#a3c1d070ce0f5f74362776e53ed5a840a',1,'pushregs']]],
+  ['test_5fand_5fclear_5fbit_1403',['test_and_clear_bit',['../atomic_8h.html#a699223c4f7c0a293ef3855964d3a315b',1,'atomic.h']]],
+  ['test_5fand_5fset_5fbit_1404',['test_and_set_bit',['../atomic_8h.html#aa1e490e1026086ea8ebab09b95676b45',1,'atomic.h']]],
+  ['test_5fbit_1405',['test_bit',['../atomic_8h.html#a616f144debcc6c70f383f8709c989595',1,'atomic.h']]],
+  ['tick_5fevent_1406',['tick_event',['../structswap__manager.html#a1b1cb654f2787a36f880027d43da755a',1,'swap_manager']]],
+  ['tick_5fnum_1407',['TICK_NUM',['../trap_8c.html#ae530b51029e0a83b66f718c3caed947a',1,'trap.c']]],
+  ['ticks_1408',['ticks',['../clock_8h.html#a58c2ab0d14b56cc5d1a30ae1dd2f88a5',1,'ticks():&#160;clock.c'],['../clock_8c.html#a58c2ab0d14b56cc5d1a30ae1dd2f88a5',1,'ticks():&#160;clock.c']]],
+  ['timebase_1409',['timebase',['../clock_8c.html#aa10c2d3db4e7a0d6124f98addce4e5ca',1,'clock.c']]],
+  ['tlb_5finvalidate_1410',['tlb_invalidate',['../pmm_8c.html#a3a6a3f83d69815b453aea9121f46a6ed',1,'tlb_invalidate(pde_t *pgdir, uintptr_t la):&#160;pmm.c'],['../pmm_8h.html#a3a6a3f83d69815b453aea9121f46a6ed',1,'tlb_invalidate(pde_t *pgdir, uintptr_t la):&#160;pmm.c']]],
+  ['to_5fstruct_1411',['to_struct',['../defs_8h.html#a9319e8a2aa1ca109db93ec14f04524e1',1,'defs.h']]],
+  ['tp_1412',['tp',['../structpushregs.html#a06687ba4cd012333bdaa9caf0523303f',1,'pushregs']]],
+  ['trap_1413',['trap',['../trap_8c.html#a372d166e36c086c91e5f5d81e5fead3a',1,'trap(struct trapframe *tf):&#160;trap.c'],['../trap_8h.html#a372d166e36c086c91e5f5d81e5fead3a',1,'trap(struct trapframe *tf):&#160;trap.c']]],
+  ['trap_2ec_1414',['trap.c',['../trap_8c.html',1,'']]],
+  ['trap_2ed_1415',['trap.d',['../trap_8d.html',1,'']]],
+  ['trap_2eh_1416',['trap.h',['../trap_8h.html',1,'']]],
+  ['trap_5fin_5fkernel_1417',['trap_in_kernel',['../trap_8c.html#ac7c9900010d48015646e0b362ae4957c',1,'trap_in_kernel(struct trapframe *tf):&#160;trap.c'],['../trap_8h.html#ac7c9900010d48015646e0b362ae4957c',1,'trap_in_kernel(struct trapframe *tf):&#160;trap.c']]],
+  ['trapentry_2ed_1418',['trapentry.d',['../trapentry_8d.html',1,'']]],
+  ['trapframe_1419',['trapframe',['../structtrapframe.html',1,'']]],
+  ['true_1420',['true',['../defs_8h.html#a41f9c5fb8b08eb5dc3edce4dcb37fee7',1,'defs.h']]]
+];

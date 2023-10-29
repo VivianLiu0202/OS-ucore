@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/mm/default_pmm.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_946bd77349b7674f752759d0c55831d4.html">mm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle">
+<div class="title">default_pmm.c 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;<a class="el" href="pmm_8h_source.html">pmm.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="list_8h_source.html">list.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="string_8h_source.html">string.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="default__pmm_8h_source.html">default_pmm.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+default_pmm.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="default__pmm_8c__incl.gif" border="0" usemap="#akern_2mm_2default__pmm_8c" alt=""/></div>
+<map name="akern_2mm_2default__pmm_8c" id="akern_2mm_2default__pmm_8c">
+<area shape="rect" title=" " alt="" coords="177,5,360,32"/>
+<area shape="rect" href="pmm_8h.html" title=" " alt="" coords="260,155,328,181"/>
+<area shape="rect" href="list_8h.html" title=" " alt="" coords="5,304,60,331"/>
+<area shape="rect" href="string_8h.html" title=" " alt="" coords="441,155,512,181"/>
+<area shape="rect" href="default__pmm_8h.html" title=" " alt="" coords="257,80,379,107"/>
+<area shape="rect" href="assert_8h.html" title=" " alt="" coords="85,304,159,331"/>
+<area shape="rect" href="defs_8h.html" title=" " alt="" coords="243,379,305,405"/>
+<area shape="rect" href="atomic_8h.html" title=" " alt="" coords="235,304,313,331"/>
+<area shape="rect" href="memlayout_8h.html" title=" " alt="" coords="147,229,257,256"/>
+<area shape="rect" href="mmu_8h.html" title=" " alt="" coords="383,229,451,256"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a965e12aad836a35d6b10067de616cd77"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default__pmm_8c.html#a965e12aad836a35d6b10067de616cd77">free_list</a>&#160;&#160;&#160;(free_area.free_list)</td></tr>
+<tr class="separator:a965e12aad836a35d6b10067de616cd77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38371a2a2132c22e6ee06b8cda65229e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default__pmm_8c.html#a38371a2a2132c22e6ee06b8cda65229e">nr_free</a>&#160;&#160;&#160;(free_area.nr_free)</td></tr>
+<tr class="separator:a38371a2a2132c22e6ee06b8cda65229e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ae8ed568a89904e101225f3ecc4c66303"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default__pmm_8c.html#ae8ed568a89904e101225f3ecc4c66303">default_init</a> (void)</td></tr>
+<tr class="separator:ae8ed568a89904e101225f3ecc4c66303"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f3331d7c6e51ab5fe33d97c42a268e8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default__pmm_8c.html#a8f3331d7c6e51ab5fe33d97c42a268e8">default_init_memmap</a> (struct <a class="el" href="struct_page.html">Page</a> *base, <a class="el" href="defs_8h.html#afeaa5ef46acd844422607ca6602691ef">size_t</a> n)</td></tr>
+<tr class="separator:a8f3331d7c6e51ab5fe33d97c42a268e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a757f7769f69cf0522fe32a8ea6f04bb9"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="struct_page.html">Page</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default__pmm_8c.html#a757f7769f69cf0522fe32a8ea6f04bb9">default_alloc_pages</a> (<a class="el" href="defs_8h.html#afeaa5ef46acd844422607ca6602691ef">size_t</a> n)</td></tr>
+<tr class="separator:a757f7769f69cf0522fe32a8ea6f04bb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d291a04f63f996f09d2a90bbafb0a6f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default__pmm_8c.html#a7d291a04f63f996f09d2a90bbafb0a6f">default_free_pages</a> (struct <a class="el" href="struct_page.html">Page</a> *base, <a class="el" href="defs_8h.html#afeaa5ef46acd844422607ca6602691ef">size_t</a> n)</td></tr>
+<tr class="separator:a7d291a04f63f996f09d2a90bbafb0a6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12aa9366e74a4f8dbc699d76204746c1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="defs_8h.html#afeaa5ef46acd844422607ca6602691ef">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default__pmm_8c.html#a12aa9366e74a4f8dbc699d76204746c1">default_nr_free_pages</a> (void)</td></tr>
+<tr class="separator:a12aa9366e74a4f8dbc699d76204746c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f8e2cbab3afa195062bc0131cb4ecd5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default__pmm_8c.html#a1f8e2cbab3afa195062bc0131cb4ecd5">basic_check</a> (void)</td></tr>
+<tr class="separator:a1f8e2cbab3afa195062bc0131cb4ecd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ed27f53388f855a738e2457f5de682e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default__pmm_8c.html#a7ed27f53388f855a738e2457f5de682e">default_check</a> (void)</td></tr>
+<tr class="separator:a7ed27f53388f855a738e2457f5de682e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:aba9fa7c0c9a2a17877bf38a3d2831813"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfree__area__t.html">free_area_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default__pmm_8c.html#aba9fa7c0c9a2a17877bf38a3d2831813">free_area</a></td></tr>
+<tr class="separator:aba9fa7c0c9a2a17877bf38a3d2831813"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac623baa483062d3340cf8eaf9bfb06f5"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="structpmm__manager.html">pmm_manager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default__pmm_8c.html#ac623baa483062d3340cf8eaf9bfb06f5">default_pmm_manager</a></td></tr>
+<tr class="separator:ac623baa483062d3340cf8eaf9bfb06f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="a965e12aad836a35d6b10067de616cd77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a965e12aad836a35d6b10067de616cd77">&#9670;&nbsp;</a></span>free_list</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define free_list&#160;&#160;&#160;(free_area.free_list)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a38371a2a2132c22e6ee06b8cda65229e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38371a2a2132c22e6ee06b8cda65229e">&#9670;&nbsp;</a></span>nr_free</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define nr_free&#160;&#160;&#160;(free_area.nr_free)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a1f8e2cbab3afa195062bc0131cb4ecd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f8e2cbab3afa195062bc0131cb4ecd5">&#9670;&nbsp;</a></span>basic_check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void basic_check </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="default__pmm_8c_a1f8e2cbab3afa195062bc0131cb4ecd5_cgraph.gif" border="0" usemap="#adefault__pmm_8c_a1f8e2cbab3afa195062bc0131cb4ecd5_cgraph" alt=""/></div>
+<map name="adefault__pmm_8c_a1f8e2cbab3afa195062bc0131cb4ecd5_cgraph" id="adefault__pmm_8c_a1f8e2cbab3afa195062bc0131cb4ecd5_cgraph">
+<area shape="rect" title=" " alt="" coords="5,81,107,108"/>
+<area shape="rect" href="list_8h.html#a59b6c26aecb6f1de6802098cacd2c96d" title=" " alt="" coords="155,5,245,32"/>
+<area shape="rect" href="list_8h.html#aab675dfe52cdf4f4b72c6a22c3275e82" title=" " alt="" coords="165,56,235,83"/>
+<area shape="rect" href="pmm_8h.html#ab517d995357f15a4c66fb27a510eb374" title=" " alt="" coords="161,107,239,133"/>
+<area shape="rect" href="pmm_8h.html#ad8e136c060561748245105389a3a40c5" title=" " alt="" coords="161,157,239,184"/>
+<area shape="rect" href="pmm_8h.html#aaf54bae0ec07dff85b828139f157626d" title=" " alt="" coords="293,107,380,133"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="default__pmm_8c_a1f8e2cbab3afa195062bc0131cb4ecd5_icgraph.gif" border="0" usemap="#adefault__pmm_8c_a1f8e2cbab3afa195062bc0131cb4ecd5_icgraph" alt=""/></div>
+<map name="adefault__pmm_8c_a1f8e2cbab3afa195062bc0131cb4ecd5_icgraph" id="adefault__pmm_8c_a1f8e2cbab3afa195062bc0131cb4ecd5_icgraph">
+<area shape="rect" title=" " alt="" coords="167,5,268,32"/>
+<area shape="rect" href="default__pmm_8c.html#a7ed27f53388f855a738e2457f5de682e" title=" " alt="" coords="5,5,119,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a757f7769f69cf0522fe32a8ea6f04bb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a757f7769f69cf0522fe32a8ea6f04bb9">&#9670;&nbsp;</a></span>default_alloc_pages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static struct <a class="el" href="struct_page.html">Page</a>* default_alloc_pages </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="defs_8h.html#afeaa5ef46acd844422607ca6602691ef">size_t</a>&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="default__pmm_8c_a757f7769f69cf0522fe32a8ea6f04bb9_cgraph.gif" border="0" usemap="#adefault__pmm_8c_a757f7769f69cf0522fe32a8ea6f04bb9_cgraph" alt=""/></div>
+<map name="adefault__pmm_8c_a757f7769f69cf0522fe32a8ea6f04bb9_cgraph" id="adefault__pmm_8c_a757f7769f69cf0522fe32a8ea6f04bb9_cgraph">
+<area shape="rect" title=" " alt="" coords="5,81,157,108"/>
+<area shape="rect" href="list_8h.html#a4aa33662635de342c27f7233454574f4" title=" " alt="" coords="208,5,281,32"/>
+<area shape="rect" href="list_8h.html#a86c117ac4118e4f49128679de329b351" title=" " alt="" coords="210,56,279,83"/>
+<area shape="rect" href="list_8h.html#a2a5579d68c706f9ed5103fef6efe8e0a" title=" " alt="" coords="205,107,284,133"/>
+<area shape="rect" href="list_8h.html#a9923c8364fd232c9b8e742f841c2b278" title=" " alt="" coords="205,157,284,184"/>
+<area shape="rect" href="list_8h.html#a239b408a024aa5bc29ed2a2cd93251eb" title=" " alt="" coords="332,5,443,32"/>
+<area shape="rect" href="list_8h.html#a6d14129e8bd464c76ac9c4541f91acab" title=" " alt="" coords="491,5,577,32"/>
+<area shape="rect" href="list_8h.html#a835e92bfc11e7415502f0309eb5b1cfe" title=" " alt="" coords="346,56,429,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7ed27f53388f855a738e2457f5de682e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ed27f53388f855a738e2457f5de682e">&#9670;&nbsp;</a></span>default_check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void default_check </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="default__pmm_8c_a7ed27f53388f855a738e2457f5de682e_cgraph.gif" border="0" usemap="#adefault__pmm_8c_a7ed27f53388f855a738e2457f5de682e_cgraph" alt=""/></div>
+<map name="adefault__pmm_8c_a7ed27f53388f855a738e2457f5de682e_cgraph" id="adefault__pmm_8c_a7ed27f53388f855a738e2457f5de682e_cgraph">
+<area shape="rect" title=" " alt="" coords="5,563,119,589"/>
+<area shape="rect" href="pmm_8c.html#ae2055a0254d79140f1adf784b9b07fea" title=" " alt="" coords="175,385,273,412"/>
+<area shape="rect" href="default__pmm_8c.html#a1f8e2cbab3afa195062bc0131cb4ecd5" title=" " alt="" coords="173,512,275,539"/>
+<area shape="rect" href="list_8h.html#a59b6c26aecb6f1de6802098cacd2c96d" title=" " alt="" coords="329,461,420,488"/>
+<area shape="rect" href="list_8h.html#aab675dfe52cdf4f4b72c6a22c3275e82" title=" " alt="" coords="339,613,410,640"/>
+<area shape="rect" href="pmm_8c.html#af5bf600e8b5ab88df053b90d965c9482" title=" " alt="" coords="177,613,271,640"/>
+<area shape="rect" href="list_8h.html#a2a5579d68c706f9ed5103fef6efe8e0a" title=" " alt="" coords="185,664,263,691"/>
+<area shape="rect" href="pmm_8c.html#acc1a40cd35d7497eef920fbc9219ff0e" title=" " alt="" coords="167,715,281,741"/>
+<area shape="rect" href="stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="491,309,555,336"/>
+<area shape="rect" href="swap_8c.html#a8b0c44bb44fc801d843522eefc8b43ac" title=" " alt="" coords="333,385,417,412"/>
+<area shape="rect" href="stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="650,157,722,184"/>
+<area shape="rect" href="stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="814,56,879,83"/>
+<area shape="rect" href="printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="805,157,888,184"/>
+<area shape="rect" href="console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="948,5,1035,32"/>
+<area shape="rect" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="1083,5,1237,32"/>
+<area shape="rect" href="printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="961,107,1021,133"/>
+<area shape="rect" href="printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="957,157,1025,184"/>
+<area shape="rect" href="printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="954,208,1029,235"/>
+<area shape="rect" href="printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="951,259,1032,285"/>
+<area shape="rect" href="string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="958,56,1025,83"/>
+<area shape="rect" href="pmm_8c.html#a02acb8e4d598f04b9655befb6029d19c" title=" " alt="" coords="651,309,721,336"/>
+<area shape="rect" href="swapfs_8c.html#a41793685a63e0f8e2d48695566bc75bb" title=" " alt="" coords="469,411,577,437"/>
+<area shape="rect" href="pmm_8c.html#a3a6a3f83d69815b453aea9121f46a6ed" title=" " alt="" coords="468,461,579,488"/>
+<area shape="rect" href="string_8c.html#a2be8ba378058c555790b0328c2500a63" title=" " alt="" coords="809,259,885,285"/>
+<area shape="rect" href="pmm_8h.html#ab517d995357f15a4c66fb27a510eb374" title=" " alt="" coords="807,461,886,488"/>
+<area shape="rect" href="pmm_8h.html#aaf54bae0ec07dff85b828139f157626d" title=" " alt="" coords="948,385,1035,412"/>
+<area shape="rect" href="pmm_8h.html#a90435beaeea486ae0208f68941db36a2" title=" " alt="" coords="801,360,892,387"/>
+<area shape="rect" href="pmm_8h.html#a1e526abf140359344dbd9ea214f53694" title=" " alt="" coords="793,208,900,235"/>
+<area shape="rect" href="ide_8c.html#a1d381d983b9bc07a2a4b636ed1997174" title=" " alt="" coords="627,360,745,387"/>
+<area shape="rect" href="pmm_8h.html#a3aa177386346f37eaadf16359ef44da7" title=" " alt="" coords="643,411,729,437"/>
+<area shape="rect" href="string_8c.html#a18d9a75dd16f2db6609538cb4ddedaf1" title=" " alt="" coords="807,411,886,437"/>
+<area shape="rect" href="pmm_8h.html#af481d80989da3c646996210195814878" title=" " alt="" coords="647,461,725,488"/>
+<area shape="rect" href="pmm_8h.html#ad8e136c060561748245105389a3a40c5" title=" " alt="" coords="335,563,414,589"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7d291a04f63f996f09d2a90bbafb0a6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d291a04f63f996f09d2a90bbafb0a6f">&#9670;&nbsp;</a></span>default_free_pages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void default_free_pages </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_page.html">Page</a> *&#160;</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defs_8h.html#afeaa5ef46acd844422607ca6602691ef">size_t</a>&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="default__pmm_8c_a7d291a04f63f996f09d2a90bbafb0a6f_cgraph.gif" border="0" usemap="#adefault__pmm_8c_a7d291a04f63f996f09d2a90bbafb0a6f_cgraph" alt=""/></div>
+<map name="adefault__pmm_8c_a7d291a04f63f996f09d2a90bbafb0a6f_cgraph" id="adefault__pmm_8c_a7d291a04f63f996f09d2a90bbafb0a6f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,157,152,184"/>
+<area shape="rect" href="list_8h.html#a4aa33662635de342c27f7233454574f4" title=" " alt="" coords="217,5,290,32"/>
+<area shape="rect" href="list_8h.html#abb2baaa276b1d2f547c6c4549d2e0127" title=" " alt="" coords="355,56,477,83"/>
+<area shape="rect" href="list_8h.html#a86c117ac4118e4f49128679de329b351" title=" " alt="" coords="219,107,288,133"/>
+<area shape="rect" href="list_8h.html#a59b6c26aecb6f1de6802098cacd2c96d" title=" " alt="" coords="208,157,299,184"/>
+<area shape="rect" href="list_8h.html#a2a5579d68c706f9ed5103fef6efe8e0a" title=" " alt="" coords="214,208,293,235"/>
+<area shape="rect" href="list_8h.html#a9923c8364fd232c9b8e742f841c2b278" title=" " alt="" coords="214,259,293,285"/>
+<area shape="rect" href="pmm_8h.html#a1e526abf140359344dbd9ea214f53694" title=" " alt="" coords="200,309,307,336"/>
+<area shape="rect" href="list_8h.html#a239b408a024aa5bc29ed2a2cd93251eb" title=" " alt="" coords="361,5,471,32"/>
+<area shape="rect" href="list_8h.html#a6d14129e8bd464c76ac9c4541f91acab" title=" " alt="" coords="525,31,612,57"/>
+<area shape="rect" href="list_8h.html#a835e92bfc11e7415502f0309eb5b1cfe" title=" " alt="" coords="375,107,457,133"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae8ed568a89904e101225f3ecc4c66303"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8ed568a89904e101225f3ecc4c66303">&#9670;&nbsp;</a></span>default_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void default_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="default__pmm_8c_ae8ed568a89904e101225f3ecc4c66303_cgraph.gif" border="0" usemap="#adefault__pmm_8c_ae8ed568a89904e101225f3ecc4c66303_cgraph" alt=""/></div>
+<map name="adefault__pmm_8c_ae8ed568a89904e101225f3ecc4c66303_cgraph" id="adefault__pmm_8c_ae8ed568a89904e101225f3ecc4c66303_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,101,32"/>
+<area shape="rect" href="list_8h.html#aab675dfe52cdf4f4b72c6a22c3275e82" title=" " alt="" coords="149,5,220,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8f3331d7c6e51ab5fe33d97c42a268e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f3331d7c6e51ab5fe33d97c42a268e8">&#9670;&nbsp;</a></span>default_init_memmap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void default_init_memmap </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_page.html">Page</a> *&#160;</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defs_8h.html#afeaa5ef46acd844422607ca6602691ef">size_t</a>&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="default__pmm_8c_a8f3331d7c6e51ab5fe33d97c42a268e8_cgraph.gif" border="0" usemap="#adefault__pmm_8c_a8f3331d7c6e51ab5fe33d97c42a268e8_cgraph" alt=""/></div>
+<map name="adefault__pmm_8c_a8f3331d7c6e51ab5fe33d97c42a268e8_cgraph" id="adefault__pmm_8c_a8f3331d7c6e51ab5fe33d97c42a268e8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,107,172,133"/>
+<area shape="rect" href="list_8h.html#a4aa33662635de342c27f7233454574f4" title=" " alt="" coords="237,5,310,32"/>
+<area shape="rect" href="list_8h.html#abb2baaa276b1d2f547c6c4549d2e0127" title=" " alt="" coords="375,56,497,83"/>
+<area shape="rect" href="list_8h.html#a59b6c26aecb6f1de6802098cacd2c96d" title=" " alt="" coords="228,107,319,133"/>
+<area shape="rect" href="list_8h.html#a2a5579d68c706f9ed5103fef6efe8e0a" title=" " alt="" coords="234,157,313,184"/>
+<area shape="rect" href="pmm_8h.html#a1e526abf140359344dbd9ea214f53694" title=" " alt="" coords="220,208,327,235"/>
+<area shape="rect" href="list_8h.html#a239b408a024aa5bc29ed2a2cd93251eb" title=" " alt="" coords="381,5,491,32"/>
+<area shape="rect" href="list_8h.html#a6d14129e8bd464c76ac9c4541f91acab" title=" " alt="" coords="545,31,632,57"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a12aa9366e74a4f8dbc699d76204746c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12aa9366e74a4f8dbc699d76204746c1">&#9670;&nbsp;</a></span>default_nr_free_pages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="defs_8h.html#afeaa5ef46acd844422607ca6602691ef">size_t</a> default_nr_free_pages </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="ac623baa483062d3340cf8eaf9bfb06f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac623baa483062d3340cf8eaf9bfb06f5">&#9670;&nbsp;</a></span>default_pmm_manager</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const struct <a class="el" href="structpmm__manager.html">pmm_manager</a> default_pmm_manager</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    .name = <span class="stringliteral">&quot;default_pmm_manager&quot;</span>,</div>
+<div class="line">    .init = <a class="code" href="default__pmm_8c.html#ae8ed568a89904e101225f3ecc4c66303">default_init</a>,</div>
+<div class="line">    .init_memmap = <a class="code" href="default__pmm_8c.html#a8f3331d7c6e51ab5fe33d97c42a268e8">default_init_memmap</a>,</div>
+<div class="line">    .alloc_pages = <a class="code" href="default__pmm_8c.html#a757f7769f69cf0522fe32a8ea6f04bb9">default_alloc_pages</a>,</div>
+<div class="line">    .free_pages = <a class="code" href="default__pmm_8c.html#a7d291a04f63f996f09d2a90bbafb0a6f">default_free_pages</a>,</div>
+<div class="line">    .nr_free_pages = <a class="code" href="default__pmm_8c.html#a12aa9366e74a4f8dbc699d76204746c1">default_nr_free_pages</a>,</div>
+<div class="line">    .check = <a class="code" href="default__pmm_8c.html#a7ed27f53388f855a738e2457f5de682e">default_check</a>,</div>
+<div class="line">}</div>
+<div class="ttc" id="adefault__pmm_8c_html_a12aa9366e74a4f8dbc699d76204746c1"><div class="ttname"><a href="default__pmm_8c.html#a12aa9366e74a4f8dbc699d76204746c1">default_nr_free_pages</a></div><div class="ttdeci">static size_t default_nr_free_pages(void)</div><div class="ttdef"><b>Definition:</b> default_pmm.c:177</div></div>
+<div class="ttc" id="adefault__pmm_8c_html_a757f7769f69cf0522fe32a8ea6f04bb9"><div class="ttname"><a href="default__pmm_8c.html#a757f7769f69cf0522fe32a8ea6f04bb9">default_alloc_pages</a></div><div class="ttdeci">static struct Page * default_alloc_pages(size_t n)</div><div class="ttdef"><b>Definition:</b> default_pmm.c:97</div></div>
+<div class="ttc" id="adefault__pmm_8c_html_a7d291a04f63f996f09d2a90bbafb0a6f"><div class="ttname"><a href="default__pmm_8c.html#a7d291a04f63f996f09d2a90bbafb0a6f">default_free_pages</a></div><div class="ttdeci">static void default_free_pages(struct Page *base, size_t n)</div><div class="ttdef"><b>Definition:</b> default_pmm.c:127</div></div>
+<div class="ttc" id="adefault__pmm_8c_html_a7ed27f53388f855a738e2457f5de682e"><div class="ttname"><a href="default__pmm_8c.html#a7ed27f53388f855a738e2457f5de682e">default_check</a></div><div class="ttdeci">static void default_check(void)</div><div class="ttdef"><b>Definition:</b> default_pmm.c:235</div></div>
+<div class="ttc" id="adefault__pmm_8c_html_a8f3331d7c6e51ab5fe33d97c42a268e8"><div class="ttname"><a href="default__pmm_8c.html#a8f3331d7c6e51ab5fe33d97c42a268e8">default_init_memmap</a></div><div class="ttdeci">static void default_init_memmap(struct Page *base, size_t n)</div><div class="ttdef"><b>Definition:</b> default_pmm.c:69</div></div>
+<div class="ttc" id="adefault__pmm_8c_html_ae8ed568a89904e101225f3ecc4c66303"><div class="ttname"><a href="default__pmm_8c.html#ae8ed568a89904e101225f3ecc4c66303">default_init</a></div><div class="ttdeci">static void default_init(void)</div><div class="ttdef"><b>Definition:</b> default_pmm.c:63</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aba9fa7c0c9a2a17877bf38a3d2831813"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba9fa7c0c9a2a17877bf38a3d2831813">&#9670;&nbsp;</a></span>free_area</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structfree__area__t.html">free_area_t</a> free_area</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

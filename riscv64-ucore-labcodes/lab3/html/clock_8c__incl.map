@@ -1,0 +1,9 @@
+<map id="kern/driver/clock.c" name="kern/driver/clock.c">
+<area shape="rect" id="node1" title=" " alt="" coords="105,5,246,32"/>
+<area shape="rect" id="node2" href="$clock_8h.html" title=" " alt="" coords="5,80,73,107"/>
+<area shape="rect" id="node3" href="$defs_8h.html" title=" " alt="" coords="108,155,171,181"/>
+<area shape="rect" id="node4" href="$sbi_8h.html" title=" " alt="" coords="149,80,202,107"/>
+<area shape="rect" id="node5" href="$stdio_8h.html" title=" " alt="" coords="226,80,293,107"/>
+<area shape="rect" id="node7" href="$riscv_8h.html" title=" " alt="" coords="317,80,381,107"/>
+<area shape="rect" id="node6" href="$stdarg_8h.html" title=" " alt="" coords="222,155,297,181"/>
+</map>

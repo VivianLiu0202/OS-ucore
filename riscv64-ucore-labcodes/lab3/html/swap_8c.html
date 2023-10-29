@@ -1,0 +1,1014 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: kern/mm/swap.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3dad8e81b3f37b89b2bf0a8abb2d993.html">kern</a></li><li class="navelem"><a class="el" href="dir_946bd77349b7674f752759d0c55831d4.html">mm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle">
+<div class="title">swap.c 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;<a class="el" href="swap_8h_source.html">swap.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="swapfs_8h_source.html">swapfs.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="swap__fifo_8h_source.html">swap_fifo.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="swap__clock_8h_source.html">swap_clock.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="stdio_8h_source.html">stdio.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="string_8h_source.html">string.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="memlayout_8h_source.html">memlayout.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="pmm_8h_source.html">pmm.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="mmu_8h_source.html">mmu.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+swap.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap_8c__incl.gif" border="0" usemap="#akern_2mm_2swap_8c" alt=""/></div>
+<map name="akern_2mm_2swap_8c" id="akern_2mm_2swap_8c">
+<area shape="rect" title=" " alt="" coords="341,5,470,32"/>
+<area shape="rect" href="swap_8h.html" title=" " alt="" coords="173,155,241,181"/>
+<area shape="rect" href="memlayout_8h.html" title=" " alt="" coords="246,304,355,331"/>
+<area shape="rect" href="pmm_8h.html" title=" " alt="" coords="436,229,504,256"/>
+<area shape="rect" href="mmu_8h.html" title=" " alt="" coords="505,379,573,405"/>
+<area shape="rect" href="swapfs_8h.html" title=" " alt="" coords="288,80,368,107"/>
+<area shape="rect" href="swap__fifo_8h.html" title=" " alt="" coords="35,80,131,107"/>
+<area shape="rect" href="swap__clock_8h.html" title=" " alt="" coords="155,80,264,107"/>
+<area shape="rect" href="stdio_8h.html" title=" " alt="" coords="758,80,824,107"/>
+<area shape="rect" href="string_8h.html" title=" " alt="" coords="658,155,729,181"/>
+<area shape="rect" href="defs_8h.html" title=" " alt="" coords="436,453,498,480"/>
+<area shape="rect" href="vmm_8h.html" title=" " alt="" coords="172,229,240,256"/>
+<area shape="rect" href="atomic_8h.html" title=" " alt="" coords="350,379,429,405"/>
+<area shape="rect" href="list_8h.html" title=" " alt="" coords="220,379,274,405"/>
+<area shape="rect" href="assert_8h.html" title=" " alt="" coords="430,304,504,331"/>
+<area shape="rect" href="sync_8h.html" title=" " alt="" coords="107,304,171,331"/>
+<area shape="rect" href="intr_8h.html" title=" " alt="" coords="52,379,106,405"/>
+<area shape="rect" href="riscv_8h.html" title=" " alt="" coords="131,379,195,405"/>
+<area shape="rect" href="stdarg_8h.html" title=" " alt="" coords="754,155,828,181"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:aa5c5e56ef3ef6374b0526eca4a7a3d2e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#aa5c5e56ef3ef6374b0526eca4a7a3d2e">CHECK_VALID_VIR_PAGE_NUM</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:aa5c5e56ef3ef6374b0526eca4a7a3d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63635091e7fc8121abbb1ec201409213"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a63635091e7fc8121abbb1ec201409213">BEING_CHECK_VALID_VADDR</a>&#160;&#160;&#160;0X1000</td></tr>
+<tr class="separator:a63635091e7fc8121abbb1ec201409213"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a940dab0de132dbd97884c7d0fd29f9d2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a940dab0de132dbd97884c7d0fd29f9d2">CHECK_VALID_VADDR</a>&#160;&#160;&#160;(<a class="el" href="swap_8c.html#aa5c5e56ef3ef6374b0526eca4a7a3d2e">CHECK_VALID_VIR_PAGE_NUM</a> + 1) * 0x1000</td></tr>
+<tr class="separator:a940dab0de132dbd97884c7d0fd29f9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21d2d6c5c9da1e7d3d0ee3f74e9c7b56"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a21d2d6c5c9da1e7d3d0ee3f74e9c7b56">CHECK_VALID_PHY_PAGE_NUM</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a21d2d6c5c9da1e7d3d0ee3f74e9c7b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a644abd334cf3b5ad6f0f5adde4924eb4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a644abd334cf3b5ad6f0f5adde4924eb4">MAX_SEQ_NO</a>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:a644abd334cf3b5ad6f0f5adde4924eb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a965e12aad836a35d6b10067de616cd77"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a965e12aad836a35d6b10067de616cd77">free_list</a>&#160;&#160;&#160;(free_area.free_list)</td></tr>
+<tr class="separator:a965e12aad836a35d6b10067de616cd77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38371a2a2132c22e6ee06b8cda65229e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a38371a2a2132c22e6ee06b8cda65229e">nr_free</a>&#160;&#160;&#160;(free_area.nr_free)</td></tr>
+<tr class="separator:a38371a2a2132c22e6ee06b8cda65229e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a3d7e1e8f3b1851c9438d2003941e2d0c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a3d7e1e8f3b1851c9438d2003941e2d0c">check_swap</a> (void)</td></tr>
+<tr class="separator:a3d7e1e8f3b1851c9438d2003941e2d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecac407d799dab293cab398185a74f35"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#aecac407d799dab293cab398185a74f35">swap_init</a> (void)</td></tr>
+<tr class="separator:aecac407d799dab293cab398185a74f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79ff32a0865190184c59f90fd42868cd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a79ff32a0865190184c59f90fd42868cd">swap_init_mm</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm)</td></tr>
+<tr class="separator:a79ff32a0865190184c59f90fd42868cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86aa889f94c98d3d77111304e8c20de4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a86aa889f94c98d3d77111304e8c20de4">swap_tick_event</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm)</td></tr>
+<tr class="separator:a86aa889f94c98d3d77111304e8c20de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3052457b47fe22e700ce9d6620b4485"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#ab3052457b47fe22e700ce9d6620b4485">swap_map_swappable</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr, struct <a class="el" href="struct_page.html">Page</a> *page, int <a class="el" href="swap_8h.html#af3058f8798ac6b061b6a6ca528ac9932">swap_in</a>)</td></tr>
+<tr class="separator:ab3052457b47fe22e700ce9d6620b4485"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a691606e1d6b947b32c044f447df48e2f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a691606e1d6b947b32c044f447df48e2f">swap_set_unswappable</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr)</td></tr>
+<tr class="separator:a691606e1d6b947b32c044f447df48e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b0c44bb44fc801d843522eefc8b43ac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a8b0c44bb44fc801d843522eefc8b43ac">swap_out</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, int n, int in_tick)</td></tr>
+<tr class="separator:a8b0c44bb44fc801d843522eefc8b43ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3058f8798ac6b061b6a6ca528ac9932"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#af3058f8798ac6b061b6a6ca528ac9932">swap_in</a> (struct <a class="el" href="structmm__struct.html">mm_struct</a> *mm, <a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a> addr, struct <a class="el" href="struct_page.html">Page</a> **ptr_result)</td></tr>
+<tr class="separator:af3058f8798ac6b061b6a6ca528ac9932"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4390cd136f00dda0463be7aff412e46"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#af4390cd136f00dda0463be7aff412e46">check_content_set</a> (void)</td></tr>
+<tr class="separator:af4390cd136f00dda0463be7aff412e46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a558e3f330e1faa73efe61a6f0dc3ea52"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a558e3f330e1faa73efe61a6f0dc3ea52">check_content_access</a> (void)</td></tr>
+<tr class="separator:a558e3f330e1faa73efe61a6f0dc3ea52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:afc2d95e8e7c79c9e8081d691ad9afb64"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structswap__manager.html">swap_manager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#afc2d95e8e7c79c9e8081d691ad9afb64">sm</a></td></tr>
+<tr class="separator:afc2d95e8e7c79c9e8081d691ad9afb64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e94b9265362af29fb8248ba454bf388"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defs_8h.html#afeaa5ef46acd844422607ca6602691ef">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a4e94b9265362af29fb8248ba454bf388">max_swap_offset</a></td></tr>
+<tr class="separator:a4e94b9265362af29fb8248ba454bf388"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f320bc1324b07761e7b690bc5c2aa38"><td class="memItemLeft" align="right" valign="top">volatile int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a1f320bc1324b07761e7b690bc5c2aa38">swap_init_ok</a> = 0</td></tr>
+<tr class="separator:a1f320bc1324b07761e7b690bc5c2aa38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a364b464b97f7595e6a6b044f38d260ea"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a364b464b97f7595e6a6b044f38d260ea">swap_page</a> [<a class="el" href="swap_8c.html#aa5c5e56ef3ef6374b0526eca4a7a3d2e">CHECK_VALID_VIR_PAGE_NUM</a>]</td></tr>
+<tr class="separator:a364b464b97f7595e6a6b044f38d260ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c992515653d90415a6e904c9b40ca65"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a2c992515653d90415a6e904c9b40ca65">swap_in_seq_no</a> [<a class="el" href="swap_8c.html#a644abd334cf3b5ad6f0f5adde4924eb4">MAX_SEQ_NO</a>]</td></tr>
+<tr class="separator:a2c992515653d90415a6e904c9b40ca65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a976ae1baa1806c75cffc6250ef865b25"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a976ae1baa1806c75cffc6250ef865b25">swap_out_seq_no</a> [<a class="el" href="swap_8c.html#a644abd334cf3b5ad6f0f5adde4924eb4">MAX_SEQ_NO</a>]</td></tr>
+<tr class="separator:a976ae1baa1806c75cffc6250ef865b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac64367fa797c52d8f90d05044b668c2a"><td class="memItemLeft" align="right" valign="top">volatile unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#ac64367fa797c52d8f90d05044b668c2a">swap_out_num</a> = 0</td></tr>
+<tr class="separator:ac64367fa797c52d8f90d05044b668c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf87842e7479d3dc098840fd73d07316"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_page.html">Page</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#adf87842e7479d3dc098840fd73d07316">check_rp</a> [<a class="el" href="swap_8c.html#a21d2d6c5c9da1e7d3d0ee3f74e9c7b56">CHECK_VALID_PHY_PAGE_NUM</a>]</td></tr>
+<tr class="separator:adf87842e7479d3dc098840fd73d07316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a365f403d72451d6db6f8896efe22f82f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a365f403d72451d6db6f8896efe22f82f">check_ptep</a> [<a class="el" href="swap_8c.html#a21d2d6c5c9da1e7d3d0ee3f74e9c7b56">CHECK_VALID_PHY_PAGE_NUM</a>]</td></tr>
+<tr class="separator:a365f403d72451d6db6f8896efe22f82f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c91637d25438401cb9d0ae6c56032c1"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#a0c91637d25438401cb9d0ae6c56032c1">check_swap_addr</a> [<a class="el" href="swap_8c.html#aa5c5e56ef3ef6374b0526eca4a7a3d2e">CHECK_VALID_VIR_PAGE_NUM</a>]</td></tr>
+<tr class="separator:a0c91637d25438401cb9d0ae6c56032c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba9fa7c0c9a2a17877bf38a3d2831813"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfree__area__t.html">free_area_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="swap_8c.html#aba9fa7c0c9a2a17877bf38a3d2831813">free_area</a></td></tr>
+<tr class="separator:aba9fa7c0c9a2a17877bf38a3d2831813"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="a63635091e7fc8121abbb1ec201409213"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63635091e7fc8121abbb1ec201409213">&#9670;&nbsp;</a></span>BEING_CHECK_VALID_VADDR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BEING_CHECK_VALID_VADDR&#160;&#160;&#160;0X1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a21d2d6c5c9da1e7d3d0ee3f74e9c7b56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21d2d6c5c9da1e7d3d0ee3f74e9c7b56">&#9670;&nbsp;</a></span>CHECK_VALID_PHY_PAGE_NUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHECK_VALID_PHY_PAGE_NUM&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a940dab0de132dbd97884c7d0fd29f9d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a940dab0de132dbd97884c7d0fd29f9d2">&#9670;&nbsp;</a></span>CHECK_VALID_VADDR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHECK_VALID_VADDR&#160;&#160;&#160;(<a class="el" href="swap_8c.html#aa5c5e56ef3ef6374b0526eca4a7a3d2e">CHECK_VALID_VIR_PAGE_NUM</a> + 1) * 0x1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa5c5e56ef3ef6374b0526eca4a7a3d2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5c5e56ef3ef6374b0526eca4a7a3d2e">&#9670;&nbsp;</a></span>CHECK_VALID_VIR_PAGE_NUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHECK_VALID_VIR_PAGE_NUM&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a965e12aad836a35d6b10067de616cd77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a965e12aad836a35d6b10067de616cd77">&#9670;&nbsp;</a></span>free_list</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define free_list&#160;&#160;&#160;(free_area.free_list)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a644abd334cf3b5ad6f0f5adde4924eb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a644abd334cf3b5ad6f0f5adde4924eb4">&#9670;&nbsp;</a></span>MAX_SEQ_NO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_SEQ_NO&#160;&#160;&#160;10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a38371a2a2132c22e6ee06b8cda65229e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38371a2a2132c22e6ee06b8cda65229e">&#9670;&nbsp;</a></span>nr_free</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define nr_free&#160;&#160;&#160;(free_area.nr_free)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a558e3f330e1faa73efe61a6f0dc3ea52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a558e3f330e1faa73efe61a6f0dc3ea52">&#9670;&nbsp;</a></span>check_content_access()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int check_content_access </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap_8c_a558e3f330e1faa73efe61a6f0dc3ea52_icgraph.gif" border="0" usemap="#aswap_8c_a558e3f330e1faa73efe61a6f0dc3ea52_icgraph" alt=""/></div>
+<map name="aswap_8c_a558e3f330e1faa73efe61a6f0dc3ea52_icgraph" id="aswap_8c_a558e3f330e1faa73efe61a6f0dc3ea52_icgraph">
+<area shape="rect" title=" " alt="" coords="287,5,453,32"/>
+<area shape="rect" href="swap_8c.html#a3d7e1e8f3b1851c9438d2003941e2d0c" title=" " alt="" coords="137,5,239,32"/>
+<area shape="rect" href="swap_8c.html#aecac407d799dab293cab398185a74f35" title=" " alt="" coords="5,5,89,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af4390cd136f00dda0463be7aff412e46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4390cd136f00dda0463be7aff412e46">&#9670;&nbsp;</a></span>check_content_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void check_content_set </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap_8c_af4390cd136f00dda0463be7aff412e46_icgraph.gif" border="0" usemap="#aswap_8c_af4390cd136f00dda0463be7aff412e46_icgraph" alt=""/></div>
+<map name="aswap_8c_af4390cd136f00dda0463be7aff412e46_icgraph" id="aswap_8c_af4390cd136f00dda0463be7aff412e46_icgraph">
+<area shape="rect" title=" " alt="" coords="287,5,429,32"/>
+<area shape="rect" href="swap_8c.html#a3d7e1e8f3b1851c9438d2003941e2d0c" title=" " alt="" coords="137,5,239,32"/>
+<area shape="rect" href="swap_8c.html#aecac407d799dab293cab398185a74f35" title=" " alt="" coords="5,5,89,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3d7e1e8f3b1851c9438d2003941e2d0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d7e1e8f3b1851c9438d2003941e2d0c">&#9670;&nbsp;</a></span>check_swap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void check_swap </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap_8c_a3d7e1e8f3b1851c9438d2003941e2d0c_cgraph.gif" border="0" usemap="#aswap_8c_a3d7e1e8f3b1851c9438d2003941e2d0c_cgraph" alt=""/></div>
+<map name="aswap_8c_a3d7e1e8f3b1851c9438d2003941e2d0c_cgraph" id="aswap_8c_a3d7e1e8f3b1851c9438d2003941e2d0c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,335,107,361"/>
+<area shape="rect" href="swap_8c.html#a558e3f330e1faa73efe61a6f0dc3ea52" title=" " alt="" coords="155,5,321,32"/>
+<area shape="rect" href="swap_8c.html#af4390cd136f00dda0463be7aff412e46" title=" " alt="" coords="167,56,309,83"/>
+<area shape="rect" href="stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="871,107,935,133"/>
+<area shape="rect" href="pmm_8c.html#af5bf600e8b5ab88df053b90d965c9482" title=" " alt="" coords="571,411,666,437"/>
+<area shape="rect" href="pmm_8c.html#a02acb8e4d598f04b9655befb6029d19c" title=" " alt="" coords="868,360,939,387"/>
+<area shape="rect" href="vmm_8c.html#a7424f7ef30a8d8bd6fe3371134f48759" title=" " alt="" coords="169,563,307,589"/>
+<area shape="rect" href="list_8h.html#a2a5579d68c706f9ed5103fef6efe8e0a" title=" " alt="" coords="406,563,485,589"/>
+<area shape="rect" href="list_8h.html#a59b6c26aecb6f1de6802098cacd2c96d" title=" " alt="" coords="193,613,283,640"/>
+<area shape="rect" href="list_8h.html#aab675dfe52cdf4f4b72c6a22c3275e82" title=" " alt="" coords="410,259,481,285"/>
+<area shape="rect" href="vmm_8c.html#a24d42b4ed2477d387310ddb18e277071" title=" " alt="" coords="190,208,286,235"/>
+<area shape="rect" href="vmm_8c.html#ad7541e89504d7d084a3d31b67166185e" title=" " alt="" coords="186,461,290,488"/>
+<area shape="rect" href="pmm_8c.html#acc1a40cd35d7497eef920fbc9219ff0e" title=" " alt="" coords="181,664,295,691"/>
+<area shape="rect" href="pmm_8h.html#abd8a44beb459c14597658dbdc0e18881" title=" " alt="" coords="577,360,660,387"/>
+<area shape="rect" href="vmm_8c.html#a7a6d4d9a52a15d77de91f761855c1a66" title=" " alt="" coords="189,157,287,184"/>
+<area shape="rect" href="stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="1030,107,1102,133"/>
+<area shape="rect" href="stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="1182,56,1247,83"/>
+<area shape="rect" href="printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="1173,132,1256,159"/>
+<area shape="rect" href="console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="1304,31,1391,57"/>
+<area shape="rect" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="1439,31,1593,57"/>
+<area shape="rect" href="printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="1317,284,1377,311"/>
+<area shape="rect" href="printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="1313,81,1381,108"/>
+<area shape="rect" href="printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="1310,132,1385,159"/>
+<area shape="rect" href="printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="1307,183,1388,209"/>
+<area shape="rect" href="string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="1314,233,1381,260"/>
+<area shape="rect" href="string_8c.html#a2be8ba378058c555790b0328c2500a63" title=" " alt="" coords="1028,411,1104,437"/>
+<area shape="rect" href="pmm_8h.html#ab517d995357f15a4c66fb27a510eb374" title=" " alt="" coords="1175,360,1254,387"/>
+<area shape="rect" href="pmm_8h.html#aaf54bae0ec07dff85b828139f157626d" title=" " alt="" coords="1304,335,1391,361"/>
+<area shape="rect" href="pmm_8h.html#a90435beaeea486ae0208f68941db36a2" title=" " alt="" coords="1021,461,1111,488"/>
+<area shape="rect" href="pmm_8h.html#a1e526abf140359344dbd9ea214f53694" title=" " alt="" coords="1013,360,1119,387"/>
+<area shape="rect" href="vmm_8c.html#a5ea7bebcbce722117fe0ebaf6dc3d0cb" title=" " alt="" coords="369,664,521,691"/>
+<area shape="rect" href="list_8h.html#a239b408a024aa5bc29ed2a2cd93251eb" title=" " alt="" coords="390,613,501,640"/>
+<area shape="rect" href="list_8h.html#a6d14129e8bd464c76ac9c4541f91acab" title=" " alt="" coords="575,613,662,640"/>
+<area shape="rect" href="pmm_8c.html#a8e2dc4d71325ce9ddba783b4289e8e75" title=" " alt="" coords="408,157,483,184"/>
+<area shape="rect" href="swap_8c.html#a79ff32a0865190184c59f90fd42868cd" title=" " alt="" coords="387,208,504,235"/>
+<area shape="rect" href="pmm_8c.html#ae2055a0254d79140f1adf784b9b07fea" title=" " alt="" coords="569,157,668,184"/>
+<area shape="rect" href="pmm_8h.html#a3aa177386346f37eaadf16359ef44da7" title=" " alt="" coords="1023,259,1109,285"/>
+<area shape="rect" href="swap_8c.html#a8b0c44bb44fc801d843522eefc8b43ac" title=" " alt="" coords="716,208,800,235"/>
+<area shape="rect" href="swapfs_8c.html#a41793685a63e0f8e2d48695566bc75bb" title=" " alt="" coords="849,208,957,235"/>
+<area shape="rect" href="pmm_8c.html#a3a6a3f83d69815b453aea9121f46a6ed" title=" " alt="" coords="848,157,959,184"/>
+<area shape="rect" href="ide_8c.html#a1d381d983b9bc07a2a4b636ed1997174" title=" " alt="" coords="1007,208,1125,235"/>
+<area shape="rect" href="string_8c.html#a18d9a75dd16f2db6609538cb4ddedaf1" title=" " alt="" coords="1175,208,1254,235"/>
+<area shape="rect" href="pmm_8h.html#af481d80989da3c646996210195814878" title=" " alt="" coords="1027,157,1105,184"/>
+<area shape="rect" href="pmm_8c.html#ab66b2fd61c3ed722ba79fdaab776029f" title=" " alt="" coords="417,461,473,488"/>
+<area shape="rect" href="list_8h.html#a86c117ac4118e4f49128679de329b351" title=" " alt="" coords="411,512,480,539"/>
+<area shape="rect" href="pmm_8h.html#a9cd9040356b15a1592f57740735b2285" title=" " alt="" coords="575,461,662,488"/>
+<area shape="rect" href="pmm_8h.html#a9eb3d05d35adc23aa957c07d5ef5ed4e" title=" " alt="" coords="719,411,797,437"/>
+<area shape="rect" href="list_8h.html#a835e92bfc11e7415502f0309eb5b1cfe" title=" " alt="" coords="577,512,660,539"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap_8c_a3d7e1e8f3b1851c9438d2003941e2d0c_icgraph.gif" border="0" usemap="#aswap_8c_a3d7e1e8f3b1851c9438d2003941e2d0c_icgraph" alt=""/></div>
+<map name="aswap_8c_a3d7e1e8f3b1851c9438d2003941e2d0c_icgraph" id="aswap_8c_a3d7e1e8f3b1851c9438d2003941e2d0c_icgraph">
+<area shape="rect" title=" " alt="" coords="137,5,239,32"/>
+<area shape="rect" href="swap_8c.html#aecac407d799dab293cab398185a74f35" title=" " alt="" coords="5,5,89,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af3058f8798ac6b061b6a6ca528ac9932"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3058f8798ac6b061b6a6ca528ac9932">&#9670;&nbsp;</a></span>swap_in()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int swap_in </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a>&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_page.html">Page</a> **&#160;</td>
+          <td class="paramname"><em>ptr_result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap_8c_af3058f8798ac6b061b6a6ca528ac9932_cgraph.gif" border="0" usemap="#aswap_8c_af3058f8798ac6b061b6a6ca528ac9932_cgraph" alt=""/></div>
+<map name="aswap_8c_af3058f8798ac6b061b6a6ca528ac9932_cgraph" id="aswap_8c_af3058f8798ac6b061b6a6ca528ac9932_cgraph">
+<area shape="rect" title=" " alt="" coords="5,309,80,336"/>
+<area shape="rect" href="stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="148,208,212,235"/>
+<area shape="rect" href="pmm_8c.html#a02acb8e4d598f04b9655befb6029d19c" title=" " alt="" coords="302,309,373,336"/>
+<area shape="rect" href="swapfs_8c.html#a351ae62e17ae15d0be227ee49b1b526f" title=" " alt="" coords="128,411,232,437"/>
+<area shape="rect" href="stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="301,157,373,184"/>
+<area shape="rect" href="stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="463,56,529,83"/>
+<area shape="rect" href="printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="455,157,537,184"/>
+<area shape="rect" href="console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="597,5,684,32"/>
+<area shape="rect" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="732,5,887,32"/>
+<area shape="rect" href="printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="611,157,671,184"/>
+<area shape="rect" href="printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="607,208,675,235"/>
+<area shape="rect" href="printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="603,259,678,285"/>
+<area shape="rect" href="printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="600,56,681,83"/>
+<area shape="rect" href="string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="607,107,674,133"/>
+<area shape="rect" href="string_8c.html#a2be8ba378058c555790b0328c2500a63" title=" " alt="" coords="458,208,534,235"/>
+<area shape="rect" href="pmm_8h.html#ab517d995357f15a4c66fb27a510eb374" title=" " alt="" coords="457,411,535,437"/>
+<area shape="rect" href="pmm_8h.html#aaf54bae0ec07dff85b828139f157626d" title=" " alt="" coords="597,360,684,387"/>
+<area shape="rect" href="pmm_8h.html#a90435beaeea486ae0208f68941db36a2" title=" " alt="" coords="451,309,541,336"/>
+<area shape="rect" href="pmm_8h.html#a1e526abf140359344dbd9ea214f53694" title=" " alt="" coords="443,360,549,387"/>
+<area shape="rect" href="ide_8c.html#aa3e3300bda460455ef67f4f0b7861e5f" title=" " alt="" coords="280,461,395,488"/>
+<area shape="rect" href="pmm_8h.html#a3aa177386346f37eaadf16359ef44da7" title=" " alt="" coords="294,411,381,437"/>
+<area shape="rect" href="string_8c.html#a18d9a75dd16f2db6609538cb4ddedaf1" title=" " alt="" coords="457,461,535,488"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap_8c_af3058f8798ac6b061b6a6ca528ac9932_icgraph.gif" border="0" usemap="#aswap_8c_af3058f8798ac6b061b6a6ca528ac9932_icgraph" alt=""/></div>
+<map name="aswap_8c_af3058f8798ac6b061b6a6ca528ac9932_icgraph" id="aswap_8c_af3058f8798ac6b061b6a6ca528ac9932_icgraph">
+<area shape="rect" title=" " alt="" coords="1000,5,1075,32"/>
+<area shape="rect" href="vmm_8c.html#a76083b4b497bc14110c89b222892e5a9" title=" " alt="" coords="464,31,555,57"/>
+<area shape="rect" href="swap_8c.html#ab3052457b47fe22e700ce9d6620b4485" title=" " alt="" coords="783,31,952,57"/>
+<area shape="rect" href="trap_8c.html#a52ce92f648fa34b3877351b9f8240f98" title=" " alt="" coords="292,31,416,57"/>
+<area shape="rect" href="trap_8c.html#a9b7dec2ed35d681fdbe2fe46afb695a5" title=" " alt="" coords="101,31,244,57"/>
+<area shape="rect" href="trap_8c.html#a372d166e36c086c91e5f5d81e5fead3a" title=" " alt="" coords="5,31,53,57"/>
+<area shape="rect" href="pmm_8c.html#a682ec852da4ba9f942d14dd940c9dc50" title=" " alt="" coords="603,81,735,108"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aecac407d799dab293cab398185a74f35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecac407d799dab293cab398185a74f35">&#9670;&nbsp;</a></span>swap_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int swap_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap_8c_aecac407d799dab293cab398185a74f35_cgraph.gif" border="0" usemap="#aswap_8c_aecac407d799dab293cab398185a74f35_cgraph" alt=""/></div>
+<map name="aswap_8c_aecac407d799dab293cab398185a74f35_cgraph" id="aswap_8c_aecac407d799dab293cab398185a74f35_cgraph">
+<area shape="rect" title=" " alt="" coords="5,816,89,843"/>
+<area shape="rect" href="swap_8c.html#a3d7e1e8f3b1851c9438d2003941e2d0c" title=" " alt="" coords="137,436,239,463"/>
+<area shape="rect" href="stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="1003,519,1067,545"/>
+<area shape="rect" href="swapfs_8c.html#aeb5d0f07237fbe682bf1dcea18a1529e" title=" " alt="" coords="140,867,236,893"/>
+<area shape="rect" href="swap_8c.html#a558e3f330e1faa73efe61a6f0dc3ea52" title=" " alt="" coords="287,385,453,412"/>
+<area shape="rect" href="swap_8c.html#af4390cd136f00dda0463be7aff412e46" title=" " alt="" coords="299,436,441,463"/>
+<area shape="rect" href="pmm_8c.html#af5bf600e8b5ab88df053b90d965c9482" title=" " alt="" coords="703,549,798,576"/>
+<area shape="rect" href="pmm_8c.html#a02acb8e4d598f04b9655befb6029d19c" title=" " alt="" coords="1000,81,1071,108"/>
+<area shape="rect" href="vmm_8c.html#a7424f7ef30a8d8bd6fe3371134f48759" title=" " alt="" coords="301,537,439,564"/>
+<area shape="rect" href="list_8h.html#a2a5579d68c706f9ed5103fef6efe8e0a" title=" " alt="" coords="538,588,617,615"/>
+<area shape="rect" href="list_8h.html#a59b6c26aecb6f1de6802098cacd2c96d" title=" " alt="" coords="325,765,415,792"/>
+<area shape="rect" href="list_8h.html#aab675dfe52cdf4f4b72c6a22c3275e82" title=" " alt="" coords="542,233,613,260"/>
+<area shape="rect" href="vmm_8c.html#a24d42b4ed2477d387310ddb18e277071" title=" " alt="" coords="322,183,418,209"/>
+<area shape="rect" href="vmm_8c.html#ad7541e89504d7d084a3d31b67166185e" title=" " alt="" coords="318,639,422,665"/>
+<area shape="rect" href="pmm_8c.html#acc1a40cd35d7497eef920fbc9219ff0e" title=" " alt="" coords="313,284,427,311"/>
+<area shape="rect" href="pmm_8h.html#abd8a44beb459c14597658dbdc0e18881" title=" " alt="" coords="709,411,792,437"/>
+<area shape="rect" href="vmm_8c.html#a7a6d4d9a52a15d77de91f761855c1a66" title=" " alt="" coords="321,132,419,159"/>
+<area shape="rect" href="stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="1162,519,1234,545"/>
+<area shape="rect" href="stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="1314,493,1379,520"/>
+<area shape="rect" href="printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="1305,569,1388,596"/>
+<area shape="rect" href="console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="1436,468,1523,495"/>
+<area shape="rect" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="1571,468,1725,495"/>
+<area shape="rect" href="printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="1449,671,1509,697"/>
+<area shape="rect" href="printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="1445,721,1513,748"/>
+<area shape="rect" href="printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="1442,519,1517,545"/>
+<area shape="rect" href="printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="1439,569,1520,596"/>
+<area shape="rect" href="string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="1446,620,1513,647"/>
+<area shape="rect" href="string_8c.html#a2be8ba378058c555790b0328c2500a63" title=" " alt="" coords="1160,183,1236,209"/>
+<area shape="rect" href="pmm_8h.html#ab517d995357f15a4c66fb27a510eb374" title=" " alt="" coords="1307,31,1386,57"/>
+<area shape="rect" href="pmm_8h.html#aaf54bae0ec07dff85b828139f157626d" title=" " alt="" coords="1436,5,1523,32"/>
+<area shape="rect" href="pmm_8h.html#a90435beaeea486ae0208f68941db36a2" title=" " alt="" coords="1153,81,1243,108"/>
+<area shape="rect" href="pmm_8h.html#a1e526abf140359344dbd9ea214f53694" title=" " alt="" coords="1145,132,1251,159"/>
+<area shape="rect" href="vmm_8c.html#a5ea7bebcbce722117fe0ebaf6dc3d0cb" title=" " alt="" coords="501,537,653,564"/>
+<area shape="rect" href="list_8h.html#a239b408a024aa5bc29ed2a2cd93251eb" title=" " alt="" coords="522,487,633,513"/>
+<area shape="rect" href="list_8h.html#a6d14129e8bd464c76ac9c4541f91acab" title=" " alt="" coords="707,487,794,513"/>
+<area shape="rect" href="pmm_8c.html#a8e2dc4d71325ce9ddba783b4289e8e75" title=" " alt="" coords="540,132,615,159"/>
+<area shape="rect" href="swap_8c.html#a79ff32a0865190184c59f90fd42868cd" title=" " alt="" coords="519,183,636,209"/>
+<area shape="rect" href="pmm_8c.html#ae2055a0254d79140f1adf784b9b07fea" title=" " alt="" coords="701,309,800,336"/>
+<area shape="rect" href="pmm_8h.html#a3aa177386346f37eaadf16359ef44da7" title=" " alt="" coords="1155,233,1241,260"/>
+<area shape="rect" href="swap_8c.html#a8b0c44bb44fc801d843522eefc8b43ac" title=" " alt="" coords="848,309,932,336"/>
+<area shape="rect" href="swapfs_8c.html#a41793685a63e0f8e2d48695566bc75bb" title=" " alt="" coords="981,284,1089,311"/>
+<area shape="rect" href="pmm_8c.html#a3a6a3f83d69815b453aea9121f46a6ed" title=" " alt="" coords="980,335,1091,361"/>
+<area shape="rect" href="ide_8c.html#a1d381d983b9bc07a2a4b636ed1997174" title=" " alt="" coords="1139,284,1257,311"/>
+<area shape="rect" href="pmm_8c.html#ab66b2fd61c3ed722ba79fdaab776029f" title=" " alt="" coords="549,639,605,665"/>
+<area shape="rect" href="list_8h.html#a86c117ac4118e4f49128679de329b351" title=" " alt="" coords="543,689,612,716"/>
+<area shape="rect" href="pmm_8h.html#a9cd9040356b15a1592f57740735b2285" title=" " alt="" coords="707,625,794,652"/>
+<area shape="rect" href="pmm_8h.html#a9eb3d05d35adc23aa957c07d5ef5ed4e" title=" " alt="" coords="851,569,929,596"/>
+<area shape="rect" href="list_8h.html#a835e92bfc11e7415502f0309eb5b1cfe" title=" " alt="" coords="709,689,792,716"/>
+<area shape="rect" href="ide_8c.html#ae4d4db7f714f3df1d9d80d857f4fe85e" title=" " alt="" coords="307,867,433,893"/>
+<area shape="rect" href="ide_8c.html#ab8bb6373351f5c5882009f8d37ec7a91" title=" " alt="" coords="305,917,435,944"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a79ff32a0865190184c59f90fd42868cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79ff32a0865190184c59f90fd42868cd">&#9670;&nbsp;</a></span>swap_init_mm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int swap_init_mm </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap_8c_a79ff32a0865190184c59f90fd42868cd_icgraph.gif" border="0" usemap="#aswap_8c_a79ff32a0865190184c59f90fd42868cd_icgraph" alt=""/></div>
+<map name="aswap_8c_a79ff32a0865190184c59f90fd42868cd_icgraph" id="aswap_8c_a79ff32a0865190184c59f90fd42868cd_icgraph">
+<area shape="rect" title=" " alt="" coords="619,56,736,83"/>
+<area shape="rect" href="vmm_8c.html#a24d42b4ed2477d387310ddb18e277071" title=" " alt="" coords="475,56,571,83"/>
+<area shape="rect" href="vmm_8c.html#a24c860fd06177e90cba06af92ebf1916" title=" " alt="" coords="300,5,413,32"/>
+<area shape="rect" href="swap_8c.html#a3d7e1e8f3b1851c9438d2003941e2d0c" title=" " alt="" coords="306,107,407,133"/>
+<area shape="rect" href="vmm_8c.html#a01b4552d4673ffbb6a05eb0f12aef62e" title=" " alt="" coords="287,56,427,83"/>
+<area shape="rect" href="vmm_8c.html#ab7ebbcc33c2dd26999c3bc6dd5df1f6f" title=" " alt="" coords="137,31,239,57"/>
+<area shape="rect" href="vmm_8c.html#a34e0e13c32b08fd108582567c29ccebf" title=" " alt="" coords="5,31,89,57"/>
+<area shape="rect" href="swap_8c.html#aecac407d799dab293cab398185a74f35" title=" " alt="" coords="146,107,230,133"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab3052457b47fe22e700ce9d6620b4485"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3052457b47fe22e700ce9d6620b4485">&#9670;&nbsp;</a></span>swap_map_swappable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int swap_map_swappable </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a>&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="struct_page.html">Page</a> *&#160;</td>
+          <td class="paramname"><em>page</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>swap_in</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap_8c_ab3052457b47fe22e700ce9d6620b4485_cgraph.gif" border="0" usemap="#aswap_8c_ab3052457b47fe22e700ce9d6620b4485_cgraph" alt=""/></div>
+<map name="aswap_8c_ab3052457b47fe22e700ce9d6620b4485_cgraph" id="aswap_8c_ab3052457b47fe22e700ce9d6620b4485_cgraph">
+<area shape="rect" title=" " alt="" coords="5,309,175,336"/>
+<area shape="rect" href="swap_8c.html#af3058f8798ac6b061b6a6ca528ac9932" title=" " alt="" coords="223,309,297,336"/>
+<area shape="rect" href="stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="365,208,429,235"/>
+<area shape="rect" href="pmm_8c.html#a02acb8e4d598f04b9655befb6029d19c" title=" " alt="" coords="519,309,590,336"/>
+<area shape="rect" href="swapfs_8c.html#a351ae62e17ae15d0be227ee49b1b526f" title=" " alt="" coords="345,411,449,437"/>
+<area shape="rect" href="stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="519,157,591,184"/>
+<area shape="rect" href="stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="681,56,746,83"/>
+<area shape="rect" href="printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="672,157,755,184"/>
+<area shape="rect" href="console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="815,5,901,32"/>
+<area shape="rect" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="949,5,1104,32"/>
+<area shape="rect" href="printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="828,157,888,184"/>
+<area shape="rect" href="printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="824,208,892,235"/>
+<area shape="rect" href="printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="821,259,895,285"/>
+<area shape="rect" href="printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="817,56,899,83"/>
+<area shape="rect" href="string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="825,107,891,133"/>
+<area shape="rect" href="string_8c.html#a2be8ba378058c555790b0328c2500a63" title=" " alt="" coords="675,208,751,235"/>
+<area shape="rect" href="pmm_8h.html#ab517d995357f15a4c66fb27a510eb374" title=" " alt="" coords="674,411,753,437"/>
+<area shape="rect" href="pmm_8h.html#aaf54bae0ec07dff85b828139f157626d" title=" " alt="" coords="815,360,901,387"/>
+<area shape="rect" href="pmm_8h.html#a90435beaeea486ae0208f68941db36a2" title=" " alt="" coords="668,309,759,336"/>
+<area shape="rect" href="pmm_8h.html#a1e526abf140359344dbd9ea214f53694" title=" " alt="" coords="660,360,767,387"/>
+<area shape="rect" href="ide_8c.html#aa3e3300bda460455ef67f4f0b7861e5f" title=" " alt="" coords="497,461,612,488"/>
+<area shape="rect" href="pmm_8h.html#a3aa177386346f37eaadf16359ef44da7" title=" " alt="" coords="511,411,598,437"/>
+<area shape="rect" href="string_8c.html#a18d9a75dd16f2db6609538cb4ddedaf1" title=" " alt="" coords="674,461,753,488"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap_8c_ab3052457b47fe22e700ce9d6620b4485_icgraph.gif" border="0" usemap="#aswap_8c_ab3052457b47fe22e700ce9d6620b4485_icgraph" alt=""/></div>
+<map name="aswap_8c_ab3052457b47fe22e700ce9d6620b4485_icgraph" id="aswap_8c_ab3052457b47fe22e700ce9d6620b4485_icgraph">
+<area shape="rect" title=" " alt="" coords="783,5,952,32"/>
+<area shape="rect" href="vmm_8c.html#a76083b4b497bc14110c89b222892e5a9" title=" " alt="" coords="464,5,555,32"/>
+<area shape="rect" href="pmm_8c.html#a682ec852da4ba9f942d14dd940c9dc50" title=" " alt="" coords="603,31,735,57"/>
+<area shape="rect" href="trap_8c.html#a52ce92f648fa34b3877351b9f8240f98" title=" " alt="" coords="292,5,416,32"/>
+<area shape="rect" href="trap_8c.html#a9b7dec2ed35d681fdbe2fe46afb695a5" title=" " alt="" coords="101,5,244,32"/>
+<area shape="rect" href="trap_8c.html#a372d166e36c086c91e5f5d81e5fead3a" title=" " alt="" coords="5,5,53,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8b0c44bb44fc801d843522eefc8b43ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b0c44bb44fc801d843522eefc8b43ac">&#9670;&nbsp;</a></span>swap_out()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int swap_out </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>in_tick</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap_8c_a8b0c44bb44fc801d843522eefc8b43ac_cgraph.gif" border="0" usemap="#aswap_8c_a8b0c44bb44fc801d843522eefc8b43ac_cgraph" alt=""/></div>
+<map name="aswap_8c_a8b0c44bb44fc801d843522eefc8b43ac_cgraph" id="aswap_8c_a8b0c44bb44fc801d843522eefc8b43ac_cgraph">
+<area shape="rect" title=" " alt="" coords="5,372,89,399"/>
+<area shape="rect" href="stdio_8c.html#ab5c1b009763ca6674c08b6241dad015c" title=" " alt="" coords="161,221,225,248"/>
+<area shape="rect" href="pmm_8c.html#a02acb8e4d598f04b9655befb6029d19c" title=" " alt="" coords="320,321,391,348"/>
+<area shape="rect" href="swapfs_8c.html#a41793685a63e0f8e2d48695566bc75bb" title=" " alt="" coords="139,397,247,424"/>
+<area shape="rect" href="pmm_8c.html#a3a6a3f83d69815b453aea9121f46a6ed" title=" " alt="" coords="137,473,248,500"/>
+<area shape="rect" href="stdio_8c.html#a6d5854f463c39b8d25aaa127b216832e" title=" " alt="" coords="319,157,391,184"/>
+<area shape="rect" href="stdio_8c.html#ae98dcd3b1f9718f15a600d22a69a2e9a" title=" " alt="" coords="483,56,549,83"/>
+<area shape="rect" href="printfmt_8c.html#a6434f2b779b5ede2adc31ee4f7d64198" title=" " alt="" coords="475,157,557,184"/>
+<area shape="rect" href="console_8c.html#a9a405546ecd1991ece1431da216e64f2" title=" " alt="" coords="617,5,704,32"/>
+<area shape="rect" href="sbi_8h.html#a99638b95984187102dd50b1d0b430d3b" title=" " alt="" coords="752,5,907,32"/>
+<area shape="rect" href="printfmt_8c.html#a7b1e12e09f757ca234758afb4d704db8" title=" " alt="" coords="631,157,691,184"/>
+<area shape="rect" href="printfmt_8c.html#a934736e8473edc7ac3a20c613ae5f732" title=" " alt="" coords="627,208,695,235"/>
+<area shape="rect" href="printfmt_8c.html#ad7d3bbf7612143a989ce3e9d1bfebf87" title=" " alt="" coords="623,259,698,285"/>
+<area shape="rect" href="printfmt_8c.html#a51595febac146e7d189948ebb27e6768" title=" " alt="" coords="620,56,701,83"/>
+<area shape="rect" href="string_8c.html#a732f92b81474cfb653776be70bc7f1c7" title=" " alt="" coords="627,107,694,133"/>
+<area shape="rect" href="string_8c.html#a2be8ba378058c555790b0328c2500a63" title=" " alt="" coords="478,208,554,235"/>
+<area shape="rect" href="pmm_8h.html#ab517d995357f15a4c66fb27a510eb374" title=" " alt="" coords="477,411,555,437"/>
+<area shape="rect" href="pmm_8h.html#aaf54bae0ec07dff85b828139f157626d" title=" " alt="" coords="617,360,704,387"/>
+<area shape="rect" href="pmm_8h.html#a90435beaeea486ae0208f68941db36a2" title=" " alt="" coords="471,309,561,336"/>
+<area shape="rect" href="pmm_8h.html#a1e526abf140359344dbd9ea214f53694" title=" " alt="" coords="463,360,569,387"/>
+<area shape="rect" href="ide_8c.html#a1d381d983b9bc07a2a4b636ed1997174" title=" " alt="" coords="296,448,415,475"/>
+<area shape="rect" href="pmm_8h.html#a3aa177386346f37eaadf16359ef44da7" title=" " alt="" coords="312,397,399,424"/>
+<area shape="rect" href="string_8c.html#a18d9a75dd16f2db6609538cb4ddedaf1" title=" " alt="" coords="477,461,555,488"/>
+<area shape="rect" href="pmm_8h.html#af481d80989da3c646996210195814878" title=" " alt="" coords="317,499,394,525"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="swap_8c_a8b0c44bb44fc801d843522eefc8b43ac_icgraph.gif" border="0" usemap="#aswap_8c_a8b0c44bb44fc801d843522eefc8b43ac_icgraph" alt=""/></div>
+<map name="aswap_8c_a8b0c44bb44fc801d843522eefc8b43ac_icgraph" id="aswap_8c_a8b0c44bb44fc801d843522eefc8b43ac_icgraph">
+<area shape="rect" title=" " alt="" coords="929,31,1013,57"/>
+<area shape="rect" href="pmm_8c.html#ae2055a0254d79140f1adf784b9b07fea" title=" " alt="" coords="783,31,881,57"/>
+<area shape="rect" href="default__pmm_8c.html#a7ed27f53388f855a738e2457f5de682e" title=" " alt="" coords="621,5,735,32"/>
+<area shape="rect" href="pmm_8c.html#a8e2dc4d71325ce9ddba783b4289e8e75" title=" " alt="" coords="641,56,715,83"/>
+<area shape="rect" href="vmm_8c.html#a24d42b4ed2477d387310ddb18e277071" title=" " alt="" coords="476,31,572,57"/>
+<area shape="rect" href="vmm_8c.html#a7a6d4d9a52a15d77de91f761855c1a66" title=" " alt="" coords="475,81,573,108"/>
+<area shape="rect" href="vmm_8c.html#a24c860fd06177e90cba06af92ebf1916" title=" " alt="" coords="300,56,413,83"/>
+<area shape="rect" href="swap_8c.html#a3d7e1e8f3b1851c9438d2003941e2d0c" title=" " alt="" coords="306,107,407,133"/>
+<area shape="rect" href="vmm_8c.html#a01b4552d4673ffbb6a05eb0f12aef62e" title=" " alt="" coords="287,5,427,32"/>
+<area shape="rect" href="vmm_8c.html#ab7ebbcc33c2dd26999c3bc6dd5df1f6f" title=" " alt="" coords="137,31,239,57"/>
+<area shape="rect" href="vmm_8c.html#a34e0e13c32b08fd108582567c29ccebf" title=" " alt="" coords="5,31,89,57"/>
+<area shape="rect" href="swap_8c.html#aecac407d799dab293cab398185a74f35" title=" " alt="" coords="146,107,230,133"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a691606e1d6b947b32c044f447df48e2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a691606e1d6b947b32c044f447df48e2f">&#9670;&nbsp;</a></span>swap_set_unswappable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int swap_set_unswappable </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defs_8h.html#a04cf3633489292bdd23ff5b429bc476b">uintptr_t</a>&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a86aa889f94c98d3d77111304e8c20de4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86aa889f94c98d3d77111304e8c20de4">&#9670;&nbsp;</a></span>swap_tick_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int swap_tick_event </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmm__struct.html">mm_struct</a> *&#160;</td>
+          <td class="paramname"><em>mm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a365f403d72451d6db6f8896efe22f82f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a365f403d72451d6db6f8896efe22f82f">&#9670;&nbsp;</a></span>check_ptep</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="memlayout_8h.html#ae97b82aa50ed8ad4c79b1d8b8fb53836">pte_t</a>* check_ptep[<a class="el" href="swap_8c.html#a21d2d6c5c9da1e7d3d0ee3f74e9c7b56">CHECK_VALID_PHY_PAGE_NUM</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf87842e7479d3dc098840fd73d07316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf87842e7479d3dc098840fd73d07316">&#9670;&nbsp;</a></span>check_rp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="struct_page.html">Page</a>* check_rp[<a class="el" href="swap_8c.html#a21d2d6c5c9da1e7d3d0ee3f74e9c7b56">CHECK_VALID_PHY_PAGE_NUM</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0c91637d25438401cb9d0ae6c56032c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c91637d25438401cb9d0ae6c56032c1">&#9670;&nbsp;</a></span>check_swap_addr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int check_swap_addr[<a class="el" href="swap_8c.html#aa5c5e56ef3ef6374b0526eca4a7a3d2e">CHECK_VALID_VIR_PAGE_NUM</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aba9fa7c0c9a2a17877bf38a3d2831813"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba9fa7c0c9a2a17877bf38a3d2831813">&#9670;&nbsp;</a></span>free_area</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structfree__area__t.html">free_area_t</a> free_area</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e94b9265362af29fb8248ba454bf388"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e94b9265362af29fb8248ba454bf388">&#9670;&nbsp;</a></span>max_swap_offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defs_8h.html#afeaa5ef46acd844422607ca6602691ef">size_t</a> max_swap_offset</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afc2d95e8e7c79c9e8081d691ad9afb64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc2d95e8e7c79c9e8081d691ad9afb64">&#9670;&nbsp;</a></span>sm</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structswap__manager.html">swap_manager</a>* sm</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2c992515653d90415a6e904c9b40ca65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c992515653d90415a6e904c9b40ca65">&#9670;&nbsp;</a></span>swap_in_seq_no</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int swap_in_seq_no[<a class="el" href="swap_8c.html#a644abd334cf3b5ad6f0f5adde4924eb4">MAX_SEQ_NO</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1f320bc1324b07761e7b690bc5c2aa38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f320bc1324b07761e7b690bc5c2aa38">&#9670;&nbsp;</a></span>swap_init_ok</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile int swap_init_ok = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac64367fa797c52d8f90d05044b668c2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac64367fa797c52d8f90d05044b668c2a">&#9670;&nbsp;</a></span>swap_out_num</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile unsigned int swap_out_num = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a976ae1baa1806c75cffc6250ef865b25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a976ae1baa1806c75cffc6250ef865b25">&#9670;&nbsp;</a></span>swap_out_seq_no</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int swap_out_seq_no[<a class="el" href="swap_8c.html#a644abd334cf3b5ad6f0f5adde4924eb4">MAX_SEQ_NO</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a364b464b97f7595e6a6b044f38d260ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a364b464b97f7595e6a6b044f38d260ea">&#9670;&nbsp;</a></span>swap_page</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int swap_page[<a class="el" href="swap_8c.html#aa5c5e56ef3ef6374b0526eca4a7a3d2e">CHECK_VALID_VIR_PAGE_NUM</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>
