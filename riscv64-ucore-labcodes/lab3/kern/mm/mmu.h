@@ -6,7 +6,8 @@
 #endif /* !__ASSEMBLER__ */
 
 // A linear address 'la' has a four-part structure as follows:
-//
+// 虚拟地址的位含义：
+// 页表项里从高到低三级页表的页码分别称作PDX1, PDX0和PTX(Page Table Index)
 // +--------9-------+-------9--------+-------9--------+---------12----------+
 // | Page Directory | Page Directory |   Page Table   | Offset within Page  |
 // |     Index 1    |    Index 2     |                |                     |
@@ -24,60 +25,66 @@
 // |  VPN[2] | VPN[1] | VPN[0] | PGOFF |
 // +---------+----+---+--------+-------+
 //
-// Sv39 physical address:
+// Sv39 physical address:物理地址的位含义
 // +----26---+----9---+----9---+---12--+
 // |  PPN[2] | PPN[1] | PPN[0] | PGOFF |
 // +---------+----+---+--------+-------+
 //
-// Sv39 page table entry:
+// Sv39 page table entry:页表项的位含义
 // +----26---+----9---+----9---+---2----+-------8-------+
 // |  PPN[2] | PPN[1] | PPN[0] |Reserved|D|A|G|U|X|W|R|V|
 // +---------+----+---+--------+--------+---------------+
 
 // page directory index
-#define PDX1(la) ((((uintptr_t)(la)) >> PDX1SHIFT) & 0x1FF)
-#define PDX0(la) ((((uintptr_t)(la)) >> PDX0SHIFT) & 0x1FF)
+// 虚拟地址39位从高到低PDX1、PDX0、PTX
+#define PDX1(la) ((((uintptr_t)(la)) >> PDX1SHIFT) & 0x1FF) // 虚拟地址右移30位并取低9位
+#define PDX0(la) ((((uintptr_t)(la)) >> PDX0SHIFT) & 0x1FF) // 虚拟地址右移21位并取低9位
 
 // page table index
-#define PTX(la) ((((uintptr_t)(la)) >> PTXSHIFT) & 0x1FF)
+#define PTX(la) ((((uintptr_t)(la)) >> PTXSHIFT) & 0x1FF) // 虚拟地址右移12位并取低9位
 
 // page number field of address
-#define PPN(la) (((uintptr_t)(la)) >> PTXSHIFT)
+// 一个虚拟地址的高27位是页号，低12位是页内偏移
+// 取高27位即可得到页号，是整体的页号，可以通过27位页号分成3部分，一部分9位的页号去查三级页表
+#define PPN(la) (((uintptr_t)(la)) >> PTXSHIFT) // 虚拟地址右移12位，取所有位
 
 // offset in page
-#define PGOFF(la) (((uintptr_t)(la)) & 0xFFF)
+#define PGOFF(la) (((uintptr_t)(la)) & 0xFFF) // 虚拟地址取低12位，找到页内偏移
 
 // construct linear address from indexes and offset
 #define PGADDR(d1, d0, t, o) ((uintptr_t)((d1) << PDX1SHIFT | (d0) << PDX0SHIFT | (t) << PTXSHIFT | (o)))
 
 // address in page table or page directory entry
-#define PTE_ADDR(pte)   (((uintptr_t)(pte) & ~0x3FF) << (PTXSHIFT - PTE_PPN_SHIFT))
-#define PDE_ADDR(pde)   PTE_ADDR(pde)
+// 根据页表项或页目录项的地址找到页表或页目录项的地址
+// 先将其最后 10 位清零，再左移 2 位（物理页号转换为物理地址），即可得到页表或页目录项的地址
+// 物理页号与实际物理地址之间的差异在于低12位。其中，最低10位是页内偏移，再高的2位是页表项标志。左移2位后，最低10位变成页内偏移，而页表项的标志被推出，从而得到实际的物理地址。
+#define PTE_ADDR(pte) (((uintptr_t)(pte) & ~0x3FF) << (PTXSHIFT - PTE_PPN_SHIFT))
+#define PDE_ADDR(pde) PTE_ADDR(pde)
 
 /* page directory and page table constants */
-#define NPDEENTRY       512                    // page directory entries per page directory
-#define NPTEENTRY       512                    // page table entries per page table
+#define NPDEENTRY 512 // page directory entries per page directory
+#define NPTEENTRY 512 // page table entries per page table
 
-#define PGSIZE          4096                    // bytes mapped by a page
-#define PGSHIFT         12                      // log2(PGSIZE)
-#define PTSIZE          (PGSIZE * NPTEENTRY)    // bytes mapped by a page directory entry
-#define PTSHIFT         21                      // log2(PTSIZE)
+#define PGSIZE 4096                 // bytes mapped by a page
+#define PGSHIFT 12                  // log2(PGSIZE)
+#define PTSIZE (PGSIZE * NPTEENTRY) // bytes mapped by a page directory entry
+#define PTSHIFT 21                  // log2(PTSIZE)
 
-#define PTXSHIFT        12                      // offset of PTX in a linear address
-#define PDX0SHIFT       21                      // offset of PDX0 in a linear address
-#define PDX1SHIFT       30                      // offset of PDX0 in a linear address
-#define PTE_PPN_SHIFT   10                      // offset of PPN in a physical address
+#define PTXSHIFT 12      // offset of PTX in a linear address
+#define PDX0SHIFT 21     // offset of PDX0 in a linear address
+#define PDX1SHIFT 30     // offset of PDX0 in a linear address
+#define PTE_PPN_SHIFT 10 // offset of PPN in a physical address
 
 // page table entry (PTE) fields
-#define PTE_V     0x001 // Valid
-#define PTE_R     0x002 // Read
-#define PTE_W     0x004 // Write
-#define PTE_X     0x008 // Execute
-#define PTE_U     0x010 // User
-#define PTE_G     0x020 // Global
-#define PTE_A     0x040 // Accessed
-#define PTE_D     0x080 // Dirty
-#define PTE_SOFT  0x300 // Reserved for Software
+#define PTE_V 0x001    // Valid
+#define PTE_R 0x002    // Read
+#define PTE_W 0x004    // Write
+#define PTE_X 0x008    // Execute
+#define PTE_U 0x010    // User
+#define PTE_G 0x020    // Global
+#define PTE_A 0x040    // Accessed
+#define PTE_D 0x080    // Dirty
+#define PTE_SOFT 0x300 // Reserved for Software
 
 #define PAGE_TABLE_DIR (PTE_V)
 #define READ_ONLY (PTE_R | PTE_V)
@@ -89,4 +96,3 @@
 #define PTE_USER (PTE_R | PTE_W | PTE_X | PTE_U | PTE_V)
 
 #endif /* !__KERN_MM_MMU_H__ */
-
