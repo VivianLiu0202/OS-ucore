@@ -17,10 +17,10 @@
 // the max access seq number
 #define MAX_SEQ_NO 10
 
-static struct swap_manager *sm;
-size_t max_swap_offset;
+static struct swap_manager *sm; //sm 是一个指向 swap_manager 结构体的指针，用于指向当前使用的交换管理器。
+size_t max_swap_offset; //表示交换分区的最大偏移量，即交换分区的大小。
 
-volatile int swap_init_ok = 0;
+volatile int swap_init_ok = 0; //于表示交换管理器的初始化状态。如果该变量的值为0，则表示交换管理器未初始化或初始化失败；否则表示初始化成功。
 
 unsigned int swap_page[CHECK_VALID_VIR_PAGE_NUM];
 
@@ -28,6 +28,7 @@ unsigned int swap_in_seq_no[MAX_SEQ_NO], swap_out_seq_no[MAX_SEQ_NO];
 
 static void check_swap(void);
 
+//用于初始化页面交换系统
 int swap_init(void)
 {
      swapfs_init(); // 初始化磁盘交换分区
@@ -86,6 +87,7 @@ int swap_out(struct mm_struct *mm, int n, int in_tick)
           // struct Page **ptr_page=NULL;
           struct Page *page;
           // cprintf("i %d, SWAP: call swap_out_victim\n",i);
+          ////调用页面置换算法的接口
           int r = sm->swap_out_victim(mm, &page, in_tick); // 调用swap_out_victim，把要换出的页放到page里
           if (r != 0)
           {
@@ -103,18 +105,20 @@ int swap_out(struct mm_struct *mm, int n, int in_tick)
           // 将需要换出的页面的内容写入到磁盘交换分区中。其中，(page->pra_vaddr / PGSIZE + 1) << 8 表示磁盘交换分区中的页号，page 表示需要换出的页面的指针。
           if (swapfs_write((page->pra_vaddr / PGSIZE + 1) << 8, page) != 0)
           {
+               ////尝试把要换出的物理页面写到硬盘上的交换区，返回值不为0说明失败了
                cprintf("SWAP: failed to save\n");
                sm->map_swappable(mm, v, page, 0);
                continue;
           }
           else
           {
+               //成功换出
                cprintf("swap_out: i %d, store page in vaddr 0x%x to disk swap entry %d\n", i, v, page->pra_vaddr / PGSIZE + 1);
                // i 表示需要换出的页面在进程的页面数组中的索引，v 表示需要换出的页面的线性地址，page->pra_vaddr / PGSIZE + 1 表示需要换出的页面在磁盘交换分区中的页号
                *ptep = (page->pra_vaddr / PGSIZE + 1) << 8;
                free_page(page);
           }
-
+          //由于页表改变了，需要刷新TLB
           tlb_invalidate(mm->pgdir, v);
      }
      return i;
@@ -122,14 +126,18 @@ int swap_out(struct mm_struct *mm, int n, int in_tick)
 
 int swap_in(struct mm_struct *mm, uintptr_t addr, struct Page **ptr_result)
 {
-     struct Page *result = alloc_page();
+     struct Page *result = alloc_page(); ////这里alloc_page()内部可能调用swap_out()
+     ////找到对应的一个物理页面
      assert(result != NULL);
 
-     pte_t *ptep = get_pte(mm->pgdir, addr, 0);
+     pte_t *ptep = get_pte(mm->pgdir, addr, 0); //找到/构建对应的页表项
+     ///将物理地址映射到虚拟地址是在swap_in()退出之后，调用page_insert()完成的
+     //调用 page_insert 函数将物理页面映射到虚拟地址空间中。
+     //在 page_insert 函数中，会调用 tlb_invalidate 函数来刷新 TLB，以保证 CPU 访问虚拟地址时能够正确地转换为物理地址。
      // cprintf("SWAP: load ptep %x swap entry %d to vaddr 0x%08x, page %x, No %d\n", ptep, (*ptep)>>8, addr, result, (result-pages));
 
      int r;
-     if ((r = swapfs_read((*ptep), result)) != 0)
+     if ((r = swapfs_read((*ptep), result)) != 0) //将数据从硬盘读到内存
      {
           assert(r != 0);
      }
@@ -160,6 +168,7 @@ check_content_set(void)
      assert(pgfault_num == 4);
 }
 
+//调用不同页面置换算法的check函数检查算法。
 static inline int
 check_content_access(void)
 {
@@ -176,6 +185,11 @@ extern free_area_t free_area;
 #define free_list (free_area.free_list)
 #define nr_free (free_area.nr_free)
 
+/**
+ * 该函数首先备份内存环境，然后设置物理页面环境，并创建一个虚拟内存区域。
+ * 接着，它分配4个物理页面，并重新初始化空闲页面链表。
+ * 然后，它设置初始的虚拟页面和物理页面的映射关系，并调用不同页面置换算法的`check`函数来检查算法
+*/
 static void
 check_swap(void) // 检查页面交换函数
 {

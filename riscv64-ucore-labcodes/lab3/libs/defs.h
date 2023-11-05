@@ -50,18 +50,21 @@ typedef size_t ppn_t;
  * Rounding operations (efficient when n is a power of 2)
  * Round down to the nearest multiple of n
  * */
+//将参数 a 向下舍入到最近的 n 的倍数。
 #define ROUNDDOWN(a, n) ({                                          \
             size_t __a = (size_t)(a);                               \
             (typeof(a))(__a - __a % (n));                           \
         })
 
 /* Round up to the nearest multiple of n */
+//将参数 a 向上舍入到最近的 n 的倍数。
 #define ROUNDUP(a, n) ({                                            \
             size_t __n = (size_t)(n);                               \
             (typeof(a))(ROUNDDOWN((size_t)(a) + __n - 1, __n));     \
         })
 
 /* Return the offset of 'member' relative to the beginning of a struct type */
+//结构体类型 type 中成员 member 相对于结构体起始地址的偏移量。
 #define offsetof(type, member)                                      \
     ((size_t)(&((type *)0)->member))
 

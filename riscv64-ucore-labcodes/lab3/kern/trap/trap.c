@@ -60,9 +60,13 @@ void idt_init(void)
 }
 
 /* trap_in_kernel - test if trap happened in kernel */
+//用于判断当前的异常是否发生在内核态。
 bool trap_in_kernel(struct trapframe *tf)
 {
+    //使用 tf->status 获取当前 CPU 的状态寄存器的值，该寄存器包含了当前 CPU 的特权级别信息。
+    //使用 SSTATUS_SPP 宏获取状态寄存器中的 SPP（Supervisor Previous Privilege）位，该位表示上一次的特权级别。
     return (tf->status & SSTATUS_SPP) != 0;
+    //如果 SPP 位为1，则上一次的特权级别为内核态，否则为用户态。
 }
 
 void print_trapframe(struct trapframe *tf)
@@ -113,19 +117,30 @@ void print_regs(struct pushregs *gpr)
 
 static inline void print_pgfault(struct trapframe *tf)
 {
+    //然后，函数根据 trap_in_kernel 函数的返回值判断页故障发生在用户态还是内核态，并将结果打印出来。
+    //如果 trap_in_kernel 函数返回 true，则页故障发生在内核态，打印字符 K；
+    //否则页故障发生在用户态，打印字符 U。
     cprintf("page fault at 0x%08x: %c/%c\n", tf->badvaddr,
             trap_in_kernel(tf) ? 'K' : 'U',                   // U表示用户态，K表示内核态
             tf->cause == CAUSE_STORE_PAGE_FAULT ? 'W' : 'R'); // W表示写了不存在的页，R表示读了不存在的页
 }
 
+//处理页面故障异常
 static int pgfault_handler(struct trapframe *tf)
 {
-    extern struct mm_struct *check_mm_struct;
+    extern struct mm_struct *check_mm_struct; //当前使用的mm_struct的指针，在vmm.c定义
     print_pgfault(tf);
+    /**
+     * check_mm_struct 变量是一个指向 mm_struct 结构体的指针，用于指向当前正在运行的进程的内存管理结构。
+     * 如果该变量不为 NULL，则说明当前正在运行的是用户进程，需要调用 do_pgfault 函数处理页故障。
+     * 否则，说明当前正在运行的是内核代码，不需要处理页故障。
+    */
     if (check_mm_struct != NULL)
     {
-        return do_pgfault(check_mm_struct, tf->cause, tf->badvaddr);
+        return do_pgfault(check_mm_struct, tf->cause, tf->badvaddr);//调用do_pgfault函数处理页面故障
     }
+    //我们的trapFrame传递了badvaddr给do_pgfault()函数，而这实际上是stval这个寄存器的数值（在旧版的RISCV标准里叫做sbadvaddr)
+    //这个寄存器存储一些关于异常的数据，对于PageFault它存储的是访问出错的虚拟地址。
     panic("unhandled page fault.\n");
 }
 
@@ -206,7 +221,7 @@ void exception_handler(struct trapframe *tf)
     int ret;
     switch (tf->cause)
     {
-    case CAUSE_MISALIGNED_FETCH:
+    case CAUSE_MISALIGNED_FETCH: // 取指令时发生的Page Fault先不处理
         cprintf("Instruction address misaligned\n");
         break;
     case CAUSE_FETCH_ACCESS:
@@ -223,7 +238,7 @@ void exception_handler(struct trapframe *tf)
         break;
     case CAUSE_LOAD_ACCESS:
         cprintf("Load access fault\n");
-        if ((ret = pgfault_handler(tf)) != 0)
+        if ((ret = pgfault_handler(tf)) != 0) //do_pgfault()页面置换成功时返回0
         {
             print_trapframe(tf);
             panic("handle pgfault failed. %e\n", ret);

@@ -29,13 +29,13 @@ kern_init(void) {
     // grade_backtrace();
 
     pmm_init();                 // init physical memory management
-
+    // 我们加入了多级页表的接口和测试
     idt_init();                 // init interrupt descriptor table
 
-    vmm_init();                 // init virtual memory management
+    vmm_init();                 // init virtual memory management 新增函数, 初始化虚拟内存管理并测试
 
-    ide_init();                 // init ide devices
-    swap_init();                // init swap
+    ide_init();                 // init ide devices新增函数, 初始化"硬盘". 
+    swap_init();                // init swap 新增函数, 初始化页面置换机制并测试
 
     clock_init();               // init clock interrupt
     // intr_enable();              // enable irq interrupt

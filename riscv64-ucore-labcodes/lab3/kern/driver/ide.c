@@ -19,6 +19,7 @@ bool ide_device_valid(unsigned short ideno) { return ideno < MAX_IDE; }
 //获取指定IDE硬盘设备的代销，直接返回IDE硬盘的扇区数 也就是56个扇区
 size_t ide_device_size(unsigned short ideno) { return MAX_DISK_NSECS; }
 
+
 //定义 IDE 硬盘的读写函数，包括 ide_read_secs 和 ide_write_secs 两个函数。
 /**
  * ide_read_secs 函数用于从 IDE 硬盘中读取指定扇区的数据。

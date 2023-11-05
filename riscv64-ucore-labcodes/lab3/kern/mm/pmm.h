@@ -45,12 +45,18 @@ size_t nr_free_pages(void);
 #define alloc_page() alloc_pages(1)
 #define free_page(page) free_pages(page, 1)
 
+//用于获取虚拟地址对应的页表项，如果页表项不存在则可以选择创建它。
 pte_t *get_pte(pde_t *pgdir, uintptr_t la, bool create);
+//get_page 函数用于获取虚拟地址对应的物理页面，并返回对应的页表项。
 struct Page *get_page(pde_t *pgdir, uintptr_t la, pte_t **ptep_store);
+//page_remove 函数用于从页目录表和页表中删除虚拟地址对应的映射关系。
 void page_remove(pde_t *pgdir, uintptr_t la);
+//page_insert 函数用于将物理页面映射到虚拟地址，并设置相应的权限。
 int page_insert(pde_t *pgdir, struct Page *page, uintptr_t la, uint32_t perm);
 
+//tlb_invalidate 函数用于使处理器的 TLB 缓存失效，以便在虚拟地址空间发生更改时刷新缓存。
 void tlb_invalidate(pde_t *pgdir, uintptr_t la);
+//pgdir_alloc_page 函数用于分配一个物理页面，并将其映射到虚拟地址。
 struct Page *pgdir_alloc_page(pde_t *pgdir, uintptr_t la, uint32_t perm);
 
 
@@ -61,6 +67,9 @@ struct Page *pgdir_alloc_page(pde_t *pgdir, uintptr_t la, uint32_t perm);
  * the
  * corresponding physical address.  It panics if you pass it a non-kernel
  * virtual address.
+ * PADDR 宏用于将一个内核虚拟地址转换为对应的物理地址。
+ * 它首先检查传入的地址是否是内核虚拟地址，如果不是则会触发 panic。
+ * 然后，它将虚拟地址减去 va_pa_offset 得到物理地址。
  * */
 #define PADDR(kva)                                                 \
     ({                                                             \
@@ -74,6 +83,9 @@ struct Page *pgdir_alloc_page(pde_t *pgdir, uintptr_t la, uint32_t perm);
 /* *
  * KADDR - takes a physical address and returns the corresponding kernel virtual
  * address. It panics if you pass an invalid physical address.
+ * KADDR 宏用于将一个物理地址转换为对应的内核虚拟地址。
+ * 它首先检查传入的地址是否是有效的物理地址，如果不是则会触发 panic。
+ * 然后，它将物理地址加上 va_pa_offset 得到内核虚拟地址。
  * */
 #define KADDR(pa)                                                \
     ({                                                           \
@@ -90,12 +102,25 @@ extern size_t npage;
 extern const size_t nbase;
 extern uint_t va_pa_offset;
 
+/**
+ * page2ppn 函数用于将一个物理页面转换为对应的页帧号。
+ * 。它首先将页面指针减去 pages 指针，得到页面在数组中的偏移量。然后，它将偏移量加上 nbase 得到页帧号。
+*/
 static inline ppn_t page2ppn(struct Page *page) { return page - pages + nbase; }
 
+/**
+ * page2pa 函数用于将一个物理页面转换为对应的物理地址。
+ * 它首先调用 page2ppn 函数将页面转换为页帧号，然后将页帧号左移 PGSHIFT 位得到物理地址。
+*/
 static inline uintptr_t page2pa(struct Page *page) {
     return page2ppn(page) << PGSHIFT;
 }
 
+/**
+ * pa2page 函数用于将一个物理地址转换为对应的物理页面。
+ * 它首先检查物理地址是否有效，如果无效则会触发 panic。
+ * 然后，它将物理地址的页帧号减去 nbase 得到页面在数组中的偏移量，从而得到页面指针。
+*/
 static inline struct Page *pa2page(uintptr_t pa) {
     if (PPN(pa) >= npage) {
         panic("pa2page called with invalid pa");
@@ -103,10 +128,23 @@ static inline struct Page *pa2page(uintptr_t pa) {
     return &pages[PPN(pa) - nbase];
 }
 
+/**
+ * page2kva 函数用于将一个物理页面转换为对应的内核虚拟地址。
+ * 它首先调用 page2pa 函数将页面转换为物理地址，然后调用 KADDR 宏将物理地址转换为内核虚拟地址。
+*/
 static inline void *page2kva(struct Page *page) { return KADDR(page2pa(page)); }
 
+/**
+ * kva2page 函数用于将一个内核虚拟地址转换为对应的物理页面。
+ * 它首先调用 PADDR 宏将虚拟地址转换为物理地址，然后调用 pa2page 函数将物理地址转换为物理页面。
+*/
 static inline struct Page *kva2page(void *kva) { return pa2page(PADDR(kva)); }
 
+/**
+ * pte2page 函数用于将一个页表项转换为对应的物理页面。
+ * 它首先检查页表项是否有效，如果无效则会触发 panic。
+ * 然后，它调用 PTE_ADDR 宏将页表项转换为物理地址，再调用 pa2page 函数将物理地址转换为物理页面。
+*/
 static inline struct Page *pte2page(pte_t pte) {
     if (!(pte & PTE_V)) {
         panic("pte2page called with invalid pte");
@@ -114,12 +152,18 @@ static inline struct Page *pte2page(pte_t pte) {
     return pa2page(PTE_ADDR(pte));
 }
 
+/**
+ * pde2page 函数用于将一个页目录项转换为对应的物理页面。
+ * 它调用 PDE_ADDR 宏将页目录项转换为物理地址，再调用 pa2page 函数将物理地址转换为物理页面。
+*/
 static inline struct Page *pde2page(pde_t pde) {
     return pa2page(PDE_ADDR(pde));
 }
 
+//page_ref 函数用于获取页面的引用计数。
 static inline int page_ref(struct Page *page) { return page->ref; }
 
+//set_page_ref 函数用于设置页面的引用计数。
 static inline void set_page_ref(struct Page *page, int val) { page->ref = val; }
 
 static inline int page_ref_inc(struct Page *page) {
@@ -135,14 +179,23 @@ static inline int page_ref_dec(struct Page *page) {
 static inline void flush_tlb() { asm volatile("sfence.vma"); }
 
 // construct PTE from a page and permission bits
+/**
+ * 构造一个页表项，参数 ppn 是物理页号，type 是权限类型。
+ * ppn << PTE_PPN_SHIFT: 由于页表项不仅包含物理页号，还包含一些标志位和权限位，所以这里通过左移操作来为这些标志位和权限位留出空间。
+ * PTE_V: 一个标志位，表示这个页表项是有效的。
+ * type: 通过按位或操作，将权限类型添加到页表项中
+*/
 static inline pte_t pte_create(uintptr_t ppn, int type) {
     return (ppn << PTE_PPN_SHIFT) | PTE_V | type;
 }
 
+//创建一个指向页目录的页表项（页目录项）。
 static inline pte_t ptd_create(uintptr_t ppn) { return pte_create(ppn, PTE_V); }
 
+//bootstack 和 bootstacktop 代表内核的引导栈的底部和顶部
 extern char bootstack[], bootstacktop[];
 
+//是内核内存分配和释放函数的外部声明
 extern void *kmalloc(size_t n);
 extern void kfree(void *ptr, size_t n);
 
