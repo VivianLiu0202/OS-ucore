@@ -20,11 +20,14 @@ swapfs_init(void) {//做一些检查
 //从交换分区中读取指定的交换条目，病将其存储到指定的页面中
 int
 swapfs_read(swap_entry_t entry, struct Page *page) {
+int swapfs_read(swap_entry_t entry, struct Page *page)
+{   // 从磁盘交换分区读取页面
+    // swap_entry_t（其实就是整数） entry：交换分区中的偏移量
+    // struct Page *page：页面结构体指针
     return ide_read_secs(SWAP_DEV_NO, swap_offset(entry) * PAGE_NSECT, page2kva(page), PAGE_NSECT);
 }
 
-int
-swapfs_write(swap_entry_t entry, struct Page *page) {
+int swapfs_write(swap_entry_t entry, struct Page *page)
+{ // 将页面写入交换磁盘分区
     return ide_write_secs(SWAP_DEV_NO, swap_offset(entry) * PAGE_NSECT, page2kva(page), PAGE_NSECT);
 }
-

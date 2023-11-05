@@ -236,14 +236,14 @@ void pmm_init(void)
     check_boot_pgdir();
 }
 
-// get_pte - get pte and return the kernel virtual address of this pte for la
-//        - if the PT contians this pte didn't exist, alloc a page for PT
-// parameter:
-//  pgdir:  the kernel virtual base address of PDT
-//  la:     the linear address need to map
-//  create: a logical value to decide if alloc a page for PT
-// return vaule: the kernel virtual address of this pte
-pte_t *get_pte(pde_t *pgdir, uintptr_t la, bool create)
+// get_pte - 获取PTE并返回此PTE的内核虚拟地址，用于映射la
+//        - 如果PT中不存在此PTE，则为PT分配一个Page
+// 参数：
+//  pgdir：PDT的内核虚拟基地址
+//  la：需要映射的线性地址
+//  create：一个逻辑值，用于决定是否为PT分配一个Page
+// 返回值：此PTE的内核虚拟地址
+pte_t *get_pte(pde_t *pgdir, uintptr_t la, bool create) // 根据虚拟地址找到最下一层页表的页表项（返回个指针）
 {
     // pgdir是页目录表的虚拟地址（数组首地址）
     // la是线性地址
@@ -258,6 +258,7 @@ pte_t *get_pte(pde_t *pgdir, uintptr_t la, bool create)
      * Some Useful MACROs and DEFINEs, you can use them in below implementation.
      * MACROs or Functions:
      *   PDX(la) = the index of page directory entry of VIRTUAL ADDRESS la.
+     *   PDX(la) = 虚拟地址la的页目录项索引。
      *   KADDR(pa) : takes a physical address and returns the corresponding
      * kernel virtual address.
      *   set_page_ref(page,1) : means the page be referenced by one time
@@ -275,7 +276,9 @@ pte_t *get_pte(pde_t *pgdir, uintptr_t la, bool create)
      *   PTE_U           0x004                   // page table/directory entry
      * flags bit : User can access
      */
-    pde_t *pdep1 = &pgdir[PDX1(la)]; ;//找到对应的Giga Page
+    pde_t *pdep1 = &pgdir[PDX1(la)]; // 找到线性地址la对应的页目录项的地址，用pdep1指针存着
+    //找到对应的Giga Page
+    // 先解析线性地址（虚拟地址各个位）找到页目录表中的索引
     // &pgdir[PDX1(la)] 表示页目录表中索引为 PDX1(la) 的条目的地址
 
     if (!(*pdep1 & PTE_V)) // 如果该条目不存在（PTE_Valid信号为1 如果下一级页表不存在，那就给它分配一页，创造新页表
@@ -292,13 +295,17 @@ pte_t *get_pte(pde_t *pgdir, uintptr_t la, bool create)
         //不管页表怎么构造，我们确保物理地址和虚拟地址的偏移量始终相同，那么就可以用这种方式完成对物理内存的访问
         *pdep1 = pte_create(page2ppn(page), PTE_U | PTE_V); // 设置页目录项为新的页的物理地址//注意这里R,W,X全零
     }
-    pde_t *pdep0 = &((pde_t *)KADDR(PDE_ADDR(*pdep1)))[PDX0(la)]; //再下一级页表
-    //    pde_t *pdep0 = &((pde_t *)(PDE_ADDR(*pdep1)))[PDX0(la)];
-    //这里的逻辑和前面完全一致，页表不存在就现在分配一个
-    if (!(*pdep0 & PTE_V))
+    // 接下来处理下一级页表项
+    pde_t *pdep0 = &((pde_t *)KADDR(PDE_ADDR(*pdep1)))[PDX0(la)];
+    // PDE_ADDR用来获取页表项pdep1中的物理地址部分（*是取内容符号）
+    // KADDR用来将物理地址转换为虚拟地址
+    // PDX0用来获取中间页表的索引【页表项里从高到低三级页表的页码分别称作PDX1, PDX0和PTX(Page Table Index)】
+
+    // pde_t *pdep0 = &((pde_t *)(PDE_ADDR(*pdep1)))[PDX0(la)];
+    if (!(*pdep0 & PTE_V)) // 如果该条目不存在（PTE_Valid信号为0），*是取内容符号
     {
         struct Page *page;
-        if (!create || (page = alloc_page()) == NULL)
+        if (!create || (page = alloc_page()) == NULL) // 函数create参数为0表示不创建新的页目录项，或者不能再分配新的页
         {
             return NULL;
         }
@@ -310,9 +317,11 @@ pte_t *get_pte(pde_t *pgdir, uintptr_t la, bool create)
     }
     //找到输入的虚拟地址la对应的页表项的地址(可能是刚刚分配的)
     return &((pte_t *)KADDR(PDE_ADDR(*pdep0)))[PTX(la)];
+    // 和上面一样，不过对虚拟地址la用的宏是PTX，找最低一级页表的索引
 }
 
 // get_page - get related Page struct for linear address la using PDT pgdir
+// 根据线性地址 la 和页目录表 pgdir 获取相应的 Page 结构体
 struct Page *get_page(pde_t *pgdir, uintptr_t la, pte_t **ptep_store)
 {
     pte_t *ptep = get_pte(pgdir, la, 0);
@@ -382,15 +391,14 @@ void page_remove(pde_t *pgdir, uintptr_t la)
     }
 }
 
-// page_insert - build the map of phy addr of an Page with the linear addr la
-// paramemters:
-//  pgdir: the kernel virtual base address of PDT
-//  page:  the Page which need to map
-//  la:    the linear address need to map
-//  perm:  the permission of this Page which is setted in related pte
-// return value: always 0
-// note: PT is changed, so the TLB need to be invalidate
-//用于将一个物理页面映射到给定的虚拟地址。
+// page_insert - 建立一个Page的物理地址和线性地址la之间的映射
+// 参数：
+//  pgdir：PDT的内核虚拟基地址
+//  page：需要映射的Page
+//  la：需要映射的线性地址
+//  perm：在相关的pte中设置的此Page的权限
+// 返回值：始终为0
+// 注意：PT已更改，因此需要使TLB失效
 int page_insert(pde_t *pgdir, struct Page *page, uintptr_t la, uint32_t perm)
 {
     //pgdir是页表基址(satp)，page对应物理页面，la是虚拟地址，权限 perm

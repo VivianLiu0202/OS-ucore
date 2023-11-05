@@ -14,7 +14,7 @@
  *           24 bits            7 bits    1 bit
  * */
 
-#define MAX_SWAP_OFFSET_LIMIT                   (1 << 24)
+#define MAX_SWAP_OFFSET_LIMIT (1 << 24)
 
 extern size_t max_swap_offset;
 
@@ -22,13 +22,16 @@ extern size_t max_swap_offset;
  * swap_offset - takes a swap_entry (saved in pte), and returns
  * the corresponding offset in swap mem_map.
  * */
-#define swap_offset(entry) ({                                       \
-               size_t __offset = (entry >> 8);                        \
-               if (!(__offset > 0 && __offset < max_swap_offset)) {    \
-                    panic("invalid swap_entry_t = %08x.\n", entry);    \
-               }                                                    \
-               __offset;                                            \
-          })
+// 交换条目右移8位，得到的结果即为偏移量
+// 交换条目（swap_entry）是一个32位的整数，其中高24位表示交换分区中的偏移量，低8位表示交换标志（swap flag）
+#define swap_offset(entry) ({                             \
+     size_t __offset = (entry >> 8);                      \
+     if (!(__offset > 0 && __offset < max_swap_offset))   \
+     {                                                    \
+          panic("invalid swap_entry_t = %08x.\n", entry); \
+     }                                                    \
+     __offset;                                            \
+})
 
 struct swap_manager
 {
@@ -62,7 +65,7 @@ int swap_set_unswappable(struct mm_struct *mm, uintptr_t addr);
 int swap_out(struct mm_struct *mm, int n, int in_tick);
 int swap_in(struct mm_struct *mm, uintptr_t addr, struct Page **ptr_result);
 
-//#define MEMBER_OFFSET(m,t) ((int)(&((t *)0)->m))
-//#define FROM_MEMBER(m,t,a) ((t *)((char *)(a) - MEMBER_OFFSET(m,t)))
+// #define MEMBER_OFFSET(m,t) ((int)(&((t *)0)->m))
+// #define FROM_MEMBER(m,t,a) ((t *)((char *)(a) - MEMBER_OFFSET(m,t)))
 
 #endif

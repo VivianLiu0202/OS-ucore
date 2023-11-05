@@ -233,10 +233,10 @@ void exception_handler(struct trapframe *tf)
     case CAUSE_BREAKPOINT:
         cprintf("Breakpoint\n");
         break;
-    case CAUSE_MISALIGNED_LOAD:
+    case CAUSE_MISALIGNED_LOAD: // 加载地址未对齐。当尝试从一个非对齐的地址加载数据时，这种异常被触发。
         cprintf("Load address misaligned\n");
         break;
-    case CAUSE_LOAD_ACCESS:
+    case CAUSE_LOAD_ACCESS: // 加载访问错误。当一个程序尝试从一个它没有权限访问的地址加载数据时，这种异常被触发。
         cprintf("Load access fault\n");
         if ((ret = pgfault_handler(tf)) != 0) //do_pgfault()页面置换成功时返回0
         {
@@ -244,10 +244,10 @@ void exception_handler(struct trapframe *tf)
             panic("handle pgfault failed. %e\n", ret);
         }
         break;
-    case CAUSE_MISALIGNED_STORE:
+    case CAUSE_MISALIGNED_STORE: // 存储地址未对齐。当尝试将数据存储到一个非对齐的地址时，这种异常被触发。
         cprintf("AMO address misaligned\n");
         break;
-    case CAUSE_STORE_ACCESS:
+    case CAUSE_STORE_ACCESS: // 存储访问错误。当一个程序尝试将数据存储到一个它没有权限访问的地址时，这种异常被触发。
         cprintf("Store/AMO access fault\n");
         if ((ret = pgfault_handler(tf)) != 0)
         {
@@ -270,7 +270,7 @@ void exception_handler(struct trapframe *tf)
     case CAUSE_FETCH_PAGE_FAULT:
         cprintf("Instruction page fault\n");
         break;
-    case CAUSE_LOAD_PAGE_FAULT:
+    case CAUSE_LOAD_PAGE_FAULT: // 加载页面错误。当一个程序尝试从一个它没有权限访问的地址加载数据时，这种异常被触发。
         cprintf("Load page fault\n");
         if ((ret = pgfault_handler(tf)) != 0)
         {
@@ -278,8 +278,8 @@ void exception_handler(struct trapframe *tf)
             panic("handle pgfault failed. %e\n", ret);
         }
         break;
-    case CAUSE_STORE_PAGE_FAULT:
-        cprintf("Store/AMO page fault\n");
+    case CAUSE_STORE_PAGE_FAULT:           // 存储页面错误。当一个程序尝试将数据存储到一个它没有权限访问的地址时，这种异常被触发。
+        cprintf("Store/AMO page fault\n"); // 存储/原子存储-修改-写入页面错误。
         if ((ret = pgfault_handler(tf)) != 0)
         {
             print_trapframe(tf);

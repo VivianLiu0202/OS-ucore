@@ -9,4 +9,3 @@
 #define SWAP_DEV_NO         1  //交换分区所在的磁盘编号
 
 #endif /* !__KERN_FS_FS_H__ */
-

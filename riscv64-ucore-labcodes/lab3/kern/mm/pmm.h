@@ -12,23 +12,24 @@
 // only needs to implement the methods in pmm_manager class, then
 // XXX_pmm_manager can be used
 // by ucore to manage the total physical memory space.
-struct pmm_manager {
-    const char *name;  // XXX_pmm_manager's name
+struct pmm_manager
+{
+    const char *name; // XXX_pmm_manager's name
     void (*init)(
-        void);  // initialize internal description&management data structure
-                // (free block list, number of free block) of XXX_pmm_manager
+        void); // initialize internal description&management data structure
+               // (free block list, number of free block) of XXX_pmm_manager
     void (*init_memmap)(
         struct Page *base,
-        size_t n);  // setup description&management data structcure according to
-                    // the initial free physical memory space
+        size_t n); // setup description&management data structcure according to
+                   // the initial free physical memory space
     struct Page *(*alloc_pages)(
-        size_t n);  // allocate >=n pages, depend on the allocation algorithm
-    void (*free_pages)(struct Page *base, size_t n);  // free >=n pages with
-                                                      // "base" addr of Page
-                                                      // descriptor
-                                                      // structures(memlayout.h)
-    size_t (*nr_free_pages)(void);  // return the number of free pages
-    void (*check)(void);            // check the correctness of XXX_pmm_manager
+        size_t n);                                   // allocate >=n pages, depend on the allocation algorithm
+    void (*free_pages)(struct Page *base, size_t n); // free >=n pages with
+                                                     // "base" addr of Page
+                                                     // descriptor
+                                                     // structures(memlayout.h)
+    size_t (*nr_free_pages)(void);                   // return the number of free pages
+    void (*check)(void);                             // check the correctness of XXX_pmm_manager
 };
 
 extern const struct pmm_manager *pmm_manager;
@@ -59,7 +60,6 @@ void tlb_invalidate(pde_t *pgdir, uintptr_t la);
 //pgdir_alloc_page 函数用于分配一个物理页面，并将其映射到虚拟地址。
 struct Page *pgdir_alloc_page(pde_t *pgdir, uintptr_t la, uint32_t perm);
 
-
 /* *
  * PADDR - takes a kernel virtual address (an address that points above
  * KERNBASE),
@@ -71,10 +71,12 @@ struct Page *pgdir_alloc_page(pde_t *pgdir, uintptr_t la, uint32_t perm);
  * 它首先检查传入的地址是否是内核虚拟地址，如果不是则会触发 panic。
  * 然后，它将虚拟地址减去 va_pa_offset 得到物理地址。
  * */
+// 将虚拟地址转换为物理地址
 #define PADDR(kva)                                                 \
     ({                                                             \
         uintptr_t __m_kva = (uintptr_t)(kva);                      \
-        if (__m_kva < KERNBASE) {                                  \
+        if (__m_kva < KERNBASE)                                    \
+        {                                                          \
             panic("PADDR called with invalid kva %08lx", __m_kva); \
         }                                                          \
         __m_kva - va_pa_offset;                                    \
@@ -87,11 +89,13 @@ struct Page *pgdir_alloc_page(pde_t *pgdir, uintptr_t la, uint32_t perm);
  * 它首先检查传入的地址是否是有效的物理地址，如果不是则会触发 panic。
  * 然后，它将物理地址加上 va_pa_offset 得到内核虚拟地址。
  * */
+// 将物理地址转换为虚拟地址
 #define KADDR(pa)                                                \
     ({                                                           \
         uintptr_t __m_pa = (pa);                                 \
         size_t __m_ppn = PPN(__m_pa);                            \
-        if (__m_ppn >= npage) {                                  \
+        if (__m_ppn >= npage)                                    \
+        {                                                        \
             panic("KADDR called with invalid pa %08lx", __m_pa); \
         }                                                        \
         (void *)(__m_pa + va_pa_offset);                         \
@@ -166,12 +170,14 @@ static inline int page_ref(struct Page *page) { return page->ref; }
 //set_page_ref 函数用于设置页面的引用计数。
 static inline void set_page_ref(struct Page *page, int val) { page->ref = val; }
 
-static inline int page_ref_inc(struct Page *page) {
+static inline int page_ref_inc(struct Page *page)
+{
     page->ref += 1;
     return page->ref;
 }
 
-static inline int page_ref_dec(struct Page *page) {
+static inline int page_ref_dec(struct Page *page)
+{
     page->ref -= 1;
     return page->ref;
 }
@@ -184,6 +190,7 @@ static inline void flush_tlb() { asm volatile("sfence.vma"); }
  * ppn << PTE_PPN_SHIFT: 由于页表项不仅包含物理页号，还包含一些标志位和权限位，所以这里通过左移操作来为这些标志位和权限位留出空间。
  * PTE_V: 一个标志位，表示这个页表项是有效的。
  * type: 通过按位或操作，将权限类型添加到页表项中
+ * // 根据页帧号和权限位构造页表项
 */
 static inline pte_t pte_create(uintptr_t ppn, int type) {
     return (ppn << PTE_PPN_SHIFT) | PTE_V | type;

@@ -137,7 +137,7 @@ int swap_in(struct mm_struct *mm, uintptr_t addr, struct Page **ptr_result)
      // cprintf("SWAP: load ptep %x swap entry %d to vaddr 0x%08x, page %x, No %d\n", ptep, (*ptep)>>8, addr, result, (result-pages));
 
      int r;
-     if ((r = swapfs_read((*ptep), result)) != 0) //将数据从硬盘读到内存
+     if ((r = swapfs_read((*ptep), result)) != 0) // 调用swapfs_read函数，将磁盘交换分区中的页面读取到内存中
      {
           assert(r != 0);
      }
