@@ -10,8 +10,10 @@
 #include <swap.h>
 #include <trap.h>
 #include <vmm.h>
+#include <sbi.h>
 
 #define TICK_NUM 100
+volatile size_t num = 0;
 
 static void print_ticks() {
     cprintf("%d ticks\n", TICK_NUM);
@@ -35,8 +37,13 @@ void idt_init(void) {
 }
 
 /* trap_in_kernel - test if trap happened in kernel */
-bool trap_in_kernel(struct trapframe *tf) {
+//用于判断当前的异常是否发生在内核态。
+bool trap_in_kernel(struct trapframe *tf)
+{
+    //使用 tf->status 获取当前 CPU 的状态寄存器的值，该寄存器包含了当前 CPU 的特权级别信息。
+    //使用 SSTATUS_SPP 宏获取状态寄存器中的 SPP（Supervisor Previous Privilege）位，该位表示上一次的特权级别。
     return (tf->status & SSTATUS_SPP) != 0;
+    //如果 SPP 位为1，则上一次的特权级别为内核态，否则为用户态。
 }
 
 void print_trapframe(struct trapframe *tf) {
@@ -84,6 +91,9 @@ void print_regs(struct pushregs *gpr) {
 }
 
 static inline void print_pgfault(struct trapframe *tf) {
+    //然后，函数根据 trap_in_kernel 函数的返回值判断页故障发生在用户态还是内核态，并将结果打印出来。
+    //如果 trap_in_kernel 函数返回 true，则页故障发生在内核态，打印字符 K；
+    //否则页故障发生在用户态，打印字符 U。
     cprintf("page falut at 0x%08x: %c/%c\n", tf->badvaddr,
             trap_in_kernel(tf) ? 'K' : 'U',
             tf->cause == CAUSE_STORE_PAGE_FAULT ? 'W' : 'R');
@@ -92,9 +102,16 @@ static inline void print_pgfault(struct trapframe *tf) {
 static int pgfault_handler(struct trapframe *tf) {
     extern struct mm_struct *check_mm_struct;
     print_pgfault(tf);
+    /**
+     * check_mm_struct 变量是一个指向 mm_struct 结构体的指针，用于指向当前正在运行的进程的内存管理结构。
+     * 如果该变量不为 NULL，则说明当前正在运行的是用户进程，需要调用 do_pgfault 函数处理页故障。
+     * 否则，说明当前正在运行的是内核代码，不需要处理页故障。
+    */
     if (check_mm_struct != NULL) {
         return do_pgfault(check_mm_struct, tf->cause, tf->badvaddr);
     }
+    //我们的trapFrame传递了badvaddr给do_pgfault()函数，而这实际上是stval这个寄存器的数值（在旧版的RISCV标准里叫做sbadvaddr)
+    //这个寄存器存储一些关于异常的数据，对于PageFault它存储的是访问出错的虚拟地址。
     panic("unhandled page fault.\n");
 }
 
@@ -126,10 +143,22 @@ void interrupt_handler(struct trapframe *tf) {
             // directly.
             // clear_csr(sip, SIP_STIP);
             clock_set_next_event();
-            if (++ticks % TICK_NUM == 0) {
+            ticks++;
+            if (ticks == 100)
+            {
+                ticks = 0;
                 print_ticks();
+                if (num == 10)
+                {
+                    sbi_shutdown();
+                }
+                num++;
             }
             break;
+            // if (++ticks % TICK_NUM == 0) {
+            //     print_ticks();
+            // }
+            // break;
         case IRQ_H_TIMER:
             cprintf("Hypervisor software interrupt\n");
             break;
@@ -157,7 +186,7 @@ void interrupt_handler(struct trapframe *tf) {
 void exception_handler(struct trapframe *tf) {
     int ret;
     switch (tf->cause) {
-        case CAUSE_MISALIGNED_FETCH:
+        case CAUSE_MISALIGNED_FETCH: // 取指令时发生的Page Fault先不处理
             cprintf("Instruction address misaligned\n");
             break;
         case CAUSE_FETCH_ACCESS:
@@ -169,20 +198,20 @@ void exception_handler(struct trapframe *tf) {
         case CAUSE_BREAKPOINT:
             cprintf("Breakpoint\n");
             break;
-        case CAUSE_MISALIGNED_LOAD:
+        case CAUSE_MISALIGNED_LOAD: // 加载地址未对齐。当尝试从一个非对齐的地址加载数据时，这种异常被触发。
             cprintf("Load address misaligned\n");
             break;
-        case CAUSE_LOAD_ACCESS:
+        case CAUSE_LOAD_ACCESS: // 加载访问错误。当一个程序尝试从一个它没有权限访问的地址加载数据时，这种异常被触发。
             cprintf("Load access fault\n");
-            if ((ret = pgfault_handler(tf)) != 0) {
+            if ((ret = pgfault_handler(tf)) != 0) { //do_pgfault()页面置换成功时返回0
                 print_trapframe(tf);
                 panic("handle pgfault failed. %e\n", ret);
             }
             break;
-        case CAUSE_MISALIGNED_STORE:
+        case CAUSE_MISALIGNED_STORE: // 存储地址未对齐。当尝试将数据存储到一个非对齐的地址时，这种异常被触发。
             cprintf("AMO address misaligned\n");
             break;
-        case CAUSE_STORE_ACCESS:
+        case CAUSE_STORE_ACCESS: // 存储访问错误。当一个程序尝试将数据存储到一个它没有权限访问的地址时，这种异常被触发。
             cprintf("Store/AMO access fault\n");
             if ((ret = pgfault_handler(tf)) != 0) {
                 print_trapframe(tf);
@@ -204,15 +233,15 @@ void exception_handler(struct trapframe *tf) {
         case CAUSE_FETCH_PAGE_FAULT:
             cprintf("Instruction page fault\n");
             break;
-        case CAUSE_LOAD_PAGE_FAULT:
+        case CAUSE_LOAD_PAGE_FAULT: // 加载页面错误。当一个程序尝试从一个它没有权限访问的地址加载数据时，这种异常被触发。
             cprintf("Load page fault\n");
             if ((ret = pgfault_handler(tf)) != 0) {
                 print_trapframe(tf);
                 panic("handle pgfault failed. %e\n", ret);
             }
             break;
-        case CAUSE_STORE_PAGE_FAULT:
-            cprintf("Store/AMO page fault\n");
+        case CAUSE_STORE_PAGE_FAULT:  // 存储页面错误。当一个程序尝试将数据存储到一个它没有权限访问的地址时，这种异常被触发。
+            cprintf("Store/AMO page fault\n");  // 存储/原子存储-修改-写入页面错误。
             if ((ret = pgfault_handler(tf)) != 0) {
                 print_trapframe(tf);
                 panic("handle pgfault failed. %e\n", ret);
