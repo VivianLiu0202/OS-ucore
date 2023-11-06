@@ -2,6 +2,7 @@
 
 .text
 # void switch_to(struct proc_struct* from, struct proc_struct* to)
+# 将需要保存的寄存器进行保存和调换。其中的a0和a1是RISC-V 架构中通用寄存器，它们用于传递参数，也就是说a0指向原进程，a1指向目的进程。
 .globl switch_to
 switch_to:
     # save from's registers

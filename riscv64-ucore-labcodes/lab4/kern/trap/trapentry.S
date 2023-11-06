@@ -112,5 +112,5 @@ __trapret:
     .globl forkrets
 forkrets:
     # set stack to this new process's trapframe
-    move sp, a0
+    move sp, a0 #把传进来的参数，也就是进程的中断帧放在了sp
     j __trapret
