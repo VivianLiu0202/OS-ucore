@@ -30,20 +30,27 @@ list_entry_t pra_list_head;
  * (2) _fifo_init_mm: init pra_list_head and let  mm->sm_priv point to the addr of pra_list_head.
  *              Now, From the memory control struct mm_struct, we can access FIFO PRA
  */
+//该函数初始化用于FIFO算法的页面队列。
 static int
 _fifo_init_mm(struct mm_struct *mm)
-{     
-     list_init(&pra_list_head);
-     mm->sm_priv = &pra_list_head;
-     //cprintf(" mm->sm_priv %x in fifo_init_mm\n",mm->sm_priv);
-     return 0;
+{
+    list_init(&pra_list_head); //初始化一个全局的双向链表头，该链表将用于存储所有可交换（可替换）的页面。
+    mm->sm_priv = &pra_list_head;
+    // 上面这句这句将mm->sm_priv指针指向pra_list_head。这样，从内存管理结构mm_struct中，我们可以访问到FIFO页面置换算法的队列
+    //  cprintf(" mm->sm_priv %x in fifo_init_mm\n",mm->sm_priv);
+    return 0;
 }
 /*
  * (3)_fifo_map_swappable: According FIFO PRA, we should link the most recent arrival page at the back of pra_list_head qeueue
  */
+//该函数将最近到达的页面添加到FIFO队列的尾部。
 static int
 _fifo_map_swappable(struct mm_struct *mm, uintptr_t addr, struct Page *page, int swap_in)
 {
+    // struct mm_struct *mm：指向进程地址空间描述符的指针，表示当前页面所属的进程。
+    // uintptr_t addr：表示当前页面在进程地址空间中的虚拟地址。
+    // struct Page *page：指向 struct Page 结构体的指针，表示当前页面的信息。
+    // int swap_in：表示当前页面是否需要从交换空间中调入内存，如果需要则为 1，否则为 0。
     list_entry_t *head=(list_entry_t*) mm->sm_priv;
     list_entry_t *entry=&(page->pra_page_link);
  
@@ -51,19 +58,22 @@ _fifo_map_swappable(struct mm_struct *mm, uintptr_t addr, struct Page *page, int
     //record the page access situlation
     /*LAB3 EXERCISE 2: YOUR CODE*/ 
     //(1)link the most recent arrival page at the back of the pra_list_head qeueue.
-    list_add_before(head, entry);
+    list_add_before(head, entry); //将这个页面链接到队列的尾部，表示这个页面是最近进入内存的。
     return 0;
 }
 /*
  *  (4)_fifo_swap_out_victim: According FIFO PRA, we should unlink the  earliest arrival page in front of pra_list_head qeueue,
  *                            then set the addr of addr of this page to ptr_page.
  */
+//该函数选择一个“牺牲”页面进行替换，并将其从FIFO队列中移除
 static int
 _fifo_swap_out_victim(struct mm_struct *mm, struct Page ** ptr_page, int in_tick)
 {
-     list_entry_t *head=(list_entry_t*) mm->sm_priv;
-         assert(head != NULL);
-     assert(in_tick==0);
+    // 双重指针ptr_page（用于返回选定的"牺牲"页面
+    list_entry_t *head = (list_entry_t *)mm->sm_priv; //这一行获取队列中最早到达的页面。
+    //接着，如果队列不为空，它会从队列中删除最早到达的页面，并将其设置为“牺牲”页面，用于后续的页面替换。
+    assert(head != NULL);
+    assert(in_tick==0);
      /* Select the victim */
      /*LAB3 EXERCISE 2: YOUR CODE*/ 
      //(1)  unlink the  earliest arrival page in front of pra_list_head qeueue

@@ -60,23 +60,28 @@ static void check_vma_struct(void);
 static void check_pgfault(void);
 
 // mm_create -  alloc a mm_struct & initialize it.
+// 创建一个mm_struct并初始化(创建时调用了kmalloc，一次create会创建一个新的，故删除前需要释放)
 struct mm_struct *
 mm_create(void) {
     struct mm_struct *mm = kmalloc(sizeof(struct mm_struct));
 
-    if (mm != NULL) {
-        list_init(&(mm->mmap_list));
-        mm->mmap_cache = NULL;
-        mm->pgdir = NULL;
-        mm->map_count = 0;
+    if (mm != NULL)
+    {
+        list_init(&(mm->mmap_list)); //初始化 mm_struct 结构体中的 mmap_list。mmap_list 通常用于维护进程的内存映射列表。
+        mm->mmap_cache = NULL; // 当前没有正在使用的虚拟内存空间；
+        mm->pgdir = NULL;      // 表示当前没有使用的页目录表；
+        mm->map_count = 0;     // 表示当前没有虚拟内存空间；
 
-        if (swap_init_ok) swap_init_mm(mm);
-        else mm->sm_priv = NULL;
+        if (swap_init_ok) //我们接下来解释页面置换的初始化
+            swap_init_mm(mm); //初始化与交换空间（swap space）相关的数据结构
+        else
+            mm->sm_priv = NULL; // sm_priv 设置为 NULL。sm_priv 通常用于存储与特定交换空间实现相关的私有数据。
     }
     return mm;
 }
 
 // vma_create - alloc a vma_struct & initialize it. (addr range: vm_start~vm_end)
+// vma的创建并初始化，根据参数vm_start、vm_end、vm_flags完成初始化
 struct vma_struct *
 vma_create(uintptr_t vm_start, uintptr_t vm_end, uint32_t vm_flags) {
     struct vma_struct *vma = kmalloc(sizeof(struct vma_struct));
@@ -91,27 +96,45 @@ vma_create(uintptr_t vm_start, uintptr_t vm_end, uint32_t vm_flags) {
 
 
 // find_vma - find a vma  (vma->vm_start <= addr <= vma_vm_end)
+// 根据mm以及addr找到vma ,查找这个地址对应的vma_struct结构体满足(vma->vm_start <= addr <= vma_vm_end)体
+//find_vma 函数在给定进程的虚拟内存管理结构体中找到包含指定地址的虚拟内存区域，并返回包含其详细信息的 vma_struct。
 struct vma_struct *
-find_vma(struct mm_struct *mm, uintptr_t addr) {
+find_vma(struct mm_struct *mm, uintptr_t addr)
+{
     struct vma_struct *vma = NULL;
-    if (mm != NULL) {
-        vma = mm->mmap_cache;
-        if (!(vma != NULL && vma->vm_start <= addr && vma->vm_end > addr)) {
-                bool found = 0;
-                list_entry_t *list = &(mm->mmap_list), *le = list;
-                while ((le = list_next(le)) != list) {
-                    vma = le2vma(le, list_link);
-                    if (vma->vm_start<=addr && addr < vma->vm_end) {
-                        found = 1;
-                        break;
-                    }
+    if (mm != NULL)
+    {
+        //首先尝试从 mm->mmap_cache 中获取VMA。mmap_cache 存储了最近使用的VMA，以加快访问速度。
+        vma = mm->mmap_cache; // 先查cache，当前正在使用的虚拟内存空间
+        //检查找到的VMA是否包含传入的地址。如果 vma 不为 NULL 且地址在 vma->vm_start 和 vma->vm_end 之间，那么这个VMA就是我们要找的。
+        if (!(vma != NULL && vma->vm_start <= addr && vma->vm_end > addr))
+        // 传入的地址不在cache中，遍历整个 mm->mmap_list 链表，查找对应的vma（包含传入地址的 vma_struct 结构体）；
+        {
+            //如果没有在 mmap_cache 中找到VMA，则在 mm->mmap_list 链表中查找。定义了一个布尔变量 found 来标记是否找到了合适的VMA。
+            bool found = 0;
+            list_entry_t *list = &(mm->mmap_list), *le = list;
+            // list标识vma链表的头部，le标识当前遍历到的vma
+            while ((le = list_next(le)) != list)
+            {
+                //遍历 mm->mmap_list 链表。le2vma 是一个宏或函数，用于从链表条目获取对应的VMA。
+                vma = le2vma(le, list_link);
+                if (vma->vm_start <= addr && addr < vma->vm_end)
+                {
+                    //检查每个VMA是否包含传入的地址。如果找到，则设置 found 为 1 并退出循环。
+                    found = 1;
+                    break;
                 }
-                if (!found) {
-                    vma = NULL;
-                }
+            }
+            //如果没有找到包含指定地址的VMA，则将 vma 设置为 NULL。
+            if (!found)
+            {
+                vma = NULL;
+            }
         }
-        if (vma != NULL) {
-            mm->mmap_cache = vma;
+        //如果找到了VMA，则更新 mm->mmap_cache 以加快后续的VMA查找。
+        if (vma != NULL)
+        {
+            mm->mmap_cache = vma; // 更新cache
         }
     }
     return vma;
@@ -119,7 +142,8 @@ find_vma(struct mm_struct *mm, uintptr_t addr) {
 
 
 // check_vma_overlap - check if vma1 overlaps vma2 ?
-static inline void
+//在插入一个新的vma_struct之前，我们要保证它和原有的区间都不重合
+static inline void // 检测两个vma是否重叠
 check_vma_overlap(struct vma_struct *prev, struct vma_struct *next) {
     assert(prev->vm_start < prev->vm_end);
     assert(prev->vm_end <= next->vm_start);
@@ -128,38 +152,52 @@ check_vma_overlap(struct vma_struct *prev, struct vma_struct *next) {
 
 
 // insert_vma_struct -insert vma in mm's list link
+// 向mm的mmap_list的插入一个vma，按地址插入合适位置
+// 我们可以插入一个新的vma_struct, 将一个 vma_struct 结构体插入到 mm_struct 结构体中。
 void
 insert_vma_struct(struct mm_struct *mm, struct vma_struct *vma) {
-    assert(vma->vm_start < vma->vm_end);
-    list_entry_t *list = &(mm->mmap_list);
-    list_entry_t *le_prev = list, *le_next;
+    assert(vma->vm_start < vma->vm_end); //函数首先检查 vma 是否为空，如果为空则直接返回。
+    list_entry_t *list = &(mm->mmap_list); // list标识vma链表头
+    list_entry_t *le_prev = list, *le_next; // le_prev 和 le_next 分别表示该 vma 的前一个和后一个 vma，
 
-        list_entry_t *le = list;
-        while ((le = list_next(le)) != list) {
-            struct vma_struct *mmap_prev = le2vma(le, list_link);
-            if (mmap_prev->vm_start > vma->vm_start) {
-                break;
-            }
-            le_prev = le;
+    list_entry_t *le = list; // le用来遍历整个链表
+    //使用 list_entry 宏遍历 mm 中的所有 vma，并找到第一个比 vma 的 vm_start 大的 vma。
+    while ((le = list_next(le)) != list)
+    {
+        struct vma_struct *mmap_prev = le2vma(le, list_link);
+        if (mmap_prev->vm_start > vma->vm_start) // 找到第一个比vma的vm_start大的vma
+        {
+            break;
         }
+        le_prev = le;
+        //保证插入后所有vma_struct按照区间左端点有序排列
+    }
 
     le_next = list_next(le_prev);
 
     /* check overlap */
-    if (le_prev != list) {
-        check_vma_overlap(le2vma(le_prev, list_link), vma);
+    //检查新插入的 vma_struct 结构体与相邻的 vma_struct 结构体是否重叠。
+    if (le_prev != list)
+    {
+        check_vma_overlap(le2vma(le_prev, list_link), vma); // 检查vma与前一个vma是否重叠
     }
-    if (le_next != list) {
+    if (le_next != list)
+    {
         check_vma_overlap(vma, le2vma(le_next, list_link));
     }
 
     vma->vm_mm = mm;
     list_add_after(le_prev, &(vma->list_link));
 
-    mm->map_count ++;
+    mm->map_count++;
+    /**
+     * 该函数假设 mm 中的 vma 已经按照起始地址排序，因此可以使用线性查找算法。
+     * 该函数在实现虚拟内存管理时非常有用，可以方便地将 vma_struct 结构体插入到对应的 mm_struct 结构体中，从而管理进程的虚拟地址空间。
+    */
 }
 
 // mm_destroy - free mm and mm internal fields
+// 删除一个mm struct，kfree掉占用的空间
 void
 mm_destroy(struct mm_struct *mm) {
 
@@ -182,8 +220,8 @@ vmm_init(void) {
 // check_vmm - check correctness of vmm
 static void
 check_vmm(void) {
-    check_vma_struct();
-    check_pgfault();
+    check_vma_struct(); // 检查vma_struct结构体,检查vma_create、insert_vma_struct、find_vma函数
+    check_pgfault();    // 检查页错误处理函数，
 
     cprintf("check_vmm() succeeded.\n");
 }
@@ -319,10 +357,14 @@ volatile unsigned int pgfault_num=0;
  */
 int
 do_pgfault(struct mm_struct *mm, uint32_t error_code, uintptr_t addr) {
-    int ret = -E_INVAL;
+    //该函数的参数是一个指向 mm_struct 结构体的指针 mm、一个错误码 error_code 和一个地址 addr，分别表示当前进程的内存管理结构、页故障的错误码和引起页故障的地址。
+    // mm mm_struct的结构体
+    // error_code 错误码
+    // addr 产生异常的地址
+    int ret = -E_INVAL; // 返回值初始化为-E_INVAL，为无效值
     //try to find a vma which include addr
-    struct vma_struct *vma = find_vma(mm, addr);
-
+    struct vma_struct *vma = find_vma(mm, addr); // 找到地址对应的vma_struct结构体
+    //我们首先要做的就是在mm_struct里判断这个虚拟地址是否可用
     pgfault_num++;
     //If the addr is in the range of a mm's vma?
     if (vma == NULL || vma->vm_start > addr) {
@@ -336,15 +378,16 @@ do_pgfault(struct mm_struct *mm, uint32_t error_code, uintptr_t addr) {
      * THEN
      *    continue process
      */
-    uint32_t perm = PTE_U;
-    if (vma->vm_flags & VM_WRITE) {
+    uint32_t perm = PTE_U; // 定义页权限并初始化为用户模式。
+    if (vma->vm_flags & VM_WRITE) {  // 检查vma是否可写
         perm |= READ_WRITE;
     }
-    addr = ROUNDDOWN(addr, PGSIZE);
+    //按照页面大小把地址对齐
+    addr = ROUNDDOWN(addr, PGSIZE); // 将addr向下对齐到页面大小的整数倍，找到发生缺页的addr所在的页面的首地址
 
-    ret = -E_NO_MEM;
+    ret = -E_NO_MEM;  // 表示没有可用内存
 
-    pte_t *ptep=NULL;
+    pte_t *ptep=NULL; // 新建一个页表条目的指针
   
     // try to find a pte, if pte's PT(Page Table) isn't existed, then create a PT.
     // (notice the 3th parameter '1')
@@ -358,7 +401,7 @@ do_pgfault(struct mm_struct *mm, uint32_t error_code, uintptr_t addr) {
             goto failed;
         }
     } else {
-        /*LAB3 EXERCISE 3: YOUR CODE
+        /*LAB3 EXERCISE 3: 2111194
         * 请你根据以下信息提示，补充函数
         * 现在我们认为pte是一个交换条目，那我们应该从磁盘加载数据并放到带有phy addr的页面，
         * 并将phy addr与逻辑addr映射，触发交换管理器记录该页面的访问情况
@@ -381,8 +424,31 @@ do_pgfault(struct mm_struct *mm, uint32_t error_code, uintptr_t addr) {
             //map of phy addr <--->
             //logical addr
             //(3) make the page swappable.
+
+            // (1) 尝试加载正确的磁盘页面的内容到内存中的页面
+            int result = swap_in(mm, addr, &page); // ***在这里进swap_in函数
+            if (result != 0)
+            {
+                cprintf("swap_in failed\n");
+                goto failed;
+            }
+
+            // (2) 设置物理地址和逻辑地址的映射
+            if (page_insert(mm->pgdir, page, addr, perm) != 0)
+            {
+                cprintf("page_insert failed\n");
+                goto failed;
+            }
+
+            // (3) 设置页面为可交换的
+            if (swap_map_swappable(mm, addr, page, 1) != 0)
+            {
+                cprintf("swap_map_swappable failed\n");
+                goto failed;
+            }
             page->pra_vaddr = addr;
-        } else {
+        } 
+        else {
             cprintf("no swap_init_ok but ptep is %x, failed\n", *ptep);
             goto failed;
         }

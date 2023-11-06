@@ -34,13 +34,14 @@ kern_init(void) {
     pmm_init();                 // init physical memory management
 
     pic_init();                 // init interrupt controller
+    // 加入多级页表的接口和测试
     idt_init();                 // init interrupt descriptor table
 
-    vmm_init();                 // init virtual memory management
+    vmm_init();                 // init virtual memory management 初始化虚拟内存管理
     proc_init();                // init process table
     
-    ide_init();                 // init ide devices
-    swap_init();                // init swap
+    ide_init();                 // init ide devices 初始化“硬盘”
+    swap_init();                // init swap 初始化页面置换机制并进行测试
 
     clock_init();               // init clock interrupt
     intr_enable();              // enable irq interrupt

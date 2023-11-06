@@ -31,9 +31,12 @@
  * */
 
 /* All physical memory mapped at this address */
-#define KERNBASE            0xFFFFFFFFC0200000
-#define KMEMSIZE            0x7E00000                  // the maximum amount of physical memory
-#define KERNTOP             (KERNBASE + KMEMSIZE)
+#define KERNBASE 0xFFFFFFFFC0200000 // = 0x80200000(物理内存里内核的起始位置, KERN_BEGIN_PADDR) + 0xFFFFFFFF40000000(偏移量, PHYSICAL_MEMORY_OFFSET)
+// 把原有内存映射到虚拟内存空间的最后一页
+#define KMEMSIZE 0x7E00000 // the maximum amount of physical memory
+// 0x7E00000 = 0x8000000 - 0x200000
+// QEMU 缺省的RAM为 0x80000000到0x88000000, 128MiB, 0x80000000到0x80200000被OpenSBI占用
+#define KERNTOP (KERNBASE + KMEMSIZE) // 0x88000000对应的虚拟地址
 
 #define KERNEL_BEGIN_PADDR 0x80200000
 #define KERNEL_BEGIN_VADDR 0xFFFFFFFFC0200000
@@ -63,6 +66,7 @@ struct Page {
     uint_t flags;                 // array of flags that describe the status of the page frame
     unsigned int property;          // the num of free block, used in first fit pm manager
     list_entry_t page_link;         // free list link
+    //增添了两个变量：pra_page_link以及pra_vaddr，用于页替换算法
     list_entry_t pra_page_link;     // used for pra (page replace algorithm)
     uintptr_t pra_vaddr;            // used for pra (page replace algorithm)
 };

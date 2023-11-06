@@ -25,38 +25,48 @@
 // +---------12----------+-----------------+--------+---------------+
 
 // page directory index
-#define PDX1(la) ((((uintptr_t)(la)) >> PDX1SHIFT) & 0x1FF)
-#define PDX0(la) ((((uintptr_t)(la)) >> PDX0SHIFT) & 0x1FF)
+// 虚拟地址39位从高到低PDX1、PDX0、PTX
+#define PDX1(la) ((((uintptr_t)(la)) >> PDX1SHIFT) & 0x1FF) // 虚拟地址右移30位并取低9位
+#define PDX0(la) ((((uintptr_t)(la)) >> PDX0SHIFT) & 0x1FF) // 虚拟地址右移21位并取低9位
 
-// page table index
-#define PTX(la) ((((uintptr_t)(la)) >> PTXSHIFT) & 0x1FF)
+// page table index 这个宏用于获取线性地址的页表索引。
+#define PTX(la) ((((uintptr_t)(la)) >> PTXSHIFT) & 0x1FF) // 虚拟地址右移12位并取低9位
 
 // page number field of address
-#define PPN(la) (((uintptr_t)(la)) >> PTXSHIFT)
+// 一个虚拟地址的高27位是页号，低12位是页内偏移
+// 取高27位即可得到页号，是整体的页号，可以通过27位页号分成3部分，一部分9位的页号去查三级页表
+#define PPN(la) (((uintptr_t)(la)) >> PTXSHIFT) // 虚拟地址右移12位，取所有位
 
-// offset in page
-#define PGOFF(la) (((uintptr_t)(la)) & 0xFFF)
+// offset in page 提取页内偏移量。
+#define PGOFF(la) (((uintptr_t)(la)) & 0xFFF) //0xFFF表示低12位
 
 // construct linear address from indexes and offset
+//从给定的页目录项索引、页表项索引和页内偏移量构造线性地址
+//它将这些参数左移相应的位数，并将它们相加以构造线性地址。
 #define PGADDR(d1, d0, t, o) ((uintptr_t)((d1) << PDX1SHIFT |(d0) << PDX0SHIFT | (t) << PTXSHIFT | (o)))
 
 // address in page table or page directory entry
+// 根据页表项或页目录项的地址找到页表或页目录项的地址
+// 先将其最后 10 位清零，再左移 2 位（物理页号转换为物理地址），即可得到页表或页目录项的地址
+// 物理页号与实际物理地址之间的差异在于低12位。其中，最低10位是页内偏移，再高的2位是页表项标志。左移2位后，最低10位变成页内偏移，而页表项的标志被推出，从而得到实际的物理地址。
 #define PTE_ADDR(pte)   (((uintptr_t)(pte) & ~0x3FF) << (PTXSHIFT - PTE_PPN_SHIFT))
+
+//从给定的页目录项中提取页表物理地址。
 #define PDE_ADDR(pde)   PTE_ADDR(pde)
 
 /* page directory and page table constants */
-#define NPDEENTRY       512                    // page directory entries per page directory
-#define NPTEENTRY       512                    // page table entries per page table
+#define NPDEENTRY       512                    // page directory entries per page directory //512个页目录项
+#define NPTEENTRY       512                    // page table entries per page table //512个页表项
 
-#define PGSIZE          4096                    // bytes mapped by a page
-#define PGSHIFT         12                      // log2(PGSIZE)
-#define PTSIZE          (PGSIZE * NPTEENTRY)    // bytes mapped by a page directory entry
-#define PTSHIFT         21                      // log2(PTSIZE)
+#define PGSIZE          4096                    // bytes mapped by a page 一个页面的大小
+#define PGSHIFT         12                      // log2(PGSIZE) 页面大小的对数
+#define PTSIZE          (PGSIZE * NPTEENTRY)    // bytes mapped by a page directory entry 一个页目录项所映射的页表大小
+#define PTSHIFT         21                      // log2(PTSIZE) 页表大小的对数
 
-#define PTXSHIFT        12                      // offset of PTX in a linear address
-#define PDX0SHIFT       21                      // offset of PDX in a linear address
-#define PDX1SHIFT		30
-#define PTE_PPN_SHIFT   10                      // offset of PPN in a physical address
+#define PTXSHIFT        12                      // offset of PTX in a linear address 页表项偏移量
+#define PDX0SHIFT       21                      // offset of PDX0 in a linear address 第一级页目录项偏移量
+#define PDX1SHIFT       30                      // offset of PDX0 in a linear address 第二级页目录项偏移量
+#define PTE_PPN_SHIFT   10                      // offset of PPN in a physical address 物理地址中页帧号的偏移量
 
 // page table entry (PTE) fields
 #define PTE_V     0x001 // Valid
