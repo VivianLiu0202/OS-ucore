@@ -22,11 +22,11 @@ PMP1: 0x0000000000000000-0xffffffffffffffff (A,R,W,X)
 (THU.CST) os is loading ...
 
 Special kernel symbols:
-  entry  0xc0200032 (virtual)
-  etext  0xc0204ece (virtual)
-  edata  0xc020a060 (virtual)
-  end    0xc02155d8 (virtual)
-Kernel executable memory footprint: 86KB
+  entry  0xc0200036 (virtual)
+  etext  0xc0204f3a (virtual)
+  edata  0xc020b060 (virtual)
+  end    0xc0216600 (virtual)
+Kernel executable memory footprint: 90KB
 memory management: default_pmm_manager
 physcial memory map:
   memory: 0x07e00000, [0x80200000, 0x87ffffff].
@@ -43,7 +43,7 @@ check_pgfault() succeeded!
 check_vmm() succeeded.
 alloc_proc() correct!
 SWAP: manager = fifo swap manager
-BEGIN check_swap: count 1, total 31718
+BEGIN check_swap: count 1, total 31717
 setup Page Table for vaddr 0X1000, so alloc a page
 setup Page Table vaddr 0~4MB OVER!
 set up init env for check_swap begin!
@@ -100,7 +100,7 @@ check_swap() succeeded!
 this initproc, pid = 1, name = "init"
 To U: "Hello world!!".
 To U: "en.., Bye, Bye. :)"
-kernel panic at kern/process/proc.c:409:
+kernel panic at kern/process/proc.c:446:
     process exit!!.
 
 Welcome to the kernel debug monitor!!

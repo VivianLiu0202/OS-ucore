@@ -17,12 +17,12 @@
 int kern_init(void) __attribute__((noreturn));
 void grade_backtrace(void);
 
-int
-kern_init(void) {
+int kern_init(void)
+{
     extern char edata[], end[];
     memset(edata, 0, end - edata);
 
-    cons_init();                // init the console
+    cons_init(); // init the console
 
     const char *message = "(THU.CST) os is loading ...";
     cprintf("%s\n\n", message);
@@ -31,47 +31,50 @@ kern_init(void) {
 
     // grade_backtrace();
 
-    pmm_init();                 // init physical memory management
+    pmm_init(); // init physical memory management
 
-    pic_init();                 // init interrupt controller
+    pic_init(); // init interrupt controller
     // 加入多级页表的接口和测试
-    idt_init();                 // init interrupt descriptor table
+    idt_init(); // init interrupt descriptor table
 
-    vmm_init();                 // init virtual memory management 初始化虚拟内存管理
-    proc_init();                // init process table
-    
-    ide_init();                 // init ide devices 初始化“硬盘”
-    swap_init();                // init swap 初始化页面置换机制并进行测试
+    vmm_init();  // init virtual memory management 初始化虚拟内存管理
+    proc_init(); // init process table
 
-    clock_init();               // init clock interrupt
-    intr_enable();              // enable irq interrupt
+    ide_init();  // init ide devices 初始化“硬盘”
+    swap_init(); // init swap 初始化页面置换机制并进行测试
 
-    cpu_idle();                 // run idle process
+    clock_init();  // init clock interrupt
+    intr_enable(); // enable irq interrupt
+
+    cpu_idle(); // run idle process
 }
 
 void __attribute__((noinline))
-grade_backtrace2(int arg0, int arg1, int arg2, int arg3) {
+grade_backtrace2(int arg0, int arg1, int arg2, int arg3)
+{
     mon_backtrace(0, NULL, NULL);
 }
 
 void __attribute__((noinline))
-grade_backtrace1(int arg0, int arg1) {
+grade_backtrace1(int arg0, int arg1)
+{
     grade_backtrace2(arg0, (int)&arg0, arg1, (int)&arg1);
 }
 
 void __attribute__((noinline))
-grade_backtrace0(int arg0, int arg1, int arg2) {
+grade_backtrace0(int arg0, int arg1, int arg2)
+{
     grade_backtrace1(arg0, arg2);
 }
 
-void
-grade_backtrace(void) {
+void grade_backtrace(void)
+{
     grade_backtrace0(0, (int)kern_init, 0xffff0000);
 }
 
 static void
-lab1_print_cur_status(void) {
+lab1_print_cur_status(void)
+{
     static int round = 0;
-    round ++;
+    round++;
 }
-

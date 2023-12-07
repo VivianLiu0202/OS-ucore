@@ -107,10 +107,10 @@ __alltraps:
 __trapret:
     RESTORE_ALL
     # go back from supervisor call
-    sret
+    sret # sret命令，从监督者模式返回，会把sstatus寄存器的SIE位清零，这样就禁止了中断，同时把sstatus寄存器的SPIE位设置为SIE位的值，这样就恢复了中断的开关状态。
  
     .globl forkrets
 forkrets:
     # set stack to this new process's trapframe
-    move sp, a0 #把传进来的参数，也就是进程的中断帧放在了sp
+    move sp, a0 #把传进来的参数，也就是进程的中断帧放在了sp，后面根据sp的值逐个执行RESTORE操作，将中断程序的上下文恢复
     j __trapret
