@@ -647,13 +647,13 @@ stateDiagram-v2
 
 `make grade`结果
 
-![image-20231210204137474](E:/Markdown图片/image-20231210204137474.png)
+![image-20231210204137474](image/lab5_1.png)
 
-![image-20231210204146022](E:/Markdown图片/image-20231210204146022.png)
+![image-20231210204146022](image/lab5_2.png)
 
 `make qemu`结果
 
-![image-20231210204205512](E:/Markdown图片/image-20231210204205512.png)
+![image-20231210204146022](image/lab5_3.png)
 
 
 
