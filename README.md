@@ -13,3 +13,4 @@
 
 [lab5：用户线程](https://github.com/VivianLiu0202/OS-ucore/blob/main/riscv64-ucore-labcodes/%E6%8A%A5%E5%91%8A/lab5%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.md)
 
+[lab8：文件系统](https://github.com/VivianLiu0202/OS-ucore/blob/main/riscv64-ucore-labcodes/%E6%8A%A5%E5%91%8A/lab8_report.md)
