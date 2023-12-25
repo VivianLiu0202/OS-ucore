@@ -92,7 +92,7 @@ void print_regs(struct pushregs* gpr) {
 }
 
 static inline void print_pgfault(struct trapframe *tf) {
-    cprintf("page fault at 0x%08x: %c/%c\n", tf->tval,
+    cprintf("page falut at 0x%08x: %c/%c\n", tf->tval,
             trap_in_kernel(tf) ? 'K' : 'U',
             tf->cause == CAUSE_STORE_PAGE_FAULT ? 'W' : 'R');
 }
@@ -174,7 +174,7 @@ void interrupt_handler(struct trapframe *tf) {
             break;
     }
 }
-void kernel_execve_ret(struct trapframe *tf,uintptr_t kstacktop);
+
 void exception_handler(struct trapframe *tf) {
     int ret;
     switch (tf->cause) {
@@ -191,8 +191,7 @@ void exception_handler(struct trapframe *tf) {
             cprintf("Breakpoint\n");
             if(tf->gpr.a7 == 10){
                 tf->epc += 4;
-                syscall();
-                kernel_execve_ret(tf,current->kstack+KSTACKSIZE);
+                syscall(); 
             }
             break;
         case CAUSE_MISALIGNED_LOAD:

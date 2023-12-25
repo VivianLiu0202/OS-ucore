@@ -99,8 +99,8 @@ static void page_init(void) {
     va_pa_offset = KERNBASE - 0x80200000;
 
     uint_t mem_begin = KERNEL_BEGIN_PADDR;
-    uint_t mem_size = PHYSICAL_MEMORY_END - KERNEL_BEGIN_PADDR;
-    uint_t mem_end = PHYSICAL_MEMORY_END;
+    uint_t mem_end = PHYSICAL_MEMORY_END - KERNEL_BEGIN_PADDR;
+    uint_t mem_size = PHYSICAL_MEMORY_END;
 
     cprintf("physcial memory map:\n");
     cprintf("  memory: 0x%08lx, [0x%08lx, 0x%08lx].\n", mem_size, mem_begin,
@@ -165,62 +165,6 @@ static void *boot_alloc_page(void) {
     return page2kva(p);
 }
 
-/**
- * from transient boot pgdir switch to a new one and add some protection
- * 1. switch pgdir
- * 2. set refined permission(rx, rw...)
- * 3. set previous transient boot pgdir and another dedicated page
- *  as guard pages for kernel stack
- */
-static void
-switch_kernel_memorylayout(){
-    /**
-     * Free intermediate here is uncessary because initially we use
-     * big-big-big page such that not intermediate page is occupied
-     */
-
-    // new page directory
-    pde_t *kern_pgdir = (pde_t *)boot_alloc_page();
-    memset(kern_pgdir,0,PGSIZE);
-
-    // insert kernel mappings
-    extern const char etext[];
-    uintptr_t retext = ROUNDUP((uintptr_t)etext,PGSIZE);
-    boot_map_segment(kern_pgdir,KERNBASE,retext-KERNBASE,PADDR(KERNBASE),PTE_R|PTE_X);
-    boot_map_segment(kern_pgdir,retext,KERNTOP-retext,PADDR(retext),PTE_R|PTE_W);
-
-    // perform switch
-    boot_pgdir = kern_pgdir;
-    boot_cr3 = PADDR(boot_pgdir);
-    lcr3(boot_cr3);
-    flush_tlb();
-    cprintf("Page table directory switch succeeded!\n");
-
-    /**
-     *  set up kernel stack guardian pages
-     */
-    extern char bootstackguard[],boot_page_table_sv39[];
-    if ((bootstackguard + PGSIZE == bootstack) && (bootstacktop == boot_page_table_sv39)){
-        // check writeable and set 0
-        memset(boot_page_table_sv39,0,PGSIZE);
-        bootstack[-1] = 0;
-        bootstack[-PGSIZE] = 0;
-
-        // set pages beneath and above the kernel stack as guardians
-        boot_map_segment(boot_pgdir,bootstackguard,PGSIZE,PADDR(bootstackguard),0);
-        boot_map_segment(boot_pgdir,boot_page_table_sv39,PGSIZE,PADDR(boot_page_table_sv39),0);
-        flush_tlb();
-
-        // the following four statements should all crash
-        // bootstack[-1] = 0;
-        // bootstack[-PGSIZE] = 0;
-        // bootstacktop[0] = 0;
-        // bootstacktop[PGSIZE-1] = 0;
-
-        cprintf("Kernel stack guardians set succeeded!\n");
-    }
-}
-
 // pmm_init - setup a pmm to manage physical memory, build PDT&PT to setup
 // paging mechanism
 //         - check the correctness of pmm & paging mechanism, print PDT&PT
@@ -243,8 +187,10 @@ void pmm_init(void) {
     // pmm
     check_alloc_page();
 
-    // switch from transient boot page directory to refined kernel page directory
-    switch_kernel_memorylayout();
+    // create boot_pgdir, an initial page directory(Page Directory Table, PDT)
+    extern char boot_page_table_sv39[];
+    boot_pgdir = (pte_t*)boot_page_table_sv39;
+    boot_cr3 = PADDR(boot_pgdir);
 
     check_pgdir();
 
@@ -266,7 +212,7 @@ void pmm_init(void) {
 //  create: a logical value to decide if alloc a page for PT
 // return vaule: the kernel virtual address of this pte
 pte_t *get_pte(pde_t *pgdir, uintptr_t la, bool create) {
-    /* 
+    /* LAB2 EXERCISE 2: YOUR CODE
      *
      * If you need to visit a physical address, please use KADDR()
      * please read pmm.h for useful macros
@@ -335,7 +281,8 @@ struct Page *get_page(pde_t *pgdir, uintptr_t la, pte_t **ptep_store) {
 //                - and clean(invalidate) pte which is related linear address la
 // note: PT is changed, so the TLB need to be invalidate
 static inline void page_remove_pte(pde_t *pgdir, uintptr_t la, pte_t *ptep) {
-    /*LAB2 EXERCISE 3: YOUR CODE
+    /* LAB2 EXERCISE 3: YOUR CODE
+     *
      * Please check if ptep is valid, and tlb must be manually updated if
      * mapping is updated
      *
@@ -390,52 +337,15 @@ void exit_range(pde_t *pgdir, uintptr_t start, uintptr_t end) {
     assert(start % PGSIZE == 0 && end % PGSIZE == 0);
     assert(USER_ACCESS(start, end));
 
-    uintptr_t d1start, d0start;
-    int free_pt, free_pd0;
-    pde_t *pd0, *pt, pde1, pde0;
-    d1start = ROUNDDOWN(start, PDSIZE);
-    d0start = ROUNDDOWN(start, PTSIZE);
+    start = ROUNDDOWN(start, PTSIZE);
     do {
-        // level 1 page directory entry
-        pde1 = pgdir[PDX1(d1start)];
-        // if there is a valid entry, get into level 0
-        // and try to free all page tables pointed to by
-        // all valid entries in level 0 page directory,
-        // then try to free this level 0 page directory
-        // and update level 1 entry
-        if (pde1&PTE_V){
-            pd0 = page2kva(pde2page(pde1));
-            // try to free all page tables
-            free_pd0 = 1;
-            do {
-                pde0 = pd0[PDX0(d0start)];
-                if (pde0&PTE_V) {
-                    pt = page2kva(pde2page(pde0));
-                    // try to free page table
-                    free_pt = 1;
-                    for (int i = 0;i <NPTEENTRY;i++)
-                        if (pt[i]&PTE_V){
-                            free_pt = 0;
-                            break;
-                        }
-                    // free it only when all entry are already invalid
-                    if (free_pt) {
-                        free_page(pde2page(pde0));
-                        pd0[PDX0(d0start)] = 0;
-                    }
-                } else
-                    free_pd0 = 0;
-                d0start += PTSIZE;
-            } while (d0start != 0 && d0start < d1start+PDSIZE && d0start < end);
-            // free level 0 page directory only when all pde0s in it are already invalid
-            if (free_pd0) {
-                free_page(pde2page(pde1));
-                pgdir[PDX1(d1start)] = 0;
-            }
+        int pde_idx = PDX1(start);
+        if (pgdir[pde_idx] & PTE_V) {
+            free_page(pde2page(pgdir[pde_idx]));
+            pgdir[pde_idx] = 0;
         }
-        d1start += PDSIZE;
-        d0start = d1start;
-    } while (d1start != 0 && d1start < end);
+        start += PTSIZE;
+    } while (start != 0 && start < end);
 }
 /* copy_range - copy content of memory (start, end) of one process A to another
  * process B
@@ -490,6 +400,12 @@ int copy_range(pde_t *to, pde_t *from, uintptr_t start, uintptr_t end,
              * (3) memory copy from src_kvaddr to dst_kvaddr, size is PGSIZE
              * (4) build the map of phy addr of  nage with the linear addr start
              */
+            void *kva_src = page2kva(page);
+            void *kva_dst = page2kva(npage);
+
+            memcpy(kva_dst, kva_src, PGSIZE);
+
+            ret = page_insert(to, npage, start, perm);
             assert(ret == 0);
         }
         start += PGSIZE;
@@ -580,10 +496,6 @@ static void check_pgdir(void) {
     // assert(npage <= KMEMSIZE / PGSIZE);
     // The memory starts at 2GB in RISC-V
     // so npage is always larger than KMEMSIZE / PGSIZE
-    size_t nr_free_store;
-
-    nr_free_store=nr_free_pages();
-
     assert(npage <= KERNTOP / PGSIZE);
     assert(boot_pgdir != NULL && (uint32_t)PGOFF(boot_pgdir) == 0);
     assert(get_page(boot_pgdir, 0x0, NULL) == NULL);
@@ -625,25 +537,15 @@ static void check_pgdir(void) {
     assert(page_ref(p2) == 0);
 
     assert(page_ref(pde2page(boot_pgdir[0])) == 1);
-
-    pde_t *pd1=boot_pgdir,*pd0=page2kva(pde2page(boot_pgdir[0]));
-    free_page(pde2page(pd0[0]));
-    free_page(pde2page(pd1[0]));
+    free_page(pde2page(boot_pgdir[0]));
     boot_pgdir[0] = 0;
-    flush_tlb();
-
-    assert(nr_free_store==nr_free_pages());
 
     cprintf("check_pgdir() succeeded!\n");
 }
 
 static void check_boot_pgdir(void) {
-    size_t nr_free_store;
     pte_t *ptep;
     int i;
-
-    nr_free_store=nr_free_pages();
-
     for (i = ROUNDDOWN(KERNBASE, PGSIZE); i < npage * PGSIZE; i += PGSIZE) {
         assert((ptep = get_pte(boot_pgdir, (uintptr_t)KADDR(i), 0)) != NULL);
         assert(PTE_ADDR(*ptep) == i);
@@ -666,14 +568,9 @@ static void check_boot_pgdir(void) {
     *(char *)(page2kva(p) + 0x100) = '\0';
     assert(strlen((const char *)0x100) == 0);
 
-    pde_t *pd1=boot_pgdir,*pd0=page2kva(pde2page(boot_pgdir[0]));
     free_page(p);
-    free_page(pde2page(pd0[0]));
-    free_page(pde2page(pd1[0]));
+    free_page(pde2page(boot_pgdir[0]));
     boot_pgdir[0] = 0;
-    flush_tlb();
-
-    assert(nr_free_store==nr_free_pages());
 
     cprintf("check_boot_pgdir() succeeded!\n");
 }

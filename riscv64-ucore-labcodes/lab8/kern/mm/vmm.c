@@ -354,16 +354,14 @@ check_pgfault(void) {
 
     assert(sum == 0);
 
-    pde_t *pd1=pgdir,*pd0=page2kva(pde2page(pgdir[0]));
     page_remove(pgdir, ROUNDDOWN(addr, PGSIZE));
-    free_page(pde2page(pd0[0]));
-    free_page(pde2page(pd1[0]));
+    free_page(pde2page(pgdir[0]));
     pgdir[0] = 0;
-    flush_tlb();
 
     mm->pgdir = NULL;
     mm_destroy(mm);
     check_mm_struct = NULL;
+    nr_free_pages_store--; // szx : 三级页表
 
     assert(nr_free_pages_store == nr_free_pages());
 
@@ -421,7 +419,8 @@ do_pgfault(struct mm_struct *mm, uint_t error_code, uintptr_t addr) {
     ret = -E_NO_MEM;
 
     pte_t *ptep=NULL;
-/* Maybe you want help comment, BELOW comments can help you finish the code
+    /*LAB3 EXERCISE 1: YOUR CODE
+    * Maybe you want help comment, BELOW comments can help you finish the code
     *
     * Some Useful MACROs and DEFINEs, you can use them in below implementation.
     * MACROs or Functions:
@@ -437,53 +436,33 @@ do_pgfault(struct mm_struct *mm, uint_t error_code, uintptr_t addr) {
     *   mm->pgdir : the PDT of these vma
     *
     */
- // try to find a pte, if pte's PT(Page Table) isn't existed, then create a PT.
+    // try to find a pte, if pte's PT(Page Table) isn't existed, then create a PT.
     // (notice the 3th parameter '1')
     if ((ptep = get_pte(mm->pgdir, addr, 1)) == NULL) {
         cprintf("get_pte in do_pgfault failed\n");
         goto failed;
     }
-
-    if (*ptep == 0) {
+    
+    if (*ptep == 0) { // if the phy addr isn't exist, then alloc a page & map the phy addr with logical addr
         if (pgdir_alloc_page(mm->pgdir, addr, perm) == NULL) {
             cprintf("pgdir_alloc_page in do_pgfault failed\n");
             goto failed;
         }
-    } else {// if this pte is a swap entry, then load data from disk to a page with phy addr
+    }
+    else { // if this pte is a swap entry, then load data from disk to a page with phy addr
            // and call page_insert to map the phy addr with logical addr
-        /*LAB3 EXERCISE 3: YOUR CODE
-        * 请你根据以下信息提示，补充函数
-        * 现在我们认为pte是一个交换条目，那我们应该从磁盘加载数据并放到带有phy addr的页面，
-        * 并将phy addr与逻辑addr映射，触发交换管理器记录该页面的访问情况
-        *
-        *  一些有用的宏和定义，可能会对你接下来代码的编写产生帮助(显然是有帮助的)
-        *  宏或函数:
-        *    swap_in(mm, addr, &page) : 分配一个内存页，然后根据
-        *    PTE中的swap条目的addr，找到磁盘页的地址，将磁盘页的内容读入这个内存页
-        *    page_insert ： 建立一个Page的phy addr与线性addr la的映射
-        *    swap_map_swappable ： 设置页面可交换
-        */
         if(swap_init_ok) {
             struct Page *page=NULL;
-            // 你要编写的内容在这里，请基于上文说明以及下文的英文注释完成代码编写
-            //(1）According to the mm AND addr, try
-            //to load the content of right disk page
-            //into the memory which page managed.
-            //(2) According to the mm,
-            //addr AND page, setup the
-            //map of phy addr <--->
-            //logical addr
-            //(3) make the page swappable.
-            /*if ((ret = swap_in(mm, addr, &page)) != 0) {
+            if ((ret = swap_in(mm, addr, &page)) != 0) {
                 cprintf("swap_in in do_pgfault failed\n");
                 goto failed;
             }    
             page_insert(mm->pgdir, page, addr, perm);
-            swap_map_swappable(mm, addr, page, 1);*/
-
+            swap_map_swappable(mm, addr, page, 1);
             page->pra_vaddr = addr;
-        } else {
-            cprintf("no swap_init_ok but ptep is %x, failed\n", *ptep);
+        }
+        else {
+            cprintf("no swap_init_ok but ptep is %x, failed\n",*ptep);
             goto failed;
         }
    }

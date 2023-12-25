@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define DEPTH 3
+#define DEPTH 4
 
 void forktree(const char *cur);
 

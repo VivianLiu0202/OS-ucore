@@ -81,9 +81,7 @@ typedef struct monitor{
 
 // Initialize variables in monitor.
 void     monitor_init (monitor_t *cvp, size_t num_cv);
-// Free variables in monitor.
-void     monitor_free (monitor_t *cvp, size_t num_cv);
-// Unlock one of threads waiting on the condition variable.
+// Unlock one of threads waiting on the condition variable. 
 void     cond_signal (condvar_t *cvp);
 // Suspend calling thread on a condition variable waiting for condition atomically unlock mutex in monitor,
 // and suspends calling thread on conditional variable after waking up locks mutex.

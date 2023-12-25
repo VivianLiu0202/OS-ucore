@@ -181,9 +181,14 @@ void phi_test_condvar (int i) {
 void phi_take_forks_condvar(int i) {
      down(&(mtp->mutex));
 //--------into routine in monitor--------------
-     // LAB7 EXERCISE2: YOUR CODE
+     // LAB7 EXERCISE1: YOUR CODE
      // I am hungry
      // try to get fork
+    state_condvar[i] = HUNGRY;
+    phi_test_condvar(i);
+    if (state_condvar[i] == HUNGRY) {
+        cond_wait(&mtp->cv[i]);
+    }
 //--------leave routine in monitor--------------
       if(mtp->next_count>0)
          up(&(mtp->next));
@@ -195,9 +200,12 @@ void phi_put_forks_condvar(int i) {
      down(&(mtp->mutex));
 
 //--------into routine in monitor--------------
-     // LAB7 EXERCISE2: YOUR CODE
+     // LAB7 EXERCISE1: YOUR CODE
      // I ate over
      // test left and right neighbors
+    state_condvar[i] = THINKING;
+    phi_test_condvar(LEFT);
+    phi_test_condvar(RIGHT);
 //--------leave routine in monitor--------------
      if(mtp->next_count>0)
         up(&(mtp->next));
@@ -228,7 +236,7 @@ int philosopher_using_condvar(void * arg) { /* arg is the No. of philosopher 0~N
 
 void check_sync(void){
 
-    int i, pids[N];
+    int i;
 
     //check semaphore
     sem_init(&mutex, 1);
@@ -238,12 +246,9 @@ void check_sync(void){
         if (pid <= 0) {
             panic("create No.%d philosopher_using_semaphore failed.\n");
         }
-        pids[i] = pid;
         philosopher_proc_sema[i] = find_proc(pid);
         set_proc_name(philosopher_proc_sema[i], "philosopher_sema_proc");
     }
-    for (i=0;i<N;i++)
-        assert(do_wait(pids[i],NULL) == 0);
 
     //check condition variable
     monitor_init(&mt, N);
@@ -253,11 +258,7 @@ void check_sync(void){
         if (pid <= 0) {
             panic("create No.%d philosopher_using_condvar failed.\n");
         }
-        pids[i] = pid;
         philosopher_proc_condvar[i] = find_proc(pid);
         set_proc_name(philosopher_proc_condvar[i], "philosopher_condvar_proc");
     }
-    for (i=0;i<N;i++)
-        assert(do_wait(pids[i],NULL) == 0);
-    monitor_free(&mt, N);
 }

@@ -10,17 +10,16 @@
 // pmm_manager is a physical memory management class. A special pmm manager - XXX_pmm_manager
 // only needs to implement the methods in pmm_manager class, then XXX_pmm_manager can be used
 // by ucore to manage the total physical memory space.
-struct pmm_manager
-{
+struct pmm_manager {
     const char *name;                                 // XXX_pmm_manager's name
     void (*init)(void);                               // initialize internal description&management data structure
-                                                      // (free block list, number of free block) of XXX_pmm_manager
+                                                      // (free block list, number of free block) of XXX_pmm_manager 
     void (*init_memmap)(struct Page *base, size_t n); // setup description&management data structcure according to
-                                                      // the initial free physical memory space
-    struct Page *(*alloc_pages)(size_t n);            // allocate >=n pages, depend on the allocation algorithm
+                                                      // the initial free physical memory space 
+    struct Page *(*alloc_pages)(size_t n);            // allocate >=n pages, depend on the allocation algorithm 
     void (*free_pages)(struct Page *base, size_t n);  // free >=n pages with "base" addr of Page descriptor structures(memlayout.h)
-    size_t (*nr_free_pages)(void);                    // return the number of free pages
-    void (*check)(void);                              // check the correctness of XXX_pmm_manager
+    size_t (*nr_free_pages)(void);                    // return the number of free pages 
+    void (*check)(void);                              // check the correctness of XXX_pmm_manager 
 };
 
 extern const struct pmm_manager *pmm_manager;
@@ -59,8 +58,7 @@ void print_pgdir(void);
 #define PADDR(kva)                                                 \
     ({                                                             \
         uintptr_t __m_kva = (uintptr_t)(kva);                      \
-        if (__m_kva < KERNBASE)                                    \
-        {                                                          \
+        if (__m_kva < KERNBASE) {                                  \
             panic("PADDR called with invalid kva %08lx", __m_kva); \
         }                                                          \
         __m_kva - va_pa_offset;                                    \
@@ -69,17 +67,12 @@ void print_pgdir(void);
 /* *
  * KADDR - takes a physical address and returns the corresponding kernel virtual
  * address. It panics if you pass an invalid physical address.
- * 将一个物理地址转换为内核虚拟地址。
- * 通过 PPN 宏定义获取物理地址对应的页面号 __m_ppn
- * 如果页面号大于等于页面数量 npage，则调用 panic 函数触发内核崩溃。
- * 通过将物理地址 pa 加上内核虚拟地址的偏移量 va_pa_offset，即可得到对应的内核虚拟地址。
  * */
 #define KADDR(pa)                                                \
     ({                                                           \
         uintptr_t __m_pa = (pa);                                 \
         size_t __m_ppn = PPN(__m_pa);                            \
-        if (__m_ppn >= npage)                                    \
-        {                                                        \
+        if (__m_ppn >= npage) {                                  \
             panic("KADDR called with invalid pa %08lx", __m_pa); \
         }                                                        \
         (void *)(__m_pa + va_pa_offset);                         \
@@ -89,119 +82,83 @@ extern struct Page *pages;
 extern size_t npage;
 extern uint_t va_pa_offset;
 
-// 将页面结构体指针转换为页面号
 static inline ppn_t
-page2ppn(struct Page *page)
-{
+page2ppn(struct Page *page) {
     return page - pages + nbase;
 }
 
-// 将一个页面结构体指针转换为物理地址
 static inline uintptr_t
-page2pa(struct Page *page)
-{
+page2pa(struct Page *page) {
     return page2ppn(page) << PGSHIFT;
 }
 
-/**将一个物理地址转换为页面结构体指针
- * 首先通过 PPN 宏定义获取物理地址对应的页面号
- * 然后通过 pages 数组的基地址 nbase 获取页面结构体的基地址
- */
 static inline struct Page *
-pa2page(uintptr_t pa)
-{
-    if (PPN(pa) >= npage)
-    {
+pa2page(uintptr_t pa) {
+    if (PPN(pa) >= npage) {
         panic("pa2page called with invalid pa");
     }
     return &pages[PPN(pa) - nbase];
 }
 
-// 将页面结构体指针转换为内核虚拟地址
 static inline void *
-page2kva(struct Page *page)
-{
+page2kva(struct Page *page) {
     return KADDR(page2pa(page));
 }
 
-// 将一个内核虚拟地址转换为页面结构体指针
 static inline struct Page *
-kva2page(void *kva)
-{
+kva2page(void *kva) {
     return pa2page(PADDR(kva));
 }
 
-// 将一个页表项转换为页面结构体指针
 static inline struct Page *
-pte2page(pte_t pte)
-{
-    // 首先判断页表项是否有效，如果无效则调用 panic 函数触发内核崩溃。
-    if (!(pte & PTE_V))
-    {
+pte2page(pte_t pte) {
+    if (!(pte & PTE_V)) {
         panic("pte2page called with invalid pte");
     }
     return pa2page(PTE_ADDR(pte));
 }
 
-// 将一个页目录项转换为页面结构体指针
 static inline struct Page *
-pde2page(pde_t pde)
-{
+pde2page(pde_t pde) {
     return pa2page(PDE_ADDR(pde));
 }
 
-// 表示页面结构体的引用计数。
 static inline int
-page_ref(struct Page *page)
-{
+page_ref(struct Page *page) {
     return page->ref;
 }
 
-// 设置页面结构体的引用计数。
 static inline void
-set_page_ref(struct Page *page, int val)
-{
+set_page_ref(struct Page *page, int val) {
     page->ref = val;
 }
 
-// 表示页面结构体的引用计数+1
 static inline int
-page_ref_inc(struct Page *page)
-{
+page_ref_inc(struct Page *page) {
     page->ref += 1;
     return page->ref;
 }
 
 static inline int
-page_ref_dec(struct Page *page)
-{
+page_ref_dec(struct Page *page) {
     page->ref -= 1;
     return page->ref;
 }
 
-// 刷新tlb缓存
-static inline void flush_tlb()
-{
-    asm volatile("sfence.vma"); // 刷新TLB缓存
+static inline void flush_tlb() {
+  asm volatile("sfence.vm");
 }
 
-/**构造一个页表项
- * 。在函数中，通过将物理页号左移 PTE_PPN_SHIFT 位，再将 PTE_V 和权限类型 type 按位或操作，即可得到对应的页表项。
- */
 // construct PTE from a page and permission bits
-static inline pte_t pte_create(uintptr_t ppn, int type)
-{
-    return (ppn << PTE_PPN_SHIFT) | PTE_V | type;
+static inline pte_t pte_create(uintptr_t ppn, int type) {
+  return (ppn << PTE_PPN_SHIFT) | PTE_V | type;
 }
 
-/**构造一个页目录项。
- * 通过调用 pte_create 函数构造一个页表项，其中权限类型 type 的值为 PTE_V。
- */
-static inline pte_t ptd_create(uintptr_t ppn)
-{
-    return pte_create(ppn, PTE_V);
+static inline pte_t ptd_create(uintptr_t ppn) {
+  return pte_create(ppn, PTE_V);
 }
 
 extern char bootstack[], bootstacktop[];
 
 #endif /* !__KERN_MM_PMM_H__ */
+
